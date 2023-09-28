@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_home_selector"
+        android:title="@string/title_home"
+        app:showAsAction="withText"/>
+
+    <item
+        android:id="@+id/navigation_ticket_buy"
+        android:icon="@drawable/ic_ticket_buy_selector"
+        android:title="@string/ticket_buy"
+        app:showAsAction="withText" />
+
+    <item
+        android:id="@+id/navigation_ticket_search"
+        android:icon="@drawable/ic_ticket_search_selector"
+        android:title="@string/ticket_search"
+        app:showAsAction="withText" />
+
+    <item
+        android:id="@+id/navigation_setting"
+        android:icon="@drawable/ic_ticket_search_selector"
+        android:title="@string/settings"
+        app:showAsAction="withText" />
+
+</menu>

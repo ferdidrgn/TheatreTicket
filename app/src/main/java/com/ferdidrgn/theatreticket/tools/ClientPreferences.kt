@@ -1,0 +1,83 @@
+package com.ferdidrgn.theatreticket.tools
+
+import com.ferdidrgn.theatreticket.enums.ContextLanguages
+import com.ferdidrgn.theatreticket.enums.Languages
+import com.ferdidrgn.theatreticket.tools.helpers.PreferencesManager
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import java.lang.reflect.Type
+
+class ClientPreferences : PreferencesManager() {
+
+    companion object {
+        lateinit var inst: ClientPreferences
+    }
+
+    var baseUrl: String?
+        get() = getString(BASE_URL)
+        set(value) {
+            putString(BASE_URL, value)
+        }
+
+    var guestToken: String?
+        get() = getString(GUEST_TOKEN, "")
+        set(token) = putString(GUEST_TOKEN, token)
+
+    var token: String?
+        get() = getString(TOKEN, "")
+        set(token) = putString(TOKEN, token)
+
+    //for Onboarding
+    var isFirstLaunch: Boolean?
+        get() = getBooleanValue(IS_FIRST_LUNCH, true)
+        set(isFirstLaunch) {
+            putBoolean(IS_FIRST_LUNCH, isFirstLaunch ?: true)
+        }
+
+    var userPhone: String?
+        get() = getString(PHONE_NUMBER, "")
+        set(token) = putString(PHONE_NUMBER, token)
+
+    var role: String?
+        get() = getString(ROLE, "")
+        set(token) = putString(ROLE, token)
+
+    var connection: String?
+        get() = getString(CONNECTION, "")
+        set(token) = putString(CONNECTION, token)
+
+    var language: String
+        get() = getString(LANGUAGE, Languages.English.language).toString()
+        set(token) = putString(LANGUAGE, token)
+
+    var contextLanguage: String
+        get() = getString(CONTEXT_LANGUAGE, ContextLanguages.English.language).toString()
+        set(token) = putString(CONTEXT_LANGUAGE, token)
+
+    var userID: String?
+        get() = getString(USER_ID, "")
+        set(value) = putString(USER_ID, value)
+
+    var interest = ArrayList<String>()
+
+    var shouldFirebaseAouthOn: Boolean?
+        get() = getBooleanValue(SHOULD_FIREBASE_AOUTH_BE_ON_ANDROID)
+        set(value) {
+            putBoolean(SHOULD_FIREBASE_AOUTH_BE_ON_ANDROID, value ?: true)
+        }
+
+    fun saveArrayList(list: ArrayList<String>, key: String?) {
+        val gson = Gson()
+        val json: String = gson.toJson(list)
+        inst.putString(key, json)
+        inst.apply { this@ClientPreferences.interest.addAll(list) }
+    }
+
+    fun getArrayList(key: String?): ArrayList<String?>? {
+        val gson = Gson()
+        val json: String? = inst.getString(key, null)
+        val type: Type = object : TypeToken<ArrayList<String?>?>() {}.getType()
+        return gson.fromJson(json, type)
+    }
+
+}

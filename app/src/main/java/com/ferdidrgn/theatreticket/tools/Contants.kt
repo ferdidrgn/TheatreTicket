@@ -12,6 +12,7 @@ const val PHONE_NUMBER = "phoneNumber"
 const val ROLE = "role"
 const val CONNECTION = "connection"
 const val IS_FIRST_LUNCH = "isFirstLunch"
+const val TO_MAIN = "TO_MAIN"
 
 //FireBaseRemoteConfig
 const val SHOULD_FIREBASE_AOUTH_BE_ON_ANDROID = "shouldFirebaseAouthBeOnAndroid"

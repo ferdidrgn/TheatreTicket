@@ -7,9 +7,11 @@ import androidx.navigation.fragment.findNavController
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseFragment
 import com.ferdidrgn.theatreticket.databinding.FragmentSettingsBinding
+import com.ferdidrgn.theatreticket.enums.ToMain
 import com.ferdidrgn.theatreticket.tools.ADMIN_BUY_TICKET
 import com.ferdidrgn.theatreticket.tools.onClickDelayed
 import com.ferdidrgn.theatreticket.tools.showToast
+import com.ferdidrgn.theatreticket.tools.NavHandler
 
 class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding>() {
     override fun getVM(): Lazy<SettingsViewModel> = viewModels()
@@ -18,12 +20,9 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
         FragmentSettingsBinding.inflate(layoutInflater)
 
     override fun onCreateFinished(savedInstanceState: Bundle?) {
-        showToast("SettingsFragment", requireContext())
 
         binding.btnSellTicket.onClickDelayed {
-            //ENUM yapısı ile değiştir
-            val bundle = bundleOf(ADMIN_BUY_TICKET to true)
-            findNavController().navigate(R.id.action_navigation_settings_fragment_to_navigation_ticket_buy, bundle)
+            NavHandler.instance.toMainActivity(requireContext(), ToMain.TicketBuy)
         }
     }
 

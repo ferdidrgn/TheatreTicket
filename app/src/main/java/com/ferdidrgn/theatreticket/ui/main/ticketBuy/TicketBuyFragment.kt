@@ -5,9 +5,8 @@ import androidx.fragment.app.viewModels
 import com.ferdidrgn.theatreticket.base.BaseFragment
 import com.ferdidrgn.theatreticket.databinding.FragmentTicketBuyBinding
 import com.ferdidrgn.theatreticket.tools.ADMIN_BUY_TICKET
-import dagger.hilt.android.AndroidEntryPoint
+import com.ferdidrgn.theatreticket.tools.showToast
 
-@AndroidEntryPoint
 class TicketBuyFragment : BaseFragment<TicketBuyViewModel, FragmentTicketBuyBinding>() {
 
     private var isSellTicketAdmin = false
@@ -23,7 +22,7 @@ class TicketBuyFragment : BaseFragment<TicketBuyViewModel, FragmentTicketBuyBind
     }
 
     override fun onCreateFinished(savedInstanceState: Bundle?) {
-        TODO("Not yet implemented")
+        showToast("TicketBuyFragment", requireContext())
     }
 
 

@@ -4,9 +4,8 @@ import android.os.Bundle
 import androidx.fragment.app.viewModels
 import com.ferdidrgn.theatreticket.base.BaseFragment
 import com.ferdidrgn.theatreticket.databinding.FragmentHomeBinding
-import dagger.hilt.android.AndroidEntryPoint
+import com.ferdidrgn.theatreticket.tools.showToast
 
-@AndroidEntryPoint
 class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>(){
     override fun getVM(): Lazy<HomeViewModel> = viewModels()
 
@@ -14,7 +13,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>(){
         FragmentHomeBinding.inflate(layoutInflater)
 
     override fun onCreateFinished(savedInstanceState: Bundle?) {
-
+        showToast("HomeFragment",requireContext())
     }
 
 }

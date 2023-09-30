@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
-        android:name=".TheatreTicketApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -13,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TheatreTicket"
         tools:targetApi="34">
+        <activity
+            android:name=".MainActivity2"
+            android:exported="false" />
         <activity
             android:name=".ui.main.MainActivity"
             android:exported="true">

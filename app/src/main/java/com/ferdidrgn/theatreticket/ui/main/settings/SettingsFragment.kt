@@ -10,9 +10,7 @@ import com.ferdidrgn.theatreticket.databinding.FragmentSettingsBinding
 import com.ferdidrgn.theatreticket.tools.ADMIN_BUY_TICKET
 import com.ferdidrgn.theatreticket.tools.onClickDelayed
 import com.ferdidrgn.theatreticket.tools.showToast
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
 class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding>() {
     override fun getVM(): Lazy<SettingsViewModel> = viewModels()
 
@@ -23,6 +21,7 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
         showToast("SettingsFragment", requireContext())
 
         binding.btnSellTicket.onClickDelayed {
+            //ENUM yapısı ile değiştir
             val bundle = bundleOf(ADMIN_BUY_TICKET to true)
             findNavController().navigate(R.id.action_navigation_settings_fragment_to_navigation_ticket_buy, bundle)
         }

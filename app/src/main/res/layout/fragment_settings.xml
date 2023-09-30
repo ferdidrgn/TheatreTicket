@@ -3,6 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.ferdidrgn.theatreticket.ui.main.settings.SettingsViewModel" />
+
+    </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,7 +23,8 @@
             android:id="@+id/nsUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:overScrollMode="never">
+            android:overScrollMode="never"
+            android:visibility="@{viewModel.whichLayout ? View.VISIBLE : View.GONE}">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -45,7 +56,7 @@
                                 android:id="@+id/tvUserName"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="viewModel.userName}"
+                                android:text="@{viewModel.userName}"
                                 android:textSize="16sp"
                                 tools:text="Ferdi Durgun" />
 
@@ -54,7 +65,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="2dp"
-                                android:text="viewModel.role}"
+                                android:text="@{viewModel.role}"
                                 android:textDirection="ltr"
                                 android:textSize="14sp"
                                 tools:text="Admin" />

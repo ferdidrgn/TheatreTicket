@@ -4,6 +4,13 @@
     <string name="ticket_buy">Bilet Al</string>
     <string name="ticket_search">Bilet Sorgula</string>
     <string name="settings">Ayarlar</string>
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="are_you_sure_you_want_to_logout">Are you sure you want to logout ?</string>
+
+
+
     <string name="phone_number">Tel No</string>
     <string name="choose_seats">Seçtiğiniz Koltuklar</string>
     <string name="first_name">Ad</string>

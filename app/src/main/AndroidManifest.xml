@@ -13,7 +13,7 @@
         android:theme="@style/Theme.TheatreTicket"
         tools:targetApi="34">
         <activity
-            android:name=".MainActivity2"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".ui.main.MainActivity"

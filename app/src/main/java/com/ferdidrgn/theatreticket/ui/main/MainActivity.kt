@@ -1,5 +1,6 @@
 package com.ferdidrgn.theatreticket.ui.main
 
+import android.app.Activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
@@ -7,6 +8,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.enums.ToMain
+import com.ferdidrgn.theatreticket.tools.ClientPreferences
 import com.ferdidrgn.theatreticket.tools.TO_MAIN
 
 class MainActivity : AppCompatActivity() {
@@ -21,15 +23,18 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.fragmentContainer) as NavHostFragment
         navController = navHostFragment.navController
 
-        val bottomNav = findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(R.id.bottomNav)
+        val bottomNav =
+            findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(R.id.bottomNav)
         bottomNav.setupWithNavController(navController)
 
-        intent.getSerializableExtra(TO_MAIN)?.let { data->
+        intent.getSerializableExtra(TO_MAIN)?.let { data ->
             moveToWhere(data as ToMain)
         }
     }
+
     private fun moveToWhere(toWhere: ToMain) {
-        val bottomNav = findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(R.id.bottomNav)
+        val bottomNav =
+            findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(R.id.bottomNav)
         when (toWhere) {
             ToMain.Home -> bottomNav.selectedItemId = R.id.homeFragmentNav
 

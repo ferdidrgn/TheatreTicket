@@ -15,6 +15,17 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.Locale
 
+fun View.show() {
+    this.visibility = View.VISIBLE
+}
+
+fun View.hide() {
+    this.visibility = View.GONE
+}
+
+fun View.hideAndHold() {
+    this.visibility = View.INVISIBLE
+}
 
 fun View.onClickDelayed(skipDurationMillis: Long = 750, action: () -> Unit) {
     var isEnabled = true

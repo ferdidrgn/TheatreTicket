@@ -1,8 +1,7 @@
 package com.ferdidrgn.theatreticket.ui.main
 
-import android.content.Context
 import com.ferdidrgn.theatreticket.base.BaseViewModel
-import com.ferdidrgn.theatreticket.di.ProductRepository
+import com.ferdidrgn.theatreticket.repository.ProductRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

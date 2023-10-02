@@ -1,9 +1,8 @@
 package com.ferdidrgn.theatreticket.ui.main.settings
 
-import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import com.ferdidrgn.theatreticket.base.BaseViewModel
-import com.ferdidrgn.theatreticket.di.ProductRepository
+import com.ferdidrgn.theatreticket.repository.ProductRepository
 import com.ferdidrgn.theatreticket.enums.Roles
 import com.ferdidrgn.theatreticket.tools.ClientPreferences
 import com.ferdidrgn.theatreticket.tools.ioScope

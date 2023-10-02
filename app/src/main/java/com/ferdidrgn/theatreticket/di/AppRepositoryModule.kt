@@ -1,5 +1,6 @@
 package com.ferdidrgn.theatreticket.di
 
+import com.ferdidrgn.theatreticket.repository.ProductRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

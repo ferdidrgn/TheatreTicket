@@ -6,7 +6,9 @@ import com.ferdidrgn.theatreticket.base.BaseFragment
 import com.ferdidrgn.theatreticket.databinding.FragmentTicketBuyBinding
 import com.ferdidrgn.theatreticket.tools.ADMIN_BUY_TICKET
 import com.ferdidrgn.theatreticket.tools.showToast
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class TicketBuyFragment : BaseFragment<TicketBuyViewModel, FragmentTicketBuyBinding>() {
 
     private var isSellTicketAdmin = false

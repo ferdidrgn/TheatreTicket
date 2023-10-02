@@ -15,8 +15,11 @@ import com.ferdidrgn.theatreticket.tools.ClientPreferences
 import com.ferdidrgn.theatreticket.tools.onClickDelayed
 import com.ferdidrgn.theatreticket.tools.showToast
 import com.ferdidrgn.theatreticket.tools.NavHandler
+import com.ferdidrgn.theatreticket.ui.main.MainActivity
 import com.ferdidrgn.theatreticket.ui.main.home.HomeFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding>() {
     override fun getVM(): Lazy<SettingsViewModel> = viewModels()
 
@@ -38,7 +41,7 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
 
     fun clickListener() {
         binding.btnSellTicket.onClickDelayed {
-            NavHandler.instance.toMainActivity(requireContext(), ToMain.TicketBuy)
+           NavHandler.instance.toMainActivity(requireContext(), ToMain.TicketBuy)
         }
         binding.btnLogout.onClickDelayed {
             showLogoutDialog(requireContext())

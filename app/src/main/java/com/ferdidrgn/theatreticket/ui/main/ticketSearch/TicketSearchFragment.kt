@@ -5,7 +5,9 @@ import androidx.fragment.app.viewModels
 import com.ferdidrgn.theatreticket.base.BaseFragment
 import com.ferdidrgn.theatreticket.databinding.FragmentTicketSearchBinding
 import com.ferdidrgn.theatreticket.tools.showToast
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class TicketSearchFragment: BaseFragment <TicketSearchViewModel, FragmentTicketSearchBinding>(){
     override fun getVM(): Lazy<TicketSearchViewModel> = viewModels()
 

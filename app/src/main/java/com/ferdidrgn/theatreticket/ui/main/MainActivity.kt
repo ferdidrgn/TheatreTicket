@@ -1,23 +1,30 @@
 package com.ferdidrgn.theatreticket.ui.main
 
-import android.app.Activity
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import androidx.activity.viewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.ferdidrgn.theatreticket.R
+import com.ferdidrgn.theatreticket.base.BaseActivity
+import com.ferdidrgn.theatreticket.databinding.ActivityMainBinding
+import com.ferdidrgn.theatreticket.databinding.FragmentSettingsBinding
 import com.ferdidrgn.theatreticket.enums.ToMain
-import com.ferdidrgn.theatreticket.tools.ClientPreferences
 import com.ferdidrgn.theatreticket.tools.TO_MAIN
+import com.ferdidrgn.theatreticket.ui.main.settings.SettingsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-class MainActivity : AppCompatActivity() {
-    //NOT: THEN WE NEED TO ADD DAGGER HILT AND BASE ACTIVITY
+@AndroidEntryPoint
+class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
+
     private lateinit var navController: NavController
+    override fun getVM(): Lazy<MainViewModel> = viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+    override fun getDataBinding(): ActivityMainBinding =
+        ActivityMainBinding.inflate(layoutInflater)
+
+    override fun onCreateFinished(savedInstanceState: Bundle?) {
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainer) as NavHostFragment

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "398342224792",
+    "project_id": "theatreticket-8d4f3",
+    "storage_bucket": "theatreticket-8d4f3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:398342224792:android:3077d7c32cd396fea709ed",
+        "android_client_info": {
+          "package_name": "com.ferdidrgn.theatreticket"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAo6PWDHwY7oIyj1gREKepzVGENnhJIpvI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

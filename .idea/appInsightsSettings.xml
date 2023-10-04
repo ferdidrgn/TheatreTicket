@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.ferdidrgn.theatreticket" />
+                  <option name="mobileSdkAppId" value="1:398342224792:android:3077d7c32cd396fea709ed" />
+                  <option name="projectId" value="theatreticket-8d4f3" />
+                  <option name="projectNumber" value="398342224792" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

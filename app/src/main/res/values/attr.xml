@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CustomEditText">
+        <attr name="custom_edit_hint" format="string" />
+        <attr name="custom_edit_input" format="integer" />
+    </declare-styleable>
+
+</resources>

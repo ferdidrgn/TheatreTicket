@@ -1,5 +1,6 @@
 package com.ferdidrgn.theatreticket.di
 
+import com.ferdidrgn.theatreticket.forFirebaseQueries.ForFirebaseQueries
 import com.ferdidrgn.theatreticket.repository.ProductRepository
 import dagger.Module
 import dagger.Provides
@@ -14,4 +15,8 @@ object AppRepositoryModule {
     @Singleton
     @Provides
     fun provideProductRepository() = ProductRepository()
+
+    @Singleton
+    @Provides
+    fun provideForFirebaseQueries() = ForFirebaseQueries()
 }

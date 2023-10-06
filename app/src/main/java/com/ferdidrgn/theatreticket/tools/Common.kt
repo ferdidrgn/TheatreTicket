@@ -22,6 +22,6 @@ fun checkIfTokenDeleted(error: Err?) {
         ClientPreferences.inst.token = ""
 }
 
-fun showToast(message: String, context: Context) {
+fun showToast(message: String, context: Context? = com.ferdidrgn.theatreticket.TheatreTicketApp.inst.applicationContext) {
     Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
 }

@@ -3,6 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.ferdidrgn.theatreticket.ui.main.ticketBuy.TicketBuyViewModel" />
+    </data>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -68,48 +76,57 @@
                             android:textAlignment="textStart"
                             android:textSize="18sp" />
 
-                        <EditText
+                        <com.ferdidrgn.theatreticket.tools.components.CustomEditText
                             android:id="@+id/etPhoneNumber"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/etChooseSeats"
                             android:layout_alignEnd="@+id/etChooseSeats"
                             android:layout_alignParentStart="true"
-                            android:autofillHints="phone"
-                            android:hint="@string/phone_number"
-                            android:maxLength="10"
-                            android:maxLines="1"
                             android:textAlignment="textStart"
-                            android:textColor="@color/black"
-                            android:textSize="18sp" />
+                            app:custom_edit_hint="@string/phone_number_mask"
+                            app:custom_edit_input="1"
+                            app:custom_edit_text="@={viewModel.phoneNumber}" />
 
-                        <EditText
+                        <com.ferdidrgn.theatreticket.tools.components.CustomEditText
                             android:id="@+id/etFirstName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/etPhoneNumber"
                             android:layout_alignEnd="@+id/etPhoneNumber"
                             android:layout_alignParentStart="true"
-                            android:hint="@string/first_name"
                             android:maxLines="1"
                             android:textAlignment="textStart"
-                            android:textColor="@color/black"
-                            android:textSize="18sp" />
+                            app:custom_edit_hint="@string/first_name"
+                            app:custom_edit_input="1"
+                            app:custom_edit_text="@{viewModel.firstName}" />
 
-                        <EditText
+                        <com.ferdidrgn.theatreticket.tools.components.CustomEditText
                             android:id="@+id/etLastName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/etFirstName"
                             android:layout_alignEnd="@+id/etFirstName"
                             android:layout_alignParentStart="true"
-                            android:layout_alignParentBottom="true"
-                            android:layout_marginBottom="0dp"
-                            android:hint="@string/last_name"
                             android:maxLines="1"
                             android:textAlignment="textStart"
-                            android:textColor="@color/black"
-                            android:textSize="18sp" />
+                            app:custom_edit_hint="@string/last_name"
+                            app:custom_edit_input="1"
+                            app:custom_edit_text="@{viewModel.lastName}" />
+
+                        <CalendarView
+                            android:id="@+id/cvAge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/etLastName"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginEnd="0dp"
+                            android:text="@string/age"
+                            android:textAlignment="center"
+                            android:textSize="18dp" />
                     </RelativeLayout>
 
                     <LinearLayout
@@ -119,11 +136,12 @@
                         android:layout_weight="1">
 
                         <Button
-                            android:id="@+id/bt_buy"
+                            android:id="@+id/btnBuy"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="30dp"
                             android:hint="@string/buy"
+                            android:onClick="@{()->viewModel.onBtnBuyTicketClick()}"
                             android:textAlignment="center"
                             android:textColor="@color/black"
                             android:textSize="18sp" />

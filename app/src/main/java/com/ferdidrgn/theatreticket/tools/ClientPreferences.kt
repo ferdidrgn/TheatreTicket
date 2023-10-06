@@ -39,12 +39,16 @@ class ClientPreferences : PreferencesManager() {
         set(token) = putString(PHONE_NUMBER, token)
 
     var userFirstName: String?
-        get() = getString(PHONE_NUMBER, "")
-        set(token) = putString(PHONE_NUMBER, token)
+        get() = getString(USER_FIRSTNAME, "")
+        set(token) = putString(USER_FIRSTNAME, token)
 
     var userLastName: String?
-        get() = getString(PHONE_NUMBER, "")
-        set(token) = putString(PHONE_NUMBER, token)
+        get() = getString(USER_LASTNAME, "")
+        set(token) = putString(USER_LASTNAME, token)
+
+    var userAge: String?
+        get() = getString(USER_AGE, "")
+        set(token) = putString(USER_AGE, token)
 
     var role: String?
         get() = getString(ROLE, "")

@@ -13,13 +13,13 @@
     <color name="main_dark">#5F2625</color>
     <color name="main">#833434</color>
     <color name="main_secondary">#A84342</color>
-    <color name="main_third">#C05E5D</color>
-    <color name="main_forth">#CE8382</color>
+    <color name="main_thirth">#C05E5D</color>
+    <color name="main_fourth">#CE8382</color>
     <color name="main_fifth">#DCA7A7</color>
 
     <color name="red_err">#EB4747</color>
 
-    <color name="blue_natural">#3F51B5</color>
+    <color name="blue">#00008B</color>
     <color name="pink">#E91E63</color>
 
 </resources>

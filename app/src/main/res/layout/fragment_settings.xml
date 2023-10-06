@@ -114,7 +114,7 @@
                     android:id="@+id/btnSoldSeats"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_top_10_dp_blue_natural"
+                    android:background="@drawable/bg_top_10_dp_main"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="13dp">
 
@@ -156,7 +156,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/bg_rectangle_blue_natural"
+                    android:background="@drawable/bg_rectangle_main"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="13dp">
 
@@ -199,7 +199,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/bg_rectangle_blue_natural"
+                    android:background="@drawable/bg_rectangle_main"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="13dp">
 
@@ -241,7 +241,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/bg_bottom_10_dp_blue_natural"
+                    android:background="@drawable/bg_bottom_10_dp_main"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="13dp">
 
@@ -274,6 +274,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
                             android:text="@string/english_turkish"
+                            android:textColor="@color/blue"
                             android:textSize="14sp" />
 
                     </LinearLayout>
@@ -292,7 +293,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="25dp"
-                    android:background="@drawable/bg_rounded_rectangular_10"
+                    android:background="@drawable/bg_rounded_rectangular_10_main"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="13dp">
 
@@ -316,7 +317,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="15dp"
                             android:text="@string/log_out"
-                            android:textColor="@color/pink"
+                            android:textColor="@color/main_fifth"
                             android:textSize="18sp" />
 
                     </LinearLayout>

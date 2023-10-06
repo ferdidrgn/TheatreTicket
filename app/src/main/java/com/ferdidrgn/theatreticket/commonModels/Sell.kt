@@ -8,7 +8,7 @@ data class Sell(
     @SerializedName("id")
     var _id: String? = "",
     @SerializedName("customerId")
-    var customerId: ArrayList<String?>? = null,
+    var customerId: String? = null,
     @SerializedName("showId")
-    var showId: ArrayList<String?>? = null,
+    var showId: String? = null,
 )

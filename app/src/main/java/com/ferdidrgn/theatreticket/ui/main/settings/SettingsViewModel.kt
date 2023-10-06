@@ -21,8 +21,8 @@ class SettingsViewModel @Inject constructor(context: ProductRepository) : BaseVi
     fun selectedLayout() {
         whichLayout.postValue(false)
         when (ClientPreferences.inst.role ?: "") {
-            Roles.Admin.toString() -> whichLayout.postValue(true)
-            Roles.User.toString() -> whichLayout.postValue(false)
+            Roles.Admin.role -> whichLayout.postValue(true)
+            Roles.User.role -> whichLayout.postValue(false)
             else -> whichLayout.postValue(false)
         }
     }

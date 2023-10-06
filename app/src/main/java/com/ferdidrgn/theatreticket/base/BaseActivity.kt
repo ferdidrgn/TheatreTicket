@@ -22,6 +22,7 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : AppCompa
     private var viewGroup: ViewGroup? = null
     protected lateinit var viewModel: VM
     protected lateinit var binding: DB
+    private var networkManager = NetworkManager()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,8 +40,8 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : AppCompa
         val connectivityManager =
             getSystemService(ConnectivityManager::class.java) as ConnectivityManager
         connectivityManager.requestNetwork(
-            NetworkManager.instance.networkRequest(),
-            NetworkManager.instance.networkCallback()
+            networkManager.networkRequest(),
+            networkManager.networkCallback()
         )
     }
 

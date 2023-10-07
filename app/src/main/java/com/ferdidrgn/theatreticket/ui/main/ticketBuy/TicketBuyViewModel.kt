@@ -1,6 +1,6 @@
 package com.ferdidrgn.theatreticket.ui.main.ticketBuy
 
-import android.content.res.Resources
+import androidx.lifecycle.MutableLiveData
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseViewModel
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Customer
@@ -8,20 +8,23 @@ import com.ferdidrgn.theatreticket.commonModels.dummyData.Sell
 import com.ferdidrgn.theatreticket.enums.ID
 import com.ferdidrgn.theatreticket.enums.Response
 import com.ferdidrgn.theatreticket.forFirebaseQueries.ForFirebaseQueries
-import com.ferdidrgn.theatreticket.tools.ClientPreferences
-import com.ferdidrgn.theatreticket.tools.ioScope
-import com.ferdidrgn.theatreticket.tools.showToast
+import com.ferdidrgn.theatreticket.tools.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import java.util.UUID
 import javax.inject.Inject
 import com.ferdidrgn.theatreticket.tools.helpers.LiveEvent
-import com.ferdidrgn.theatreticket.tools.mainScope
-import kotlinx.coroutines.flow.collectLatest
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 @HiltViewModel
 class TicketBuyViewModel @Inject constructor(private val forFireBaseQueries: ForFirebaseQueries) :
     BaseViewModel() {
+
+    private val fireStore = Firebase.firestore
+    var customerId = MutableLiveData<String?>()
+    var statusTree = MutableLiveData<Boolean?>()
+
 
     var firstName = MutableStateFlow("")
     var lastName = MutableStateFlow("")
@@ -29,7 +32,6 @@ class TicketBuyViewModel @Inject constructor(private val forFireBaseQueries: For
     var age = MutableStateFlow("")
     val buyTicketPopUp = LiveEvent<Boolean?>()
     val errorMessage = LiveEvent<String?>()
-    var uuid = MutableStateFlow("")
 
     var customerAdd = Customer()
     var sellAdd = Sell()
@@ -37,101 +39,106 @@ class TicketBuyViewModel @Inject constructor(private val forFireBaseQueries: For
     fun onBtnBuyTicketClick() {
         var isRequiredFieldsDone = true
 
-        mainScope {
-            /*firstName.collectLatest {
-                if (firstName.value.length < 2) {
-                    isRequiredFieldsDone = false
-                    errorMessage.value = message(R.string.error_first_name_little)
-                }
+        /*firstName.collectLatest {
+            if (firstName.value.length < 2) {
+                isRequiredFieldsDone = false
+                errorMessage.value = message(R.string.error_first_name_little)
             }
+        }
 
-            lastName.collectLatest {
-                if (lastName.value.length < 1) {
-                    isRequiredFieldsDone = false
-                    errorMessage.value = message(R.string.error_last_name_little)
-                }
-            }*/
-            phoneNumber.collectLatest {
-                if (phoneNumber.value.length < 10) {
-                    isRequiredFieldsDone = false
-                    errorMessage.value = message(R.string.error_phone_little)
-                }
+        lastName.collectLatest {
+            if (lastName.value.length < 1) {
+                isRequiredFieldsDone = false
+                errorMessage.value = message(R.string.error_last_name_little)
             }
-            if (isRequiredFieldsDone) {
-                buyTicketPopUp.postValue(true)
-            }
+        }*/
+        //phoneNumber.collectLatest {
+        /*if (phoneNumber.value.length < 10) {
+            isRequiredFieldsDone = false
+            errorMessage.postValue(message(R.string.error_phone_little))
+        }*/
+        // }
+        if (isRequiredFieldsDone) {
+            buyTicketPopUp.postValue(true)
         }
     }
 
     fun checkPhoneNumber() {
+
         mainScope {
             showLoading()
-            val (response, customerId) = forFireBaseQueries.checkPhoneNumber(phoneNumber.value)
-            uuid.value = customerId
-            when (response) {
-                Response.ServerError.response -> {
-                    //errorMessage.value = message(R.string.error_server)
-                }
+            forFireBaseQueries.checkPhoneNumber(phoneNumber.value) { response ->
+                when (response.second) {
+                    Response.ServerError.response -> {
+                        errorMessage.postValue(message(R.string.error_server))
+                        hideLoading()
+                    }
 
-                Response.ThereIs.response -> {
-                    val checkBuyTicket = forFireBaseQueries.checkBuyTicket(uuid.value)
-                    when (checkBuyTicket) {
-                        Response.ServerError.response -> {
-                            //errorMessage.value = messageR.string.error_server)
+                    Response.ThereIs.response -> {
+                        forFireBaseQueries.checkBuyTicket(response.first) { status ->
+                            when (status) {
+                                Response.ServerError.response -> {
+                                    errorMessage.postValue(message(R.string.error_server))
+                                    hideLoading()
+                                }
+
+                                Response.ThereIs.response -> {
+                                    errorMessage.postValue(message(R.string.error_have_ticket))
+                                    hideLoading()
+                                }
+
+                                Response.Empty.response -> {
+                                    hideLoading()
+                                    checkPhoneResume(response.first)
+                                }
+
+                            }
                         }
+                    }
 
-                        Response.ThereIs.response -> {
-                            //message(R.string.error_have_ticket)
-                        }
+                    Response.Empty.response -> {
+                        //Universal Unique ID
+                        val id = UUID.randomUUID().toString()
+                        customerAdd = Customer(
+                            _id = id + ID.Customer.id,
+                            firstName = firstName.value,
+                            lastName = lastName.value,
+                            phoneNumber = phoneNumber.value
+                            //age = userAge.value
+                        )
+                        hideLoading()
+                        checkPhoneResume(id + ID.Customer.id)
+                    }
 
-                        Response.Empty.response -> {
-                            //checkPhoneResume()
-                        }
-
+                    else -> {
+                        hideLoading()
+                        errorMessage.postValue(message(R.string.error_server))
                     }
                 }
-
-                Response.Empty.response -> {
-                    //Universal Unique ID
-                    uuid.value = UUID.randomUUID().toString()
-                    customerAdd = Customer(
-                        _id = uuid.value + ID.Customer.id,
-                        firstName = firstName.value,
-                        lastName = lastName.value,
-                        phoneNumber = phoneNumber.value
-                        //age = userAge.value
-                    )
-                    //checkPhoneResume()
-                }
-
-                else -> showToast("else çalıştı")//errorMessage.value = message(R.string.error_server)
             }
         }
-        hideLoading()
     }
 
 
-    private fun checkPhoneResume() {
+    private fun checkPhoneResume(customerId: String?) {
 
-        ioScope {
-            showLoading()
+        showLoading()
 
-            sellAdd = Sell(
-                _id = uuid.value + ID.Sell.id,
-                customerId = uuid.value + ID.Customer.id,
-                showId = "MockData",
-                customerFullName = firstName.value + " " + lastName.value,
-                customerPhone = phoneNumber.value,
-                showName = "MockData",
-                showDate = "MockData",
-                showTime = "MockData",
-                showPrice = "MockData",
-                showSeat = "MockData"
-            )
-        }
+        sellAdd = Sell(
+            _id = customerId + ID.Sell.id,
+            customerId = customerId,
+            showId = "MockData",
+            customerFullName = firstName.value + " " + lastName.value,
+            customerPhone = phoneNumber.value,
+            showName = "MockData",
+            showDate = "MockData",
+            showTime = "MockData",
+            showPrice = "MockData",
+            showSeat = "MockData"
+        )
 
         ClientPreferences.inst.apply {
-            userID = uuid.value
+            userID = customerId + ID.Customer.id
             userPhone = phoneNumber.value
             userFirstName = this@TicketBuyViewModel.firstName.value
             userLastName = this@TicketBuyViewModel.lastName.value
@@ -143,32 +150,34 @@ class TicketBuyViewModel @Inject constructor(private val forFireBaseQueries: For
     }
 
     fun addCustomer() {
-        ioScope {
-            showLoading()
-            val response = forFireBaseQueries.addCustomer(customerAdd)
-            if (response) {
+        showLoading()
+        forFireBaseQueries.addCustomer(customerAdd) { status ->
+            if (status) {
+                hideLoading()
                 buyTicket()
             } else {
-                errorMessage.value = message(R.string.error_server)
+                hideLoading()
+                errorMessage.postValue(message(R.string.error_server))
             }
-            hideLoading()
         }
     }
 
     fun buyTicket() {
-        ioScope {
-            showLoading()
-            val response = forFireBaseQueries.saveSales(sellAdd)
-            if (response)
-                message(R.string.success)
-            else
-                message(R.string.error_server)
-            hideLoading()
+        showLoading()
+        forFireBaseQueries.saveSales(sellAdd) { status ->
+            if (status) {
+                hideLoading()
+                errorMessage.postValue(message(R.string.success)) //NOT: error mesaja success yazdık düzelt
+            } else {
+                hideLoading()
+                errorMessage.postValue(message(R.string.error_server))
+            }
         }
-
     }
 
-    fun message(message: Int): String {
-        return Resources.getSystem().getString(message)
+    private fun message(message: Int): String {
+        return getContext().let {
+            it?.resources?.getString(message).toString()
+        }
     }
 }

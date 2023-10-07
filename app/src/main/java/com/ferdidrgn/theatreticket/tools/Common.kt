@@ -25,3 +25,7 @@ fun checkIfTokenDeleted(error: Err?) {
 fun showToast(message: String, context: Context? = com.ferdidrgn.theatreticket.TheatreTicketApp.inst.applicationContext) {
     Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
 }
+
+fun getContext(): Context? {
+    return com.ferdidrgn.theatreticket.TheatreTicketApp.inst.applicationContext
+}

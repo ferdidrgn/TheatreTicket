@@ -1,15 +1,15 @@
 package com.ferdidrgn.theatreticket.commonModels.dummyData
 
 data class Sell(
-    var _createdAt: String? = "",
-    var _id: String = "",
-    var customerId: String? = "",
-    var customerFullName: String? = "",
-    var customerPhone: String? = "",
-    var showId: String? = "",
-    var showName: String? = "",
-    var showDate: String? = "",
-    var showTime: String? = "",
-    var showPrice: String? = "",
-    var showSeat: String? = "",
+    var _createdAt: String? = null,
+    var _id: String? = null,
+    var customerId: String? = null,
+    var customerFullName: String? = null,
+    var customerPhone: String? = null,
+    var showId: String? = null,
+    var showName: String? = null,
+    var showDate: String? = null,
+    var showTime: String? = null,
+    var showPrice: String? = null,
+    var showSeat: String? = null,
 )

@@ -1,5 +1,6 @@
 package com.ferdidrgn.theatreticket.forFirebaseQueries
 
+import androidx.lifecycle.MutableLiveData
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Sell
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Customer
 import com.ferdidrgn.theatreticket.enums.Response
@@ -13,14 +14,17 @@ class ForFirebaseQueries {
 
     private val fireStore = Firebase.firestore
 
-    suspend fun checkPhoneNumber(phoneNumber: String): Pair<String, String> {
+    fun checkPhoneNumber(phoneNumber: String, response: (Pair<String, String>) -> Unit) {
         var customerId: String = ""
         var statusTree: String = ""
 
         fireStore.collection("Customer").whereEqualTo("phoneNumber", phoneNumber)
             .addSnapshotListener { value, error ->
-                if (error != null) statusTree = Response.ServerError.response
-                else {
+                println("kaç kere girdin")
+                if (error != null) {
+                    statusTree = Response.ServerError.response
+                    response.invoke(Pair(customerId, statusTree))
+                } else {
                     if (value != null) {
                         if (!value.isEmpty) {
                             statusTree = Response.ThereIs.response
@@ -30,31 +34,31 @@ class ForFirebaseQueries {
                                     if (document.get("_id") != null) document.get("_id") as String
                                     else ""
                             }
-                        } else statusTree = Response.Empty.response
+                            response.invoke(Pair(customerId, statusTree))
+                        } else {
+                            statusTree = Response.Empty.response
+                            response.invoke(Pair(customerId, statusTree))
+                        }
                     }
                 }
             }
-
-        return Pair(statusTree, customerId)
     }
 
-    suspend fun checkBuyTicket(customerId: String): String {
-        var statusTree: String = ""
+    fun checkBuyTicket(customerId: String, status: (String) -> Unit) {
+        var statusTree = ""
 
         fireStore.collection("Sell").whereEqualTo("customerId", customerId)
             .addSnapshotListener { value, error ->
-
-                if (error != null) statusTree = Response.ServerError.response
+                statusTree = if (error != null) Response.ServerError.response
                 else {
-                    if (value != null) statusTree = Response.ThereIs.response
-                    else statusTree = Response.Empty.response
+                    if (value != null) Response.ThereIs.response
+                    else Response.Empty.response
                 }
+                status.invoke(statusTree)
             }
-        return statusTree
     }
 
-    suspend fun addCustomer(customer: Customer): Boolean {
-        var statusTwo = false
+    fun addCustomer(customer: Customer, status: (Boolean) -> Unit) {
         val customerMap = HashMap<String, Any>()
         customerMap["_createdAt"] = Timestamp.now()
         customerMap["_id"] = customer._id
@@ -66,16 +70,13 @@ class ForFirebaseQueries {
         customerMap["eMail"] = customer.eMail
 
         fireStore.collection("Customer").add(customerMap).addOnSuccessListener {
-            statusTwo = true
+            status.invoke(true)
         }.addOnFailureListener {
-            statusTwo = false //tekrar denemeli mesajı ver server hatası
+            status.invoke(false)
         }
-
-        return statusTwo
     }
 
-    suspend fun saveSales(sell: Sell): Boolean {
-        var statusTwo = false
+    fun saveSales(sell: Sell, status: (Boolean) -> Unit) {
         val salesMap = HashMap<String, Any>()
         salesMap["_createdAt"] = Timestamp.now()
         salesMap["_id"] = sell._id.toString()
@@ -83,11 +84,9 @@ class ForFirebaseQueries {
         salesMap["showId"] = sell.showId.toString()
 
         fireStore.collection("Sell").add(salesMap).addOnSuccessListener {
-            statusTwo = true
+            status.invoke(true)
         }.addOnFailureListener {
-            statusTwo = false
+            status.invoke(false)
         }
-
-        return statusTwo
     }
 }

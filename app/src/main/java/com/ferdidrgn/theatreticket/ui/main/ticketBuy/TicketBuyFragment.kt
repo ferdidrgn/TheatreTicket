@@ -25,9 +25,7 @@ class TicketBuyFragment : BaseFragment<TicketBuyViewModel, FragmentTicketBuyBind
             buyTicketPopUp(requireContext())
         }
         viewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
-            errorMessage.let {
-                errorMessagePopUp(requireContext(), errorMessage!!)
-            }
+            errorMessagePopUp(requireContext(), errorMessage!!)
         }
     }
 
@@ -39,7 +37,7 @@ class TicketBuyFragment : BaseFragment<TicketBuyViewModel, FragmentTicketBuyBind
             setNegativeText(context.getString(R.string.no))
             setTitle(context.getString(R.string.are_you_serious))
             setOnPositiveClick {
-                viewModel.checkPhoneNumber()
+                viewModel.checkPhoneNumber() //phoneNumber = viewModel.phoneNumber.value
                 dismiss()
             }
             setOnNegativeClick {

@@ -34,6 +34,37 @@ class TicketBuyViewModel @Inject constructor(private val forFireBaseQueries: For
     var customerAdd = Customer()
     var sellAdd = Sell()
 
+    init {
+        checkCustomEditText()
+    }
+
+    fun checkCustomEditText() {
+        ioScope {
+            firstName.collectLatest {
+                if (firstName.value.length < 2) {
+                    errorMessage.value = message(R.string.error_first_name_little)
+                }
+            }
+        }
+
+        ioScope {
+
+            lastName.collectLatest {
+                if (lastName.value.length < 1) {
+                    errorMessage.value = message(R.string.error_last_name_little)
+                }
+            }
+        }
+
+        ioScope {
+            phoneNumber.collectLatest {
+                if (phoneNumber.value.length < 10) {
+                    errorMessage.value = message(R.string.error_phone_little)
+                }
+            }
+        }
+    }
+
     fun onBtnBuyTicketClick() {
         var isRequiredFieldsDone = true
 
@@ -57,9 +88,9 @@ class TicketBuyViewModel @Inject constructor(private val forFireBaseQueries: For
                     errorMessage.value = message(R.string.error_phone_little)
                 }
             }
-            if (isRequiredFieldsDone) {
-                buyTicketPopUp.postValue(true)
-            }
+        }
+        if (isRequiredFieldsDone) {
+            buyTicketPopUp.postValue(true)
         }
     }
 
@@ -71,6 +102,7 @@ class TicketBuyViewModel @Inject constructor(private val forFireBaseQueries: For
             when (response) {
                 Response.ServerError.response -> {
                     //errorMessage.value = message(R.string.error_server)
+                    hideLoading()
                 }
 
                 Response.ThereIs.response -> {
@@ -78,14 +110,17 @@ class TicketBuyViewModel @Inject constructor(private val forFireBaseQueries: For
                     when (checkBuyTicket) {
                         Response.ServerError.response -> {
                             //errorMessage.value = messageR.string.error_server)
+                            hideLoading()
                         }
 
                         Response.ThereIs.response -> {
                             //message(R.string.error_have_ticket)
+                            hideLoading()
                         }
 
                         Response.Empty.response -> {
                             //checkPhoneResume()
+                            hideLoading()
                         }
 
                     }
@@ -102,9 +137,13 @@ class TicketBuyViewModel @Inject constructor(private val forFireBaseQueries: For
                         //age = userAge.value
                     )
                     //checkPhoneResume()
+                    hideLoading()
                 }
 
-                else -> showToast("else çalıştı")//errorMessage.value = message(R.string.error_server)
+                else -> {
+                    showToast("else çalıştı")//errorMessage.value = message(R.string.error_server)
+                    hideLoading()
+                }
             }
         }
         hideLoading()

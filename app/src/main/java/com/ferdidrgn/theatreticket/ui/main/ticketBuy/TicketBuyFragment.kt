@@ -7,7 +7,6 @@ import androidx.fragment.app.viewModels
 import com.ferdidrgn.theatreticket.base.BaseFragment
 import com.ferdidrgn.theatreticket.base.BasePopUp
 import com.ferdidrgn.theatreticket.databinding.FragmentTicketBuyBinding
-import com.ferdidrgn.theatreticket.tools.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,10 +24,12 @@ class TicketBuyFragment : BaseFragment<TicketBuyViewModel, FragmentTicketBuyBind
             buyTicketPopUp(requireContext())
         }
         viewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
-            errorMessagePopUp(requireContext(), errorMessage!!)
+            messagePopUp(requireContext(), errorMessage!!, false)
+        }
+        viewModel.successMessage.observe(viewLifecycleOwner) { successMessage ->
+            messagePopUp(requireContext(), successMessage!!, true)
         }
     }
-
 
     private fun buyTicketPopUp(context: Context) {
         val pupUp = BasePopUp()
@@ -37,7 +38,7 @@ class TicketBuyFragment : BaseFragment<TicketBuyViewModel, FragmentTicketBuyBind
             setNegativeText(context.getString(R.string.no))
             setTitle(context.getString(R.string.are_you_serious))
             setOnPositiveClick {
-                viewModel.checkPhoneNumber() //phoneNumber = viewModel.phoneNumber.value
+                viewModel.checkPhoneNumber()
                 dismiss()
             }
             setOnNegativeClick {
@@ -47,11 +48,11 @@ class TicketBuyFragment : BaseFragment<TicketBuyViewModel, FragmentTicketBuyBind
         pupUp.show(parentFragmentManager, "")
     }
 
-    private fun errorMessagePopUp(context: Context, errorMessage: String) {
-        val pupUp = BasePopUp(isError = true)
+    private fun messagePopUp(context: Context, message: String, isSuccess: Boolean) {
+        val pupUp = BasePopUp(isSuccess = isSuccess)
         pupUp.apply {
             setPositiveText(context.getString(R.string.done))
-            setDesc(errorMessage)
+            setDesc(message)
             setOnPositiveClick {
                 dismiss()
             }

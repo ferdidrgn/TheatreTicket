@@ -10,7 +10,6 @@
     <string name="are_you_sure_you_want_to_logout">Are you sure you want to logout ?</string>
 
 
-
     <string name="phone_number_mask">Tel No:(555)</string>
     <string name="choose_seats">Seçtiğiniz Koltuklar</string>
     <string name="first_name">Ad</string>
@@ -27,9 +26,9 @@
     <string name="success">Başarılı</string>
 
     //Error Messages
-    <string name="error_phone_little">Telefon Numarası 10 karakterden kısa görünüyor. Lütfen kontrol edelim</string>
-    <string name="error_first_name_little">İsim çok kısa görünüyor. Lütfen kontrol edelin</string>
-    <string name="error_last_name_little">Soyisim çok kısa görünüyor. Lütfen kontrol edelin</string>
+    <string name="error_phone_little">Telefon Numarası 10 karakterden kısa görünüyor. Lütfen kontrol edin</string>
+    <string name="error_first_name_little">İsim çok kısa görünüyor. Lütfen kontrol edin</string>
+    <string name="error_last_name_little">Soyisim çok kısa görünüyor. Lütfen kontrol edin</string>
     <string name="error_have_ticket">Önceden bilet almışsınız. Lütfen kontrol edelin</string>
 
 

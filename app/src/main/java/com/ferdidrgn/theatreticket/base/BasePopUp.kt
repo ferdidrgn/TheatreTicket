@@ -9,9 +9,8 @@ import androidx.fragment.app.DialogFragment
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.databinding.BasePopUpBinding
 import com.ferdidrgn.theatreticket.tools.hide
-import com.ferdidrgn.theatreticket.tools.show
 
-class BasePopUp(val isError: Boolean = false, val isSuccess: Boolean = false) : DialogFragment() {
+class BasePopUp(val isSuccess: Boolean? = null) : DialogFragment() {
 
     private var _binding: BasePopUpBinding? = null
 
@@ -41,8 +40,8 @@ class BasePopUp(val isError: Boolean = false, val isSuccess: Boolean = false) : 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (isError) setErrorWindow()
-        if (isSuccess) setSuccessWindow()
+        if (isSuccess == true) setSuccessWindow()
+        if (isSuccess == false) setErrorWindow()
         binding?.tbTitle?.text = title
         binding?.positiveTv?.text = positiveText
         binding?.negativeTv?.text = negativeText
@@ -85,15 +84,17 @@ class BasePopUp(val isError: Boolean = false, val isSuccess: Boolean = false) : 
         binding?.apply {
             negativeTv.hide()
             tbTitle.hide()
-            imgSuccess.show()
+            imgSuccess.setImageResource(R.drawable.ic_done)
+            container.background =
+                ContextCompat.getDrawable(requireContext(), R.drawable.bg_main_forth_10_green_light)
         }
     }
 
     private fun setErrorWindow() {
         binding?.apply {
             negativeTv.hide()
+            imgSuccess.setImageResource(R.drawable.ic_error)
             tbTitle.setTextColor(ContextCompat.getColor(requireContext(), R.color.red_err))
-            tvDesc.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
             container.background =
                 ContextCompat.getDrawable(requireContext(), R.drawable.bg_main_forth_10_border_red)
             positiveTv.background =

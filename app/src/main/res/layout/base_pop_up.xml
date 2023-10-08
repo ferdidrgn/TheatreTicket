@@ -13,6 +13,7 @@
 
     </data>
 
+
     <LinearLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
@@ -41,14 +42,12 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:gravity="center_horizontal"
-            android:src="@drawable/ic_warning"
             android:textColor="@color/main"
             android:textSize="21sp"
-            android:visibility="gone"
+            android:src="@drawable/ic_warning"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="title" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvDesc"

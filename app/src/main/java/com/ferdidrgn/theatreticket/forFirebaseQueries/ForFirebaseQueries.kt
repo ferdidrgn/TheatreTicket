@@ -1,14 +1,11 @@
 package com.ferdidrgn.theatreticket.forFirebaseQueries
 
-import androidx.lifecycle.MutableLiveData
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Sell
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Customer
 import com.ferdidrgn.theatreticket.enums.Response
-import com.ferdidrgn.theatreticket.tools.ClientPreferences
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.flow.MutableStateFlow
 
 class ForFirebaseQueries {
 

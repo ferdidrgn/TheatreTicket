@@ -32,39 +32,17 @@ class TicketBuyViewModel @Inject constructor(private val forFireBaseQueries: For
     var age = MutableStateFlow("")
     val buyTicketPopUp = LiveEvent<Boolean?>()
     val errorMessage = LiveEvent<String?>()
+    val successMessage = LiveEvent<String?>()
 
     var customerAdd = Customer()
     var sellAdd = Sell()
 
+
     fun onBtnBuyTicketClick() {
-        var isRequiredFieldsDone = true
-
-        /*firstName.collectLatest {
-            if (firstName.value.length < 2) {
-                isRequiredFieldsDone = false
-                errorMessage.value = message(R.string.error_first_name_little)
-            }
-        }
-
-        lastName.collectLatest {
-            if (lastName.value.length < 1) {
-                isRequiredFieldsDone = false
-                errorMessage.value = message(R.string.error_last_name_little)
-            }
-        }*/
-        //phoneNumber.collectLatest {
-        /*if (phoneNumber.value.length < 10) {
-            isRequiredFieldsDone = false
-            errorMessage.postValue(message(R.string.error_phone_little))
-        }*/
-        // }
-        if (isRequiredFieldsDone) {
-            buyTicketPopUp.postValue(true)
-        }
+        buyTicketPopUp.postValue(true)
     }
 
     fun checkPhoneNumber() {
-
         mainScope {
             showLoading()
             forFireBaseQueries.checkPhoneNumber(phoneNumber.value) { response ->
@@ -149,7 +127,7 @@ class TicketBuyViewModel @Inject constructor(private val forFireBaseQueries: For
         addCustomer()
     }
 
-    fun addCustomer() {
+    private fun addCustomer() {
         showLoading()
         forFireBaseQueries.addCustomer(customerAdd) { status ->
             if (status) {
@@ -162,12 +140,12 @@ class TicketBuyViewModel @Inject constructor(private val forFireBaseQueries: For
         }
     }
 
-    fun buyTicket() {
+    private fun buyTicket() {
         showLoading()
         forFireBaseQueries.saveSales(sellAdd) { status ->
             if (status) {
                 hideLoading()
-                errorMessage.postValue(message(R.string.success)) //NOT: error mesaja success yazdık düzelt
+                successMessage.postValue(message(R.string.success))
             } else {
                 hideLoading()
                 errorMessage.postValue(message(R.string.error_server))

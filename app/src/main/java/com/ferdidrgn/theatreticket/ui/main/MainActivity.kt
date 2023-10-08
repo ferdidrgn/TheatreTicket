@@ -2,17 +2,14 @@ package com.ferdidrgn.theatreticket.ui.main
 
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseActivity
 import com.ferdidrgn.theatreticket.databinding.ActivityMainBinding
-import com.ferdidrgn.theatreticket.databinding.FragmentSettingsBinding
 import com.ferdidrgn.theatreticket.enums.ToMain
 import com.ferdidrgn.theatreticket.tools.TO_MAIN
-import com.ferdidrgn.theatreticket.ui.main.settings.SettingsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -40,18 +37,18 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     }
 
     private fun moveToWhere(toWhere: ToMain) {
-        val bottomNav =
-            findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(R.id.bottomNav)
-        when (toWhere) {
-            ToMain.Home -> bottomNav.selectedItemId = R.id.homeFragmentNav
+        binding.apply {
+            when (toWhere) {
+                ToMain.Home -> bottomNav.selectedItemId = R.id.homeFragmentNav
 
-            ToMain.TicketBuy -> bottomNav.selectedItemId = R.id.ticketBuyFragmentNav
+                ToMain.TicketBuy -> bottomNav.selectedItemId = R.id.ticketBuyFragmentNav
 
-            ToMain.TicketSearch -> bottomNav.selectedItemId = R.id.ticketSearchFragmentNav
+                ToMain.TicketSearch -> bottomNav.selectedItemId = R.id.ticketSearchFragmentNav
 
-            ToMain.Settings -> bottomNav.selectedItemId = R.id.settingsFragmentNav
+                ToMain.Settings -> bottomNav.selectedItemId = R.id.settingsFragmentNav
 
-            else -> bottomNav.selectedItemId = R.id.homeFragmentNav
+                else -> bottomNav.selectedItemId = R.id.homeFragmentNav
+            }
         }
     }
 

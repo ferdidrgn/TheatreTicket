@@ -6,8 +6,6 @@ import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
 import android.util.Log
-import android.widget.TextView
-import com.google.android.material.snackbar.Snackbar
 
 
 class NetworkManager() {

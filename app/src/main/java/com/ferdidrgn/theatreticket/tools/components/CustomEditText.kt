@@ -2,12 +2,8 @@ package com.ferdidrgn.theatreticket.tools.components
 
 import android.content.Context
 import android.util.AttributeSet
-import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
 import com.ferdidrgn.theatreticket.R
-import com.ferdidrgn.theatreticket.tools.hide
-import com.ferdidrgn.theatreticket.tools.show
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 

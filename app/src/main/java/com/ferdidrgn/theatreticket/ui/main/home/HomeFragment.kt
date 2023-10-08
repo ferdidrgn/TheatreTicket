@@ -1,6 +1,5 @@
 package com.ferdidrgn.theatreticket.ui.main.home
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.viewModels
 import com.ferdidrgn.theatreticket.base.BaseFragment

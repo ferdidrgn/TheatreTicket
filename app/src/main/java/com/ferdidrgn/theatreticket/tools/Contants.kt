@@ -1,7 +1,5 @@
 package com.ferdidrgn.theatreticket.tools
 
-const val ADMIN_BUY_TICKET = "adminBuyTicket"
-
 const val BASE_URL = "BASE_URL"
 const val TOKEN = "TOKEN"
 const val GUEST_TOKEN = "guestToken"

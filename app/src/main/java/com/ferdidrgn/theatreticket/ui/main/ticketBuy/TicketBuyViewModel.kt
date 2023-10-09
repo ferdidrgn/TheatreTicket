@@ -1,6 +1,5 @@
 package com.ferdidrgn.theatreticket.ui.main.ticketBuy
 
-import androidx.lifecycle.MutableLiveData
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseViewModel
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Customer
@@ -14,17 +13,10 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import java.util.UUID
 import javax.inject.Inject
 import com.ferdidrgn.theatreticket.tools.helpers.LiveEvent
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 
 @HiltViewModel
 class TicketBuyViewModel @Inject constructor(private val forFireBaseQueries: ForFirebaseQueries) :
     BaseViewModel() {
-
-    private val fireStore = Firebase.firestore
-    var customerId = MutableLiveData<String?>()
-    var statusTree = MutableLiveData<Boolean?>()
-
 
     var firstName = MutableStateFlow("")
     var lastName = MutableStateFlow("")
@@ -53,7 +45,7 @@ class TicketBuyViewModel @Inject constructor(private val forFireBaseQueries: For
                     }
 
                     Response.ThereIs.response -> {
-                        forFireBaseQueries.checkBuyTicket(response.first) { status ->
+                        forFireBaseQueries.checkBuyTicketCustomerId(response.first) { status ->
                             when (status) {
                                 Response.ServerError.response -> {
                                     errorMessage.postValue(message(R.string.error_server))
@@ -150,12 +142,6 @@ class TicketBuyViewModel @Inject constructor(private val forFireBaseQueries: For
                 hideLoading()
                 errorMessage.postValue(message(R.string.error_server))
             }
-        }
-    }
-
-    private fun message(message: Int): String {
-        return getContext().let {
-            it?.resources?.getString(message).toString()
         }
     }
 }

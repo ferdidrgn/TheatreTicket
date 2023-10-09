@@ -41,30 +41,68 @@ class ForFirebaseQueries {
             }
     }
 
-    fun checkBuyTicket(customerId: String, status: (String) -> Unit) {
+    fun checkBuyTicketCustomerId(customerId: String, status: (String) -> Unit) {
         var statusTree = ""
 
         fireStore.collection("Sell").whereEqualTo("customerId", customerId)
             .addSnapshotListener { value, error ->
                 statusTree = if (error != null) Response.ServerError.response
                 else {
-                    if (value != null) Response.ThereIs.response
-                    else Response.Empty.response
+                    if (value != null) {
+                        if (!value.isEmpty) Response.ThereIs.response
+                        else Response.Empty.response
+                    } else Response.Empty.response
                 }
                 status.invoke(statusTree)
             }
     }
 
-    fun addCustomer(customer: Customer, status: (Boolean) -> Unit) {
+    suspend fun checkSearchBuyTicket(
+        customer: Customer,
+        status: (Pair<String, HashMap<String, Any>>) -> Unit
+    ) {
+        var statusTree = ""
+        var sellData: HashMap<String, Any> = HashMap()
+        fireStore.collection("Sell").whereEqualTo("customerPhone", customer.phoneNumber)
+            .addSnapshotListener { value, error ->
+                if (error != null) {
+                    statusTree = Response.ServerError.response
+                    status.invoke(Pair(statusTree, sellData))
+                } else {
+                    if (value != null) {
+                        if (!value.isEmpty) {
+                            statusTree = Response.ThereIs.response
+                            val documents = value.documents
+                            for (document in documents) {
+                                sellData["_createdAt"] = document.get("_createdAt") as String
+                                sellData["_id"] = document.get("_id") as String
+                                sellData["customerId"] = document.get("customerId") as String
+                                sellData["showId"] = document.get("showId") as String
+                            }
+                            status.invoke(Pair(statusTree, sellData))
+                        } else {
+                            statusTree = Response.Empty.response
+                            status.invoke(Pair(statusTree, sellData))
+                        }
+                    } else {
+                        statusTree = Response.Empty.response
+                        status.invoke(Pair(statusTree, sellData))
+                    }
+                }
+                status.invoke(Pair(statusTree, sellData))
+            }
+    }
+
+    fun addCustomer(customer: Customer?, status: (Boolean) -> Unit) {
         val customerMap = HashMap<String, Any>()
         customerMap["_createdAt"] = Timestamp.now()
-        customerMap["_id"] = customer._id
-        customerMap["firstName"] = customer.firstName
-        customerMap["lastName"] = customer.lastName
-        customerMap["phoneNumber"] = customer.phoneNumber
-        customerMap["isActivite"] = customer.isActivite
-        customerMap["age"] = customer.age
-        customerMap["eMail"] = customer.eMail
+        customerMap["_id"] = customer?._id.let { it.toString() }
+        customerMap["firstName"] = customer?.firstName.let { it.toString() }
+        customerMap["lastName"] = customer?.lastName.let { it.toString() }
+        customerMap["phoneNumber"] = customer?.phoneNumber.let { it.toString() }
+        customerMap["isActivite"] = customer?.isActivite.let { it.toString() }
+        customerMap["age"] = customer?.age.let { it.toString() }
+        customerMap["eMail"] = customer?.eMail.let { it.toString() }
 
         fireStore.collection("Customer").add(customerMap).addOnSuccessListener {
             status.invoke(true)

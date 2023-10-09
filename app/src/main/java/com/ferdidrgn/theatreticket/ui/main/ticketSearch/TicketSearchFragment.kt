@@ -1,20 +1,58 @@
 package com.ferdidrgn.theatreticket.ui.main.ticketSearch
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.viewModels
+import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseFragment
+import com.ferdidrgn.theatreticket.base.BasePopUp
 import com.ferdidrgn.theatreticket.databinding.FragmentTicketSearchBinding
-import com.ferdidrgn.theatreticket.tools.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class TicketSearchFragment: BaseFragment <TicketSearchViewModel, FragmentTicketSearchBinding>(){
+class TicketSearchFragment : BaseFragment<TicketSearchViewModel, FragmentTicketSearchBinding>() {
     override fun getVM(): Lazy<TicketSearchViewModel> = viewModels()
 
-    override fun getDataBinding(): FragmentTicketSearchBinding = FragmentTicketSearchBinding.inflate(layoutInflater)
+    override fun getDataBinding(): FragmentTicketSearchBinding =
+        FragmentTicketSearchBinding.inflate(layoutInflater)
 
     override fun onCreateFinished(savedInstanceState: Bundle?) {
-        showToast("TicketSearchFragment", requireContext())
+        binding.viewModel = viewModel
+
+        viewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
+            messagePopUp(requireContext(), errorMessage!!, false)
+        }
+        viewModel.successMessage.observe(viewLifecycleOwner) { successMessage ->
+            messagePopUp(requireContext(), successMessage!!, true)
+        }
     }
 
+    private fun buyTicketPopUp(context: Context) {
+        val pupUp = BasePopUp()
+        pupUp.apply {
+            setPositiveText(context.getString(R.string.yes))
+            setNegativeText(context.getString(R.string.no))
+            setTitle(context.getString(R.string.are_you_serious))
+            setOnPositiveClick {
+                viewModel.searchTicket()
+                dismiss()
+            }
+            setOnNegativeClick {
+                dismiss()
+            }
+        }
+        pupUp.show(parentFragmentManager, "")
+    }
+
+    private fun messagePopUp(context: Context, message: String, isSuccess: Boolean) {
+        val pupUp = BasePopUp(isSuccess = isSuccess)
+        pupUp.apply {
+            setPositiveText(context.getString(R.string.done))
+            setDesc(message)
+            setOnPositiveClick {
+                dismiss()
+            }
+        }
+        pupUp.show(parentFragmentManager, "")
+    }
 }

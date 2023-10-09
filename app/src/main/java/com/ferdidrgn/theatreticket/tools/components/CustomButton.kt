@@ -3,16 +3,16 @@ package com.ferdidrgn.theatreticket.tools.components
 import android.content.Context
 import android.content.res.ColorStateList
 import android.util.AttributeSet
+import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import kotlin.properties.Delegates
 import com.ferdidrgn.theatreticket.R
 
-class CustomButton : ConstraintLayout {
+class CustomButton : LinearLayout {
 
     private var backgroundColorFromAttr by Delegates.notNull<Int>()
-    private lateinit var customButton: ConstraintLayout
+    private lateinit var customButton: LinearLayout
 
     constructor(context: Context) : super(context) {
         initLayout(context, null, null)

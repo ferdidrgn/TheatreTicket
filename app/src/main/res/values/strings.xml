@@ -18,18 +18,20 @@
     <string name="game_date">Oyun Tarihi</string>
     <string name="stage_name">Sahne Adı</string>
     <string name="stage_location">Sahne Konumu</string>
-    <string name="search_for_buy_ticket">Satın Alımı Sorgula</string>
+    <string name="search_for_buy_ticket">Alımları Sorgula</string>
     <string name="age">Age</string>
 
     //Prattive Messages
     <string name="done">Tamamlandı</string>
     <string name="success">Başarılı</string>
+    <string name="success_ticket">Bilet (ler) Bulundu</string>
 
     //Error Messages
     <string name="error_phone_little">Telefon Numarası 10 karakterden kısa görünüyor. Lütfen kontrol edin</string>
     <string name="error_first_name_little">İsim çok kısa görünüyor. Lütfen kontrol edin</string>
     <string name="error_last_name_little">Soyisim çok kısa görünüyor. Lütfen kontrol edin</string>
     <string name="error_have_ticket">Önceden bilet almışsınız. Lütfen kontrol edelin</string>
+    <string name="error_no_any_ticket">Hiçbir Bilet Bulunamadı</string>
 
 
     <string name="are_you_serious">Emin Misiniz</string>
@@ -39,10 +41,9 @@
     <!-- Settings -->
     <string name="log_out">Oturumu Kapat</string>
     <string name="sold_seats">Satılan Koltuklar</string>
+    <string name="add_show">Gösteri Ekle</string>
     <string name="sell_ticket">Bilet Sat</string>
     <string name="change_language">Dil Değiştirme</string>
     <string name="change_theme">Tema Değiştirme</string>
     <string name="english_turkish">English, Türkçe</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

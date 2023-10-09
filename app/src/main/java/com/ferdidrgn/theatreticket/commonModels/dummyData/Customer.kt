@@ -1,14 +1,12 @@
 package com.ferdidrgn.theatreticket.commonModels.dummyData
 
-import com.google.gson.annotations.SerializedName
-
 data class Customer(
-    var _createdAt: String = "",
-    var _id: String = "",
-    var firstName: String = "",
-    var lastName: String = "",
-    var phoneNumber: String = "",
-    var isActivite: String = "",
-    var age: String = "",
-    var eMail: String = ""
+    var _createdAt: String? = null,
+    var _id: String? = null,
+    var firstName: String? = null,
+    var lastName: String? = null,
+    var phoneNumber: String? = null,
+    var isActivite: String? = null,
+    var age: String? = null,
+    var eMail: String? = null,
 )

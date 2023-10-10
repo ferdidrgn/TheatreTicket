@@ -9,10 +9,10 @@ import com.ferdidrgn.theatreticket.enums.Response
 import com.ferdidrgn.theatreticket.forFirebaseQueries.ForFirebaseQueries
 import com.ferdidrgn.theatreticket.tools.*
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
 import java.util.UUID
 import javax.inject.Inject
 import com.ferdidrgn.theatreticket.tools.helpers.LiveEvent
+import kotlinx.coroutines.flow.MutableStateFlow
 
 @HiltViewModel
 class TicketBuyViewModel @Inject constructor(private val forFireBaseQueries: ForFirebaseQueries) :
@@ -35,37 +35,10 @@ class TicketBuyViewModel @Inject constructor(private val forFireBaseQueries: For
     }
 
     fun checkPhoneNumber() {
+        showLoading()
         mainScope {
-            showLoading()
-            forFireBaseQueries.checkPhoneNumber(phoneNumber.value) { response ->
-                when (response.second) {
-                    Response.ServerError.response -> {
-                        errorMessage.postValue(message(R.string.error_server))
-                        hideLoading()
-                    }
-
-                    Response.ThereIs.response -> {
-                        forFireBaseQueries.checkBuyTicketCustomerId(response.first) { status ->
-                            when (status) {
-                                Response.ServerError.response -> {
-                                    errorMessage.postValue(message(R.string.error_server))
-                                    hideLoading()
-                                }
-
-                                Response.ThereIs.response -> {
-                                    errorMessage.postValue(message(R.string.error_have_ticket))
-                                    hideLoading()
-                                }
-
-                                Response.Empty.response -> {
-                                    hideLoading()
-                                    checkPhoneResume(response.first)
-                                }
-
-                            }
-                        }
-                    }
-
+            forFireBaseQueries.checkPhoneNumber(phoneNumber.value) { status, customerId ->
+                when (status) {
                     Response.Empty.response -> {
                         //Universal Unique ID
                         val id = UUID.randomUUID().toString()
@@ -77,10 +50,37 @@ class TicketBuyViewModel @Inject constructor(private val forFireBaseQueries: For
                             //age = userAge.value
                         )
                         hideLoading()
-                        checkPhoneResume(id + ID.Customer.id)
+                        fillDatas(id + ID.Customer.id, true)
                     }
+                    Response.ThereIs.response -> {
+                        hideLoading()
+                        checkTicket(customerId)
+                    }
+                    Response.ServerError.response -> {
+                        hideLoading()
+                        errorMessage.postValue(message(R.string.error_server))
+                    }
+                }
 
-                    else -> {
+            }
+        }
+    }
+
+    private fun checkTicket(customerId: String) {
+
+        showLoading()
+        mainScope {
+            forFireBaseQueries.checkBuyTicketCustomerId(customerId) { status ->
+                when (status) {
+                    Response.Empty.response -> {
+                        hideLoading()
+                        fillDatas(customerId, false)
+                    }
+                    Response.ThereIs.response -> {
+                        hideLoading()
+                        errorMessage.postValue(message(R.string.error_have_ticket))
+                    }
+                    Response.ServerError.response -> {
                         hideLoading()
                         errorMessage.postValue(message(R.string.error_server))
                     }
@@ -89,58 +89,63 @@ class TicketBuyViewModel @Inject constructor(private val forFireBaseQueries: For
         }
     }
 
-
-    private fun checkPhoneResume(customerId: String?) {
+    private fun fillDatas(customerId: String?, isNewCustom: Boolean) {
 
         showLoading()
 
-        sellAdd = Sell(
-            _id = customerId + ID.Sell.id,
-            customerId = customerId,
-            showId = "MockData",
-            customerFullName = firstName.value + " " + lastName.value,
-            customerPhone = phoneNumber.value,
-            showName = "MockData",
-            showDate = "MockData",
-            showTime = "MockData",
-            showPrice = "MockData",
-            showSeat = "MockData"
-        )
+        mainScope {
+            sellAdd = Sell(
+                _id = customerId + ID.Sell.id,
+                customerId = customerId,
+                showId = "MockData",
+                customerFullName = firstName.value + " " + lastName.value,
+                customerPhone = phoneNumber.value,
+                showName = "MockData",
+                showDate = "MockData",
+                showTime = "MockData",
+                showPrice = "MockData",
+                showSeat = "MockData"
+            )
 
-        ClientPreferences.inst.apply {
-            userID = customerId + ID.Customer.id
-            userPhone = phoneNumber.value
-            userFirstName = this@TicketBuyViewModel.firstName.value
-            userLastName = this@TicketBuyViewModel.lastName.value
-            //userAge = userAge.value
+            ClientPreferences.inst.apply {
+                userID = customerId + ID.Customer.id
+                userPhone = phoneNumber.value
+                userFirstName = firstName.value
+                userLastName = lastName.value
+                //userAge = userAge.value
+            }
         }
 
         hideLoading()
-        addCustomer()
+        if (isNewCustom) addCustomer() else buyTicket()
     }
 
     private fun addCustomer() {
         showLoading()
-        forFireBaseQueries.addCustomer(customerAdd) { status ->
-            if (status) {
-                hideLoading()
-                buyTicket()
-            } else {
-                hideLoading()
-                errorMessage.postValue(message(R.string.error_server))
+        mainScope {
+            forFireBaseQueries.addCustomer(customerAdd) { status ->
+                if (status) {
+                    hideLoading()
+                    buyTicket()
+                } else {
+                    hideLoading()
+                    errorMessage.postValue(message(R.string.error_server))
+                }
             }
         }
     }
 
     private fun buyTicket() {
         showLoading()
-        forFireBaseQueries.saveSales(sellAdd) { status ->
-            if (status) {
-                hideLoading()
-                successMessage.postValue(message(R.string.success))
-            } else {
-                hideLoading()
-                errorMessage.postValue(message(R.string.error_server))
+        mainScope {
+            forFireBaseQueries.saveSales(sellAdd) { status ->
+                if (status) {
+                    hideLoading()
+                    successMessage.postValue(message(R.string.success))
+                } else {
+                    hideLoading()
+                    errorMessage.postValue(message(R.string.error_server))
+                }
             }
         }
     }

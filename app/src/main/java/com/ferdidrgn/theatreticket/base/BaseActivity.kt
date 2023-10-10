@@ -29,7 +29,7 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : AppCompa
 
         changeTheme()
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON) //To make the screen on all the time
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO) //To Make No darkmode
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         binding = getDataBinding()
         viewModel = getVM().value
         binding.lifecycleOwner = this

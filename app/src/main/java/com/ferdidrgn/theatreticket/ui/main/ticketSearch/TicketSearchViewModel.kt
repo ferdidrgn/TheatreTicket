@@ -36,8 +36,8 @@ class TicketSearchViewModel @Inject constructor(private val forFirebaseQueries: 
     fun searchTicket() {
         showLoading()
         mainScope {
-            forFirebaseQueries.checkSearchBuyTicket(customerAdd) { status ->
-                when (status.first) {
+            forFirebaseQueries.checkSearchBuyTicket(customerAdd) { status, sellData ->
+                when (status) {
                     Response.ServerError.response -> {
                         errorMessage.postValue(message(R.string.error_server))
                         hideLoading()

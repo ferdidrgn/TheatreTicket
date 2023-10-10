@@ -6,7 +6,7 @@ data class Customer(
     var firstName: String? = null,
     var lastName: String? = null,
     var phoneNumber: String? = null,
-    var isActivite: String? = null,
+    var isActivite: Boolean? = null,
     var age: String? = null,
     var eMail: String? = null,
 )

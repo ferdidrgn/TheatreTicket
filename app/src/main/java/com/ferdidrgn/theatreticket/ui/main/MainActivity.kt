@@ -21,7 +21,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     override fun getDataBinding(): ActivityMainBinding =
         ActivityMainBinding.inflate(layoutInflater)
 
-    override fun onCreateFinished(savedInstanceState: Bundle?) {
+    override fun onCreateFinished(savedInstance: Bundle?) {
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainer) as NavHostFragment
@@ -46,10 +46,10 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
                 ToMain.TicketSearch -> bottomNav.selectedItemId = R.id.ticketSearchFragmentNav
 
                 ToMain.Settings -> bottomNav.selectedItemId = R.id.settingsFragmentNav
-
-                else -> bottomNav.selectedItemId = R.id.homeFragmentNav
             }
         }
     }
+
+    override fun changeTheme() = setTheme(R.style.Theme_TheatreTicket)
 
 }

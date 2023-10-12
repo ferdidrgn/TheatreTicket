@@ -2,10 +2,10 @@ package com.ferdidrgn.theatreticket.commonModels
 
 import com.google.gson.annotations.SerializedName
 
-data class Games(
-    @SerializedName("createdAt")
+data class Show(
+    @SerializedName("_createdAt")
     var _createdAt: String? = "",
-    @SerializedName("id")
+    @SerializedName("_id")
     var _id: String? = "",
     @SerializedName("name")
     var name: String? = "",
@@ -17,6 +17,8 @@ data class Games(
     var price: String? = "",
     @SerializedName("ageLimit")
     var ageLimit: String? = "",
+    @SerializedName("seat")
+    var seat: String? = "",
     @SerializedName("stageId")
     var stageId: ArrayList<Stage?>? = null,
     @SerializedName("actorsId")

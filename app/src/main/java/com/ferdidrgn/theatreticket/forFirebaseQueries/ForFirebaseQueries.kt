@@ -58,37 +58,63 @@ class ForFirebaseQueries {
 
     fun checkSearchBuyTicket(
         customer: Customer,
-        status: (String, HashMap<String, Any>) -> Unit
+        status: (String) -> Unit
     ) {
         var statusTree = ""
-        val sellData: HashMap<String, Any> = HashMap()
+        val sellList = ArrayList<Sell>()
         fireStore.collection("Sell").whereEqualTo("customerPhone", customer.phoneNumber)
             .addSnapshotListener { value, error ->
                 if (error != null) {
                     statusTree = Response.ServerError.response
-                    status.invoke(statusTree, sellData)
+                    status.invoke(statusTree)
                 } else {
                     if (value != null) {
                         if (!value.isEmpty) {
-                            statusTree = Response.ThereIs.response
                             val documents = value.documents
                             for (document in documents) {
-                                sellData["_createdAt"] = document.get("_createdAt") as String
-                                sellData["_id"] = document.get("_id") as String
-                                sellData["customerId"] = document.get("customerId") as String
-                                sellData["showId"] = document.get("showId") as String
+                                val createdAt = document.get("_createdAt") as Timestamp
+                                val id = document.get("_id") as String
+                                val customerId = document.get("customerId") as String
+                                val showId = document.get("showId") as String
+                                val customerFullName = document.get("customerFullName") as String
+                                val customerPhone = document.get("customerPhone") as String
+                                val showName = document.get("showName") as String
+                                val showDate = document.get("showDate") as String
+                                val showTime = document.get("showTime") as String
+                                val showPrice = document.get("showPrice") as String
+                                val showSeat = document.get("showSeat") as String
+                                val stageName = document.get("stageName") as String
+                                val stageLocation = document.get("stageLocation") as String
+
+                                val sell = Sell(
+                                    _createdAt = createdAt.toString(),
+                                    _id = id,
+                                    customerId = customerId,
+                                    showId = showId,
+                                    customerFullName = customerFullName,
+                                    customerPhone = customerPhone,
+                                    showName = showName,
+                                    showDate = showDate,
+                                    showTime = showTime,
+                                    showPrice = showPrice,
+                                    showSeat = showSeat,
+                                    stageName = stageName,
+                                    stageLocation = stageLocation
+                                )
+                                sellList.add(sell)
                             }
-                            status.invoke(statusTree, sellData)
+                            statusTree = Response.ThereIs.response
+                            status.invoke(statusTree)
                         } else {
                             statusTree = Response.Empty.response
-                            status.invoke(statusTree, sellData)
+                            status.invoke(statusTree)
                         }
                     } else {
                         statusTree = Response.Empty.response
-                        status.invoke(statusTree, sellData)
+                        status.invoke(statusTree)
                     }
                 }
-                status.invoke(statusTree, sellData)
+                status.invoke(statusTree)
             }
     }
 
@@ -116,6 +142,15 @@ class ForFirebaseQueries {
         salesMap["_id"] = sell._id.toString()
         salesMap["customerId"] = sell.customerId.toString()
         salesMap["showId"] = sell.showId.toString()
+        salesMap["customerFullName"] = sell.customerFullName.toString()
+        salesMap["customerPhone"] = sell.customerPhone.toString()
+        salesMap["showName"] = sell.showName.toString()
+        salesMap["showDate"] = sell.showDate.toString()
+        salesMap["showTime"] = sell.showTime.toString()
+        salesMap["showPrice"] = sell.showPrice.toString()
+        salesMap["showSeat"] = sell.showSeat.toString()
+        salesMap["stageName"] = sell.showSeat.toString()
+        salesMap["stageLocation"] = sell.showSeat.toString()
 
         fireStore.collection("Sell").add(salesMap).addOnSuccessListener {
             status.invoke(true)

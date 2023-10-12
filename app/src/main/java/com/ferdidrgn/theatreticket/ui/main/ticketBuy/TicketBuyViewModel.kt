@@ -104,7 +104,9 @@ class TicketBuyViewModel @Inject constructor(private val forFireBaseQueries: For
                 showDate = "MockData",
                 showTime = "MockData",
                 showPrice = "MockData",
-                showSeat = "MockData"
+                showSeat = "MockData",
+                stageName = "MockData",
+                stageLocation = "MockData"
             )
 
             ClientPreferences.inst.apply {

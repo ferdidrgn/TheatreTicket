@@ -18,6 +18,11 @@ class TicketSearchFragment : BaseFragment<TicketSearchViewModel, FragmentTicketS
 
     override fun onCreateFinished(savedInstanceState: Bundle?) {
         binding.viewModel = viewModel
+        binding.findTicketAdapter = FindTicketAdapter(viewModel)
+
+        viewModel.searchTicketPopUp.observe(viewLifecycleOwner) {
+            searchTicketPopUp(requireContext())
+        }
 
         viewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
             messagePopUp(requireContext(), errorMessage!!, false)
@@ -27,12 +32,12 @@ class TicketSearchFragment : BaseFragment<TicketSearchViewModel, FragmentTicketS
         }
     }
 
-    private fun buyTicketPopUp(context: Context) {
+    private fun searchTicketPopUp(context: Context) {
         val pupUp = BasePopUp()
         pupUp.apply {
             setPositiveText(context.getString(R.string.yes))
             setNegativeText(context.getString(R.string.no))
-            setTitle(context.getString(R.string.are_you_serious))
+            setDesc(context.getString(R.string.are_you_serious))
             setOnPositiveClick {
                 viewModel.searchTicket()
                 dismiss()

@@ -36,7 +36,7 @@ class TicketBuyFragment : BaseFragment<TicketBuyViewModel, FragmentTicketBuyBind
         pupUp.apply {
             setPositiveText(context.getString(R.string.yes))
             setNegativeText(context.getString(R.string.no))
-            setTitle(context.getString(R.string.are_you_serious))
+            setDesc(context.getString(R.string.are_you_serious))
             setOnPositiveClick {
                 viewModel.checkPhoneNumber()
                 dismiss()

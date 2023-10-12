@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="sell"
+            type="com.ferdidrgn.theatreticket.commonModels.dummyData.Sell" />
+
+        <variable
+            name="index"
+            type="Integer" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/choose_seats"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/main_thirth"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/phone_number_mask"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/main_thirth"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/first_name"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/main_thirth"
+                    android:textSize="18sp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/game_date"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/main_thirth"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stage_name"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/main_thirth"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stage_location"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/main_thirth"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_chooseSeats"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{sell.showSeat}"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/main_fifth"
+                    android:textSize="18sp"
+                    tools:text="A18, A20" />
+
+                <TextView
+                    android:id="@+id/tv_phoneNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{sell.customerPhone}"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/main_fifth"
+                    android:textSize="18sp"
+                    tools:text="@string/phone_number_mask" />
+
+                <TextView
+                    android:id="@+id/tv_firstName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{sell.customerFullName}"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/main_fifth"
+                    android:textSize="18sp"
+                    tools:text="@string/first_name" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp" />
+
+                <TextView
+                    android:id="@+id/tv_gameDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{sell.showDate}"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/main_fifth"
+                    android:textSize="18sp"
+                    tools:text="@string/game_date" />
+
+                <TextView
+                    android:id="@+id/tv_stageName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{sell.stageName}"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/main_fifth"
+                    android:textSize="18sp"
+                    tools:text="@string/stage_name" />
+
+                <TextView
+                    android:id="@+id/tv_stageLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{sell.stageLocation}"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/main_fifth"
+                    android:textSize="18sp"
+                    tools:text="@string/stage_location" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

@@ -11,4 +11,6 @@ data class Sell(
     var customerId: String? = null,
     @SerializedName("showId")
     var showId: String? = null,
+    @SerializedName("customer")
+    var customer: String? = null,
 )

@@ -64,7 +64,7 @@
                         android:textAlignment="textStart"
                         app:custom_edit_hint="@string/first_name"
                         app:custom_edit_input="1"
-                        app:custom_edit_text="@{viewModel.firstName}" />
+                        app:custom_edit_text="@={viewModel.firstName}" />
 
                     <com.ferdidrgn.theatreticket.tools.components.CustomEditText
                         android:id="@+id/etLastName"
@@ -77,7 +77,7 @@
                         android:textAlignment="textStart"
                         app:custom_edit_hint="@string/last_name"
                         app:custom_edit_input="1"
-                        app:custom_edit_text="@{viewModel.lastName}" />
+                        app:custom_edit_text="@={viewModel.lastName}" />
 
                 </RelativeLayout>
 

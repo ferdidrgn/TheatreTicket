@@ -58,7 +58,7 @@ class ForFirebaseQueries {
 
     fun checkSearchBuyTicket(
         customer: Customer,
-        status: (String) -> Unit
+        status: (String, ArrayList<Sell>?) -> Unit
     ) {
         var statusTree = ""
         val sellList = ArrayList<Sell>()
@@ -66,7 +66,7 @@ class ForFirebaseQueries {
             .addSnapshotListener { value, error ->
                 if (error != null) {
                     statusTree = Response.ServerError.response
-                    status.invoke(statusTree)
+                    status.invoke(statusTree, null)
                 } else {
                     if (value != null) {
                         if (!value.isEmpty) {
@@ -104,17 +104,16 @@ class ForFirebaseQueries {
                                 sellList.add(sell)
                             }
                             statusTree = Response.ThereIs.response
-                            status.invoke(statusTree)
+                            status.invoke(statusTree, sellList)
                         } else {
                             statusTree = Response.Empty.response
-                            status.invoke(statusTree)
+                            status.invoke(statusTree, null)
                         }
                     } else {
                         statusTree = Response.Empty.response
-                        status.invoke(statusTree)
+                        status.invoke(statusTree, null)
                     }
                 }
-                status.invoke(statusTree)
             }
     }
 

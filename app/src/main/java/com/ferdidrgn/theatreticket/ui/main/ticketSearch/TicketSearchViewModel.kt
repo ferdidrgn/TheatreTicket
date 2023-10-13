@@ -1,5 +1,6 @@
 package com.ferdidrgn.theatreticket.ui.main.ticketSearch
 
+import androidx.lifecycle.MutableLiveData
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseViewModel
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Customer
@@ -23,21 +24,12 @@ class TicketSearchViewModel @Inject constructor(private val forFirebaseQueries: 
     var phoneNumber = MutableStateFlow("")
     var _createdAt = MutableStateFlow("")
     var _id = MutableStateFlow("")
-    var customerId = MutableStateFlow("")
-    var showId = MutableStateFlow("")
-    var showName = MutableStateFlow("")
-    var showDate = MutableStateFlow("")
-    var showTime = MutableStateFlow("")
-    var showPrice = MutableStateFlow("")
-    var showSeat = MutableStateFlow("")
-    var stageName = MutableStateFlow("")
-    var stageLocation = MutableStateFlow("")
     val errorMessage = LiveEvent<String?>()
     val successMessage = LiveEvent<String?>()
     val searchTicketPopUp = LiveEvent<Boolean?>()
 
     var customerAdd = Customer()
-    val sell = MutableStateFlow<List<Sell>>(listOf())
+    val sell = MutableLiveData<List<Sell>>(listOf())
 
 
     fun onBtnSearchTicketClick() {
@@ -53,7 +45,7 @@ class TicketSearchViewModel @Inject constructor(private val forFirebaseQueries: 
                 phoneNumber = phoneNumber.value
             )
 
-            forFirebaseQueries.checkSearchBuyTicket(customerAdd) { status ->
+            forFirebaseQueries.checkSearchBuyTicket(customerAdd) { status, sellList ->
                 when (status) {
                     Response.ServerError.response -> {
                         errorMessage.postValue(message(R.string.error_server))
@@ -65,6 +57,7 @@ class TicketSearchViewModel @Inject constructor(private val forFirebaseQueries: 
                     }
                     Response.ThereIs.response -> {
                         successMessage.postValue(message(R.string.success_ticket))
+                        sell.postValue(sellList)
                         hideLoading()
                     }
                 }

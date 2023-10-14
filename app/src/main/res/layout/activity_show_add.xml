@@ -13,67 +13,82 @@
             type="com.ferdidrgn.theatreticket.ui.showAddActivity.ShowAddViewModel" />
     </data>
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/imgShow"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_home" />
-
-        <com.ferdidrgn.theatreticket.tools.components.CustomEditText
-            android:id="@+id/etName"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:textAlignment="textStart"
-            app:custom_edit_hint="@string/show_name"
-            app:custom_edit_input="1"
-            app:custom_edit_text="@={viewModel.name}" />
+            android:layout_margin="20dp"
+            android:orientation="vertical">
 
-        <com.ferdidrgn.theatreticket.tools.components.CustomEditText
-            android:id="@+id/etDesc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:textAlignment="textStart"
-            app:custom_edit_hint="@string/phone_number_mask"
-            app:custom_edit_input="1"
-            app:custom_edit_text="@={viewModel.desc}" />
+            <ImageView
+                android:id="@+id/imgShow"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_home" />
 
-        <com.ferdidrgn.theatreticket.tools.components.CustomEditText
-            android:id="@+id/etPrice"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:textAlignment="textStart"
-            app:custom_edit_hint="@string/phone_number_mask"
-            app:custom_edit_input="1"
-            app:custom_edit_text="@={viewModel.price}" />
+            <com.ferdidrgn.theatreticket.tools.components.CustomEditText
+                android:id="@+id/etName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textAlignment="textStart"
+                app:custom_edit_hint="@string/show_name"
+                app:custom_edit_input="1"
+                app:custom_edit_text="@={viewModel.name}" />
 
-        <com.ferdidrgn.theatreticket.tools.components.CustomEditText
-            android:id="@+id/etDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:textAlignment="textStart"
-            app:custom_edit_hint="@string/phone_number_mask"
-            app:custom_edit_input="1"
-            app:custom_edit_text="@={viewModel.date}" />
+            <com.ferdidrgn.theatreticket.tools.components.CustomEditText
+                android:id="@+id/etDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textAlignment="textStart"
+                app:custom_edit_hint="@string/show_desc"
+                app:custom_edit_input="1"
+                app:custom_edit_text="@={viewModel.desc}" />
 
-        <com.ferdidrgn.theatreticket.tools.components.CustomEditText
-            android:id="@+id/etAgeLimit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:textAlignment="textStart"
-            app:custom_edit_hint="@string/phone_number_mask"
-            app:custom_edit_input="1"
-            app:custom_edit_text="@={viewModel.ageLimit}" />
+            <com.ferdidrgn.theatreticket.tools.components.CustomEditText
+                android:id="@+id/etPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textAlignment="textStart"
+                app:custom_edit_hint="@string/price"
+                app:custom_edit_input="1"
+                app:custom_edit_text="@={viewModel.price}" />
 
-    </LinearLayout>
+            <com.ferdidrgn.theatreticket.tools.components.CustomEditText
+                android:id="@+id/etDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textAlignment="textStart"
+                app:custom_edit_hint="@string/date_hours"
+                app:custom_edit_input="1"
+                app:custom_edit_text="@={viewModel.date}" />
 
+            <com.ferdidrgn.theatreticket.tools.components.CustomEditText
+                android:id="@+id/etAgeLimit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textAlignment="textStart"
+                app:custom_edit_hint="@string/age_limit"
+                app:custom_edit_input="1"
+                app:custom_edit_text="@={viewModel.ageLimit}" />
+
+            <com.ferdidrgn.theatreticket.tools.components.CustomButton
+                android:id="@+id/btnSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="20dp"
+                android:onClick="@{()->viewModel.onBtnAddShowClick()}"
+                app:button_name="@string/show_add" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </layout>

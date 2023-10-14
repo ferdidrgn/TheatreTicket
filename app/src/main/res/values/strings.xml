@@ -25,6 +25,11 @@
 
     //AddShowActivity
     <string name="show_name">Gösteri Adı</string>
+    <string name="show_desc">Gösteri Tanımı</string>
+    <string name="age_limit">Yaş Sınırı</string>
+    <string name="choose_image">Fotoğraf Seç</string>
+    <string name="date_hours">Tarih-Saat</string>
+    <string name="show_add">Gösteriyi Ekle</string>
 
     //Prattive Messages
     <string name="done">Tamamlandı</string>

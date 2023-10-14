@@ -56,7 +56,7 @@ class CustomButton : LinearLayout {
 
     fun setButtonActive() {
         customButton.backgroundTintList =
-            ColorStateList.valueOf(ContextCompat.getColor(customButton.context, R.color.main))
+            ColorStateList.valueOf(ContextCompat.getColor(customButton.context, R.color.main_dark))
         isClickable = true
     }
 

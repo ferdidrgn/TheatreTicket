@@ -1,7 +1,6 @@
 package com.ferdidrgn.theatreticket.di
 
-import com.ferdidrgn.theatreticket.forFirebaseQueries.ForFirebaseQueries
-import com.ferdidrgn.theatreticket.repository.ProductRepository
+import com.ferdidrgn.theatreticket.repository.ForFirebaseQueries
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -11,10 +10,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppRepositoryModule {
-
-    @Singleton
-    @Provides
-    fun provideProductRepository() = ProductRepository()
 
     @Singleton
     @Provides

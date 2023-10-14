@@ -13,4 +13,9 @@
         </item>
         <!--You can set other style items also, such as animations and etc-->
     </style>
+
+    <style name="ImageView.SquareBorder" parent="">
+        <item name="cornerSize">8%</item>
+        <item name="cornerFamily">rounded</item>
+    </style>
 </resources>

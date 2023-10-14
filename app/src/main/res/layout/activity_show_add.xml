@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+
+        <variable
+            name="viewModel"
+            type="com.ferdidrgn.theatreticket.ui.showAddActivity.ShowAddViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imgShow"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_home" />
+
+        <com.ferdidrgn.theatreticket.tools.components.CustomEditText
+            android:id="@+id/etName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textAlignment="textStart"
+            app:custom_edit_hint="@string/show_name"
+            app:custom_edit_input="1"
+            app:custom_edit_text="@={viewModel.name}" />
+
+        <com.ferdidrgn.theatreticket.tools.components.CustomEditText
+            android:id="@+id/etDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textAlignment="textStart"
+            app:custom_edit_hint="@string/phone_number_mask"
+            app:custom_edit_input="1"
+            app:custom_edit_text="@={viewModel.desc}" />
+
+        <com.ferdidrgn.theatreticket.tools.components.CustomEditText
+            android:id="@+id/etPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textAlignment="textStart"
+            app:custom_edit_hint="@string/phone_number_mask"
+            app:custom_edit_input="1"
+            app:custom_edit_text="@={viewModel.price}" />
+
+        <com.ferdidrgn.theatreticket.tools.components.CustomEditText
+            android:id="@+id/etDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textAlignment="textStart"
+            app:custom_edit_hint="@string/phone_number_mask"
+            app:custom_edit_input="1"
+            app:custom_edit_text="@={viewModel.date}" />
+
+        <com.ferdidrgn.theatreticket.tools.components.CustomEditText
+            android:id="@+id/etAgeLimit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textAlignment="textStart"
+            app:custom_edit_hint="@string/phone_number_mask"
+            app:custom_edit_input="1"
+            app:custom_edit_text="@={viewModel.ageLimit}" />
+
+    </LinearLayout>
+
+</layout>

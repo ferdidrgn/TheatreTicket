@@ -6,7 +6,7 @@ import com.ferdidrgn.theatreticket.commonModels.dummyData.Customer
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Sell
 import com.ferdidrgn.theatreticket.enums.ID
 import com.ferdidrgn.theatreticket.enums.Response
-import com.ferdidrgn.theatreticket.forFirebaseQueries.ForFirebaseQueries
+import com.ferdidrgn.theatreticket.repository.ForFirebaseQueries
 import com.ferdidrgn.theatreticket.tools.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.util.UUID
@@ -140,7 +140,7 @@ class TicketBuyViewModel @Inject constructor(private val forFireBaseQueries: For
     private fun buyTicket() {
         showLoading()
         mainScope {
-            forFireBaseQueries.saveSales(sellAdd) { status ->
+            forFireBaseQueries.addSales(sellAdd) { status ->
                 if (status) {
                     hideLoading()
                     successMessage.postValue(message(R.string.success))

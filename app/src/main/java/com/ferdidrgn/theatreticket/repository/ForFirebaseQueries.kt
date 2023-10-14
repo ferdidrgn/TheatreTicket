@@ -1,15 +1,19 @@
-package com.ferdidrgn.theatreticket.forFirebaseQueries
+package com.ferdidrgn.theatreticket.repository
 
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Sell
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Customer
+import com.ferdidrgn.theatreticket.commonModels.dummyData.Show
+import com.ferdidrgn.theatreticket.commonModels.dummyData.Stage
 import com.ferdidrgn.theatreticket.enums.Response
 import com.google.firebase.Timestamp
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class ForFirebaseQueries {
 
     private val fireStore = Firebase.firestore
+
 
     fun checkPhoneNumber(phoneNumber: String, status: (String, String) -> Unit) {
         var customerId: String = ""
@@ -85,6 +89,8 @@ class ForFirebaseQueries {
                                 val showSeat = document.get("showSeat") as String
                                 val stageName = document.get("stageName") as String
                                 val stageLocation = document.get("stageLocation") as String
+                                val locationLat = document.get("locationLat") as String
+                                val locationLng = document.get("locationLng") as String
 
                                 val sell = Sell(
                                     _createdAt = createdAt.toString(),
@@ -99,7 +105,9 @@ class ForFirebaseQueries {
                                     showPrice = showPrice,
                                     showSeat = showSeat,
                                     stageName = stageName,
-                                    stageLocation = stageLocation
+                                    stageLocation = stageLocation,
+                                    locationLat = locationLat,
+                                    locationLng = locationLng
                                 )
                                 sellList.add(sell)
                             }
@@ -135,7 +143,7 @@ class ForFirebaseQueries {
         }
     }
 
-    fun saveSales(sell: Sell, status: (Boolean) -> Unit) {
+    fun addSales(sell: Sell, status: (Boolean) -> Unit) {
         val salesMap = HashMap<String, Any>()
         salesMap["_createdAt"] = Timestamp.now()
         salesMap["_id"] = sell._id.toString()
@@ -150,8 +158,95 @@ class ForFirebaseQueries {
         salesMap["showSeat"] = sell.showSeat.toString()
         salesMap["stageName"] = sell.showSeat.toString()
         salesMap["stageLocation"] = sell.showSeat.toString()
+        salesMap["stageLat"] = sell.showSeat.toString()
+        salesMap["stageLong"] = sell.showSeat.toString()
 
         fireStore.collection("Sell").add(salesMap).addOnSuccessListener {
+            status.invoke(true)
+        }.addOnFailureListener {
+            status.invoke(false)
+        }
+    }
+
+    //SHOW
+    fun addShow(show: Show, status: (Boolean) -> Unit) {
+        val showMap = HashMap<String, Any>()
+        showMap["_createdAt"] = Timestamp.now()
+        showMap["_id"] = show._id.toString()
+        showMap["name"] = show.name.toString()
+        showMap["description"] = show.description.toString()
+        showMap["date"] = show.date.toString()
+        showMap["price"] = show.price.toString()
+        showMap["ageLimit"] = show.ageLimit.toString()
+        showMap["players"] = show.actorsId.toString()
+
+        fireStore.collection("Show").add(showMap).addOnSuccessListener {
+            status.invoke(true)
+        }.addOnFailureListener {
+            status.invoke(false)
+        }
+    }
+
+    fun getShow(status: (String, ArrayList<Show>?) -> Unit) {
+        var statusTree = ""
+        val showList = ArrayList<Show>()
+        fireStore.collection("Show").orderBy("date", Query.Direction.ASCENDING)
+            .addSnapshotListener { value, error ->
+                if (error != null) {
+                    statusTree = Response.ServerError.response
+                    status.invoke(statusTree, null)
+                } else {
+                    if (value != null) {
+                        if (!value.isEmpty) {
+                            val documents = value.documents
+                            for (document in documents) {
+                                val createdAt = document.get("_createdAt") as Timestamp
+                                val id = document.get("_id") as String
+                                val name = document.get("name") as String
+                                val description = document.get("description") as String
+                                val date = document.get("date") as String
+                                val price = document.get("price") as String
+                                val ageLimit = document.get("ageLimit") as String
+
+                                val show = Show(
+                                    _createdAt = createdAt.toString(),
+                                    _id = id,
+                                    name = name,
+                                    description = description,
+                                    date = date,
+                                    price = price,
+                                    ageLimit = ageLimit,
+                                )
+                                showList.add(show)
+                            }
+                            statusTree = Response.ThereIs.response
+                            status.invoke(statusTree, showList)
+                        } else {
+                            statusTree = Response.Empty.response
+                            status.invoke(statusTree, null)
+                        }
+                    } else {
+                        statusTree = Response.Empty.response
+                        status.invoke(statusTree, null)
+                    }
+                }
+            }
+    }
+
+    //STAGE
+    fun addStage(stage: Stage, status: (Boolean) -> Unit) {
+        val stageMap = HashMap<String, Any>()
+        stageMap["_createdAt"] = Timestamp.now()
+        stageMap["_id"] = stage._id.toString()
+        stageMap["name"] = stage.name.toString()
+        stageMap["capacity"] = stage.capacity.toString()
+        stageMap["description"] = stage.description.toString()
+        stageMap["communication"] = stage.communication.toString()
+        stageMap["location"] = stage.location.toString()
+        stageMap["locationLat"] = stage.locationLat.toString()
+        stageMap["locationLng"] = stage.locationLng.toString()
+
+        fireStore.collection("Stage").add(stageMap).addOnSuccessListener {
             status.invoke(true)
         }.addOnFailureListener {
             status.invoke(false)

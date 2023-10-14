@@ -2,8 +2,8 @@ package com.ferdidrgn.theatreticket.ui.main.settings
 
 import androidx.lifecycle.MutableLiveData
 import com.ferdidrgn.theatreticket.base.BaseViewModel
-import com.ferdidrgn.theatreticket.repository.ProductRepository
 import com.ferdidrgn.theatreticket.enums.Roles
+import com.ferdidrgn.theatreticket.repository.ForFirebaseQueries
 import com.ferdidrgn.theatreticket.tools.ClientPreferences
 import com.ferdidrgn.theatreticket.tools.ioScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -11,7 +11,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
 
 @HiltViewModel
-class SettingsViewModel @Inject constructor(context: ProductRepository) : BaseViewModel() {
+class SettingsViewModel @Inject constructor(private val forFirebaseQueries: ForFirebaseQueries) :
+    BaseViewModel() {
 
     val whichLayout = MutableLiveData<Boolean>()
     val userName = MutableStateFlow("")

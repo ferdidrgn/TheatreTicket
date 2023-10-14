@@ -14,11 +14,11 @@ data class Customer(
     @SerializedName("phoneNumber")
     var phoneNumber: String? = "",
     @SerializedName("isActivite")
-    var isActivite: String? = "",
+    var isActivite: Boolean?,
     @SerializedName("age")
     var age: String? = "",
     @SerializedName("eMail")
     var eMail: String? = "",
     @SerializedName("ticketId")
-    var ticketId: ArrayList<String?>? = null,
+    var ticket: ArrayList<Sell?>? = null,
 )

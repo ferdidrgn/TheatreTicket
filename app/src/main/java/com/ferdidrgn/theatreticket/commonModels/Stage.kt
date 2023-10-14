@@ -16,13 +16,13 @@ data class Stage(
     @SerializedName("location")
     var location: String? = "",
     @SerializedName("lat")
-    val lat: Double?,
+    val locationLat: Double?,
     @SerializedName("long")
-    val long: Double?,
+    val locationLng: Double?,
     @SerializedName("communication")
     var communication: String? = "",
     @SerializedName("seatId")
-    var seatId: ArrayList<String?>? = null,
+    var seat: ArrayList<Seat?>? = null,
     @SerializedName("showsId")
-    var showsId: ArrayList<String?>? = null,
+    var shows: ArrayList<Show?>? = null,
 )

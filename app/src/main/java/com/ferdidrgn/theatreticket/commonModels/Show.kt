@@ -11,16 +11,14 @@ data class Show(
     var name: String? = "",
     @SerializedName("description")
     var description: String? = "",
+    @SerializedName("imgUrl")
+    var imageUrl: String? = null,
     @SerializedName("date")
-    var date: String? = "",
+    var date: ArrayList<String>?,
     @SerializedName("price")
     var price: String? = "",
     @SerializedName("ageLimit")
     var ageLimit: String? = "",
-    @SerializedName("seat")
-    var seat: String? = "",
-    @SerializedName("stageId")
-    var stageId: ArrayList<Stage?>? = null,
     @SerializedName("actorsId")
-    var actorsId: ArrayList<String?>? = null,
+    var actors: ArrayList<Players?>? = null,
 )

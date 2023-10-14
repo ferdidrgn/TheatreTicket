@@ -16,5 +16,7 @@ data class Sell(
     var showSeat: String? = null,
     var stageName: String? = null,
     var stageLocation: String? = null,
+    var locationLat: String? = null,
+    var locationLng: String? = null,
     override val mId: Long = 1L
 ) : ListAdapterItem

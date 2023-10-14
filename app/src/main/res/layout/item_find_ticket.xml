@@ -16,146 +16,125 @@
             type="Integer" />
     </data>
 
-    <androidx.core.widget.NestedScrollView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="30dp"
+        android:backgroundTint="@color/main_dark2"
+        android:orientation="vertical"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:orientation="horizontal"
-            android:weightSum="2">
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                <TextView
+                <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/choose_seats"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/main_thirth"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/phone_number_mask"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/main_thirth"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/first_name"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/main_thirth"
-                    android:textSize="18sp" />
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/game_date"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/main_thirth"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/stage_name"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/main_thirth"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/stage_location"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/main_thirth"
-                    android:textSize="18sp" />
+                    android:layout_height="wrap_content" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:weightSum="3.5">
 
                 <TextView
-                    android:id="@+id/tv_chooseSeats"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/tvFirstName"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@{sell.showSeat}"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/main_fifth"
-                    android:textSize="18sp"
-                    tools:text="A18, A20" />
-
-                <TextView
-                    android:id="@+id/tv_phoneNumber"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@{sell.customerPhone}"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/main_fifth"
-                    android:textSize="18sp"
-                    tools:text="@string/phone_number_mask" />
-
-                <TextView
-                    android:id="@+id/tv_firstName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="start"
                     android:text="@{sell.customerFullName}"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/main_fifth"
-                    android:textSize="18sp"
+                    android:textColor="@color/white"
                     tools:text="@string/first_name" />
 
                 <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp" />
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.25" />
 
                 <TextView
-                    android:id="@+id/tv_gameDate"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/tvShowName"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@{sell.showName}"
+                    android:textColor="@color/white"
+                    tools:text="@string/add_show" />
+
+                <Space
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.25" />
+
+                <TextView
+                    android:id="@+id/tvPrice"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="@{sell.stageName}"
+                    android:textColor="@color/white"
+                    tools:text="@string/stage_name" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                android:weightSum="3.5">
+
+                <TextView
+                    android:id="@+id/tvGameDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="start"
                     android:text="@{sell.showDate}"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/main_fifth"
-                    android:textSize="18sp"
+                    android:textColor="@color/white"
                     tools:text="@string/game_date" />
 
-                <TextView
-                    android:id="@+id/tv_stageName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@{sell.stageName}"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/main_fifth"
-                    android:textSize="18sp"
-                    tools:text="@string/stage_name" />
+                <Space
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.25" />
 
                 <TextView
-                    android:id="@+id/tv_stageLocation"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/tvSeat"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@{sell.showSeat}"
+                    android:textColor="@color/white"
+                    tools:text="@string/choose_seats" />
+
+                <Space
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.25" />
+
+                <TextView
+                    android:id="@+id/tvStageLocation"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
                     android:text="@{sell.stageLocation}"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/main_fifth"
-                    android:textSize="18sp"
+                    android:textColor="@color/white"
                     tools:text="@string/stage_location" />
             </LinearLayout>
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+    </com.google.android.material.card.MaterialCardView>
 </layout>

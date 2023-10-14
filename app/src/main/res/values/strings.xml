@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Tiyatro Bileti</string>
     <string name="title_home">Home</string>
     <string name="ticket_buy">Bilet Al</string>
@@ -8,6 +8,7 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="are_you_sure_you_want_to_logout">Are you sure you want to logout ?</string>
+    <string name="are_you_serious">Emin Misiniz</string>
 
 
     <string name="phone_number_mask">Tel No:(555)</string>
@@ -19,7 +20,11 @@
     <string name="stage_name">Sahne Adı</string>
     <string name="stage_location">Sahne Konumu</string>
     <string name="search_for_buy_ticket">Alımları Sorgula</string>
-    <string name="age">Age</string>
+    <string name="age">Yaş</string>
+    <string name="price">Ücret</string>
+
+    //AddShowActivity
+    <string name="show_name">Gösteri Adı</string>
 
     //Prattive Messages
     <string name="done">Tamamlandı</string>
@@ -31,10 +36,8 @@
     <string name="error_first_name_little">İsim çok kısa görünüyor. Lütfen kontrol edin</string>
     <string name="error_last_name_little">Soyisim çok kısa görünüyor. Lütfen kontrol edin</string>
     <string name="error_have_ticket">Önceden bilet almışsınız. Lütfen kontrol edelin</string>
-    <string name="error_no_any_ticket">Hiçbir Bilet Bulunamadı</string>
-
-
-    <string name="are_you_serious">Emin Misiniz</string>
+    <string name="error_no_any_ticket">Herhangi Bir Bilet Bulunamadı</string>
+    <string name="error_no_any_show">Herhangi Bir Gösteri Bulunamadı</string>
     <string name="error_server">Server Hatası. Lütfen Tekrar Deneyin</string>
 
 

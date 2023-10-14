@@ -11,10 +11,4 @@ data class Seat(
     var _statu: Boolean?,
     @SerializedName("no")
     var no: String? = "",
-    @SerializedName("stageId")
-    var stageId: String? = "",
-    @SerializedName("customBuyId")
-    var customBuyId: String? = "",
-    @SerializedName("buyDate")
-    var buyDate: String? = "",
     )

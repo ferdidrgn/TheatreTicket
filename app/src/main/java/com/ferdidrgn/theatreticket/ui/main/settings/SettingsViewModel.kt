@@ -21,6 +21,7 @@ class SettingsViewModel @Inject constructor(private val forFirebaseQueries: ForF
 
     fun selectedLayout() {
         whichLayout.postValue(false)
+        ClientPreferences.inst.role = Roles.Admin.role //TEST - MOCKDATA
         when (ClientPreferences.inst.role ?: "") {
             Roles.Admin.role -> whichLayout.postValue(true)
             Roles.User.role -> whichLayout.postValue(false)

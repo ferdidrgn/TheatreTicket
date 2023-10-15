@@ -1,5 +1,6 @@
 package com.ferdidrgn.theatreticket.ui.showAddActivity
 
+import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseViewModel
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Show
 import com.ferdidrgn.theatreticket.repository.ForFirebaseQueries
@@ -27,6 +28,10 @@ class ShowAddViewModel @Inject constructor(private val forFirebaseQueries: ForFi
 
     val showAdd = Show()
 
+    fun onAddImageClick() {
+        //addImage.postValue(true)
+    }
+
     fun onBtnAddShowClick() {
         addShowPopUp.postValue(true)
     }
@@ -38,9 +43,11 @@ class ShowAddViewModel @Inject constructor(private val forFirebaseQueries: ForFi
                 when (status) {
                     true -> {
                         hideLoading()
+                        errorMessage.postValue(message(R.string.error_server))
                     }
                     false -> {
                         hideLoading()
+                        errorMessage.postValue(message(R.string.success_add_show))
                     }
                 }
             }

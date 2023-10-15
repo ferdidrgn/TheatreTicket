@@ -35,6 +35,7 @@
     <string name="done">Tamamlandı</string>
     <string name="success">Başarılı</string>
     <string name="success_ticket">Bilet (ler) Bulundu</string>
+    <string name="success_add_show">Gösteri Kaydedildi</string>
 
     //Error Messages
     <string name="error_phone_little">Telefon Numarası 10 karakterden kısa görünüyor. Lütfen kontrol edin</string>
@@ -52,6 +53,10 @@
     <string name="add_show">Gösteri Ekle</string>
     <string name="sell_ticket">Bilet Sat</string>
     <string name="change_language">Dil Değiştirme</string>
+    <string name="contact_us">Bizimle İletişime Geçin</string>
+    <string name="rate_the_app">Uygulamamızı Oylayın</string>
+    <string name="privace_policy">Gizlilik Politikası</string>
+    <string name="share_app">Uygulamayı Paylaş</string>
     <string name="change_theme">Tema Değiştirme</string>
     <string name="english_turkish">English, Türkçe</string>
 </resources>

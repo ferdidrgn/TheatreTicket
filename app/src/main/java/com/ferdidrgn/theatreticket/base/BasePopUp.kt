@@ -84,7 +84,7 @@ class BasePopUp(val isSuccess: Boolean? = null) : DialogFragment() {
         binding?.apply {
             negativeTv.hide()
             tbTitle.hide()
-            imgSuccess.setImageResource(R.drawable.ic_done)
+            imgSuccess.setImageResource(R.drawable.ic_accept_done_ok)
             container.background =
                 ContextCompat.getDrawable(requireContext(), R.drawable.bg_main_forth_10_green_light)
         }

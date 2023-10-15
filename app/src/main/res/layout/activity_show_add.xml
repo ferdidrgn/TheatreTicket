@@ -21,20 +21,37 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
+            android:gravity="center"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/imgShow"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_home" />
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvShow"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:backgroundTint="@color/main_dark"
+                app:cardCornerRadius="10dp"
+                android:onClick="@{()->viewModel.onAddImageClick()}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:strokeColor="@color/main_secondary"
+                app:strokeWidth="3dp">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:layout_gravity="center"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_add_cart_new_plus"
+                    app:shapeAppearanceOverlay="@style/ImageView.SquareBorder"
+                    app:strokeColor="@color/main_dark"
+                    app:strokeWidth="12dp" />
+            </com.google.android.material.card.MaterialCardView>
 
             <com.ferdidrgn.theatreticket.tools.components.CustomEditText
                 android:id="@+id/etName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="15dp"
                 android:textAlignment="textStart"
                 app:custom_edit_hint="@string/show_name"
                 app:custom_edit_input="1"

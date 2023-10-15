@@ -35,7 +35,10 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
 
     fun clickListener() {
         binding.btnSellTicket.onClickDelayed {
-           NavHandler.instance.toMainActivity(requireContext(), ToMain.TicketBuy)
+            NavHandler.instance.toMainActivity(requireContext(), ToMain.TicketBuy)
+        }
+        binding.btnAddShow.onClickDelayed {
+            NavHandler.instance.toShowAddActivity(requireContext())
         }
         binding.btnLogout.onClickDelayed {
             showLogoutDialog(requireContext())

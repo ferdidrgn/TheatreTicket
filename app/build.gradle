@@ -83,9 +83,6 @@ dependencies {
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.13.0'
     kapt 'com.github.bumptech.glide:compiler:4.13.0'
-
-    //Glide
-    implementation 'com.github.bumptech.glide:glide:4.13.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
 
     //retrofit
@@ -114,9 +111,6 @@ dependencies {
     //SwipeRefreshLayout
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 
-    //PageIndicatorView
-    implementation 'com.romandanylyk:pageindicatorview:1.0.3'
-
     //pin view
     implementation 'com.github.mukeshsolanki:android-otpview-pinview:2.1.0'
 
@@ -138,6 +132,7 @@ dependencies {
     implementation 'com.google.android.exoplayer:exoplayer-ui:2.18.1'
     implementation 'com.google.android.exoplayer:exoplayer:2.18.1'
 
+    //rating bar
     implementation 'com.github.ome450901:SimpleRatingBar:1.5.1'
 
     //Time picker
@@ -147,10 +142,11 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:18.0.2'
     implementation 'com.google.android.gms:play-services-location:20.0.0'
 
-    //image picker
+    //image picker -- photo cut, zoom+,-
     implementation 'com.github.dhaval2404:imagepicker:2.1'
-    implementation 'com.romandanylyk:pageindicatorview:1.0.3'
 
+    //page indicator
+    implementation 'com.romandanylyk:pageindicatorview:1.0.3'
 }
 
 kapt {

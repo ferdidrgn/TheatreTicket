@@ -18,7 +18,7 @@ class ShowAddActivity : BaseActivity<ShowAddViewModel, ActivityShowAddBinding>()
 
     override fun onCreateFinished(savedInstance: Bundle?) {
         viewModel.addShowPopUp.observe(this) {
-            searchTicketPopUp(this)
+            addShowPopUp(this)
         }
 
         viewModel.errorMessage.observe(this) { errorMessage ->
@@ -29,7 +29,7 @@ class ShowAddActivity : BaseActivity<ShowAddViewModel, ActivityShowAddBinding>()
         }
     }
 
-    private fun searchTicketPopUp(context: Context) {
+    private fun addShowPopUp(context: Context) {
         val pupUp = BasePopUp()
         pupUp.apply {
             setPositiveText(context.getString(R.string.yes))

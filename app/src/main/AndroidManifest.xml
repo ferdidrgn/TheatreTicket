@@ -18,7 +18,7 @@
         android:theme="@style/Theme.TheatreTicket"
         tools:targetApi="34">
         <activity
-            android:name=".ui.showAddActivity.ShowAddActivity"
+            android:name=".ui.showAdd.ShowAddActivity"
             android:exported="false" />
         <activity
             android:name=".ui.main.MainActivity"

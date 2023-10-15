@@ -1,4 +1,4 @@
-package com.ferdidrgn.theatreticket.ui.showAddActivity
+package com.ferdidrgn.theatreticket.ui.showAdd
 
 import android.content.Context
 import android.os.Bundle
@@ -7,7 +7,9 @@ import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseActivity
 import com.ferdidrgn.theatreticket.base.BasePopUp
 import com.ferdidrgn.theatreticket.databinding.ActivityShowAddBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ShowAddActivity : BaseActivity<ShowAddViewModel, ActivityShowAddBinding>() {
     override fun getVM(): Lazy<ShowAddViewModel> = viewModels()
 
@@ -15,15 +17,15 @@ class ShowAddActivity : BaseActivity<ShowAddViewModel, ActivityShowAddBinding>()
         ActivityShowAddBinding.inflate(layoutInflater)
 
     override fun onCreateFinished(savedInstance: Bundle?) {
-        viewModel.addShowPopUp.observe(this@ShowAddActivity) {
-            searchTicketPopUp(this@ShowAddActivity)
+        viewModel.addShowPopUp.observe(this) {
+            searchTicketPopUp(this)
         }
 
-        viewModel.errorMessage.observe(this@ShowAddActivity) { errorMessage ->
-            messagePopUp(this@ShowAddActivity, errorMessage!!, false)
+        viewModel.errorMessage.observe(this) { errorMessage ->
+            messagePopUp(this, errorMessage!!, false)
         }
         viewModel.successMessage.observe(this) { successMessage ->
-            messagePopUp(this@ShowAddActivity, successMessage!!, true)
+            messagePopUp(this, successMessage!!, true)
         }
     }
 

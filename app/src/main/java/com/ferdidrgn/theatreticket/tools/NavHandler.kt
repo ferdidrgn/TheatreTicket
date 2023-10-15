@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import com.ferdidrgn.theatreticket.enums.ToMain
 import com.ferdidrgn.theatreticket.ui.main.MainActivity
-import com.ferdidrgn.theatreticket.ui.showAddActivity.ShowAddActivity
+import com.ferdidrgn.theatreticket.ui.showAdd.ShowAddActivity
 
 class NavHandler {
 

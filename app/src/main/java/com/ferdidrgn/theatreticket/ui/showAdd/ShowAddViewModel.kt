@@ -1,4 +1,4 @@
-package com.ferdidrgn.theatreticket.ui.showAddActivity
+package com.ferdidrgn.theatreticket.ui.showAdd
 
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseViewModel

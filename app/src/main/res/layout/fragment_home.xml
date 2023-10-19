@@ -12,6 +12,10 @@
             type="com.ferdidrgn.theatreticket.ui.main.home.ShowsAdapter" />
 
         <variable
+            name="showSliderAdapter"
+            type="com.ferdidrgn.theatreticket.ui.main.home.ShowsSliderHorizontalAdapter" />
+
+        <variable
             name="viewModel"
             type="com.ferdidrgn.theatreticket.ui.main.home.HomeViewModel" />
     </data>
@@ -24,7 +28,7 @@
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="40dp"
+            android:layout_marginHorizontal="20dp"
             android:layout_marginTop="30dp"
             android:gravity="center"
             android:orientation="vertical"
@@ -42,9 +46,9 @@
                 android:overScrollMode="never"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                app:setAdapter="@{showAdapter}"
+                app:setAdapter="@{showSliderAdapter}"
                 app:submitList="@{viewModel.show}"
-                tools:listitem="@layout/item_show" />
+                tools:listitem="@layout/item_show_slider" />
 
             <com.rd.PageIndicatorView
                 android:id="@+id/indicator"
@@ -63,17 +67,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                tools:context=".ui.main.home.HomeFragment"
-                android:orientation="vertical">
-
-                <com.ferdidrgn.theatreticket.tools.components.CustomButton
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="30dp"
-                    android:layout_marginTop="20dp"
-                    android:onClick="@{()->viewModel.onClickAllShow()}"
-                    app:button_name="@string/buy"/>
+                android:orientation="vertical"
+                tools:context=".ui.main.home.HomeFragment">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"

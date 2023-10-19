@@ -14,15 +14,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(private val forFirebaseQueries: ForFirebaseQueries) :
-    BaseViewModel(), ShowDetailsAdapterListener {
+    BaseViewModel(), ShowDetailsAdapterListener, ShowSliderDetailsAdapterListener {
 
     val show = MutableLiveData<List<Show?>?>()
 
     val errorMessage = LiveEvent<String?>()
 
-    fun onClickAllShow() {
-        getAllShow()
-    }
 
     fun getAllShow() {
         showLoading()

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="show"
+            type="com.ferdidrgn.theatreticket.commonModels.dummyData.Show" />
+
+        <variable
+            name="index"
+            type="Integer" />
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:text="@{show.name}"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/done" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvShow"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/main_secondary"
+            app:strokeWidth="3dp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imgShow"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                app:shapeAppearanceOverlay="@style/ImageView.SquareBorder"
+                app:strokeColor="@color/main_dark"
+                app:strokeWidth="12dp"
+                tools:src="@drawable/ic_home" />
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+</layout>

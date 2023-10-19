@@ -8,17 +8,23 @@ import com.ferdidrgn.theatreticket.enums.Response
 import com.ferdidrgn.theatreticket.repository.ForFirebaseQueries
 import com.ferdidrgn.theatreticket.tools.helpers.LiveEvent
 import com.ferdidrgn.theatreticket.tools.mainScope
+import com.ferdidrgn.theatreticket.tools.showToast
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(private val forFirebaseQueries: ForFirebaseQueries) :
-    BaseViewModel() {
+    BaseViewModel(), ShowDetailsAdapterListener {
 
-    val show = MutableLiveData<List<Show>>(listOf())
+    val show = MutableLiveData<List<Show?>?>()
+
     val errorMessage = LiveEvent<String?>()
 
-    fun searchTicket() {
+    fun onClickAllShow() {
+        getAllShow()
+    }
+
+    fun getAllShow() {
         showLoading()
         mainScope {
             forFirebaseQueries.getShow() { status, showList ->
@@ -32,7 +38,9 @@ class HomeViewModel @Inject constructor(private val forFirebaseQueries: ForFireb
                         hideLoading()
                     }
                     Response.ThereIs.response -> {
-                        show.postValue(showList)
+                        showList?.let {
+                            show.postValue(showList)
+                        }
                         hideLoading()
                     }
                 }

@@ -135,9 +135,6 @@ dependencies {
     //rating bar
     implementation 'com.github.ome450901:SimpleRatingBar:1.5.1'
 
-    //Time picker
-    implementation 'com.github.michaldrabik:classicmaterialtimepicker:1.1.3'
-
     //map
     implementation 'com.google.android.gms:play-services-maps:18.0.2'
     implementation 'com.google.android.gms:play-services-location:20.0.0'

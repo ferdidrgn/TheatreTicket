@@ -62,10 +62,10 @@ class ForFirebaseQueries {
 
     fun checkSearchBuyTicket(
         customer: Customer,
-        status: (String, ArrayList<Sell>?) -> Unit
+        status: (String, ArrayList<Sell?>?) -> Unit
     ) {
         var statusTree = ""
-        val sellList = ArrayList<Sell>()
+        val sellList: ArrayList<Sell?> = arrayListOf()
         fireStore.collection("Sell").whereEqualTo("customerPhone", customer.phoneNumber)
             .addSnapshotListener { value, error ->
                 if (error != null) {
@@ -76,21 +76,36 @@ class ForFirebaseQueries {
                         if (!value.isEmpty) {
                             val documents = value.documents
                             for (document in documents) {
-                                val createdAt = document.get("_createdAt") as Timestamp
-                                val id = document.get("_id") as String
-                                val customerId = document.get("customerId") as String
-                                val showId = document.get("showId") as String
-                                val customerFullName = document.get("customerFullName") as String
-                                val customerPhone = document.get("customerPhone") as String
-                                val showName = document.get("showName") as String
-                                val showDate = document.get("showDate") as String
-                                val showTime = document.get("showTime") as String
-                                val showPrice = document.get("showPrice") as String
-                                val showSeat = document.get("showSeat") as String
-                                val stageName = document.get("stageName") as String
-                                val stageLocation = document.get("stageLocation") as String
-                                val locationLat = document.get("locationLat") as String
-                                val locationLng = document.get("locationLng") as String
+                                val createdAt =
+                                    if (document.get("_createdAt") != null) document.get("_createdAt") as Timestamp else ""
+                                val id =
+                                    if (document.get("_id") != null) document.get("_id") as String else ""
+                                val customerId =
+                                    if (document.get("customerId") != null) document.get("customerId") as String else ""
+                                val showId =
+                                    if (document.get("showId") != null) document.get("showId") as String else ""
+                                val customerFullName =
+                                    if (document.get("customerFullName") != null) document.get("customerFullName") as String else ""
+                                val customerPhone =
+                                    if (document.get("customerPhone") != null) document.get("customerPhone") as String else ""
+                                val showName =
+                                    if (document.get("showName") != null) document.get("showName") as String else ""
+                                val showDate =
+                                    if (document.get("showDate") != null) document.get("showDate") as String else ""
+                                val showTime =
+                                    if (document.get("showTime") != null) document.get("showTime") as String else ""
+                                val showPrice =
+                                    if (document.get("showPrice") != null) document.get("showPrice") as String else ""
+                                val showSeat =
+                                    if (document.get("showSeat") != null) document.get("showSeat") as String else ""
+                                val stageName =
+                                    if (document.get("stageName") != null) document.get("stageName") as String else ""
+                                val stageLocation =
+                                    if (document.get("stageLocation") != null) document.get("stageLocation") as String else ""
+                                val locationLat =
+                                    if (document.get("locationLat") != null) document.get("locationLat") as String else ""
+                                val locationLng =
+                                    if (document.get("locationLng") != null) document.get("locationLng") as String else ""
 
                                 val sell = Sell(
                                     _createdAt = createdAt.toString(),
@@ -109,7 +124,7 @@ class ForFirebaseQueries {
                                     locationLat = locationLat,
                                     locationLng = locationLng
                                 )
-                                sellList.add(sell)
+                                sellList?.add(sell)
                             }
                             statusTree = Response.ThereIs.response
                             status.invoke(statusTree, sellList)
@@ -187,10 +202,10 @@ class ForFirebaseQueries {
         }
     }
 
-    fun getShow(status: (String, ArrayList<Show>?) -> Unit) {
+    fun getShow(status: (String, ArrayList<Show?>?) -> Unit) {
         var statusTree = ""
-        val showList = ArrayList<Show>()
-        fireStore.collection("Show").orderBy("date", Query.Direction.ASCENDING)
+        val showList: ArrayList<Show?> = arrayListOf()
+        fireStore.collection("Show").orderBy("name", Query.Direction.ASCENDING)
             .addSnapshotListener { value, error ->
                 if (error != null) {
                     statusTree = Response.ServerError.response
@@ -200,13 +215,20 @@ class ForFirebaseQueries {
                         if (!value.isEmpty) {
                             val documents = value.documents
                             for (document in documents) {
-                                val createdAt = document.get("_createdAt") as Timestamp
-                                val id = document.get("_id") as String
-                                val name = document.get("name") as String
-                                val description = document.get("description") as String
-                                val date = document.get("date") as String
-                                val price = document.get("price") as String
-                                val ageLimit = document.get("ageLimit") as String
+                                val createdAt =
+                                    if (document.get("_createdAt") != null) document.get("_createdAt") as Timestamp else ""
+                                val id =
+                                    if (document.get("_id") != null) document.get("_id") as String else ""
+                                val name =
+                                    if (document.get("name") != null) document.get("name") as String else ""
+                                val description =
+                                    if (document.get("description") != null) document.get("description") as String else ""
+                                val date =
+                                    if (document.get("date") != null) document.get("date") as String else ""
+                                val price =
+                                    if (document.get("price") != null) document.get("price") as String else ""
+                                val ageLimit =
+                                    if (document.get("ageLimit") != null) document.get("ageLimit") as String else ""
 
                                 val show = Show(
                                     _createdAt = createdAt.toString(),
@@ -217,10 +239,12 @@ class ForFirebaseQueries {
                                     price = price,
                                     ageLimit = ageLimit,
                                 )
-                                showList.add(show)
+                                showList?.add(show)
                             }
                             statusTree = Response.ThereIs.response
                             status.invoke(statusTree, showList)
+
+
                         } else {
                             statusTree = Response.Empty.response
                             status.invoke(statusTree, null)

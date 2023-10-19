@@ -2,7 +2,6 @@ package com.ferdidrgn.theatreticket.ui.main.home
 
 import com.ferdidrgn.theatreticket.base.BaseAdapter
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Show
-import com.ferdidrgn.theatreticket.databinding.ItemFindTicketBinding
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.databinding.ItemShowBinding
 
@@ -23,5 +22,5 @@ class ShowsAdapter(
 }
 
 interface ShowDetailsAdapterListener {
-    fun onShowDetailsAdapterListener(position: Int)
+    fun onShowDetailsAdapterListener(position: Int){}
 }

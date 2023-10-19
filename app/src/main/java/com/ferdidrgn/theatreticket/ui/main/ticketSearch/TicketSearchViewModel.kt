@@ -28,7 +28,7 @@ class TicketSearchViewModel @Inject constructor(private val forFirebaseQueries: 
     val searchTicketPopUp = LiveEvent<Boolean?>()
 
     var customerAdd = Customer()
-    val sell = MutableLiveData<List<Sell>>(listOf())
+    val sell = MutableLiveData<List<Sell?>?>()
 
 
     fun onBtnSearchTicketClick() {
@@ -56,7 +56,9 @@ class TicketSearchViewModel @Inject constructor(private val forFirebaseQueries: 
                     }
                     Response.ThereIs.response -> {
                         successMessage.postValue(message(R.string.success_ticket))
-                        sell.postValue(sellList)
+                        sellList.let {
+                            sell.postValue(it)
+                        }
                         hideLoading()
                     }
                 }

@@ -17,6 +17,8 @@ class ShowAddActivity : BaseActivity<ShowAddViewModel, ActivityShowAddBinding>()
         ActivityShowAddBinding.inflate(layoutInflater)
 
     override fun onCreateFinished(savedInstance: Bundle?) {
+        binding.viewModel = viewModel
+
         viewModel.addShowPopUp.observe(this) {
             addShowPopUp(this)
         }

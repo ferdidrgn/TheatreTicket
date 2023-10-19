@@ -4,6 +4,7 @@
     <style name="Theme.TheatreTicket" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowBackground">@color/main_dark2</item>
         <item name="android:statusBarColor">@color/main_dark2</item>
+        <item name="android:navigationBarColor">@color/main_dark2</item>
         <item name="colorPrimary">@color/main_dark2</item>
     </style>
 

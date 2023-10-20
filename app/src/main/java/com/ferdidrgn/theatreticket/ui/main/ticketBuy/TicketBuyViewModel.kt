@@ -143,7 +143,7 @@ class TicketBuyViewModel @Inject constructor(private val forFireBaseQueries: For
             forFireBaseQueries.addSales(sellAdd) { status ->
                 if (status) {
                     hideLoading()
-                    successMessage.postValue(message(R.string.success))
+                    successMessage.postValue(message(R.string))
                 } else {
                     hideLoading()
                     errorMessage.postValue(message(R.string.error_server))

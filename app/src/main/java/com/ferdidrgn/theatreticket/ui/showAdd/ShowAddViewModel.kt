@@ -43,11 +43,11 @@ class ShowAddViewModel @Inject constructor(private val forFirebaseQueries: ForFi
                 when (status) {
                     true -> {
                         hideLoading()
-                        errorMessage.postValue(message(R.string.error_server))
+                        successMessage.postValue(message(R.string.success_add_show))
                     }
                     false -> {
                         hideLoading()
-                        errorMessage.postValue(message(R.string.success_add_show))
+                        errorMessage.postValue(message(R.string.error_server))
                     }
                 }
             }

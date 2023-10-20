@@ -9,6 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
+import androidx.viewpager2.widget.ViewPager2
+import com.ferdidrgn.theatreticket.tools.helpers.MainSliderHandler
+import com.ferdidrgn.theatreticket.commonModels.dummyData.Show
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -45,6 +48,50 @@ fun Context.setAppLocale(language: String): Context {
     config.setLocale(locale)
     config.setLayoutDirection(locale)
     return createConfigurationContext(config)
+}
+
+fun ViewPager2.getPositionAndSendHandler2(
+    list: List<Any?>?,
+    handler: MainSliderHandler,
+    sendPosition: (Int) -> Unit
+) {
+    this.run {
+        registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageScrollStateChanged(state: Int) {
+                super.onPageScrollStateChanged(state)
+                if (state == ViewPager2.SCROLL_STATE_DRAGGING) {
+                    handler.removeChanging()
+                } else handler.addChanging()
+            }
+
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+                super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+            }
+
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                sendPosition.invoke(position)
+            }
+        })
+
+        handler.setHandler {
+            val currentPosition: Int = currentItem
+            if (list?.isEmpty()?.not() == true) {
+                if (currentPosition == (list?.size?.minus(1) ?: 0)) {
+                    setCurrentItem(0, true)
+                    sendPosition.invoke(0)
+                } else {
+                    setCurrentItem(currentPosition + 1, true)
+                    sendPosition.invoke(currentPosition + 1)
+                }
+            }
+        }
+
+    }
 }
 
 suspend fun CoroutineScope.executeBody(block: suspend CoroutineScope.() -> Unit) {

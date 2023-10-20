@@ -8,7 +8,6 @@ import com.ferdidrgn.theatreticket.enums.Response
 import com.ferdidrgn.theatreticket.repository.ForFirebaseQueries
 import com.ferdidrgn.theatreticket.tools.helpers.LiveEvent
 import com.ferdidrgn.theatreticket.tools.mainScope
-import com.ferdidrgn.theatreticket.tools.showToast
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

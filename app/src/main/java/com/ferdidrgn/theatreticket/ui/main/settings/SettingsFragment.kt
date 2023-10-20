@@ -34,14 +34,22 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
     }
 
     fun clickListener() {
-        binding.btnSellTicket.onClickDelayed {
-            NavHandler.instance.toMainActivity(requireContext(), ToMain.TicketBuy)
-        }
-        binding.btnAddShow.onClickDelayed {
-            NavHandler.instance.toShowAddActivity(requireContext())
-        }
-        binding.btnLogout.onClickDelayed {
-            showLogoutDialog(requireContext())
+        binding.apply {
+            btnSellTicket.onClickDelayed {
+                NavHandler.instance.toMainActivity(requireContext(), ToMain.TicketBuy)
+            }
+            btnAddShow.onClickDelayed {
+                NavHandler.instance.toShowAddActivity(requireContext())
+            }
+            btnShowDelete.onClickDelayed {
+                NavHandler.instance.toShowDeleteActivity(requireContext())
+            }
+            btnLanguage.onClickDelayed {
+                NavHandler.instance.toLanguageActivity(requireContext())
+            }
+            btnLogout.onClickDelayed {
+                showLogoutDialog(requireContext())
+            }
         }
     }
 

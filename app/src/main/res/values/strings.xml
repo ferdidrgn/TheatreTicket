@@ -1,63 +1,66 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">Theatre Ticket</string>
-    <string name="title_home">Home</string>
-    <string name="ticket_buy">Ticket Buy</string>
-    <string name="ticket_search">Ticket Search</string>
-    <string name="settings">Settings</string>
+    <string name="app_name">Tiyatro Bileti</string>
+    <string name="title_home">Anasayfa</string>
+    <string name="ticket_buy">Bilet Al</string>
+    <string name="ticket_search">Bilet Sorgula</string>
+    <string name="settings">Ayarlar</string>
 
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="are_you_sure_you_want_to_logout">Are you sure you want to logout ?</string>
-    <string name="are_you_serious">Are You Sure</string>
+    <string name="yes">Evet</string>
+    <string name="no">Hayır</string>
+    <string name="are_you_sure_you_want_to_logout">Çıkış Yapmak İstediğinize Emin Misiniz ?</string>
+    <string name="are_you_serious">Emin Misiniz</string>
 
+    <!-- TicketBuyFragment -->
+    <string name="phone_number_mask">Tel No:(555)</string>
+    <string name="choose_seats">Seçtiğiniz Koltuklar</string>
+    <string name="first_name">Ad</string>
+    <string name="last_name">Soyad</string>
+    <string name="buy">Satın Al</string>
+    <string name="game_date">Oyun Tarihi</string>
+    <string name="stage_name">Sahne Adı</string>
+    <string name="stage_location">Sahne Konumu</string>
+    <string name="search_for_buy_ticket">Alımları Sorgula</string>
+    <string name="age">Yaş</string>
+    <string name="price">Ücret</string>
 
-    <string name="phone_number_mask">Phone Number:(555)</string>
-    <string name="choose_seats">Choose Seats</string>
-    <string name="first_name">First Name</string>
-    <string name="last_name">Last Name</string>
-    <string name="buy">Buy</string>
-    <string name="game_date">Game Date</string>
-    <string name="stage_name">Stage Name</string>
-    <string name="stage_location">Stage Location</string>
-    <string name="search_for_buy_ticket">Search Buy Ticket</string>
-    <string name="age">Age</string>
-    <string name="price">Price</string>
+    <!--    AddShowActivity -->
+    <string name="show_name">Gösteri Adı</string>
+    <string name="show_desc">Gösteri Tanımı</string>
+    <string name="age_limit">Yaş Sınırı</string>
+    <string name="choose_image">Fotoğraf Seç</string>
+    <string name="date_hours">Tarih-Saat</string>
+    <string name="show_add">Gösteriyi Ekle</string>
 
-    //AddShowActivity
-    <string name="show_name">Show Name</string>
-    <string name="show_desc">Show Description</string>
-    <string name="age_limit">Age Limit</string>
-    <string name="choose_image">Choose Image</string>
-    <string name="date_hours">Date - Hours</string>
-    <string name="show_add">Show Add</string>
+    <!--    Prattive Messages -->
+    <string name="done">Tamamlandı</string>
+    <string name="success">Başarılı</string>
+    <string name="success_ticket">Bilet (ler) Bulundu</string>
+    <string name="success_add_show">Gösteri Kaydedildi</string>
 
-    //Prattive Messages
-    <string name="done">Done</string>
-    <string name="success">Success</string>
-    <string name="success_ticket">Your Ticket(s) Found</string>
-    <string name="success_add_show">Show Saved</string>
-
-    //Error Messages
-    <string name="error_phone_little">Phone Number Appears To Be Less Than 10 Digits Long. Please Check</string>
-    <string name="error_first_name_little">First Name Seems Too Short. Please Check</string>
-    <string name="error_last_name_little">Last Name Seems Too Short. Please Check</string>
-    <string name="error_have_ticket">Tickets have ben purchased in advance. Please Check</string>
-    <string name="error_no_any_ticket">There Are Not Tickets Found</string>
-    <string name="error_no_any_show">There Are Not Shows Found</string>
-    <string name="error_server">Server Error. Please Try Again</string>
+    <!--     Error Messages -->
+    <string name="error_phone_little">Telefon Numarası 10 karakterden kısa görünüyor. Lütfen kontrol edin</string>
+    <string name="error_first_name_little">İsim çok kısa görünüyor. Lütfen kontrol edin</string>
+    <string name="error_last_name_little">Soyisim çok kısa görünüyor. Lütfen kontrol edin</string>
+    <string name="error_have_ticket">Önceden bilet alınmış. Lütfen kontrol edelin</string>
+    <string name="error_no_any_ticket">Herhangi Bir Bilet Bulunamadı</string>
+    <string name="error_no_any_show">Herhangi Bir Gösteri Bulunamadı</string>
+    <string name="error_server">Server Hatası. Lütfen Tekrar Deneyin</string>
 
 
     <!-- Settings -->
-    <string name="log_out">Logout</string>
-    <string name="sold_seats">Seats Sold</string>
-    <string name="add_show">Add Show</string>
-    <string name="show_delete">Show Delete</string>
-    <string name="sell_ticket">Sell Ticket</string>
-    <string name="change_language">Change Language</string>
-    <string name="contact_us">Contact Us</string>
+    <string name="log_out">Oturumu Kapat</string>
+    <string name="sold_seats">Satılan Koltuklar</string>
+    <string name="add_show">Gösteri Ekle</string>
+    <string name="show_delete">Gösteri Kaldır</string>
+    <string name="sell_ticket">Bilet Sat</string>
+    <string name="change_language">Dil Değiştirme</string>
+    <string name="contact_us">Bizimle İletişime Geçin</string>
     <string name="rate_the_app">Uygulamamızı Oylayın</string>
-    <string name="privace_policy">Privace Policy</string>
-    <string name="share_app">Share App</string>
-    <string name="change_theme">Change Theme</string>
+    <string name="privace_policy">Gizlilik Politikası</string>
+    <string name="share_app">Uygulamayı Paylaş</string>
+    <string name="change_theme">Tema Değiştirme</string>
     <string name="english_turkish">English, Türkçe</string>
+
+
+    <string name="guest">Misafir</string>
 </resources>

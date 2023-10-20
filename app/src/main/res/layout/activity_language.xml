@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.ferdidrgn.theatreticket.ui.language.LanguageViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        tools:context=".ui.language.LanguageActivity">
+
+        <LinearLayout
+            android:id="@+id/llTurkish"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="45dp"
+            android:background="@drawable/bg_rectangle_main_dark_border_main"
+            android:backgroundTint="@{viewModel.whichButtonSelected ? @color/main_secondary : @color/main_dark}"
+            android:clickable="@{viewModel.whichButtonSelected ? true: false}"
+            android:gravity="center"
+            android:onClick="@{()-> viewModel.turkishLanguageItemClicked()}">
+
+            <TextView
+                android:id="@+id/tvEnglish"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Türkçe"
+                android:textColor="@{viewModel.whichButtonSelected ? @color/main_fifth : @color/main}"
+                android:textSize="25sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llEnglish"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_rectangle_main_dark_border_main"
+            android:backgroundTint="@{viewModel.whichButtonSelected ? @color/main_dark : @color/main_secondary}"
+            android:clickable="@{viewModel.whichButtonSelected ? false: true}"
+            android:gravity="center"
+            android:onClick="@{()->viewModel.englishLanguageItemClicked()}">
+
+            <TextView
+                android:id="@+id/tvArabic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="English"
+                android:textColor="@{viewModel.whichButtonSelected ? @color/main : @color/main_fifth}"
+                android:textSize="25sp" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/change_language"
+            android:src="@drawable/ic_language_web_word" />
+    </LinearLayout>
+</layout>

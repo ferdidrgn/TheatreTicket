@@ -23,8 +23,6 @@ class ShowAddViewModel @Inject constructor(private val forFirebaseQueries: ForFi
     val stage = MutableStateFlow("")
     val players = MutableStateFlow("")
     val addShowPopUp = LiveEvent<Boolean?>()
-    val errorMessage = LiveEvent<String?>()
-    val successMessage = LiveEvent<String?>()
 
     val showAdd = Show()
 

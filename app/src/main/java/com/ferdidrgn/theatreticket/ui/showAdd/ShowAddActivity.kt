@@ -24,10 +24,12 @@ class ShowAddActivity : BaseActivity<ShowAddViewModel, ActivityShowAddBinding>()
         }
 
         viewModel.errorMessage.observe(this) { errorMessage ->
-            messagePopUp(this, errorMessage!!, false)
+            if (errorMessage != null)
+                messagePopUp(this, errorMessage, false)
         }
         viewModel.successMessage.observe(this) { successMessage ->
-            messagePopUp(this, successMessage!!, true)
+            if (successMessage != null)
+                messagePopUp(this, successMessage, true)
         }
     }
 

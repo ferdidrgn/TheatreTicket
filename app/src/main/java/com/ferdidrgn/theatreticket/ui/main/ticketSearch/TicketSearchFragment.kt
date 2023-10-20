@@ -25,10 +25,12 @@ class TicketSearchFragment : BaseFragment<TicketSearchViewModel, FragmentTicketS
         }
 
         viewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
-            messagePopUp(requireContext(), errorMessage!!, false)
+            if (errorMessage != null)
+                messagePopUp(requireContext(), errorMessage, false)
         }
         viewModel.successMessage.observe(viewLifecycleOwner) { successMessage ->
-            messagePopUp(requireContext(), successMessage!!, true)
+            if (successMessage != null)
+                messagePopUp(requireContext(), successMessage, true)
         }
     }
 

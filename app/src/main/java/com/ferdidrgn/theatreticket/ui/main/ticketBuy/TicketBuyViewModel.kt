@@ -23,8 +23,6 @@ class TicketBuyViewModel @Inject constructor(private val forFireBaseQueries: For
     var phoneNumber = MutableStateFlow("")
     var age = MutableStateFlow("")
     val buyTicketPopUp = LiveEvent<Boolean?>()
-    val errorMessage = LiveEvent<String?>()
-    val successMessage = LiveEvent<String?>()
 
     var customerAdd = Customer()
     var sellAdd = Sell()
@@ -143,7 +141,7 @@ class TicketBuyViewModel @Inject constructor(private val forFireBaseQueries: For
             forFireBaseQueries.addSales(sellAdd) { status ->
                 if (status) {
                     hideLoading()
-                    successMessage.postValue(message(R.string))
+                    successMessage.postValue(message(R.string.success))
                 } else {
                     hideLoading()
                     errorMessage.postValue(message(R.string.error_server))

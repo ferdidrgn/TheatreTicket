@@ -31,7 +31,8 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
         observe()
 
         viewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
-            messagePopUp(requireContext(), errorMessage!!, false)
+            if (errorMessage != null)
+                messagePopUp(requireContext(), errorMessage, false)
         }
     }
 

@@ -23,8 +23,6 @@ class TicketSearchViewModel @Inject constructor(private val forFirebaseQueries: 
     var phoneNumber = MutableStateFlow("")
     var _createdAt = MutableStateFlow("")
     var _id = MutableStateFlow("")
-    val errorMessage = LiveEvent<String?>()
-    val successMessage = LiveEvent<String?>()
     val searchTicketPopUp = LiveEvent<Boolean?>()
 
     var customerAdd = Customer()

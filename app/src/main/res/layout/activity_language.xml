@@ -33,8 +33,7 @@
             android:layout_height="60dp"
             android:layout_marginHorizontal="15dp"
             android:layout_marginTop="45dp"
-            android:background="@drawable/bg_rectangle_main_dark_border_main"
-            android:backgroundTint="@{viewModel.whichButtonSelected ? @color/main_secondary : @color/main_dark}"
+            android:background="@{viewModel.whichButtonSelected ? @drawable/bg_rectangle_main_dark_border_main :@drawable/bg_main_dark_radius_10_border_error_red}"
             android:clickable="@{viewModel.whichButtonSelected ? true: false}"
             android:gravity="center"
             android:onClick="@{()-> viewModel.turkishLanguageItemClicked()}">
@@ -44,7 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Türkçe"
-                android:textColor="@{viewModel.whichButtonSelected ? @color/main_fifth : @color/main}"
+                android:textColor="@{viewModel.whichButtonSelected ? @color/main_fourth : @color/main}"
                 android:textSize="25sp" />
 
         </LinearLayout>
@@ -55,8 +54,7 @@
             android:layout_height="60dp"
             android:layout_marginHorizontal="15dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/bg_rectangle_main_dark_border_main"
-            android:backgroundTint="@{viewModel.whichButtonSelected ? @color/main_dark : @color/main_secondary}"
+            android:background="@{viewModel.whichButtonSelected ? @drawable/bg_main_dark_radius_10_border_error_red : @drawable/bg_rectangle_main_dark_border_main}"
             android:clickable="@{viewModel.whichButtonSelected ? false: true}"
             android:gravity="center"
             android:onClick="@{()->viewModel.englishLanguageItemClicked()}">
@@ -66,7 +64,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="English"
-                android:textColor="@{viewModel.whichButtonSelected ? @color/main : @color/main_fifth}"
+                android:textColor="@{viewModel.whichButtonSelected ? @color/main : @color/main_fourth}"
                 android:textSize="25sp" />
 
         </LinearLayout>

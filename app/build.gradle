@@ -17,6 +17,8 @@ android {
         versionCode 1
         versionName "1.0"
 
+        resourceConfigurations += ["tr", "en", "en-rGB", "fr", "ja", "b+zh+Hans+MO", "b+zh+Hant+MO"]
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -39,6 +41,7 @@ android {
     }
 
     //dataBinding { enabled = true}
+
 }
 
 dependencies {

@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.widget.ImageView
-import android.widget.RelativeLayout
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.enums.ToolBarTitles
@@ -13,7 +13,7 @@ import com.ferdidrgn.theatreticket.tools.ClientPreferences
 import com.ferdidrgn.theatreticket.tools.hide
 import com.ferdidrgn.theatreticket.tools.show
 
-class CustomToolbar : RelativeLayout {
+class CustomToolbar : LinearLayout {
 
     lateinit var tvTitle: TextView
     private lateinit var imgLogo: ImageView

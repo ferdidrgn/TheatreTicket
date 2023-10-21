@@ -19,7 +19,8 @@
     <color name="main_fourth">#CE8382</color>
     <color name="main_fifth">#DCA7A7</color>
 
-    <color name="red_err">#EB4747</color>
+    <color name="pink_success">#EB4747</color>
+    <color name="red_err">#B00020</color>
 
     <color name="light_gray">#979797</color>
     <color name="blue">#00008B</color>

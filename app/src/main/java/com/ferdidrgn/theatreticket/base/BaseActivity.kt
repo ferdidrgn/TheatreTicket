@@ -11,10 +11,8 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.ViewDataBinding
-import com.ferdidrgn.theatreticket.tools.NetworkManager
 import com.ferdidrgn.theatreticket.R
-import com.ferdidrgn.theatreticket.tools.ClientPreferences
-import com.ferdidrgn.theatreticket.tools.setAppLocale
+import com.ferdidrgn.theatreticket.tools.*
 
 abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : AppCompatActivity() {
 
@@ -22,7 +20,6 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : AppCompa
     private var viewGroup: ViewGroup? = null
     protected lateinit var viewModel: VM
     protected lateinit var binding: DB
-    private var networkManager = NetworkManager()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,10 +36,8 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : AppCompa
 
         val connectivityManager =
             getSystemService(ConnectivityManager::class.java) as ConnectivityManager
-        connectivityManager.requestNetwork(
-            networkManager.networkRequest(),
-            networkManager.networkCallback()
-        )
+        connectivityManager.requestNetwork(networkRequest, networkCallback)
+
     }
 
     protected open fun changeTheme() {}
@@ -91,10 +86,10 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : AppCompa
     }
 
 
-    /*fun runRecorder(textView: TextView) {
-        hideKeyboard(this)
-        VoiceFragment { textResponse ->
-            textView.text = textResponse
-        }.show(supportFragmentManager, "")
-    }*/
+/*fun runRecorder(textView: TextView) {
+    hideKeyboard(this)
+    VoiceFragment { textResponse ->
+        textView.text = textResponse
+    }.show(supportFragmentManager, "")
+}*/
 }

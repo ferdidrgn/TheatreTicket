@@ -50,10 +50,10 @@
     <!-- Settings -->
     <string name="log_out">Logout</string>
     <string name="sold_seats">Seats Sold</string>
-    <string name="add_show">Add Show</string>
     <string name="show_delete">Show Delete</string>
     <string name="sell_ticket">Sell Ticket</string>
     <string name="change_language">Change Language</string>
+    <string name="language">Language</string>
     <string name="contact_us">Contact Us</string>
     <string name="rate_the_app">Rate The Our Application</string>
     <string name="privace_policy">Privace Policy</string>

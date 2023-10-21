@@ -7,6 +7,7 @@ import androidx.databinding.InverseBindingListener
 import androidx.databinding.InverseBindingMethod
 import androidx.databinding.InverseBindingMethods
 import com.ferdidrgn.theatreticket.tools.components.CustomEditText
+import com.ferdidrgn.theatreticket.tools.components.CustomToolbar
 
 object CustomDataBindingUtils {
 
@@ -14,6 +15,11 @@ object CustomDataBindingUtils {
         InverseBindingMethod(
             type = CustomEditText::class, attribute = "bind:custom_edit_text", event =
             "bind:textAttrChanged", method = "bind:getText"
+        ),
+        InverseBindingMethod(
+            type =
+            CustomToolbar::class, attribute = "bind:cst_text", event =
+            "bind:textAttrChanged", method = "bind:getToolBarText"
         ),
     )
     class CustomEditTextBinder {
@@ -44,4 +50,38 @@ object CustomDataBindingUtils {
             }
         }
     }
+
+    class CustomToolBarTextBinder {
+        companion object {
+            @JvmStatic
+            @BindingAdapter("android:textAttrChanged")
+            fun setListener(toolBar: CustomToolbar, listener: InverseBindingListener?) {
+                if (listener != null) {
+                    toolBar.tvTitle.doAfterTextChanged {
+                        listener.onChange()
+                    }
+                }
+            }
+
+            @JvmStatic
+            @InverseBindingAdapter(
+                attribute = "customToolBarChangeableText",
+                event = "android:textAttrChanged"
+            )
+            fun getToolBarText(toolBar: CustomToolbar): String {
+                return toolBar.tvTitle.text.toString()
+            }
+
+            @JvmStatic
+            @BindingAdapter("customToolBarChangeableText")
+            fun setToolBarText(toolBar: CustomToolbar, text: String?) {
+                text?.let { customText ->
+                    if (customText != toolBar.tvTitle.text.toString()) {
+                        toolBar.tvTitle.setText(customText)
+                    }
+                }
+            }
+        }
+    }
+
 }

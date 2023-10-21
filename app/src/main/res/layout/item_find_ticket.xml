@@ -70,7 +70,7 @@
                     android:gravity="center"
                     android:text="@{sell.showName}"
                     android:textColor="@color/white"
-                    tools:text="@string/add_show" />
+                    tools:text="@string/show_add" />
 
                 <Space
                     android:layout_width="5dp"

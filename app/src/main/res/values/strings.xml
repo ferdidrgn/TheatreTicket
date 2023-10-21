@@ -29,7 +29,7 @@
     <string name="age_limit">Yaş Sınırı</string>
     <string name="choose_image">Fotoğraf Seç</string>
     <string name="date_hours">Tarih-Saat</string>
-    <string name="show_add">Gösteriyi Ekle</string>
+    <string name="show_add">Gösteri Ekle</string>
 
     <!--    Prattive Messages -->
     <string name="done">Tamamlandı</string>
@@ -50,10 +50,10 @@
     <!-- Settings -->
     <string name="log_out">Oturumu Kapat</string>
     <string name="sold_seats">Satılan Koltuklar</string>
-    <string name="add_show">Gösteri Ekle</string>
     <string name="show_delete">Gösteri Kaldır</string>
     <string name="sell_ticket">Bilet Sat</string>
     <string name="change_language">Dil Değiştirme</string>
+    <string name="language">Dil</string>
     <string name="contact_us">Bizimle İletişime Geçin</string>
     <string name="rate_the_app">Uygulamamızı Oylayın</string>
     <string name="privace_policy">Gizlilik Politikası</string>

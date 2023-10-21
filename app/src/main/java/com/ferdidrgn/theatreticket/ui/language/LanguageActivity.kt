@@ -18,6 +18,7 @@ class LanguageActivity : BaseActivity<LanguageViewModel, ActivityLanguageBinding
         binding.viewModel = viewModel
         viewModel.firstState()
         observeEvents()
+        binding.customToolbar.backIconOnBackPress(this)
     }
 
     private fun observeEvents() {

@@ -34,14 +34,14 @@ class CustomButton : LinearLayout {
         inflate(context, R.layout.custom_button, this)
         customButton = findViewById(R.id.btnCustomButton)
         val layoutAttribute = context.obtainStyledAttributes(attributeSet, R.styleable.CustomButton)
-        setTextView(layoutAttribute.getString(R.styleable.CustomButton_button_name))
+        setTextView(layoutAttribute.getString(R.styleable.CustomButton_cst_button_name))
         getDisableBackgroundTint(
             layoutAttribute.getColor(
-                R.styleable.CustomButton_backgroundColorFromXml,
+                R.styleable.CustomButton_cst_backgroundColorFromXml,
                 ContextCompat.getColor(context, R.color.light_gray)
             )
         )
-        setButtonColor(layoutAttribute.getInt(R.styleable.CustomButton_buttonColor, R.color.main))
+        setButtonColor(layoutAttribute.getInt(R.styleable.CustomButton_cst_buttonColor, R.color.main))
     }
 
     private fun getDisableBackgroundTint(color: Int) {

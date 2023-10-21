@@ -51,16 +51,16 @@ class CustomToolbar : RelativeLayout {
         layoutAttribute = context.obtainStyledAttributes(attributeSet, R.styleable.custom_toolbar)
         visibilityOfBackIcon(
             layoutAttribute.getBoolean(
-                R.styleable.custom_toolbar_backIcon_visible, false
+                R.styleable.custom_toolbar_cst_toolbar_backIcon_visible, false
             )
         )
         visibilityOfCloseIcon(
             layoutAttribute.getBoolean(
-                R.styleable.custom_toolbar_closeIcon_visible, false
+                R.styleable.custom_toolbar_cst_toolbar_closeIcon_visible, false
             )
         )
 
-        val ctTitle = layoutAttribute.getString(R.styleable.custom_toolbar_cst_text)
+        val ctTitle = layoutAttribute.getString(R.styleable.custom_toolbar_cst_toolbar_text)
         setUpTitle(ctTitle, false)
 
         toLoginActivity()
@@ -79,7 +79,7 @@ class CustomToolbar : RelativeLayout {
         }
     }
 
-    fun visibilityOfCloseIcon(isEnable: Boolean) {
+    private fun visibilityOfCloseIcon(isEnable: Boolean) {
         if (isEnable) {
             closeIcon.show()
         } else {
@@ -87,7 +87,7 @@ class CustomToolbar : RelativeLayout {
         }
     }
 
-    fun visibilityOfBackIcon(isEnable: Boolean) {
+    private fun visibilityOfBackIcon(isEnable: Boolean) {
         if (isEnable) {
             backIcon.show()
         } else {
@@ -95,7 +95,7 @@ class CustomToolbar : RelativeLayout {
         }
     }
 
-    fun setUpTitle(ctTitle: String?, IsIconVisible: Boolean = false) {
+    private fun setUpTitle(ctTitle: String?, IsIconVisible: Boolean = false) {
         if (ctTitle.isNullOrEmpty() && IsIconVisible.not()) {
             visibilityText(ctTitle)
         } else {
@@ -103,28 +103,27 @@ class CustomToolbar : RelativeLayout {
                 imgLogo.show()
             } else {
                 imgLogo.hide()
+                tvTitle.show()
                 tvTitle.text = ctTitle
             }
         }
     }
 
-    fun visibilityText(text: String?) {
+    private fun visibilityText(text: String?) {
         when (text) {
             ToolBarTitles.Home.Entry(tvTitle.context).toString() -> {
-                imgLogo.show()
-                if (checkToken(token ?: "")) imgNotification.show()
-                toNotificationsActivity()
+                tvTitle.show()
+                tvTitle.text = text
             }
 
             ToolBarTitles.TicketBuy.Entry(tvTitle.context).toString() -> {
                 tvTitle.show()
                 tvTitle.text = text
-                checkToken(token ?: "")
             }
 
             ToolBarTitles.TicketSearch.Entry(tvTitle.context).toString() -> {
-                imgLogo.show()
-                guest.hide()
+                tvTitle.show()
+                tvTitle.text = text
             }
 
             ToolBarTitles.Settings.Entry(tvTitle.context).toString() -> {
@@ -133,20 +132,18 @@ class CustomToolbar : RelativeLayout {
             }
 
             ToolBarTitles.Language.Entry(tvTitle.context).toString() -> {
-                imgLogo.show()
-                guest.hide()
+                tvTitle.show()
+                tvTitle.text = text
             }
 
             ToolBarTitles.ShowAdd.Entry(tvTitle.context).toString() -> {
-                imgLogo.show()
-                guest.hide()
-                checkToken(token ?: "")
+                tvTitle.show()
+                tvTitle.text = text
             }
 
             ToolBarTitles.ShowDelete.Entry(tvTitle.context).toString() -> {
                 tvTitle.show()
                 tvTitle.text = text
-                checkToken(token ?: "")
             }
         }
     }

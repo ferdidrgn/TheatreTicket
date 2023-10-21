@@ -93,7 +93,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="15dp"
                         android:onClick="@{()->viewModel.onBtnSearchTicketClick()}"
-                        app:button_name="@string/search_for_buy_ticket" />
+                        app:cst_button_name="@string/search_for_buy_ticket" />
                 </LinearLayout>
             </LinearLayout>
 

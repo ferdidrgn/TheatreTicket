@@ -20,8 +20,8 @@ class ShowDeleteActivity : BaseActivity<ShowDeleteViewModel, ActivityShowDeleteB
     override fun onCreateFinished(savedInstance: Bundle?) {
         binding.viewModel = viewModel
         binding.showAdapter = ShowsAdapter(viewModel)
-
         observe()
+        binding.customToolbar.backIconOnBackPress(this)
 
         viewModel.errorMessage.observe(this) { errorMessage ->
             if (errorMessage != null)

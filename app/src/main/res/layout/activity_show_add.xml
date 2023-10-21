@@ -20,9 +20,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
             android:gravity="center"
             android:orientation="vertical">
+
+            <com.ferdidrgn.theatreticket.tools.components.CustomToolbar
+                android:id="@+id/customToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cst_toolbar_backIcon_visible="true"
+                app:cst_toolbar_text="@string/show_add" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cvShow"
@@ -104,7 +110,7 @@
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="20dp"
                 android:onClick="@{()->viewModel.onBtnAddShowClick()}"
-                app:button_name="@string/show_add" />
+                app:cst_button_name="@string/show_add" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

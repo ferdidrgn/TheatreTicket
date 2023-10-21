@@ -18,6 +18,7 @@ class ShowAddActivity : BaseActivity<ShowAddViewModel, ActivityShowAddBinding>()
 
     override fun onCreateFinished(savedInstance: Bundle?) {
         binding.viewModel = viewModel
+        binding.customToolbar.backIconOnBackPress(this)
 
         viewModel.addShowPopUp.observe(this) {
             addShowPopUp(this)

@@ -8,6 +8,7 @@ import androidx.databinding.InverseBindingMethod
 import androidx.databinding.InverseBindingMethods
 import com.ferdidrgn.theatreticket.tools.components.CustomEditText
 import com.ferdidrgn.theatreticket.tools.components.CustomToolbar
+import com.ferdidrgn.theatreticket.tools.show
 
 object CustomDataBindingUtils {
 
@@ -57,6 +58,7 @@ object CustomDataBindingUtils {
             @BindingAdapter("android:textAttrChanged")
             fun setListener(toolBar: CustomToolbar, listener: InverseBindingListener?) {
                 if (listener != null) {
+                    toolBar.tvTitle.show()
                     toolBar.tvTitle.doAfterTextChanged {
                         listener.onChange()
                     }
@@ -69,6 +71,7 @@ object CustomDataBindingUtils {
                 event = "android:textAttrChanged"
             )
             fun getToolBarText(toolBar: CustomToolbar): String {
+                toolBar.tvTitle.show()
                 return toolBar.tvTitle.text.toString()
             }
 
@@ -77,7 +80,8 @@ object CustomDataBindingUtils {
             fun setToolBarText(toolBar: CustomToolbar, text: String?) {
                 text?.let { customText ->
                     if (customText != toolBar.tvTitle.text.toString()) {
-                        toolBar.tvTitle.setText(customText)
+                        toolBar.tvTitle.show()
+                        toolBar.tvTitle.text = customText
                     }
                 }
             }

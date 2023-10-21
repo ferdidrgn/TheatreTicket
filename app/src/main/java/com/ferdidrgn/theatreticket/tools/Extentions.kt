@@ -55,42 +55,41 @@ fun ViewPager2.getPositionAndSendHandler2(
     handler: MainSliderHandler,
     sendPosition: (Int) -> Unit
 ) {
-    this.run {
-        registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageScrollStateChanged(state: Int) {
-                super.onPageScrollStateChanged(state)
-                if (state == ViewPager2.SCROLL_STATE_DRAGGING) {
-                    handler.removeChanging()
-                } else handler.addChanging()
-            }
-
-            override fun onPageScrolled(
-                position: Int,
-                positionOffset: Float,
-                positionOffsetPixels: Int
-            ) {
-                super.onPageScrolled(position, positionOffset, positionOffsetPixels)
-            }
-
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                sendPosition.invoke(position)
-            }
-        })
-
-        handler.setHandler {
-            val currentPosition: Int = currentItem
-            if (list?.isEmpty()?.not() == true) {
-                if (currentPosition == (list?.size?.minus(1) ?: 0)) {
-                    setCurrentItem(0, true)
-                    sendPosition.invoke(0)
-                } else {
-                    setCurrentItem(currentPosition + 1, true)
-                    sendPosition.invoke(currentPosition + 1)
-                }
+    registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+        override fun onPageScrollStateChanged(state: Int) {
+            super.onPageScrollStateChanged(state)
+            if (state == ViewPager2.SCROLL_STATE_DRAGGING) {
+                handler.removeChanging()
+            } else {
+                handler.addChanging()
             }
         }
 
+        override fun onPageScrolled(
+            position: Int,
+            positionOffset: Float,
+            positionOffsetPixels: Int
+        ) {
+            super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+        }
+
+        override fun onPageSelected(position: Int) {
+            super.onPageSelected(position)
+            sendPosition.invoke(position)
+        }
+    })
+
+    handler.setHandler {
+        val currentPosition: Int = currentItem
+        if (list?.isNotEmpty() == true) {
+            if (currentPosition == (list.size - 1)) {
+                setCurrentItem(0, true)
+                sendPosition.invoke(0)
+            } else {
+                setCurrentItem(currentPosition + 1, true)
+                sendPosition.invoke(currentPosition + 1)
+            }
+        }
     }
 }
 

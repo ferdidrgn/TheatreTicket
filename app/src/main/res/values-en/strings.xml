@@ -45,6 +45,7 @@
     <string name="error_no_any_ticket">There Are Not Tickets Found</string>
     <string name="error_no_any_show">There Are Not Shows Found</string>
     <string name="error_server">Server Error. Please Try Again</string>
+    <string name="error_not_mail_installed">"There are no email clients installed."</string>
 
 
     <!-- Settings -->
@@ -58,9 +59,13 @@
     <string name="rate_the_app">Rate The Our Application</string>
     <string name="privace_policy">Privace Policy</string>
     <string name="share_app">Share App</string>
+    <string name="invite_friends">Invite Friends</string>
+    <string name="acc_delete">Account Delete</string>
     <string name="change_theme">Change Theme</string>
     <string name="english_turkish">English, Türkçe</string>
-
+    <string name="contact_us_producter">Contact A TheatreTicket Team</string>
+    <string name="notification">Notification</string>
+    <string name="send_mail">Send Mail…</string>
     <string name="guest">Guest</string>
 
 </resources>

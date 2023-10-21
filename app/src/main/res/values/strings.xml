@@ -4,6 +4,7 @@
     <string name="ticket_buy">Bilet Al</string>
     <string name="ticket_search">Bilet Sorgula</string>
     <string name="settings">Ayarlar</string>
+    <string name="contact_email" translatable="false">ferdidurgun2@hotmail.com</string>
 
     <string name="yes">Evet</string>
     <string name="no">Hayır</string>
@@ -45,6 +46,7 @@
     <string name="error_no_any_ticket">Herhangi Bir Bilet Bulunamadı</string>
     <string name="error_no_any_show">Herhangi Bir Gösteri Bulunamadı</string>
     <string name="error_server">Server Hatası. Lütfen Tekrar Deneyin</string>
+    <string name="error_not_mail_installed">"Maalesef Yüklü Bir Mail programı Bulunamadı"</string>
 
 
     <!-- Settings -->
@@ -58,9 +60,12 @@
     <string name="rate_the_app">Uygulamamızı Oylayın</string>
     <string name="privace_policy">Gizlilik Politikası</string>
     <string name="share_app">Uygulamayı Paylaş</string>
+    <string name="invite_friends">Arkadaşlarınızı Davet Edin</string>
+    <string name="acc_delete">Hesabı Sil</string>
     <string name="change_theme">Tema Değiştirme</string>
     <string name="english_turkish">English, Türkçe</string>
-
-
+    <string name="contact_us_producter">TiyatroBilet Ekibi ile İletişim</string>
+    <string name="notification">Bildirim</string>
+    <string name="send_mail">Mail Gönder…</string>
     <string name="guest">Misafir</string>
 </resources>

@@ -1,7 +1,10 @@
 package com.ferdidrgn.theatreticket.ui.main.settings
 
+import android.content.ActivityNotFoundException
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseFragment
@@ -11,6 +14,7 @@ import com.ferdidrgn.theatreticket.enums.ToMain
 import com.ferdidrgn.theatreticket.tools.ClientPreferences
 import com.ferdidrgn.theatreticket.tools.onClickDelayed
 import com.ferdidrgn.theatreticket.tools.NavHandler
+import com.ferdidrgn.theatreticket.tools.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,7 +37,7 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
         viewModel.getMyUser()
     }
 
-    fun clickListener() {
+    private fun clickListener() {
         binding.apply {
             btnSellTicket.onClickDelayed {
                 NavHandler.instance.toMainActivity(requireContext(), ToMain.TicketBuy)
@@ -49,6 +53,24 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
             }
             btnLogout.onClickDelayed {
                 showLogoutDialog(requireContext())
+            }
+            binding.btnInviteFriends.setOnClickListener {
+                //NavHandler.instance.inviteFriendsScreen(requireContext())
+            }
+            binding.btnDeleteAcc.setOnClickListener {
+                //deleteAccountPopup()
+            }
+            btnContactUs.setOnClickListener {
+                val i = Intent(Intent.ACTION_SEND)
+                i.type = "message/rfc822"
+                i.putExtra(Intent.EXTRA_EMAIL, arrayOf(getString(R.string.contact_email)))
+                i.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.contact_us_producter))
+                i.putExtra(Intent.EXTRA_TEXT, getString(R.string.notification))
+                try {
+                    startActivity(Intent.createChooser(i, getString(R.string.send_mail)))
+                } catch (ex: ActivityNotFoundException) {
+                    showToast(getString(R.string.error_not_mail_installed))
+                }
             }
         }
     }

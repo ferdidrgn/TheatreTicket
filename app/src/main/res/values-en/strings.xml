@@ -55,6 +55,8 @@
     <string name="log_out">Logout</string>
     <string name="sold_seats">Seats Sold</string>
     <string name="show_delete">Show Delete</string>
+    <string name="show_operations">Show Operations</string>
+    <string name="stage_operations">Stage Operations</string>
     <string name="sell_ticket">Sell Ticket</string>
     <string name="change_language">Change Language</string>
     <string name="language">Language</string>

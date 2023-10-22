@@ -10,7 +10,7 @@
 
         <variable
             name="viewModel"
-            type="com.ferdidrgn.theatreticket.ui.showAdd.ShowAddViewModel" />
+            type="com.ferdidrgn.theatreticket.ui.showUpdateDelete.ShowAddViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView

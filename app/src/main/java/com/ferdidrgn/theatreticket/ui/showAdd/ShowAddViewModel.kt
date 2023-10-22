@@ -3,6 +3,7 @@ package com.ferdidrgn.theatreticket.ui.showAdd
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseViewModel
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Show
+import com.ferdidrgn.theatreticket.repository.ShowFirebaseQuieries
 import com.ferdidrgn.theatreticket.tools.helpers.LiveEvent
 import com.ferdidrgn.theatreticket.tools.mainScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -10,7 +11,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
 
 @HiltViewModel
-class ShowAddViewModel @Inject constructor(private val forFirebaseQueries: ForFirebaseQueries) :
+class ShowAddViewModel @Inject constructor(private val showFirebaseQuieries: ShowFirebaseQuieries) :
     BaseViewModel() {
 
     val name = MutableStateFlow("")
@@ -36,7 +37,7 @@ class ShowAddViewModel @Inject constructor(private val forFirebaseQueries: ForFi
     fun addShow() {
         showLoading()
         mainScope {
-            forFirebaseQueries.addShow(showAdd) { status ->
+            showFirebaseQuieries.addShow(showAdd) { status ->
                 when (status) {
                     true -> {
                         hideLoading()

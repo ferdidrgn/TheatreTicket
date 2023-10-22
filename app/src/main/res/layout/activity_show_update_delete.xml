@@ -9,18 +9,18 @@
 
         <variable
             name="viewModel"
-            type="com.ferdidrgn.theatreticket.ui.showDelete.ShowDeleteViewModel" />
+            type="com.ferdidrgn.theatreticket.ui.showUpdateDelete.ShowUpdateDeleteViewModel" />
 
         <variable
-            name="showAdapter"
-            type="com.ferdidrgn.theatreticket.ui.main.home.ShowsAdapter" />
+            name="showUpdateDeleteAdapter"
+            type="com.ferdidrgn.theatreticket.ui.showUpdateDelete.ShowsUpdateDeleteAdapter" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".ui.showDelete.ShowDeleteActivity">
+        tools:context=".ui.showUpdateDelete.ShowUpdateDeleteActivity">
 
         <com.ferdidrgn.theatreticket.tools.components.CustomToolbar
             android:id="@+id/customToolbar"
@@ -35,8 +35,8 @@
             android:overScrollMode="never"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            app:setAdapter="@{showAdapter}"
+            app:setAdapter="@{showUpdateDeleteAdapter}"
             app:submitList="@{viewModel.show}"
-            tools:listitem="@layout/item_show" />
+            tools:listitem="@layout/item_show_all" />
     </LinearLayout>
 </layout>

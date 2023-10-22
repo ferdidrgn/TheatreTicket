@@ -58,14 +58,14 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
             showFirebaseQuieries.deleteShow(deleteClicked.value) { status ->
                 when (status) {
                     false -> {
-                        errorMessage.postValue(message(R.string.error_server))
                         hideLoading()
+                        errorMessage.postValue(message(R.string.error_server))
                     }
                     true -> {
                         show.value?.toMutableList()?.removeAt(deleteIndex)
                         show.postValue(show.value)
-                        successMessage.postValue(message(R.string.success_delete_show))
                         hideLoading()
+                        successMessage.postValue(message(R.string.success_delete_show))
                     }
                 }
             }

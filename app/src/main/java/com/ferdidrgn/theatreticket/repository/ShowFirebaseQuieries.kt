@@ -30,12 +30,14 @@ class ShowFirebaseQuieries {
     }
 
     fun deleteShow(show: Show?, status: (Boolean) -> Unit) {
-        fireStore.collection("Show").document(show?._id.toString()).delete()
-            .addOnSuccessListener {
-                status.invoke(true)
-            }.addOnFailureListener {
-                status.invoke(false)
-            }
+        if (show?._id != null) {
+            fireStore.collection("Show").document(show._id.toString()).delete()
+                .addOnSuccessListener {
+                    status.invoke(true)
+                }.addOnFailureListener {
+                    status.invoke(false)
+                }
+        }
     }
 
     fun getShow(status: (String, ArrayList<Show?>?) -> Unit) {

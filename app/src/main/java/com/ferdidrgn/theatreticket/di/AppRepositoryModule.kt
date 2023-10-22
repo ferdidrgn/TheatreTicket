@@ -1,6 +1,5 @@
 package com.ferdidrgn.theatreticket.di
 
-import com.ferdidrgn.theatreticket.repository.ForFirebaseQueries
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

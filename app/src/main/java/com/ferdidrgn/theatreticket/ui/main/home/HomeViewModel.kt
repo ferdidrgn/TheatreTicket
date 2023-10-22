@@ -5,7 +5,6 @@ import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseViewModel
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Show
 import com.ferdidrgn.theatreticket.enums.Response
-import com.ferdidrgn.theatreticket.repository.ForFirebaseQueries
 import com.ferdidrgn.theatreticket.tools.mainScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

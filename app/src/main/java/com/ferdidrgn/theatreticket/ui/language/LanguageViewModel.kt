@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import com.ferdidrgn.theatreticket.base.BaseViewModel
 import com.ferdidrgn.theatreticket.enums.ContextLanguages
 import com.ferdidrgn.theatreticket.enums.Languages
-import com.ferdidrgn.theatreticket.repository.ForFirebaseQueries
 import com.ferdidrgn.theatreticket.tools.ClientPreferences
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

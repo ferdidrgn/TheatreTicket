@@ -1,7 +1,6 @@
 package com.ferdidrgn.theatreticket.ui.main
 
 import com.ferdidrgn.theatreticket.base.BaseViewModel
-import com.ferdidrgn.theatreticket.repository.ForFirebaseQueries
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

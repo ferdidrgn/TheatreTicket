@@ -3,7 +3,6 @@ package com.ferdidrgn.theatreticket.ui.main.settings
 import androidx.lifecycle.MutableLiveData
 import com.ferdidrgn.theatreticket.base.BaseViewModel
 import com.ferdidrgn.theatreticket.enums.Roles
-import com.ferdidrgn.theatreticket.repository.ForFirebaseQueries
 import com.ferdidrgn.theatreticket.tools.ClientPreferences
 import com.ferdidrgn.theatreticket.tools.ioScope
 import dagger.hilt.android.lifecycle.HiltViewModel

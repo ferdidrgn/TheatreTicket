@@ -6,7 +6,6 @@ import com.ferdidrgn.theatreticket.commonModels.dummyData.Customer
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Sell
 import com.ferdidrgn.theatreticket.enums.ID
 import com.ferdidrgn.theatreticket.enums.Response
-import com.ferdidrgn.theatreticket.repository.ForFirebaseQueries
 import com.ferdidrgn.theatreticket.tools.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.util.UUID

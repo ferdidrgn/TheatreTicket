@@ -3,7 +3,6 @@ package com.ferdidrgn.theatreticket.ui.showAdd
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseViewModel
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Show
-import com.ferdidrgn.theatreticket.repository.ForFirebaseQueries
 import com.ferdidrgn.theatreticket.tools.helpers.LiveEvent
 import com.ferdidrgn.theatreticket.tools.mainScope
 import dagger.hilt.android.lifecycle.HiltViewModel

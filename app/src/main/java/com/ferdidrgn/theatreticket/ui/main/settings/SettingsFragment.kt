@@ -43,7 +43,7 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
                 NavHandler.instance.toMainActivity(requireContext(), ToMain.TicketBuy)
             }
             btnShowOperations.onClickDelayed {
-                NavHandler.instance.toShowOperationActivity(requireContext())
+                NavHandler.instance.toShowOperationsActivity(requireContext())
             }
             btnStageOperations.onClickDelayed {
             }

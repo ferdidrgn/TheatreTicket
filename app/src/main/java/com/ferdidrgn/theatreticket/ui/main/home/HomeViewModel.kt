@@ -5,12 +5,13 @@ import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseViewModel
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Show
 import com.ferdidrgn.theatreticket.enums.Response
+import com.ferdidrgn.theatreticket.repository.ShowFirebaseQuieries
 import com.ferdidrgn.theatreticket.tools.mainScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val forFirebaseQueries: ForFirebaseQueries) :
+class HomeViewModel @Inject constructor(private val showFirebaseQuieries: ShowFirebaseQuieries) :
     BaseViewModel(), ShowDetailsAdapterListener, ShowSliderDetailsAdapterListener {
 
     val show = MutableLiveData<List<Show?>?>()
@@ -18,7 +19,7 @@ class HomeViewModel @Inject constructor(private val forFirebaseQueries: ForFireb
     fun getAllShow() {
         showLoading()
         mainScope {
-            forFirebaseQueries.getShow() { status, showList ->
+            showFirebaseQuieries.getShow() { status, showList ->
                 when (status) {
                     Response.ServerError.response -> {
                         errorMessage.postValue(message(R.string.error_server))

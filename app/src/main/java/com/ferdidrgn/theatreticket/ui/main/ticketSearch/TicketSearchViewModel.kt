@@ -6,6 +6,7 @@ import com.ferdidrgn.theatreticket.base.BaseViewModel
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Customer
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Sell
 import com.ferdidrgn.theatreticket.enums.Response
+import com.ferdidrgn.theatreticket.repository.SellFirebaseQueries
 import com.ferdidrgn.theatreticket.tools.helpers.LiveEvent
 import com.ferdidrgn.theatreticket.tools.mainScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,7 +15,7 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class TicketSearchViewModel @Inject constructor(private val forFirebaseQueries: ForFirebaseQueries) :
+class TicketSearchViewModel @Inject constructor(private val sellFirebaseQueries: SellFirebaseQueries) :
     BaseViewModel(), FindTicketAdapterListener {
 
     var firstName = MutableStateFlow("")
@@ -41,7 +42,7 @@ class TicketSearchViewModel @Inject constructor(private val forFirebaseQueries: 
                 phoneNumber = phoneNumber.value
             )
 
-            forFirebaseQueries.checkSearchBuyTicket(customerAdd) { status, sellList ->
+            sellFirebaseQueries.checkSearchBuyTicket(customerAdd) { status, sellList ->
                 when (status) {
                     Response.ServerError.response -> {
                         errorMessage.postValue(message(R.string.error_server))

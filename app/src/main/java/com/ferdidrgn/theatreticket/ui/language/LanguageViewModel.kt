@@ -4,12 +4,13 @@ import androidx.lifecycle.MutableLiveData
 import com.ferdidrgn.theatreticket.base.BaseViewModel
 import com.ferdidrgn.theatreticket.enums.ContextLanguages
 import com.ferdidrgn.theatreticket.enums.Languages
+import com.ferdidrgn.theatreticket.repository.ShowFirebaseQuieries
 import com.ferdidrgn.theatreticket.tools.ClientPreferences
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class LanguageViewModel @Inject constructor(private val forFirebaseQueries: ForFirebaseQueries) :
+class LanguageViewModel @Inject constructor(private val showFirebaseQuieries: ShowFirebaseQuieries) :
     BaseViewModel() {
 
     val whichButtonSelected = MutableLiveData<Boolean>()

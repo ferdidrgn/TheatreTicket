@@ -6,6 +6,8 @@ import com.ferdidrgn.theatreticket.commonModels.dummyData.Customer
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Sell
 import com.ferdidrgn.theatreticket.enums.ID
 import com.ferdidrgn.theatreticket.enums.Response
+import com.ferdidrgn.theatreticket.repository.CustomerFirebaseQueries
+import com.ferdidrgn.theatreticket.repository.SellFirebaseQueries
 import com.ferdidrgn.theatreticket.tools.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.util.UUID
@@ -14,7 +16,10 @@ import com.ferdidrgn.theatreticket.tools.helpers.LiveEvent
 import kotlinx.coroutines.flow.MutableStateFlow
 
 @HiltViewModel
-class TicketBuyViewModel @Inject constructor(private val forFireBaseQueries: ForFirebaseQueries) :
+class TicketBuyViewModel @Inject constructor(
+    private val sellFirebaseQueries: SellFirebaseQueries,
+    private val customerFirebaseQueries: CustomerFirebaseQueries
+) :
     BaseViewModel() {
 
     var firstName = MutableStateFlow("")
@@ -34,7 +39,7 @@ class TicketBuyViewModel @Inject constructor(private val forFireBaseQueries: For
     fun checkPhoneNumber() {
         showLoading()
         mainScope {
-            forFireBaseQueries.checkPhoneNumber(phoneNumber.value) { status, customerId ->
+            customerFirebaseQueries.checkPhoneNumber(phoneNumber.value) { status, customerId ->
                 when (status) {
                     Response.Empty.response -> {
                         //Universal Unique ID
@@ -67,7 +72,7 @@ class TicketBuyViewModel @Inject constructor(private val forFireBaseQueries: For
 
         showLoading()
         mainScope {
-            forFireBaseQueries.checkBuyTicketCustomerId(customerId) { status ->
+            sellFirebaseQueries.checkBuyTicketCustomerId(customerId) { status ->
                 when (status) {
                     Response.Empty.response -> {
                         hideLoading()
@@ -122,7 +127,7 @@ class TicketBuyViewModel @Inject constructor(private val forFireBaseQueries: For
     private fun addCustomer() {
         showLoading()
         mainScope {
-            forFireBaseQueries.addCustomer(customerAdd) { status ->
+            customerFirebaseQueries.addCustomer(customerAdd) { status ->
                 if (status) {
                     hideLoading()
                     buyTicket()
@@ -137,7 +142,7 @@ class TicketBuyViewModel @Inject constructor(private val forFireBaseQueries: For
     private fun buyTicket() {
         showLoading()
         mainScope {
-            forFireBaseQueries.addSales(sellAdd) { status ->
+            sellFirebaseQueries.addSales(sellAdd) { status ->
                 if (status) {
                     hideLoading()
                     successMessage.postValue(message(R.string.success))

@@ -153,7 +153,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:id="@+id/btnAddShow"
+                    android:id="@+id/btnShowOperations"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -193,7 +193,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:id="@+id/btnShowDelete"
+                    android:id="@+id/btnStageOperations"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"

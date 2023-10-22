@@ -1,17 +1,17 @@
-package com.ferdidrgn.theatreticket.ui.showUpdateDelete
+package com.ferdidrgn.theatreticket.ui.showOperations
 
+import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseAdapter
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Show
-import com.ferdidrgn.theatreticket.R
-import com.ferdidrgn.theatreticket.databinding.ItemShowUpdateDeleteBinding
+import com.ferdidrgn.theatreticket.databinding.ItemShowOperationsBinding
 
-class ShowsUpdateDeleteAdapter(
+class ShowOperationsAdapter(
     private val showDetailsAdapterListener: ShowsUpdateDeleteAdapterListener
-) : BaseAdapter<ItemShowUpdateDeleteBinding, Show>() {
+) : BaseAdapter<ItemShowOperationsBinding, Show>() {
 
-    override val layoutId: Int = R.layout.item_show_update_delete
+    override val layoutId: Int = R.layout.item_show_operations
 
-    override fun bind(binding: ItemShowUpdateDeleteBinding, item: Show, position: Int) {
+    override fun bind(binding: ItemShowOperationsBinding, item: Show, position: Int) {
         binding.apply {
             show = item
             index = position

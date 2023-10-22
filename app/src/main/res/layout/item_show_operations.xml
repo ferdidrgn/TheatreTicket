@@ -13,7 +13,7 @@
 
         <variable
             name="listener"
-            type="com.ferdidrgn.theatreticket.ui.showUpdateDelete.ShowsUpdateDeleteAdapterListener" />
+            type="com.ferdidrgn.theatreticket.ui.showOperations.ShowsUpdateDeleteAdapterListener" />
 
         <variable
             name="index"

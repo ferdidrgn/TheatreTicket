@@ -42,11 +42,10 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
             btnSellTicket.onClickDelayed {
                 NavHandler.instance.toMainActivity(requireContext(), ToMain.TicketBuy)
             }
-            btnAddShow.onClickDelayed {
-                NavHandler.instance.toShowAddActivity(requireContext())
+            btnShowOperations.onClickDelayed {
+                NavHandler.instance.toShowOperationActivity(requireContext())
             }
-            btnShowDelete.onClickDelayed {
-                NavHandler.instance.toShowDeleteActivity(requireContext())
+            btnStageOperations.onClickDelayed {
             }
             btnLanguage.onClickDelayed {
                 NavHandler.instance.toLanguageActivity(requireContext())

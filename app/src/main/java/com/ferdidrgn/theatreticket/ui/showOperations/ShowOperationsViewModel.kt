@@ -1,4 +1,4 @@
-package com.ferdidrgn.theatreticket.ui.showUpdateDelete
+package com.ferdidrgn.theatreticket.ui.showOperations
 
 import androidx.lifecycle.MutableLiveData
 import com.ferdidrgn.theatreticket.R
@@ -12,16 +12,21 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class ShowUpdateDeleteViewModel @Inject constructor(private val showFirebaseQuieries: ShowFirebaseQuieries) :
+class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieries: ShowFirebaseQuieries) :
     BaseViewModel(), ShowsUpdateDeleteAdapterListener {
 
     val show = MutableLiveData<List<Show?>?>()
     val deleteClicked = LiveEvent<Show?>()
     val updateClicked = LiveEvent<Show?>()
+    val btnAddShowClicked = LiveEvent<Boolean?>()
     val deletePopUp = LiveEvent<Boolean?>()
     val updatePopUp = LiveEvent<Boolean?>()
     var deleteIndex = 0
     var updateIndex = 0
+
+    fun onBtnAddShow() {
+        btnAddShowClicked.postValue(true)
+    }
 
     fun getAllShow() {
         showLoading()

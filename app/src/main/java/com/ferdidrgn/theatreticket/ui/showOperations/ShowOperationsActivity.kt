@@ -1,32 +1,43 @@
-package com.ferdidrgn.theatreticket.ui.showUpdateDelete
+package com.ferdidrgn.theatreticket.ui.showOperations
 
-
-import  android.content.Context
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseActivity
 import com.ferdidrgn.theatreticket.base.BasePopUp
-import com.ferdidrgn.theatreticket.databinding.ActivityShowUpdateDeleteBinding
+import com.ferdidrgn.theatreticket.databinding.ActivityShowOperationsBinding
+import com.ferdidrgn.theatreticket.tools.NavHandler
+import com.ferdidrgn.theatreticket.tools.onClickDelayed
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ShowUpdateDeleteActivity :
-    BaseActivity<ShowUpdateDeleteViewModel, ActivityShowUpdateDeleteBinding>() {
-    override fun getVM(): Lazy<ShowUpdateDeleteViewModel> = viewModels()
+class ShowOperationsActivity :
+    BaseActivity<ShowOperationsViewModel, ActivityShowOperationsBinding>() {
 
-    override fun getDataBinding(): ActivityShowUpdateDeleteBinding =
-        ActivityShowUpdateDeleteBinding.inflate(layoutInflater)
+    override fun getVM(): Lazy<ShowOperationsViewModel> = viewModels()
+
+    override fun getDataBinding(): ActivityShowOperationsBinding =
+        ActivityShowOperationsBinding.inflate(layoutInflater)
 
     override fun onCreateFinished(savedInstance: Bundle?) {
         binding.viewModel = viewModel
-        binding.showUpdateDeleteAdapter = ShowsUpdateDeleteAdapter(viewModel)
+        binding.showOperationsAdapter = ShowOperationsAdapter(viewModel)
         observe()
         binding.customToolbar.backIconOnBackPress(this)
+
+    }
+
+    private fun observe() {
+        viewModel.getAllShow()
 
         viewModel.errorMessage.observe(this) { errorMessage ->
             if (errorMessage != null)
                 messagePopUp(this, errorMessage, false)
+        }
+
+        viewModel.btnAddShowClicked.observe(this) {
+            NavHandler.instance.toShowAddActivity(this)
         }
 
         viewModel.updatePopUp.observe(this) {
@@ -36,10 +47,6 @@ class ShowUpdateDeleteActivity :
         viewModel.deletePopUp.observe(this) {
             popUp(this, false)
         }
-    }
-
-    private fun observe() {
-        viewModel.getAllShow()
     }
 
     private fun popUp(context: Context, isUpdate: Boolean) {

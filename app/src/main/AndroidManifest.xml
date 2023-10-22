@@ -19,16 +19,10 @@
         android:theme="@style/Theme.TheatreTicket"
         tools:targetApi="34">
         <activity
-            android:name=".ShowUpdateDeleteActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ShowDeleteUpdateActivity"
+            android:name=".ui.showOperations.ShowOperationsActivity"
             android:exported="false" />
         <activity
             android:name=".ui.language.LanguageActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.showDelete.ShowDeleteActivity"
             android:exported="false" />
         <activity
             android:name=".ui.showAdd.ShowAddActivity"

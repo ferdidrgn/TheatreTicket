@@ -25,7 +25,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
     override fun onCreateFinished(savedInstanceState: Bundle?) {
         binding.viewModel = viewModel
         handler = MainSliderHandler()
-        binding.showAdapter = ShowsAdapter(viewModel)
+        binding.showAllAdapter = ShowsAllAdapter(viewModel)
         binding.showSliderAdapter = ShowsSliderHorizontalAdapter(viewModel)
 
         observe()

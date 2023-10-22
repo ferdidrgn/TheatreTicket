@@ -12,6 +12,10 @@
             type="com.ferdidrgn.theatreticket.commonModels.dummyData.Show" />
 
         <variable
+            name="listener"
+            type="com.ferdidrgn.theatreticket.ui.showUpdateDelete.ShowsUpdateDeleteAdapterListener" />
+
+        <variable
             name="index"
             type="Integer" />
     </data>
@@ -20,7 +24,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="20dp"
         android:padding="5dp">
 
         <com.google.android.material.card.MaterialCardView
@@ -57,27 +61,60 @@
             app:layout_constraintStart_toEndOf="@+id/cvShow"
             app:layout_constraintTop_toTopOf="@+id/cvShow">
 
-            <TextView
-                android:id="@+id/tvShowName"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:ellipsize="end"
-                android:maxLines="3"
-                android:text="@{show.name}"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="16sp"
+                android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="@string/done" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tvShowName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="6dp"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:text="@{show.name}"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toStartOf="@+id/imgUpdate"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="@string/done" />
+
+                <ImageView
+                    android:id="@+id/imgUpdate"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="10dp"
+                    android:onClick="@{()->listener.onShowsUpdateListener(index,show)}"
+                    android:src="@drawable/ic_gear_options_preferences_setting"
+                    app:layout_constraintEnd_toStartOf="@id/imgDelete"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/pink_light" />
+
+                <ImageView
+                    android:id="@+id/imgDelete"
+                    android:layout_width="35dp"
+                    android:layout_height="27dp"
+                    android:layout_marginTop="2dp"
+                    android:onClick="@{()->listener.onShowsDeleteListener(index,show)}"
+                    android:src="@drawable/ic_bin_delete_recycle_trash"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/pink_light" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
                 android:id="@+id/tvDescription"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_below="@+id/tvShowName"
+                android:layout_below="@+id/clTitle"
                 android:layout_marginVertical="10dp"
                 android:ellipsize="end"
                 android:gravity="start"
@@ -86,9 +123,9 @@
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-                app:layout_constraintEnd_toEndOf="@+id/tvShowName"
-                app:layout_constraintStart_toStartOf="@+id/tvShowName"
-                app:layout_constraintTop_toBottomOf="@+id/tvShowName"
+                app:layout_constraintEnd_toEndOf="@+id/clTitle"
+                app:layout_constraintStart_toStartOf="@+id/clTitle"
+                app:layout_constraintTop_toBottomOf="@+id/clTitle"
                 tools:text="@string/done" />
 
             <TextView
@@ -134,8 +171,6 @@
                     tools:ignore="SmallSp"
                     tools:text="@string/done" />
             </LinearLayout>
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

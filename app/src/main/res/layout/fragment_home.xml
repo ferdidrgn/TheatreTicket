@@ -8,8 +8,8 @@
         <import type="android.view.View" />
 
         <variable
-            name="showAdapter"
-            type="com.ferdidrgn.theatreticket.ui.main.home.ShowsAdapter" />
+            name="showAllAdapter"
+            type="com.ferdidrgn.theatreticket.ui.main.home.ShowsAllAdapter" />
 
         <variable
             name="showSliderAdapter"
@@ -74,9 +74,9 @@
                     android:overScrollMode="never"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                    app:setAdapter="@{showAdapter}"
+                    app:setAdapter="@{showAllAdapter}"
                     app:submitList="@{viewModel.show}"
-                    tools:listitem="@layout/item_show" />
+                    tools:listitem="@layout/item_show_all" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>

@@ -7,7 +7,6 @@ import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseActivity
 import com.ferdidrgn.theatreticket.base.BasePopUp
 import com.ferdidrgn.theatreticket.databinding.ActivityShowAddBinding
-import com.ferdidrgn.theatreticket.ui.showUpdateDelete.ShowAddViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

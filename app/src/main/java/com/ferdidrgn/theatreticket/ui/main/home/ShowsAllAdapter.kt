@@ -3,15 +3,15 @@ package com.ferdidrgn.theatreticket.ui.main.home
 import com.ferdidrgn.theatreticket.base.BaseAdapter
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Show
 import com.ferdidrgn.theatreticket.R
-import com.ferdidrgn.theatreticket.databinding.ItemShowBinding
+import com.ferdidrgn.theatreticket.databinding.ItemShowAllBinding
 
-class ShowsAdapter(
+class ShowsAllAdapter(
     private val showDetailsAdapterListener: ShowDetailsAdapterListener
-) : BaseAdapter<ItemShowBinding, Show>() {
+) : BaseAdapter<ItemShowAllBinding, Show>() {
 
-    override val layoutId: Int = R.layout.item_show
+    override val layoutId: Int = R.layout.item_show_all
 
-    override fun bind(binding: ItemShowBinding, item: Show, position: Int) {
+    override fun bind(binding: ItemShowAllBinding, item: Show, position: Int) {
         binding.apply {
             show = item
             index = position
@@ -22,5 +22,5 @@ class ShowsAdapter(
 }
 
 interface ShowDetailsAdapterListener {
-    fun onShowDetailsAdapterListener(position: Int){}
+    fun onShowDetailsAdapterListener(position: Int) {}
 }

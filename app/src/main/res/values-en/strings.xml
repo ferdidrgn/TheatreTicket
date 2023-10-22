@@ -9,6 +9,8 @@
     <string name="no">No</string>
     <string name="are_you_sure_you_want_to_logout">Are you sure you want to logout ?</string>
     <string name="are_you_serious">Are You Sure</string>
+    <string name="are_you_serious_delete">Are You Sure You Want To Delete Data</string>
+    <string name="are_you_serious_update">Are You Sure You Want To Update Data</string>
 
     <!-- TicketBuyFragment -->
     <string name="phone_number_mask">Phone Number:(555)</string>
@@ -36,6 +38,7 @@
     <string name="success">Success</string>
     <string name="success_ticket">Your Ticket(s) Found</string>
     <string name="success_add_show">Show Saved</string>
+    <string name="success_delete_show">Show Deleted Successfully</string>
 
     <!--     Error Messages -->
     <string name="error_phone_little">Phone Number Appears To Be Less Than 10 Digits Long. Please Check</string>

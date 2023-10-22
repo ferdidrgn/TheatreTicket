@@ -10,6 +10,8 @@
     <string name="no">Hayır</string>
     <string name="are_you_sure_you_want_to_logout">Çıkış Yapmak İstediğinize Emin Misiniz ?</string>
     <string name="are_you_serious">Emin Misiniz</string>
+    <string name="are_you_serious_delete">Verileri Silmek İstediğinize Emin Misiniz</string>
+    <string name="are_you_serious_update">Verileri Günecellemek İstediğinize Emin Misiniz</string>
 
     <!-- TicketBuyFragment -->
     <string name="phone_number_mask">Tel No:(555)</string>
@@ -37,6 +39,7 @@
     <string name="success">Başarılı</string>
     <string name="success_ticket">Bilet (ler) Bulundu</string>
     <string name="success_add_show">Gösteri Kaydedildi</string>
+    <string name="success_delete_show">Gösteri Başarıyla Silindi</string>
 
     <!--     Error Messages -->
     <string name="error_phone_little">Telefon Numarası 10 karakterden kısa görünüyor. Lütfen kontrol edin</string>

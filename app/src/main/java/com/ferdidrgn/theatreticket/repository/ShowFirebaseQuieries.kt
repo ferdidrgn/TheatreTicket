@@ -4,12 +4,18 @@ import com.ferdidrgn.theatreticket.commonModels.dummyData.Show
 import com.ferdidrgn.theatreticket.enums.Response
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 class ShowFirebaseQuieries {
 
-    private val fireStoreShoRef = Firebase.firestore.collection("Show")
+    private val fireStoreShowRef = Firebase.firestore.collection("Show")
 
     fun addShow(show: Show, status: (Boolean) -> Unit) {
         val showMap = HashMap<String, Any>()
@@ -22,28 +28,44 @@ class ShowFirebaseQuieries {
         showMap["ageLimit"] = show.ageLimit.toString()
         showMap["players"] = show.actorsId.toString()
 
-        fireStoreShoRef.add(showMap).addOnSuccessListener {
+        fireStoreShowRef.add(showMap).addOnSuccessListener {
             status.invoke(true)
         }.addOnFailureListener {
             status.invoke(false)
         }
     }
 
-    fun deleteShow(show: Show?, status: (Boolean) -> Unit) {
-        if (show?._id != null) {
-            fireStoreShoRef.document(show._id.toString()).delete()
-                .addOnSuccessListener {
+    fun deleteShow(show: Show?, status: (Boolean) -> Unit) = CoroutineScope(Dispatchers.IO).launch {
+        val shoQuery = fireStoreShowRef
+            .whereEqualTo("_id", show?._id)
+            .whereEqualTo("name", show?.name)
+            .get()
+            .await()
+        if (shoQuery.documents.isNotEmpty()) {
+            for (document in shoQuery) {
+                try {
+                    fireStoreShowRef.document(document.id).delete().await()
+                    /*personCollectionRef.document(document.id).update(mapOf(
+                        "firstName" to FieldValue.delete()
+                    )).await()*/
                     status.invoke(true)
-                }.addOnFailureListener {
-                    status.invoke(false)
+                } catch (e: Exception) {
+                    withContext(Dispatchers.Main) {
+                        status.invoke(false)
+                    }
                 }
+            }
+        } else {
+            withContext(Dispatchers.Main) {
+                status.invoke(false)
+            }
         }
     }
 
     fun getShow(status: (String, ArrayList<Show?>?) -> Unit) {
         var statusTree = ""
         val showList: ArrayList<Show?> = arrayListOf()
-        fireStoreShoRef.orderBy("name", Query.Direction.ASCENDING)
+        fireStoreShowRef.orderBy("name", Query.Direction.ASCENDING)
             .addSnapshotListener { value, error ->
                 if (error != null) {
                     statusTree = Response.ServerError.response
@@ -92,4 +114,33 @@ class ShowFirebaseQuieries {
                 }
             }
     }
+
+    fun updateShow(show: Show?, status: (Boolean) -> Unit) = CoroutineScope(Dispatchers.IO).launch {
+        val showQuery = fireStoreShowRef
+            .whereEqualTo("_id", show?._id)
+            .whereEqualTo("name", show?.name)
+            .get()
+            .await()
+        if (showQuery.documents.isNotEmpty()) {
+            for (document in showQuery) {
+                try {
+                    //personCollectionRef.document(document.id).update("age", newAge).await()
+                    fireStoreShowRef.document(document.id).set(
+                        newPersonMap,//map olarak ekleee
+                        SetOptions.merge()
+                    ).await()
+                    status.invoke(true)
+                } catch (e: Exception) {
+                    withContext(Dispatchers.Main) {
+                        status.invoke(false)
+                    }
+                }
+            }
+        } else {
+            withContext(Dispatchers.Main) {
+                status.invoke(false)
+            }
+        }
+    }
+
 }

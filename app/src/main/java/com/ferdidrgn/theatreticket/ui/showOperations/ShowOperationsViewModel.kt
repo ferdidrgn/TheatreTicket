@@ -47,6 +47,10 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
         updateShowPopUp.postValue(true)
     }
 
+    fun onUpdateImageClick() {
+        //dosyaları açan pop up ekle
+    }
+
     fun getAllShow() {
         showLoading()
         mainScope {

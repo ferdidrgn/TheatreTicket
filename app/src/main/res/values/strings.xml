@@ -33,6 +33,7 @@
     <string name="choose_image">Fotoğraf Seç</string>
     <string name="date_hours">Tarih-Saat</string>
     <string name="show_add">Gösteri Ekle</string>
+    <string name="show_update">Gösteriyi Güncelle</string>
 
     <!--    Prattive Messages -->
     <string name="done">Tamamlandı</string>
@@ -40,6 +41,7 @@
     <string name="success_ticket">Bilet (ler) Bulundu</string>
     <string name="success_add_show">Gösteri Kaydedildi</string>
     <string name="success_delete_show">Gösteri Başarıyla Silindi</string>
+    <string name="success_update_show">Gösteri Başarıyla Güncellendi</string>
 
     <!--     Error Messages -->
     <string name="error_phone_little">Telefon Numarası 10 karakterden kısa görünüyor. Lütfen kontrol edin</string>
@@ -74,4 +76,6 @@
     <string name="notification">Bildirim</string>
     <string name="send_mail">Mail Gönder…</string>
     <string name="guest">Misafir</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

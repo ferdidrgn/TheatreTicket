@@ -77,7 +77,11 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : AppCompa
     }
 
     override fun attachBaseContext(newBase: Context?) {
-        super.attachBaseContext(ContextWrapper(newBase?.setAppLocale(ClientPreferences.inst.contextLanguage)))
+        ContextWrapper(
+            ClientPreferences.inst.contextLanguage?.let { contextLanguage ->
+                newBase?.setAppLocale(contextLanguage, ClientPreferences.inst.language)
+            }
+        )
     }
 
     override fun onDestroy() {

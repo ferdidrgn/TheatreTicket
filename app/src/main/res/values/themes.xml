@@ -15,6 +15,21 @@
         <!--You can set other style items also, such as animations and etc-->
     </style>
 
+    <style name="bottomSheetDialog" parent="bottomSheetDialog.Base" />
+
+    <style name="bottomSheetDialog.Base" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowSoftInputMode">stateAlwaysHidden|adjustResize</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:colorBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:backgroundDimAmount">0.0</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="behavior_draggable">false</item>
+    </style>
+
     <style name="ImageView.SquareBorder" parent="">
         <item name="cornerSize">8%</item>
         <item name="cornerFamily">rounded</item>

@@ -116,6 +116,14 @@ class ShowFirebaseQuieries {
     }
 
     fun updateShow(show: Show?, status: (Boolean) -> Unit) = CoroutineScope(Dispatchers.IO).launch {
+        val newShowMap = HashMap<String, Any>()
+        newShowMap["_createdAt"] = Timestamp.now()
+        newShowMap["name"] = show?.name.toString()
+        newShowMap["description"] = show?.description.toString()
+        newShowMap["date"] = show?.date.toString()
+        newShowMap["price"] = show?.price.toString()
+        newShowMap["ageLimit"] = show?.ageLimit.toString()
+
         val showQuery = fireStoreShowRef
             .whereEqualTo("_id", show?._id)
             .whereEqualTo("name", show?.name)
@@ -126,7 +134,7 @@ class ShowFirebaseQuieries {
                 try {
                     //personCollectionRef.document(document.id).update("age", newAge).await()
                     fireStoreShowRef.document(document.id).set(
-                        newPersonMap,//map olarak ekleee
+                        newShowMap,
                         SetOptions.merge()
                     ).await()
                     status.invoke(true)

@@ -32,6 +32,7 @@
     <string name="choose_image">Choose Image</string>
     <string name="date_hours">Date - Hours</string>
     <string name="show_add">Show Add</string>
+    <string name="show_update">Show Update</string>
 
     <!--    Prattive Messages -->
     <string name="done">Done</string>
@@ -39,6 +40,7 @@
     <string name="success_ticket">Your Ticket(s) Found</string>
     <string name="success_add_show">Show Saved</string>
     <string name="success_delete_show">Show Deleted Successfully</string>
+    <string name="success_update_show">Show Updated Successfully</string>
 
     <!--     Error Messages -->
     <string name="error_phone_little">Phone Number Appears To Be Less Than 10 Digits Long. Please Check</string>

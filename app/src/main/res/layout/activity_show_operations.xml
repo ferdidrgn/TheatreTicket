@@ -53,7 +53,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:onClick="@{()->viewModel.onBtnAddShow()}"
+            android:onClick="@{()->viewModel.onBtnAddShowClick()}"
             app:cst_button_name="@string/show_add" />
 
     </RelativeLayout>

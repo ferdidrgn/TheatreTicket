@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.ferdidrgn.theatreticket.ui.showOperations.ShowOperationsViewModel" />
+
+        <variable
+            name="show"
+            type="com.ferdidrgn.theatreticket.commonModels.dummyData.Show" />
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.ferdidrgn.theatreticket.tools.components.CustomToolbar
+                android:id="@+id/customToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cst_toolbar_backIcon_visible="true"
+                app:cst_toolbar_text="@string/show_update" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvShow"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:backgroundTint="@color/main_dark"
+                android:onClick="@{()->viewModel.onUpdateImageClick()}"
+                app:cardCornerRadius="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:strokeColor="@color/main_secondary"
+                app:strokeWidth="3dp">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:layout_gravity="center"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_add_cart_new_plus"
+                    app:shapeAppearanceOverlay="@style/ImageView.SquareBorder"
+                    app:strokeColor="@color/main_dark"
+                    app:strokeWidth="12dp" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.ferdidrgn.theatreticket.tools.components.CustomEditText
+                android:id="@+id/etName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:textAlignment="textStart"
+                app:custom_edit_hint="@string/show_name"
+                app:custom_edit_input="1"
+                app:custom_edit_text="@={viewModel.name}" />
+
+            <com.ferdidrgn.theatreticket.tools.components.CustomEditText
+                android:id="@+id/etDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textAlignment="textStart"
+                app:custom_edit_hint="@string/show_desc"
+                app:custom_edit_input="1"
+                app:custom_edit_text="@={viewModel.desc}" />
+
+            <com.ferdidrgn.theatreticket.tools.components.CustomEditText
+                android:id="@+id/etPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textAlignment="textStart"
+                app:custom_edit_hint="@string/price"
+                app:custom_edit_input="1"
+                app:custom_edit_text="@={viewModel.price}" />
+
+            <com.ferdidrgn.theatreticket.tools.components.CustomEditText
+                android:id="@+id/etDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textAlignment="textStart"
+                app:custom_edit_hint="@string/date_hours"
+                app:custom_edit_input="1"
+                app:custom_edit_text="@={viewModel.date}" />
+
+            <com.ferdidrgn.theatreticket.tools.components.CustomEditText
+                android:id="@+id/etAgeLimit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textAlignment="textStart"
+                app:custom_edit_hint="@string/age_limit"
+                app:custom_edit_input="1"
+                app:custom_edit_text="@={viewModel.ageLimit}" />
+
+            <com.ferdidrgn.theatreticket.tools.components.CustomButton
+                android:id="@+id/btnSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="20dp"
+                android:onClick="@{()->viewModel.onBtnUpdateShowClick()}"
+                app:cst_button_name="@string/show_update" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

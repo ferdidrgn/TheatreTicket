@@ -41,12 +41,13 @@ fun View.onClickDelayed(skipDurationMillis: Long = 750, action: () -> Unit) {
     }
 }
 
-fun Context.setAppLocale(language: String): Context {
-    val locale = Locale(language)
+fun Context.setAppLocale(contextLanguages: String, languages: String): Context {
+    val locale = Locale(contextLanguages)
     Locale.setDefault(locale)
     val config = Configuration()
     config.setLocale(locale)
     config.setLayoutDirection(locale)
+    ClientPreferences.inst.language = languages
     return createConfigurationContext(config)
 }
 

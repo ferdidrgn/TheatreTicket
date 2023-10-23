@@ -62,7 +62,9 @@ class ShowOperationsActivity :
             if (isUpdate) {
                 setDesc(context.getString(R.string.are_you_serious_update))
                 setOnPositiveClick {
-                    // viewModel.updateShow()
+                    ShowUpdateBottomSheet {
+                        observeData()
+                    }.show(parentFragmentManager, "NewPostBottomSheet")
                     dismiss()
                 }
             } else {

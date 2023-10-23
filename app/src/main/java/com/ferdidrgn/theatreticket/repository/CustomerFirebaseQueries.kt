@@ -9,7 +9,7 @@ import com.google.firebase.ktx.Firebase
 
 class CustomerFirebaseQueries {
 
-    private val fireStore = Firebase.firestore
+    private val fireStoreCustomerRef = Firebase.firestore.collection("Customer")
 
     fun addCustomer(customer: Customer?, status: (Boolean) -> Unit) {
         val customerMap = HashMap<String, Any>()
@@ -22,7 +22,7 @@ class CustomerFirebaseQueries {
         customerMap["age"] = customer?.age.toString()
         customerMap["eMail"] = customer?.eMail.toString()
 
-        fireStore.collection("Customer").add(customerMap).addOnSuccessListener {
+        fireStoreCustomerRef.add(customerMap).addOnSuccessListener {
             status.invoke(true)
         }.addOnFailureListener {
             status.invoke(false)
@@ -37,7 +37,7 @@ class CustomerFirebaseQueries {
         var age: String = ""
         var notEqual: Boolean? = null
 
-        fireStore.collection("Customer").whereEqualTo("phoneNumber", customer?.phoneNumber).get()
+        fireStoreCustomerRef.whereEqualTo("phoneNumber", customer?.phoneNumber).get()
             .addOnSuccessListener { result ->
                 if (result.isEmpty) {
                     statusTree = Response.Empty.response

@@ -9,12 +9,12 @@ import com.google.firebase.ktx.Firebase
 
 class SellFirebaseQueries {
 
-    private val fireStore = Firebase.firestore
+    private val fireStoreSellRef = Firebase.firestore.collection("Sell")
 
     fun checkBuyTicketCustomerId(customerId: String, status: (String) -> Unit) {
         var statusTree = ""
 
-        fireStore.collection("Sell").whereEqualTo("customerId", customerId).get()
+        fireStoreSellRef.whereEqualTo("customerId", customerId).get()
             .addOnSuccessListener { result ->
                 if (result.isEmpty) {
                     statusTree = Response.Empty.response
@@ -35,7 +35,7 @@ class SellFirebaseQueries {
     ) {
         var statusTree = ""
         val sellList: ArrayList<Sell?> = arrayListOf()
-        fireStore.collection("Sell").whereEqualTo("customerPhone", customer.phoneNumber)
+        fireStoreSellRef.whereEqualTo("customerPhone", customer.phoneNumber)
             .addSnapshotListener { value, error ->
                 if (error != null) {
                     statusTree = Response.ServerError.response
@@ -108,6 +108,7 @@ class SellFirebaseQueries {
                 }
             }
     }
+
     fun addSales(sell: Sell, status: (Boolean) -> Unit) {
         val salesMap = HashMap<String, Any>()
         salesMap["_createdAt"] = Timestamp.now()
@@ -126,7 +127,7 @@ class SellFirebaseQueries {
         salesMap["stageLat"] = sell.showSeat.toString()
         salesMap["stageLong"] = sell.showSeat.toString()
 
-        fireStore.collection("Sell").add(salesMap).addOnSuccessListener {
+        fireStoreSellRef.add(salesMap).addOnSuccessListener {
             status.invoke(true)
         }.addOnFailureListener {
             status.invoke(false)

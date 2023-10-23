@@ -7,7 +7,7 @@ import com.google.firebase.ktx.Firebase
 
 class StageFirebaseQueries {
 
-    private val fireStore = Firebase.firestore
+    private val fireStoreStageRef = Firebase.firestore.collection("Stage")
 
     fun addStage(stage: Stage, status: (Boolean) -> Unit) {
         val stageMap = HashMap<String, Any>()
@@ -21,7 +21,7 @@ class StageFirebaseQueries {
         stageMap["locationLat"] = stage.locationLat.toString()
         stageMap["locationLng"] = stage.locationLng.toString()
 
-        fireStore.collection("Stage").add(stageMap).addOnSuccessListener {
+        fireStoreStageRef.add(stageMap).addOnSuccessListener {
             status.invoke(true)
         }.addOnFailureListener {
             status.invoke(false)

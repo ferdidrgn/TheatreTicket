@@ -9,7 +9,7 @@ import com.google.firebase.ktx.Firebase
 
 class ShowFirebaseQuieries {
 
-    private val fireStore = Firebase.firestore
+    private val fireStoreShoRef = Firebase.firestore.collection("Show")
 
     fun addShow(show: Show, status: (Boolean) -> Unit) {
         val showMap = HashMap<String, Any>()
@@ -22,7 +22,7 @@ class ShowFirebaseQuieries {
         showMap["ageLimit"] = show.ageLimit.toString()
         showMap["players"] = show.actorsId.toString()
 
-        fireStore.collection("Show").add(showMap).addOnSuccessListener {
+        fireStoreShoRef.add(showMap).addOnSuccessListener {
             status.invoke(true)
         }.addOnFailureListener {
             status.invoke(false)
@@ -31,7 +31,7 @@ class ShowFirebaseQuieries {
 
     fun deleteShow(show: Show?, status: (Boolean) -> Unit) {
         if (show?._id != null) {
-            fireStore.collection("Show").document(show._id.toString()).delete()
+            fireStoreShoRef.document(show._id.toString()).delete()
                 .addOnSuccessListener {
                     status.invoke(true)
                 }.addOnFailureListener {
@@ -43,7 +43,7 @@ class ShowFirebaseQuieries {
     fun getShow(status: (String, ArrayList<Show?>?) -> Unit) {
         var statusTree = ""
         val showList: ArrayList<Show?> = arrayListOf()
-        fireStore.collection("Show").orderBy("name", Query.Direction.ASCENDING)
+        fireStoreShoRef.orderBy("name", Query.Direction.ASCENDING)
             .addSnapshotListener { value, error ->
                 if (error != null) {
                     statusTree = Response.ServerError.response

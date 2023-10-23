@@ -36,6 +36,11 @@ class ShowOperationsActivity :
                 messagePopUp(this, errorMessage, false)
         }
 
+        viewModel.successMessage.observe(this) { successMessage ->
+            if (successMessage != null)
+                messagePopUp(this, successMessage, true)
+        }
+
         viewModel.btnAddShowClicked.observe(this) {
             NavHandler.instance.toShowAddActivity(this)
         }

@@ -17,7 +17,8 @@ enum class ID(val id: String) {
 enum class Response(val response: String) {
     Empty("empty"),
     ServerError("serverError"),
-    ThereIs("thereIs")
+    ThereIs("thereIs"),
+    NotEqual("notEqual"),
 }
 
 enum class Roles(val role: String) {

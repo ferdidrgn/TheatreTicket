@@ -49,6 +49,7 @@
     <string name="error_no_any_ticket">Herhangi Bir Bilet Bulunamadı</string>
     <string name="error_no_any_show">Herhangi Bir Gösteri Bulunamadı</string>
     <string name="error_server">Server Hatası. Lütfen Tekrar Deneyin</string>
+    <string name="error_not_equal">Telefon Numaranız ile Verileriniz Uyuşmuyor. Lütfen Kontrol Ediniz</string>
     <string name="error_not_mail_installed">"Maalesef Yüklü Bir Mail programı Bulunamadı"</string>
 
 

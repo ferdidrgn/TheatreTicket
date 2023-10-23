@@ -1,9 +1,6 @@
 package com.ferdidrgn.theatreticket.di
 
-import com.ferdidrgn.theatreticket.repository.CustomerFirebaseQueries
-import com.ferdidrgn.theatreticket.repository.SellFirebaseQueries
-import com.ferdidrgn.theatreticket.repository.ShowFirebaseQuieries
-import com.ferdidrgn.theatreticket.repository.StageFirebaseQueries
+import com.ferdidrgn.theatreticket.repository.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,4 +26,8 @@ object AppRepositoryModule {
     @Singleton
     @Provides
     fun provideStageFirebaseQueries() = StageFirebaseQueries()
+
+    @Singleton
+    @Provides
+    fun provideAuthFireBase() = AuthFireBase()
 }

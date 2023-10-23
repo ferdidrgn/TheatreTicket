@@ -39,7 +39,15 @@ class TicketBuyViewModel @Inject constructor(
     fun checkPhoneNumber() {
         showLoading()
         mainScope {
-            customerFirebaseQueries.checkPhoneNumber(phoneNumber.value) { status, customerId ->
+
+            customerAdd = Customer(
+                firstName = firstName.value,
+                lastName = lastName.value,
+                phoneNumber = phoneNumber.value
+                //age = userAge.value
+            )
+
+            customerFirebaseQueries.checkPhoneNumber(customerAdd) { status, customerInfoList ->
                 when (status) {
                     Response.Empty.response -> {
                         //Universal Unique ID
@@ -52,11 +60,15 @@ class TicketBuyViewModel @Inject constructor(
                             //age = userAge.value
                         )
                         hideLoading()
-                        fillDatas(id + ID.Customer.id, true)
+                        fillDatas(customerAdd, true)
                     }
                     Response.ThereIs.response -> {
                         hideLoading()
-                        checkTicket(customerId)
+                        checkTicket(customerInfoList)
+                    }
+                    Response.NotEqual.response -> {
+                        hideLoading()
+                        errorMessage.postValue(message(R.string.error_not_equal))
                     }
                     Response.ServerError.response -> {
                         hideLoading()
@@ -68,15 +80,15 @@ class TicketBuyViewModel @Inject constructor(
         }
     }
 
-    private fun checkTicket(customerId: String) {
+    private fun checkTicket(customer: Customer?) {
 
         showLoading()
         mainScope {
-            sellFirebaseQueries.checkBuyTicketCustomerId(customerId) { status ->
+            sellFirebaseQueries.checkBuyTicketCustomerId(customer?._id.toString()) { status ->
                 when (status) {
                     Response.Empty.response -> {
                         hideLoading()
-                        fillDatas(customerId, false)
+                        fillDatas(customer, false)
                     }
                     Response.ThereIs.response -> {
                         hideLoading()
@@ -91,17 +103,26 @@ class TicketBuyViewModel @Inject constructor(
         }
     }
 
-    private fun fillDatas(customerId: String?, isNewCustom: Boolean) {
+    private fun fillDatas(customer: Customer?, isNewCustom: Boolean) {
 
         showLoading()
 
         mainScope {
+            customerAdd = Customer(
+                _id = customer?._id.toString(),
+                firstName = customer?.firstName.toString(),
+                lastName = customer?.lastName.toString(),
+                phoneNumber = customer?.phoneNumber.toString()
+                //age = userAge.value
+            )
+
+            val id = UUID.randomUUID().toString()
             sellAdd = Sell(
-                _id = customerId + ID.Sell.id,
-                customerId = customerId,
+                _id = id + ID.Sell.id,
+                customerId = customer?._id.toString(),
                 showId = "MockData",
-                customerFullName = firstName.value + " " + lastName.value,
-                customerPhone = phoneNumber.value,
+                customerFullName = customer?.firstName.toString() + " " + customer?.lastName.toString(),
+                customerPhone = customer?.phoneNumber.toString(),
                 showName = "MockData",
                 showDate = "MockData",
                 showTime = "MockData",
@@ -110,14 +131,6 @@ class TicketBuyViewModel @Inject constructor(
                 stageName = "MockData",
                 stageLocation = "MockData"
             )
-
-            ClientPreferences.inst.apply {
-                userID = customerId + ID.Customer.id
-                userPhone = phoneNumber.value
-                userFirstName = firstName.value
-                userLastName = lastName.value
-                //userAge = userAge.value
-            }
         }
 
         hideLoading()

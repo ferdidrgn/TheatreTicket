@@ -48,6 +48,7 @@
     <string name="error_no_any_ticket">There Are Not Tickets Found</string>
     <string name="error_no_any_show">There Are Not Shows Found</string>
     <string name="error_server">Server Error. Please Try Again</string>
+    <string name="error_not_equal">Your Phone Number and Your Data Do not Match. Please Check</string>
     <string name="error_not_mail_installed">"There are no email clients installed."</string>
 
 

@@ -59,11 +59,11 @@ class ClientPreferences : PreferencesManager() {
         set(token) = putString(CONNECTION, token)
 
     var language: String
-        get() = getString(LANGUAGE, Languages.English.language).toString()
+        get() = getString(LANGUAGE, Languages.TURKISH.language).toString()
         set(token) = putString(LANGUAGE, token)
 
     var contextLanguage: String
-        get() = getString(CONTEXT_LANGUAGE, ContextLanguages.English.language).toString()
+        get() = getString(CONTEXT_LANGUAGE, ContextLanguages.TURKISH.language).toString()
         set(token) = putString(CONTEXT_LANGUAGE, token)
 
     var userID: String?

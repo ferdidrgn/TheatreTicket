@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.ViewDataBinding
 import com.ferdidrgn.theatreticket.R
+import com.ferdidrgn.theatreticket.enums.ContextLanguages
+import com.ferdidrgn.theatreticket.enums.Languages
 import com.ferdidrgn.theatreticket.tools.*
 
 abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : AppCompatActivity() {
@@ -77,10 +79,12 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : AppCompa
     }
 
     override fun attachBaseContext(newBase: Context?) {
-        ContextWrapper(
-            ClientPreferences.inst.contextLanguage?.let { contextLanguage ->
-                newBase?.setAppLocale(contextLanguage, ClientPreferences.inst.language)
-            }
+        super.attachBaseContext(
+            ContextWrapper(
+                ClientPreferences.inst.contextLanguage?.let { contextLanguage ->
+                    newBase?.setAppLocale(contextLanguage, ClientPreferences.inst.language)
+                }
+            )
         )
     }
 

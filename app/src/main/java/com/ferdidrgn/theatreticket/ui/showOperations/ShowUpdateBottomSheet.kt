@@ -8,7 +8,7 @@ import com.ferdidrgn.theatreticket.base.BaseBottomSheet
 import com.ferdidrgn.theatreticket.base.BasePopUp
 import com.ferdidrgn.theatreticket.databinding.FragmentShowUpdateBottomSheetBinding
 
-class UpdateShowBottomSheet(private val onRefresh: (() -> Unit)?) :
+class ShowUpdateBottomSheet(private val onRefresh: (() -> Unit)?) :
     BaseBottomSheet<ShowOperationsViewModel, FragmentShowUpdateBottomSheetBinding>() {
 
     override fun getVM(): Lazy<ShowOperationsViewModel> = viewModels()

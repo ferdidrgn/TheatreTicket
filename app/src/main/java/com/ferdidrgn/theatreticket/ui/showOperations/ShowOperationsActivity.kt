@@ -8,8 +8,8 @@ import com.ferdidrgn.theatreticket.base.BaseActivity
 import com.ferdidrgn.theatreticket.base.BasePopUp
 import com.ferdidrgn.theatreticket.databinding.ActivityShowOperationsBinding
 import com.ferdidrgn.theatreticket.tools.NavHandler
-import com.ferdidrgn.theatreticket.tools.onClickDelayed
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class ShowOperationsActivity :
@@ -63,7 +63,7 @@ class ShowOperationsActivity :
                 setDesc(context.getString(R.string.are_you_serious_update))
                 setOnPositiveClick {
                     ShowUpdateBottomSheet {
-                        observeData()
+                        observe()
                     }.show(parentFragmentManager, "NewPostBottomSheet")
                     dismiss()
                 }

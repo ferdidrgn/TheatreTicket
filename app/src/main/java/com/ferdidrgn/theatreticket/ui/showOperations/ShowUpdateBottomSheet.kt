@@ -7,7 +7,9 @@ import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseBottomSheet
 import com.ferdidrgn.theatreticket.base.BasePopUp
 import com.ferdidrgn.theatreticket.databinding.FragmentShowUpdateBottomSheetBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ShowUpdateBottomSheet(private val onRefresh: (() -> Unit)?) :
     BaseBottomSheet<ShowOperationsViewModel, FragmentShowUpdateBottomSheetBinding>() {
 

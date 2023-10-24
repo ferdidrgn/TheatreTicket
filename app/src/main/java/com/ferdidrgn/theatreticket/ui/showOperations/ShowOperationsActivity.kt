@@ -2,12 +2,14 @@ package com.ferdidrgn.theatreticket.ui.showOperations
 
 import android.content.Context
 import android.os.Bundle
+import android.util.DisplayMetrics
 import androidx.activity.viewModels
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseActivity
 import com.ferdidrgn.theatreticket.base.BasePopUp
 import com.ferdidrgn.theatreticket.databinding.ActivityShowOperationsBinding
 import com.ferdidrgn.theatreticket.tools.NavHandler
+import com.tayfuncesur.curvedbottomsheet.CurvedBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -24,7 +26,15 @@ class ShowOperationsActivity :
         binding.viewModel = viewModel
         binding.showOperationsAdapter = ShowOperationsAdapter(viewModel)
         observe()
-        binding.customToolbar.backIconOnBackPress(this)
+        //binding.customToolbar.backIconOnBackPress(this)
+
+
+        val displayMetrics = DisplayMetrics()
+        windowManager.defaultDisplay.getMetrics(displayMetrics)
+        CurvedBottomSheet(
+            (displayMetrics.widthPixels / 6).toFloat(),
+            view = binding.bottomSheet
+        ).init()
 
     }
 
@@ -51,6 +61,10 @@ class ShowOperationsActivity :
 
         viewModel.deletePopUp.observe(this) {
             popUp(this, false)
+        }
+
+        viewModel.updateShowPopUp.observe(this) {
+            updateShowPopUp(this)
         }
     }
 
@@ -87,6 +101,23 @@ class ShowOperationsActivity :
             setPositiveText(context.getString(R.string.done))
             setDesc(message)
             setOnPositiveClick {
+                dismiss()
+            }
+        }
+        pupUp.show(supportFragmentManager, "")
+    }
+
+    private fun updateShowPopUp(context: Context) {
+        val pupUp = BasePopUp()
+        pupUp.apply {
+            setPositiveText(context.getString(R.string.yes))
+            setNegativeText(context.getString(R.string.no))
+            setDesc(context.getString(R.string.are_you_serious))
+            setOnPositiveClick {
+                viewModel.updateShow()
+                dismiss()
+            }
+            setOnNegativeClick {
                 dismiss()
             }
         }

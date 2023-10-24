@@ -21,7 +21,6 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
 
     val btnAddShowClicked = LiveEvent<Boolean?>()
     val updateShowPopUp = LiveEvent<Boolean?>()
-    val updateSuccess = LiveEvent<Boolean?>()
     val deletePopUp = LiveEvent<Boolean?>()
     val updatePopUp = LiveEvent<Boolean?>()
 
@@ -116,7 +115,6 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
                     true -> {
                         show.value?.toMutableList()?.set(updateIndex, updateShowData)
                         show.postValue(show.value)
-                        updateSuccess.postValue(true)
                         hideLoading()
                         successMessage.postValue(message(R.string.success_update_show))
                     }

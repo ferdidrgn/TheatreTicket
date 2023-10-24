@@ -147,6 +147,9 @@ dependencies {
 
     //page indicator
     implementation 'com.romandanylyk:pageindicatorview:1.0.3'
+
+    //bottom sheet
+    implementation "com.github.TayfunCesur:CurvedBottomSheet:1.0.2"
 }
 
 kapt {

@@ -4,12 +4,14 @@ import androidx.lifecycle.MutableLiveData
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseViewModel
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Show
+import com.ferdidrgn.theatreticket.enums.ID
 import com.ferdidrgn.theatreticket.enums.Response
 import com.ferdidrgn.theatreticket.repository.ShowFirebaseQuieries
 import com.ferdidrgn.theatreticket.tools.helpers.LiveEvent
 import com.ferdidrgn.theatreticket.tools.mainScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -22,7 +24,7 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
     val btnAddShowClicked = LiveEvent<Boolean?>()
     val updateShowPopUp = LiveEvent<Boolean?>()
     val deletePopUp = LiveEvent<Boolean?>()
-    val updatePopUp = LiveEvent<Boolean?>()
+    val updateBottonVisibility = LiveEvent<Boolean?>()
     val bottomSheetVisibility = MutableLiveData<Boolean>()
 
     var deleteIndex = 0
@@ -37,7 +39,7 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
     val stage = MutableStateFlow("")
     val players = MutableStateFlow("")
 
-    var updateShowData: Show? = null
+    var updateOrAddShowData: Show? = null
 
     fun onBtnAddShowClick() {
         btnAddShowClicked.postValue(true)
@@ -75,6 +77,37 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
         }
     }
 
+    fun addShow() {
+        showLoading()
+
+        mainScope {
+            val id = UUID.randomUUID().toString() + ID.Show.id
+            updateOrAddShowData = Show(
+                _id = id,
+                name = name.value,
+                description = desc.value,
+                imageUrl = imageUrl.value,
+                date = date.value,
+                price = price.value,
+                ageLimit = ageLimit.value,
+            )
+            updateOrAddShowData?.let { show ->
+                showFirebaseQuieries.addShow(show) { status ->
+                    when (status) {
+                        true -> {
+                            hideLoading()
+                            successMessage.postValue(message(R.string.success_add_show))
+                        }
+                        false -> {
+                            hideLoading()
+                            errorMessage.postValue(message(R.string.error_server))
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     fun deleteShow() {
         showLoading()
         mainScope {
@@ -98,7 +131,7 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
     fun updateShow() {
         showLoading()
         mainScope {
-            updateShowData = Show(
+            updateOrAddShowData = Show(
                 name = name.value,
                 description = desc.value,
                 imageUrl = imageUrl.value,
@@ -107,14 +140,14 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
                 ageLimit = ageLimit.value
             )
 
-            showFirebaseQuieries.updateShow(updateShowData) { status ->
+            showFirebaseQuieries.updateShow(updateOrAddShowData) { status ->
                 when (status) {
                     false -> {
                         hideLoading()
                         errorMessage.postValue(message(R.string.error_server))
                     }
                     true -> {
-                        show.value?.toMutableList()?.set(updateIndex, updateShowData)
+                        show.value?.toMutableList()?.set(updateIndex, updateOrAddShowData)
                         show.postValue(show.value)
                         hideLoading()
                         successMessage.postValue(message(R.string.success_update_show))
@@ -132,7 +165,7 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
         show?.date?.let { date.value = it }
         show?.price?.let { price.value = it }
         show?.ageLimit?.let { ageLimit.value = it }
-        updatePopUp.postValue(true)
+        updateBottonVisibility.postValue(true)
     }
 
     override fun onShowsDeleteListener(position: Int, show: Show) {

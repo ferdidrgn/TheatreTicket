@@ -8,7 +8,6 @@ import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseActivity
 import com.ferdidrgn.theatreticket.base.BasePopUp
 import com.ferdidrgn.theatreticket.databinding.ActivityShowOperationsBinding
-import com.ferdidrgn.theatreticket.tools.NavHandler
 import com.ferdidrgn.theatreticket.tools.onClickDelayed
 import com.tayfuncesur.curvedbottomsheet.CurvedBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
@@ -42,9 +41,9 @@ class ShowOperationsActivity :
     private fun observe() {
         viewModel.getAllShow()
 
-        binding.customToolbar.backIcon.onClickDelayed {
-            onBackPressed()
-        }
+        // binding.customToolbar.backIcon.onClickDelayed {
+        //   onBackPressed()
+        //}
 
         binding.imgClose.onClickDelayed {
             viewModel.bottomSheetVisibility.postValue(false)
@@ -61,11 +60,12 @@ class ShowOperationsActivity :
         }
 
         viewModel.btnAddShowClicked.observe(this) {
-            NavHandler.instance.toShowAddActivity(this)
+            viewModel.updateBottonVisibility.postValue(false)
+            viewModel.bottomSheetVisibility.postValue(true)
         }
 
-        viewModel.updatePopUp.observe(this) {
-            popUp(this, true)
+        viewModel.updateBottonVisibility.observe(this) {
+            if (it == true) popUp(this, true)
         }
 
         viewModel.deletePopUp.observe(this) {

@@ -23,6 +23,7 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
     val updateShowPopUp = LiveEvent<Boolean?>()
     val deletePopUp = LiveEvent<Boolean?>()
     val updatePopUp = LiveEvent<Boolean?>()
+    val bottomSheetVisibility = MutableLiveData<Boolean>()
 
     var deleteIndex = 0
     var updateIndex = 0

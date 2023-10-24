@@ -9,6 +9,7 @@ import com.ferdidrgn.theatreticket.base.BaseActivity
 import com.ferdidrgn.theatreticket.base.BasePopUp
 import com.ferdidrgn.theatreticket.databinding.ActivityShowOperationsBinding
 import com.ferdidrgn.theatreticket.tools.NavHandler
+import com.ferdidrgn.theatreticket.tools.onClickDelayed
 import com.tayfuncesur.curvedbottomsheet.CurvedBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -40,6 +41,14 @@ class ShowOperationsActivity :
 
     private fun observe() {
         viewModel.getAllShow()
+
+        binding.customToolbar.backIcon.onClickDelayed {
+            onBackPressed()
+        }
+
+        binding.imgClose.onClickDelayed {
+            viewModel.bottomSheetVisibility.postValue(false)
+        }
 
         viewModel.errorMessage.observe(this) { errorMessage ->
             if (errorMessage != null)
@@ -76,9 +85,7 @@ class ShowOperationsActivity :
             if (isUpdate) {
                 setDesc(context.getString(R.string.are_you_serious_update))
                 setOnPositiveClick {
-                    ShowUpdateBottomSheet {
-                        observe()
-                    }.show(parentFragmentManager, "NewPostBottomSheet")
+                    viewModel.bottomSheetVisibility.postValue(true)
                     dismiss()
                 }
             } else {

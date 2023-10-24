@@ -23,7 +23,7 @@ abstract class BaseBottomSheet<VM : BaseViewModel, DB : ViewDataBinding> :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setStyle(STYLE_NORMAL, R.style.Theme_TheatreTicket)
+        setStyle(STYLE_NORMAL, R.style.bottomSheetDialog)
     }
 
     override fun onCreateView(

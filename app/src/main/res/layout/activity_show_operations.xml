@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/bg_main_secondary_10_border"
             android:gravity="end|center"
-            android:onClick="@{()->viewModel.onBtnAddShowClick()}"
+            android:onClick="@{()->viewModel.onBtnBottomSheetOpenClick()}"
             android:orientation="horizontal"
             android:padding="5dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -116,43 +116,54 @@
                         android:orientation="vertical"
                         android:padding="16dp">
 
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:id="@+id/llTitle"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center">
+                            android:gravity="center_horizontal"
+                            android:weightSum="4">
+
+                            <Space
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1" />
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
+                                android:layout_weight="2"
+                                android:gravity="center"
                                 android:text="@{viewModel.updateBottonVisibility ? @string/show_update : @string/show_add}"
                                 android:textColor="@color/white_light"
                                 android:textSize="25sp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toStartOf="@+id/imgClose"
-                                app:layout_constraintTop_toTopOf="parent" />
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:text="@string/show_add" />
 
                             <ImageView
                                 android:id="@+id/imgClose"
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
-                                android:layout_marginStart="20dp"
+                                android:layout_gravity="end"
+                                android:layout_weight="0.65"
+                                android:onClick="@{()->viewModel.onBtnBottomSheetCloseClick()}"
                                 android:src="@drawable/ic_close_delete_exit_remove"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:tint="@color/pink_light" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
+                        </LinearLayout>
 
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/cvShow"
                             android:layout_width="160dp"
                             android:layout_height="160dp"
+                            android:layout_marginTop="20dp"
                             android:backgroundTint="@color/main_dark"
                             android:onClick="@{()->viewModel.onUpdateImageClick()}"
                             app:cardCornerRadius="10dp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
                             app:strokeColor="@color/main_secondary"
                             app:strokeWidth="3dp">
 
@@ -217,41 +228,27 @@
                             app:custom_edit_input="1"
                             app:custom_edit_text="@={viewModel.ageLimit}" />
 
-                        <LinearLayout
+                        <com.ferdidrgn.theatreticket.tools.components.CustomButton
+                            android:id="@+id/btnAddShow"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_weight="2.2"
-                            android:orientation="horizontal">
+                            android:layout_marginHorizontal="30dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_weight="1"
+                            android:onClick="@{()->viewModel.onBtnAddShowClick()}"
+                            android:visibility="@{viewModel.updateBottonVisibility ? View.GONE : View.VISIBLE}"
+                            app:cst_button_name="@string/show_add" />
 
-                            <com.ferdidrgn.theatreticket.tools.components.CustomButton
-                                android:id="@+id/btnAddShow"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="30dp"
-                                android:layout_marginTop="20dp"
-                                android:layout_weight="1"
-                                android:onClick="@{()->viewModel.onBtnAddShowClick()}"
-                                android:visibility="@{viewModel.updateBottonVisibility ? View.GONE : View.VISIBLE}"
-                                app:cst_button_name="@string/show_add" />
-
-                            <Space
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_weight="0.2" />
-
-                            <com.ferdidrgn.theatreticket.tools.components.CustomButton
-                                android:id="@+id/btnUpdateShow"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="30dp"
-                                android:layout_marginTop="20dp"
-                                android:layout_weight="1"
-                                android:onClick="@{()->viewModel.onBtnUpdateShowClick()}"
-                                android:visibility="@{viewModel.updateBottonVisibility ? View.VISIBLE : View.GONE}"
-                                app:cst_button_name="@string/show_update" />
-                        </LinearLayout>
-
+                        <com.ferdidrgn.theatreticket.tools.components.CustomButton
+                            android:id="@+id/btnUpdateShow"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="30dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_weight="1"
+                            android:onClick="@{()->viewModel.onBtnUpdateShowClick()}"
+                            android:visibility="@{viewModel.updateBottonVisibility ? View.VISIBLE : View.GONE}"
+                            app:cst_button_name="@string/show_update" />
 
                     </LinearLayout>
                 </androidx.core.widget.NestedScrollView>

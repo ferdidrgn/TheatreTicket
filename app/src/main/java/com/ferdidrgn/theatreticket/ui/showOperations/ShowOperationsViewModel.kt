@@ -24,8 +24,8 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
     val btnAddShowClicked = LiveEvent<Boolean?>()
     val updateShowPopUp = LiveEvent<Boolean?>()
     val deletePopUp = LiveEvent<Boolean?>()
-    val updateBottonVisibility = LiveEvent<Boolean?>()
-    val bottomSheetVisibility = MutableLiveData<Boolean>()
+    val updateBottonVisibility = MutableLiveData<Boolean?>()
+    val bottomSheetVisibility = MutableLiveData<Boolean?>()
 
     var deleteIndex = 0
     var updateIndex = 0
@@ -41,6 +41,16 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
 
     var updateOrAddShowData: Show? = null
 
+    fun onBtnBottomSheetCloseClick() {
+        bottomSheetVisibility.postValue(false)
+    }
+
+    fun onBtnBottomSheetOpenClick() {
+        bottomSheetVisibility.postValue(true)
+        updateBottonVisibility.postValue(false)
+        fieldClear()
+    }
+
     fun onBtnAddShowClick() {
         btnAddShowClicked.postValue(true)
     }
@@ -51,6 +61,15 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
 
     fun onUpdateImageClick() {
         //dosyaları açan pop up ekle
+    }
+
+    fun fieldClear() {
+        name.value = ""
+        desc.value = ""
+        imageUrl.value = ""
+        date.value = ""
+        price.value = ""
+        ageLimit.value = ""
     }
 
     fun getAllShow() {
@@ -97,6 +116,7 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
                         true -> {
                             hideLoading()
                             successMessage.postValue(message(R.string.success_add_show))
+                            getAllShow()
                         }
                         false -> {
                             hideLoading()

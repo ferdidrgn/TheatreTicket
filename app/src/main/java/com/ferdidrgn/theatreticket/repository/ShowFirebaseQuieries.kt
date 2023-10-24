@@ -125,7 +125,6 @@ class ShowFirebaseQuieries {
         newShowMap["ageLimit"] = show?.ageLimit.toString()
 
         val showQuery = fireStoreShowRef
-            .whereEqualTo("_id", show?._id)
             .whereEqualTo("name", show?.name)
             .get()
             .await()

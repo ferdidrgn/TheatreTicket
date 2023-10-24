@@ -49,19 +49,8 @@ class ShowOperationsActivity :
             viewModel.bottomSheetVisibility.postValue(false)
         }
 
-        viewModel.errorMessage.observe(this) { errorMessage ->
-            if (errorMessage != null)
-                messagePopUp(this, errorMessage, false)
-        }
-
-        viewModel.successMessage.observe(this) { successMessage ->
-            if (successMessage != null)
-                messagePopUp(this, successMessage, true)
-        }
-
         viewModel.btnAddShowClicked.observe(this) {
-            viewModel.updateBottonVisibility.postValue(false)
-            viewModel.bottomSheetVisibility.postValue(true)
+            viewModel.addShow()
         }
 
         viewModel.updateBottonVisibility.observe(this) {
@@ -74,6 +63,16 @@ class ShowOperationsActivity :
 
         viewModel.updateShowPopUp.observe(this) {
             updateShowPopUp(this)
+        }
+
+        viewModel.errorMessage.observe(this) { errorMessage ->
+            if (errorMessage != null)
+                messagePopUp(this, errorMessage, false)
+        }
+
+        viewModel.successMessage.observe(this) { successMessage ->
+            if (successMessage != null)
+                messagePopUp(this, successMessage, true)
         }
     }
 

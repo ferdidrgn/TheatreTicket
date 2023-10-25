@@ -8,6 +8,7 @@ import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseFragment
 import com.ferdidrgn.theatreticket.base.BasePopUp
 import com.ferdidrgn.theatreticket.databinding.FragmentHomeBinding
+import com.ferdidrgn.theatreticket.tools.builderADS
 import com.ferdidrgn.theatreticket.tools.getPositionAndSendHandler2
 import com.ferdidrgn.theatreticket.tools.mainScope
 import com.google.android.gms.ads.*
@@ -26,8 +27,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
     override fun onCreateFinished(savedInstanceState: Bundle?) {
         binding.viewModel = viewModel
         handler = MainSliderHandler()
-        MobileAds.initialize(requireContext())
-        addAds()
+        builderADS(requireContext(), binding.adView)
 
         binding.showAllAdapter = ShowsAllAdapter(viewModel)
         binding.showSliderAdapter = ShowsSliderHorizontalAdapter(viewModel)

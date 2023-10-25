@@ -1,4 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!--    BASE and NO TRANSLATER -->
     <string name="app_name">Theatre Ticket</string>
     <string name="title_home">Home</string>
     <string name="ticket_buy">Ticket Buy</string>
@@ -16,6 +18,8 @@
     <string name="update">Update</string>
     <string name="add">Add</string>
     <string name="search">Search</string>
+
+    <!--    QUERY -->
     <string name="are_you_sure_you_want_to_logout">Are you sure you want to logout ?</string>
     <string name="are_you_serious">Are You Sure</string>
     <string name="are_you_serious_delete">Are You Sure You Want To Delete Data</string>

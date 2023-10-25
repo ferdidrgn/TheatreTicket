@@ -7,6 +7,7 @@ import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseFragment
 import com.ferdidrgn.theatreticket.base.BasePopUp
 import com.ferdidrgn.theatreticket.databinding.FragmentTicketSearchBinding
+import com.ferdidrgn.theatreticket.tools.builderADS
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,6 +21,12 @@ class TicketSearchFragment : BaseFragment<TicketSearchViewModel, FragmentTicketS
         binding.viewModel = viewModel
         binding.findTicketAdapter = FindTicketAdapter(viewModel)
 
+        builderADS(requireContext(), binding.adView)
+
+        observe()
+    }
+
+    private fun observe() {
         viewModel.searchTicketPopUp.observe(viewLifecycleOwner) {
             searchTicketPopUp(requireContext())
         }

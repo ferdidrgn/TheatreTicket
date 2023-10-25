@@ -10,6 +10,11 @@ import android.view.WindowManager
 import android.widget.Toast
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.Err
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.MobileAds
 import com.securepreferences.BuildConfig
 
 
@@ -36,6 +41,40 @@ fun statusBarColor(context: Context, window: Window, color: Int = R.color.main_d
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         window.statusBarColor = context.resources.getColor(color)
         window.navigationBarColor = context.resources.getColor(color)
+    }
+}
+
+fun builderADS(context: Context, view: AdView) {
+    MobileAds.initialize(context)
+    val adRequest = AdRequest.Builder().build()
+    view.loadAd(adRequest)
+    view.adListener = object : AdListener() {
+        override fun onAdClicked() {
+            // Code to be executed when the user clicks on an ad.
+        }
+
+        override fun onAdClosed() {
+            // Code to be executed when the user is about to return
+            // to the app after tapping on an ad.
+        }
+
+        override fun onAdFailedToLoad(adError: LoadAdError) {
+            // Code to be executed when an ad request fails.
+        }
+
+        override fun onAdImpression() {
+            // Code to be executed when an impression is recorded
+            // for an ad.
+        }
+
+        override fun onAdLoaded() {
+            // Code to be executed when an ad finishes loading.
+        }
+
+        override fun onAdOpened() {
+            // Code to be executed when an ad opens an overlay that
+            // covers the screen.
+        }
     }
 }
 

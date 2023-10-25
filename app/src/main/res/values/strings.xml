@@ -1,4 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!--    BASE and NO TRANSLATER -->
     <string name="app_name">Tiyatro Bileti</string>
     <string name="title_home">Anasayfa</string>
     <string name="ticket_buy">Bilet Al</string>
@@ -17,14 +19,23 @@
     <string name="update">Güncelle</string>
     <string name="add">Ekle</string>
     <string name="search">Ara</string>
+
+    <!--    ADS Information's -->
+    <string name="BANNER_ADS_TEST" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="ADS_BANNER_MAIN_ACTVTY_REAL" translatable="false">ca-app-pub-5779807348211992/4555290310</string>
+    <string name="ADS_BANNER_TICKET_BUY_FRGMT_REAL" translatable="false">ca-app-pub-5779807348211992/2303164516</string>
+    <string name="ADS_BANNER_TICKET_SEARCH_FRGMT_REAL" translatable="false">ca-app-pub-5779807348211992/7841635494</string>
+    <string name="ADS_BANNER_SETTINGS_FRGMT_REAL" translatable="false">ca-app-pub-5779807348211992/5500173499</string>
+    <string name="ADS_BANNER_SHOW_OPERATIONS_ACTVTY_REAL" translatable="false">ca-app-pub-5779807348211992/2323383804</string>
+    <string name="ADS_BANNER_SHOW_BOTTOM_SHEET_REAL" translatable="false">ca-app-pub-5779807348211992/3444893781</string>
+    <string name="ADS_BANNER_LANGUAGE_ACTVTY_REAL" translatable="false">ca-app-pub-5779807348211992/9247846813</string>
+
+
+    <!--    QUERY -->
     <string name="are_you_sure_you_want_to_logout">Çıkış Yapmak İstediğinize Emin Misiniz ?</string>
     <string name="are_you_serious">Emin Misiniz</string>
     <string name="are_you_serious_delete">Verileri Silmek İstediğinize Emin Misiniz</string>
     <string name="are_you_serious_update">Verileri Günecellemek İstediğinize Emin Misiniz</string>
-
-    <!--    ADS Information's -->
-    <string name="BANNER_ADS_ID_TEST" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="ADS_BANNER_ID_REAL" translatable="false">ca-app-pub-5779807348211992/4555290310</string>
 
     <!--    OnBoarding -->
 

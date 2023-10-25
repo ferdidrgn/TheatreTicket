@@ -11,10 +11,7 @@ import com.ferdidrgn.theatreticket.base.BaseFragment
 import com.ferdidrgn.theatreticket.base.BasePopUp
 import com.ferdidrgn.theatreticket.databinding.FragmentSettingsBinding
 import com.ferdidrgn.theatreticket.enums.ToMain
-import com.ferdidrgn.theatreticket.tools.ClientPreferences
-import com.ferdidrgn.theatreticket.tools.onClickDelayed
-import com.ferdidrgn.theatreticket.tools.NavHandler
-import com.ferdidrgn.theatreticket.tools.showToast
+import com.ferdidrgn.theatreticket.tools.*
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -28,6 +25,7 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
 
         binding.viewModel = viewModel
         viewModel.selectedLayout()
+        builderADS(requireContext(), binding.adView)
         clickListener()
 
     }

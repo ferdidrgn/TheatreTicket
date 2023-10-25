@@ -5,6 +5,7 @@ import androidx.activity.viewModels
 import com.ferdidrgn.theatreticket.base.BaseActivity
 import com.ferdidrgn.theatreticket.databinding.ActivityLanguageBinding
 import com.ferdidrgn.theatreticket.tools.NavHandler
+import com.ferdidrgn.theatreticket.tools.builderADS
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -17,6 +18,7 @@ class LanguageActivity : BaseActivity<LanguageViewModel, ActivityLanguageBinding
     override fun onCreateFinished(savedInstance: Bundle?) {
         binding.viewModel = viewModel
         viewModel.firstState()
+        builderADS(this, binding.adView)
         observeEvents()
         binding.customToolbar.backIconOnBackPress(this)
     }

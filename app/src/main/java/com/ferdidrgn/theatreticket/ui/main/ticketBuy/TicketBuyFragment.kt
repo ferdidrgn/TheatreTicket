@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import com.ferdidrgn.theatreticket.base.BaseFragment
 import com.ferdidrgn.theatreticket.base.BasePopUp
 import com.ferdidrgn.theatreticket.databinding.FragmentTicketBuyBinding
+import com.ferdidrgn.theatreticket.tools.builderADS
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -19,6 +20,14 @@ class TicketBuyFragment : BaseFragment<TicketBuyViewModel, FragmentTicketBuyBind
 
     override fun onCreateFinished(savedInstanceState: Bundle?) {
         binding.viewModel = viewModel
+
+        builderADS(requireContext(), binding.adView)
+
+        observe()
+
+    }
+
+    private fun observe() {
 
         viewModel.buyTicketPopUp.observe(viewLifecycleOwner) {
             buyTicketPopUp(requireContext())

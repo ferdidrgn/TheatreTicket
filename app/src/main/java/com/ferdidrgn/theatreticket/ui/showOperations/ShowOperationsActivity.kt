@@ -8,6 +8,7 @@ import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseActivity
 import com.ferdidrgn.theatreticket.base.BasePopUp
 import com.ferdidrgn.theatreticket.databinding.ActivityShowOperationsBinding
+import com.ferdidrgn.theatreticket.tools.builderADS
 import com.ferdidrgn.theatreticket.tools.onClickDelayed
 import com.tayfuncesur.curvedbottomsheet.CurvedBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,25 +26,28 @@ class ShowOperationsActivity :
     override fun onCreateFinished(savedInstance: Bundle?) {
         binding.viewModel = viewModel
         binding.showOperationsAdapter = ShowOperationsAdapter(viewModel)
+        builderADS(this, binding.adView)
+        builderADS(this, binding.adViewBottomSheet)
+        bottomSheetInit()
         observe()
         binding.customToolbar.backIconOnBackPress(this)
+    }
 
-
+    private fun bottomSheetInit() {
         val displayMetrics = DisplayMetrics()
         windowManager.defaultDisplay.getMetrics(displayMetrics)
         CurvedBottomSheet(
             (displayMetrics.widthPixels / 6).toFloat(),
             view = binding.bottomSheet
         ).init()
-
     }
 
     private fun observe() {
         viewModel.getAllShow()
 
-        // binding.customToolbar.backIcon.onClickDelayed {
-        //   onBackPressed()
-        //}
+        binding.customToolbar.backIcon.onClickDelayed {
+            onBackPressed()
+        }
 
         binding.imgClose.onClickDelayed {
             viewModel.bottomSheetVisibility.postValue(false)

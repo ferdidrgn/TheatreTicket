@@ -19,6 +19,9 @@
         android:theme="@style/Theme.TheatreTicket"
         tools:targetApi="34">
         <activity
+            android:name=".ShowDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.onbarding.OnboardingActivity"
             android:exported="false" />
 

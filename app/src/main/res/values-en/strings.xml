@@ -91,4 +91,6 @@
     <string name="send_mail">Send Mail…</string>
     <string name="guest">Guest</string>
 
+    <!--    Show Details -->
+    <string name="show_details">Show Details</string>
 </resources>

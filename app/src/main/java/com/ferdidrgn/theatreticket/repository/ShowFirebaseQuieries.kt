@@ -6,6 +6,7 @@ import com.google.firebase.Timestamp
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.toObject
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -63,11 +64,6 @@ class ShowFirebaseQuieries {
     }
 
     fun getShow(status: (String, ArrayList<Show?>?) -> Unit) {
-
-        //val docRef = db.collection("cities").document("BJ")
-        //docRef.get().addOnSuccessListener { documentSnapshot ->
-        //    val city = documentSnapshot.toObject<City>()
-        // }
 
         var statusTree = ""
         val showList: ArrayList<Show?> = arrayListOf()
@@ -131,10 +127,18 @@ class ShowFirebaseQuieries {
             "ageLimit" to show?.ageLimit.toString()
         )
 
-        fireStoreShowRef.document(show?._id.toString()).update(newShowMap).addOnSuccessListener {
-            status.invoke(true)
-        }.addOnFailureListener {
-            status.invoke(false)
-        }
+        fireStoreShowRef.whereEqualTo("name", show?.name)
+            .whereEqualTo("_id", show?._id)
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    fireStoreShowRef.document(document.id).set(newShowMap, SetOptions.merge())
+                        .addOnSuccessListener {
+                            status.invoke(true)
+                        }.addOnFailureListener {
+                            status.invoke(false)
+                        }
+                }
+            }
     }
 }

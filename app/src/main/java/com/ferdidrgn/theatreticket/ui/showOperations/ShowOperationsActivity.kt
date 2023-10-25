@@ -26,7 +26,7 @@ class ShowOperationsActivity :
         binding.viewModel = viewModel
         binding.showOperationsAdapter = ShowOperationsAdapter(viewModel)
         observe()
-        //binding.customToolbar.backIconOnBackPress(this)
+        binding.customToolbar.backIconOnBackPress(this)
 
 
         val displayMetrics = DisplayMetrics()

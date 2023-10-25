@@ -9,6 +9,7 @@ import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseActivity
 import com.ferdidrgn.theatreticket.databinding.ActivityMainBinding
 import com.ferdidrgn.theatreticket.enums.ToMain
+import com.ferdidrgn.theatreticket.tools.ClientPreferences
 import com.ferdidrgn.theatreticket.tools.TO_MAIN
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,6 +23,8 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         ActivityMainBinding.inflate(layoutInflater)
 
     override fun onCreateFinished(savedInstance: Bundle?) {
+
+        ClientPreferences.inst.isFirstLaunch = false
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainer) as NavHostFragment

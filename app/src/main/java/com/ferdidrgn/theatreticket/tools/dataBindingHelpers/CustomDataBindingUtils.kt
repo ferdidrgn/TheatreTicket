@@ -55,7 +55,7 @@ object CustomDataBindingUtils {
     class CustomToolBarTextBinder {
         companion object {
             @JvmStatic
-            @BindingAdapter("android:textAttrChanged")
+            @BindingAdapter("app:textAttrChanged")
             fun setListener(toolBar: CustomToolbar, listener: InverseBindingListener?) {
                 if (listener != null) {
                     toolBar.tvTitle.show()
@@ -68,7 +68,7 @@ object CustomDataBindingUtils {
             @JvmStatic
             @InverseBindingAdapter(
                 attribute = "customToolBarChangeableText",
-                event = "android:textAttrChanged"
+                event = "app:textAttrChanged"
             )
             fun getToolBarText(toolBar: CustomToolbar): String {
                 toolBar.tvTitle.show()

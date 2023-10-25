@@ -13,6 +13,10 @@
     <string name="are_you_serious_delete">Verileri Silmek İstediğinize Emin Misiniz</string>
     <string name="are_you_serious_update">Verileri Günecellemek İstediğinize Emin Misiniz</string>
 
+    <!--    ADS Information's -->
+    <string name="BANNER_ADS_ID_TEST" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="ADS_BANNER_ID_REAL" translatable="false">ca-app-pub-5779807348211992/4555290310</string>
+
     <!-- TicketBuyFragment -->
     <string name="phone_number_mask">Tel No:(555)</string>
     <string name="choose_seats">Seçtiğiniz Koltuklar</string>

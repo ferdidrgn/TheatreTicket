@@ -19,16 +19,21 @@
         android:theme="@style/Theme.TheatreTicket"
         tools:targetApi="34">
         <activity
-            android:name=".LoginActivity"
+            android:name=".ui.onbarding.OnboardingActivity"
+            android:exported="false" />
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-5779807348211992~2861799229" />
+
+        <activity
+            android:name=".ui.login.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".ui.showOperations.ShowOperationsActivity"
             android:exported="false" />
         <activity
             android:name=".ui.language.LanguageActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.showAdd.ShowAddActivity"
             android:exported="false" />
         <activity
             android:name=".ui.main.MainActivity"

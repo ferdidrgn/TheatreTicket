@@ -19,7 +19,7 @@ object CustomDataBindingUtils {
         ),
         InverseBindingMethod(
             type =
-            CustomToolbar::class, attribute = "bind:cst_text", event =
+            CustomToolbar::class, attribute = "bind:customToolBarChangeableText", event =
             "bind:textAttrChanged", method = "bind:getToolBarText"
         ),
     )

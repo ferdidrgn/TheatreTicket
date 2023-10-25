@@ -16,7 +16,6 @@
         <attr name="cst_toolbar_closeIcon_visible" format="boolean" />
         <attr name="cst_toolbar_backIcon_visible" format="boolean" />
         <attr name="cst_toolbar_text" format="string" />
-        <attr name="customToolBarChangeableText" format="string" />
     </declare-styleable>
 
 </resources>

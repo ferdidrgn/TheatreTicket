@@ -63,6 +63,12 @@ class ShowFirebaseQuieries {
     }
 
     fun getShow(status: (String, ArrayList<Show?>?) -> Unit) {
+
+        //val docRef = db.collection("cities").document("BJ")
+        //docRef.get().addOnSuccessListener { documentSnapshot ->
+        //    val city = documentSnapshot.toObject<City>()
+        // }
+
         var statusTree = ""
         val showList: ArrayList<Show?> = arrayListOf()
         fireStoreShowRef.orderBy("name", Query.Direction.ASCENDING)
@@ -115,39 +121,20 @@ class ShowFirebaseQuieries {
             }
     }
 
-    fun updateShow(show: Show?, status: (Boolean) -> Unit) = CoroutineScope(Dispatchers.IO).launch {
-        val newShowMap = HashMap<String, Any>()
-        newShowMap["_createdAt"] = Timestamp.now()
-        newShowMap["name"] = show?.name.toString()
-        newShowMap["description"] = show?.description.toString()
-        newShowMap["date"] = show?.date.toString()
-        newShowMap["price"] = show?.price.toString()
-        newShowMap["ageLimit"] = show?.ageLimit.toString()
+    fun updateShow(show: Show?, status: (Boolean) -> Unit) {
+        val newShowMap = mapOf(
+            "_createdAt" to Timestamp.now(),
+            "name" to show?.name.toString(),
+            "description" to show?.description.toString(),
+            "date" to show?.date.toString(),
+            "price" to show?.price.toString(),
+            "ageLimit" to show?.ageLimit.toString()
+        )
 
-        val showQuery = fireStoreShowRef
-            .whereEqualTo("name", show?.name)
-            .get()
-            .await()
-        if (showQuery.documents.isNotEmpty()) {
-            for (document in showQuery) {
-                try {
-                    //personCollectionRef.document(document.id).update("age", newAge).await()
-                    fireStoreShowRef.document(document.id).set(
-                        newShowMap,
-                        SetOptions.merge()
-                    ).await()
-                    status.invoke(true)
-                } catch (e: Exception) {
-                    withContext(Dispatchers.Main) {
-                        status.invoke(false)
-                    }
-                }
-            }
-        } else {
-            withContext(Dispatchers.Main) {
-                status.invoke(false)
-            }
+        fireStoreShowRef.document(show?._id.toString()).update(newShowMap).addOnSuccessListener {
+            status.invoke(true)
+        }.addOnFailureListener {
+            status.invoke(false)
         }
     }
-
 }

@@ -54,11 +54,11 @@ class ShowOperationsActivity :
         }
 
         viewModel.updateBottonVisibility.observe(this) {
-            if (it == true) popUp(this, true)
+            if (it == true) updateOrDeleteInformationPopUp(this, true)
         }
 
         viewModel.deletePopUp.observe(this) {
-            popUp(this, false)
+            updateOrDeleteInformationPopUp(this, false)
         }
 
         viewModel.updateShowPopUp.observe(this) {
@@ -67,16 +67,16 @@ class ShowOperationsActivity :
 
         viewModel.errorMessage.observe(this) { errorMessage ->
             if (errorMessage != null)
-                messagePopUp(this, errorMessage, false)
+                errorOrSuccessMessagePopUp(this, errorMessage, false)
         }
 
         viewModel.successMessage.observe(this) { successMessage ->
             if (successMessage != null)
-                messagePopUp(this, successMessage, true)
+                errorOrSuccessMessagePopUp(this, successMessage, true)
         }
     }
 
-    private fun popUp(context: Context, isUpdate: Boolean) {
+    private fun updateOrDeleteInformationPopUp(context: Context, isUpdate: Boolean) {
         val pupUp = BasePopUp()
         pupUp.apply {
             setPositiveText(context.getString(R.string.yes))
@@ -101,7 +101,7 @@ class ShowOperationsActivity :
         pupUp.show(supportFragmentManager, "")
     }
 
-    private fun messagePopUp(context: Context, message: String, isSuccess: Boolean) {
+    private fun errorOrSuccessMessagePopUp(context: Context, message: String, isSuccess: Boolean) {
         val pupUp = BasePopUp(isSuccess = isSuccess)
         pupUp.apply {
             setPositiveText(context.getString(R.string.done))

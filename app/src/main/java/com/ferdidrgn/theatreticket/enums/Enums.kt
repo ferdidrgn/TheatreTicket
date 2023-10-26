@@ -27,6 +27,12 @@ enum class Roles(val role: String) {
     GUEST("guest")
 }
 
+enum class PhoneNumberLengthsByCountry(val length: Int, val mask: String) {
+    Arabic(13, "### ### ## ##"),
+    English(12, "### ### ## #"),
+    Turkish(12, "### ### ## #")
+}
+
 enum class Languages(val language: String) {
     TURKISH("tr_TUR"),
     English("en_US")

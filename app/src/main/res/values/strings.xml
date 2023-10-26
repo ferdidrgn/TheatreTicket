@@ -107,4 +107,8 @@
 
     <!--    Show Details -->
     <string name="show_details">Gösteri Detayları</string>
+
+    <!--    CustomPhoneCode -->
+    <string name="zip_code">Zip Code</string>"
+
 </resources>

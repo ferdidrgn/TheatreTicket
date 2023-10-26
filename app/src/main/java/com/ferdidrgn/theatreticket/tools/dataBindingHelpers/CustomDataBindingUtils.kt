@@ -7,6 +7,7 @@ import androidx.databinding.InverseBindingListener
 import androidx.databinding.InverseBindingMethod
 import androidx.databinding.InverseBindingMethods
 import com.ferdidrgn.theatreticket.tools.components.CustomEditText
+import com.ferdidrgn.theatreticket.tools.components.CustomPhoneEditText
 import com.ferdidrgn.theatreticket.tools.components.CustomToolbar
 import com.ferdidrgn.theatreticket.tools.show
 
@@ -21,6 +22,11 @@ object CustomDataBindingUtils {
             type =
             CustomToolbar::class, attribute = "bind:custom_toolbar_changeable_text", event =
             "bind:textAttrChanged", method = "bind:getToolBarText"
+        ),
+        InverseBindingMethod(
+            type =
+            CustomPhoneEditText::class, attribute = "bind:cst_phone_text", event =
+            "bind:textAttrChanged", method = "bind:getText"
         ),
     )
     class CustomEditTextBinder {
@@ -82,6 +88,36 @@ object CustomDataBindingUtils {
                     if (customText != toolBar.tvTitle.text.toString()) {
                         toolBar.tvTitle.show()
                         toolBar.tvTitle.text = customText
+                    }
+                }
+            }
+        }
+    }
+
+    class CustomPhoneEditTextBinder {
+        companion object {
+            @JvmStatic
+            @BindingAdapter("android:textAttrChanged")
+            fun setListener(editText: CustomPhoneEditText, listener: InverseBindingListener?) {
+                if (listener != null) {
+                    editText.editText.doAfterTextChanged {
+                        listener.onChange()
+                    }
+                }
+            }
+
+            @JvmStatic
+            @InverseBindingAdapter(attribute = "cst_phone_text", event = "android:textAttrChanged")
+            fun getText(nMe: CustomPhoneEditText): String {
+                return nMe.editText.text.toString()
+            }
+
+            @JvmStatic
+            @BindingAdapter("cst_phone_text")
+            fun setText(editText: CustomPhoneEditText, text: String?) {
+                text?.let {
+                    if (it != editText.editText.text.toString()) {
+                        editText.editText.setText(it)
                     }
                 }
             }

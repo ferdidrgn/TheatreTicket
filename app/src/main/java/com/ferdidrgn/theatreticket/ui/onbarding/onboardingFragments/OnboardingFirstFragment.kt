@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.viewModels
 import com.ferdidrgn.theatreticket.base.BaseFragment
 import com.ferdidrgn.theatreticket.databinding.FragmentOnboardingFirstBinding
+import com.ferdidrgn.theatreticket.tools.show
 import com.ferdidrgn.theatreticket.ui.onbarding.OnboardingViewModel
 
 class OnboardingFirstFragment :
@@ -14,7 +15,7 @@ class OnboardingFirstFragment :
         FragmentOnboardingFirstBinding.inflate(layoutInflater)
 
     override fun onCreateFinished(savedInstanceState: Bundle?) {
-        binding.testText.text = "Test"
+        binding.imgProduct.show()
     }
 
 }

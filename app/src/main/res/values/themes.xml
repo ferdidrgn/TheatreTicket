@@ -34,4 +34,9 @@
         <item name="cornerSize">8%</item>
         <item name="cornerFamily">rounded</item>
     </style>
+
+    <style name="ShapeAppearanceOverlay.Corner20DP" parent="">
+        <item name="cornerSize">20dp</item>
+        <item name="cornerFamily">rounded</item>
+    </style>
 </resources>

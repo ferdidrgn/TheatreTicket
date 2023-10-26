@@ -12,7 +12,7 @@
         <attr name="cst_backgroundColorFromXml" format="color" />
     </declare-styleable>
 
-    <declare-styleable name="custom_toolbar">
+    <declare-styleable name="CustomToolbar">
         <attr name="cst_toolbar_closeIcon_visible" format="boolean" />
         <attr name="cst_toolbar_backIcon_visible" format="boolean" />
         <attr name="cst_toolbar_text" format="string" />

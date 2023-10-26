@@ -48,19 +48,19 @@ class CustomToolbar : LinearLayout {
         imgFilter = findViewById(R.id.imgFilter)
         closeIcon = findViewById(R.id.imgClose)
         backIcon = findViewById(R.id.imgBack)
-        layoutAttribute = context.obtainStyledAttributes(attributeSet, R.styleable.custom_toolbar)
+        layoutAttribute = context.obtainStyledAttributes(attributeSet, R.styleable.CustomToolbar)
         visibilityOfBackIcon(
             layoutAttribute.getBoolean(
-                R.styleable.custom_toolbar_cst_toolbar_backIcon_visible, false
+                R.styleable.CustomToolbar_cst_toolbar_backIcon_visible, false
             )
         )
         visibilityOfCloseIcon(
             layoutAttribute.getBoolean(
-                R.styleable.custom_toolbar_cst_toolbar_closeIcon_visible, false
+                R.styleable.CustomToolbar_cst_toolbar_closeIcon_visible, false
             )
         )
 
-        val ctTitle = layoutAttribute.getString(R.styleable.custom_toolbar_cst_toolbar_text)
+        val ctTitle = layoutAttribute.getString(R.styleable.CustomToolbar_cst_toolbar_text)
         setUpTitle(ctTitle, false)
 
         toLoginActivity()

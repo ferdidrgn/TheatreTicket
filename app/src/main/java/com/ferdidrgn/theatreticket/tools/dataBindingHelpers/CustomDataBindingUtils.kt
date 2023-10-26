@@ -19,7 +19,7 @@ object CustomDataBindingUtils {
         ),
         InverseBindingMethod(
             type =
-            CustomToolbar::class, attribute = "bind:customToolBarChangeableText", event =
+            CustomToolbar::class, attribute = "bind:custom_toolbar_changeable_text", event =
             "bind:textAttrChanged", method = "bind:getToolBarText"
         ),
     )
@@ -54,8 +54,8 @@ object CustomDataBindingUtils {
 
     class CustomToolBarTextBinder {
         companion object {
-            @JvmStatic
             @BindingAdapter("app:textAttrChanged")
+            @JvmStatic
             fun setListener(toolBar: CustomToolbar, listener: InverseBindingListener?) {
                 if (listener != null) {
                     toolBar.tvTitle.show()
@@ -65,19 +65,19 @@ object CustomDataBindingUtils {
                 }
             }
 
-            @JvmStatic
             @InverseBindingAdapter(
-                attribute = "customToolBarChangeableText",
+                attribute = "custom_toolbar_changeable_text",
                 event = "app:textAttrChanged"
             )
-            fun getToolBarText(toolBar: CustomToolbar): String {
+            @JvmStatic
+            fun getCustomToolBarText(toolBar: CustomToolbar): String {
                 toolBar.tvTitle.show()
                 return toolBar.tvTitle.text.toString()
             }
 
+            @BindingAdapter("custom_toolbar_changeable_text")
             @JvmStatic
-            @BindingAdapter("customToolBarChangeableText")
-            fun setToolBarText(toolBar: CustomToolbar, text: String?) {
+            fun setCustomToolBarText(toolBar: CustomToolbar, text: String?) {
                 text?.let { customText ->
                     if (customText != toolBar.tvTitle.text.toString()) {
                         toolBar.tvTitle.show()

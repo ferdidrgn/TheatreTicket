@@ -23,7 +23,8 @@ enum class Response(val response: String) {
 
 enum class Roles(val role: String) {
     Admin("admin"),
-    User("user")
+    User("user"),
+    GUEST("guest")
 }
 
 enum class Languages(val language: String) {

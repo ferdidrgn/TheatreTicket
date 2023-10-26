@@ -54,7 +54,7 @@ class ShowOperationsActivity :
         }
 
         viewModel.btnAddShowClicked.observe(this) {
-            viewModel.addShow()
+            viewModel.checkRequestFields(false)
         }
 
         viewModel.updateBottonVisibility.observe(this) {
@@ -124,7 +124,7 @@ class ShowOperationsActivity :
             setNegativeText(context.getString(R.string.no))
             setDesc(context.getString(R.string.are_you_serious))
             setOnPositiveClick {
-                viewModel.updateShow()
+                viewModel.checkRequestFields(true)
                 dismiss()
             }
             setOnNegativeClick {

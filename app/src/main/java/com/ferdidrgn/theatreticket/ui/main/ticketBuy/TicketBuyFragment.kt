@@ -49,7 +49,7 @@ class TicketBuyFragment : BaseFragment<TicketBuyViewModel, FragmentTicketBuyBind
             setNegativeText(context.getString(R.string.no))
             setDesc(context.getString(R.string.are_you_serious))
             setOnPositiveClick {
-                viewModel.checkPhoneNumber()
+                viewModel.checkRequestFields()
                 dismiss()
             }
             setOnNegativeClick {

@@ -48,7 +48,7 @@ class TicketSearchFragment : BaseFragment<TicketSearchViewModel, FragmentTicketS
             setNegativeText(context.getString(R.string.no))
             setDesc(context.getString(R.string.are_you_serious))
             setOnPositiveClick {
-                viewModel.searchTicket()
+                viewModel.checkRequestFields()
                 dismiss()
             }
             setOnNegativeClick {

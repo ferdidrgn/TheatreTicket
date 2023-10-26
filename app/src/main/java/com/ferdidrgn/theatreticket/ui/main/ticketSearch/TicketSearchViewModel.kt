@@ -64,6 +64,30 @@ class TicketSearchViewModel @Inject constructor(private val sellFirebaseQueries:
         }
     }
 
+    fun checkRequestFields() {
+        var isRequiredFieldsDone = true
+        var message = ""
+        if (firstName.value.length < 2) {
+            isRequiredFieldsDone = false
+            message = message(R.string.error_first_name_little)
+        }
+
+        if (lastName.value.length <= 1) {
+            isRequiredFieldsDone = false
+            message = message(R.string.error_last_name_little)
+        }
+
+        if (phoneNumber.value.length != 10) {
+            isRequiredFieldsDone = false
+            message = message(R.string.error_phone_little)
+        }
+
+        if (isRequiredFieldsDone) {
+            searchTicket()
+        } else
+            errorMessage.postValue(message)
+    }
+
     override fun onFindTicketItemClicked(position: Int) {
         //location
     }

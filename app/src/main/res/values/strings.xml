@@ -74,6 +74,7 @@
     <string name="error_phone_little">Telefon Numarası 10 karakterden kısa görünüyor. Lütfen kontrol edin</string>
     <string name="error_first_name_little">İsim çok kısa görünüyor. Lütfen kontrol edin</string>
     <string name="error_last_name_little">Soyisim çok kısa görünüyor. Lütfen kontrol edin</string>
+    <string name="error_little_things">Bir ya da birkaç veri çok kısa veya eksik görünüyor. Lütfen kontrol edin</string>
     <string name="error_have_ticket">Önceden bilet alınmış. Lütfen kontrol edelin</string>
     <string name="error_no_any_ticket">Herhangi Bir Bilet Bulunamadı</string>
     <string name="error_no_any_show">Herhangi Bir Gösteri Bulunamadı</string>

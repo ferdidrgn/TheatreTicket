@@ -14,6 +14,7 @@ import java.util.UUID
 import javax.inject.Inject
 import com.ferdidrgn.theatreticket.tools.helpers.LiveEvent
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.collectLatest
 
 @HiltViewModel
 class TicketBuyViewModel @Inject constructor(
@@ -165,5 +166,29 @@ class TicketBuyViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    fun checkRequestFields() {
+        var isRequiredFieldsDone = true
+        var message = ""
+        if (firstName.value.length < 2) {
+            isRequiredFieldsDone = false
+            message = message(R.string.error_first_name_little)
+        }
+
+        if (lastName.value.length <= 1) {
+            isRequiredFieldsDone = false
+            message = message(R.string.error_last_name_little)
+        }
+
+        if (phoneNumber.value.length != 10) {
+            isRequiredFieldsDone = false
+            message = message(R.string.error_phone_little)
+        }
+
+        if (isRequiredFieldsDone) {
+            checkPhoneNumber()
+        } else
+            errorMessage.postValue(message)
     }
 }

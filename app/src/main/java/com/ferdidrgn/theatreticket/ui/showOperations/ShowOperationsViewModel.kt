@@ -97,7 +97,7 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
         }
     }
 
-    fun addShow() {
+    private fun addShow() {
         showLoading()
 
         mainScope {
@@ -149,7 +149,7 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
         }
     }
 
-    fun updateShow() {
+    private fun updateShow() {
         showLoading()
         mainScope {
             updateOrAddShowData = Show(
@@ -176,6 +176,33 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
                 }
             }
         }
+    }
+
+    fun checkRequestFields(isUpdate: Boolean) {
+        var isRequiredFieldsDone = true
+
+        if (name.value.isEmpty())
+            isRequiredFieldsDone = false
+
+        if (desc.value.length < 3)
+            isRequiredFieldsDone = false
+
+        if (date.value.isEmpty())
+            isRequiredFieldsDone = false
+
+        if (price.value.isEmpty())
+            isRequiredFieldsDone = false
+
+        if (ageLimit.value.isEmpty())
+            isRequiredFieldsDone = false
+
+        if (isRequiredFieldsDone) {
+            if (isUpdate)
+                updateShow()
+            else
+                addShow()
+        } else
+            errorMessage.postValue(message(R.string.error_little_things))
     }
 
     override fun onShowsUpdateListener(position: Int, show: Show) {

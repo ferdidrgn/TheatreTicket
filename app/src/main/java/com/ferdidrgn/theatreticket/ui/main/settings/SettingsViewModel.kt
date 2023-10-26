@@ -22,9 +22,10 @@ class SettingsViewModel @Inject constructor(private val showFirebaseQuieries: Sh
     fun selectedLayout() {
         whichLayout.postValue(false)
         ClientPreferences.inst.role = Roles.Admin.role //TEST - MOCKDATA
-        when (ClientPreferences.inst.role ?: "") {
+        when (ClientPreferences.inst.role) {
             Roles.Admin.role -> whichLayout.postValue(true)
             Roles.User.role -> whichLayout.postValue(false)
+            Roles.GUEST.role -> whichLayout.postValue(false)
             else -> whichLayout.postValue(false)
         }
     }
@@ -34,7 +35,7 @@ class SettingsViewModel @Inject constructor(private val showFirebaseQuieries: Sh
         ioScope {
             ClientPreferences.inst.userFirstName?.let { firstName ->
                 ClientPreferences.inst.userLastName?.let { lastName ->
-                    userName.emit(firstName + " " + lastName)
+                    userName.emit("$firstName $lastName")
                 }
             }
 

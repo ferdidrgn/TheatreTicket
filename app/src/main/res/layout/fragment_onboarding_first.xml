@@ -3,17 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <RelativeLayout
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.ferdidrgn.theatreticket.ui.onbarding.OnboardingViewModel" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/transparent"
+        android:background="@color/main_dark2"
+        android:orientation="vertical"
         tools:context=".ui.onbarding.onboardingFragments.OnboardingFirstFragment">
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imgWelcome"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_centerInParent="true"
             android:layout_marginStart="1dp"
             android:layout_marginTop="1dp"
             android:layout_marginEnd="1dp"
@@ -21,20 +27,6 @@
             android:scaleType="fitXY"
             android:src="@drawable/img_welcome"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Corner20DP" />
-
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_arrow_left" />
-
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_right_arrow" />
-    </RelativeLayout>
+    </LinearLayout>
 
 </layout>

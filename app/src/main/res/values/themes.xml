@@ -2,10 +2,11 @@
     <!-- Base application theme. -->
     <!-- Customize your light theme here. -->
     <style name="Theme.TheatreTicket" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="android:windowBackground">@color/main_dark2</item>
         <item name="android:statusBarColor">@color/main_dark2</item>
         <item name="android:navigationBarColor">@color/main_dark2</item>
         <item name="colorPrimary">@color/main_dark2</item>
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="DialogTheme_transparent" parent="Theme.AppCompat.Dialog">

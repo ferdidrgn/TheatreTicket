@@ -1,17 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.ferdidrgn.theatreticket.ui.onbarding.OnboardingViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/main_dark2"
         tools:context=".ui.onbarding.onboardingFragments.OnboardingThirdFragment">
 
         <TextView
-            android:id="@+id/testText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/terms_condition"
+            android:textAlignment="center"
+            android:textColor="@color/white_light"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toTopOf="@+id/customButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.ferdidrgn.theatreticket.tools.components.CustomButton
+            android:id="@+id/customButton"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="asd" />
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="80dp"
+            android:onClick="@{()->viewModel.onTermsConditionClicked()}"
+            app:cst_button_name="@string/terms_condition"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="80dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

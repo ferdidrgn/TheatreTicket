@@ -2,6 +2,7 @@ package com.ferdidrgn.theatreticket.ui.main
 
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -10,6 +11,7 @@ import com.ferdidrgn.theatreticket.base.BaseActivity
 import com.ferdidrgn.theatreticket.databinding.ActivityMainBinding
 import com.ferdidrgn.theatreticket.enums.ToMain
 import com.ferdidrgn.theatreticket.tools.ClientPreferences
+import com.ferdidrgn.theatreticket.tools.NavHandler
 import com.ferdidrgn.theatreticket.tools.TO_MAIN
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,8 +26,6 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
 
     override fun onCreateFinished(savedInstance: Bundle?) {
 
-        ClientPreferences.inst.isFirstLaunch = false
-
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainer) as NavHostFragment
         navController = navHostFragment.navController
@@ -34,6 +34,12 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
             findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(R.id.bottomNav)
         bottomNav.setupWithNavController(navController)
 
+        if (ClientPreferences.inst.isFirstLaunch == true)
+            NavHandler.instance.toOnboardingActivity(this)
+        else observe()
+    }
+
+    private fun observe() {
         intent.getSerializableExtra(TO_MAIN)?.let { data ->
             moveToWhere(data as ToMain)
         }

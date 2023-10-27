@@ -5,12 +5,9 @@
 
     <data>
 
-        <import type="android.view.View" />
-
         <variable
             name="viewModel"
-            type="com.ferdidrgn.theatreticket.ui.login.LoginViewModel" />
-
+            type="com.ferdidrgn.theatreticket.ui.termsAndConditions.TermsViewModel" />
     </data>
 
     <LinearLayout
@@ -18,8 +15,7 @@
         android:layout_height="match_parent"
         android:background="@color/main_dark2"
         android:orientation="vertical"
-        tools:context=".ui.login.LoginActivity">
-
+        tools:context=".ui.TermsAndConditionsActivity">
 
     </LinearLayout>
 

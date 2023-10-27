@@ -1,17 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.ferdidrgn.theatreticket.ui.onbarding.OnboardingViewModel" />
+    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/main_dark2"
+        android:orientation="vertical"
         tools:context=".ui.onbarding.onboardingFragments.OnboardingSecondFragment">
 
-        <TextView
-            android:id="@+id/testText"
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imgWelcome"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="asd" />
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="1dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/img_goz_kap_vaz_yap_april_23"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Corner20DP" />
     </LinearLayout>
 
 </layout>

@@ -15,21 +15,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/main_dark2"
         tools:context=".ui.onbarding.OnboardingActivity">
 
-        <com.ferdidrgn.theatreticket.tools.components.CustomToolbar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cst_toolbar_text="@string/show_add"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/fragmentContainer"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="70dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@id/clBottom"
             app:layout_constraintTop_toTopOf="parent">
@@ -41,12 +33,39 @@
                 android:clipToPadding="false"
                 android:nestedScrollingEnabled="false"
                 android:overScrollMode="never" />
-        </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imgLeftArrow"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/back"
+                android:onClick="@{()->viewModel.onLeftArrowClick()}"
+                android:src="@drawable/ic_arrow_left"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/vpSlider"
+                app:tint="@color/pink_light" />
+
+            <ImageView
+                android:id="@+id/imgRightArrow"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/next"
+                android:onClick="@{()->viewModel.onRightArrowClick()}"
+                android:src="@drawable/ic_right_arrow"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/vpSlider"
+                app:tint="@color/pink_light" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clBottom"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="100dp"
             android:layout_marginTop="30dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -72,25 +91,13 @@
                 app:piv_selectedColor="@color/main"
                 app:piv_unselectedColor="@color/black" />
 
-            <TextView
-                android:id="@+id/tvSkip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="40dp"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/dotsIndicator"
-                tools:text="Skip" />
-
             <RelativeLayout
-                android:id="@+id/rlNext"
+                android:id="@+id/rlStarted"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:background="@drawable/rounded_main_dark_border_main"
+                android:onClick="@{()->viewModel.onGetStartedMainActivityClick()}"
                 android:paddingHorizontal="80dp"
                 android:paddingVertical="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -100,15 +107,15 @@
                 app:layout_constraintVertical_bias="0.666">
 
                 <TextView
-                    android:id="@+id/tvNext"
+                    android:id="@+id/tvStarted"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:gravity="center"
-                    android:text="@string/done"
+                    android:text="@string/get_started"
                     android:textColor="@color/white"
                     android:textSize="20sp"
-                    tools:text="Next" />
+                    tools:text="Started" />
             </RelativeLayout>
 
 

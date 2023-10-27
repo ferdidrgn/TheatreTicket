@@ -3,11 +3,9 @@ package com.ferdidrgn.theatreticket.ui.onbarding
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.viewpager2.widget.ViewPager2
-import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseActivity
 import com.ferdidrgn.theatreticket.databinding.ActivityOnboardingBinding
-import com.ferdidrgn.theatreticket.tools.NavHandler
-import com.ferdidrgn.theatreticket.tools.hide
+import com.ferdidrgn.theatreticket.tools.*
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -15,6 +13,7 @@ class OnboardingActivity : BaseActivity<OnboardingViewModel, ActivityOnboardingB
 
     private lateinit var pageChangeCallback: ViewPager2.OnPageChangeCallback
     private var lastPage = false
+    private var firstPage = false
 
     override fun getVM(): Lazy<OnboardingViewModel> = viewModels()
 
@@ -24,20 +23,26 @@ class OnboardingActivity : BaseActivity<OnboardingViewModel, ActivityOnboardingB
     override fun onCreateFinished(savedInstance: Bundle?) {
         binding.viewModel = viewModel
         viewPagerSet()
-        clickerListener()
+        observe()
     }
 
     private fun viewPagerSet() {
         val adapter = OnboardingTabAdapter(this)
+        binding.vpSlider.adapter = adapter
 
         pageChangeCallback = object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 binding.dotsIndicator.selection = position
-                if (position == 2) {
-                    lastPage = true
-                    binding.tvSkip.hide()
-                    binding.rlNext.hide()
-                    binding.tvNext.text = getString(R.string.get_started)
+                when (position) {
+                    0 -> {
+                        firstPage = true
+                        binding.rlStarted.hide()
+                    }
+                    2 -> {
+                        lastPage = true
+                        binding.rlStarted.show()
+                    }
+                    else -> binding.rlStarted.hide()
                 }
             }
         }
@@ -45,20 +50,31 @@ class OnboardingActivity : BaseActivity<OnboardingViewModel, ActivityOnboardingB
         binding.vpSlider.registerOnPageChangeCallback(pageChangeCallback)
     }
 
-    private fun clickerListener() {
-        binding.tvSkip.setOnClickListener {
-            //NavHandler.instance.loginActivity(this)
-        }
-
-        binding.rlNext.setOnClickListener {
-            if (lastPage.not()) {
-                binding.vpSlider.currentItem++
-            }
-        }
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         binding.vpSlider.unregisterOnPageChangeCallback(pageChangeCallback)
+    }
+
+    private fun observe() {
+        viewModel.isPageIndicatorNext.observe(this) { isIndicatorNext ->
+            if (isIndicatorNext == true) {
+                if (lastPage.not())
+                    binding.vpSlider.currentItem++
+            }
+            if (isIndicatorNext == false) {
+                binding.vpSlider.currentItem--
+                if (firstPage.not())
+                    binding.vpSlider.currentItem--
+            }
+        }
+
+        viewModel.getMainActivity.observe(this) {
+            ClientPreferences.inst.isFirstLaunch = false
+            NavHandler.instance.toMainActivityFinishAffinity(this)
+        }
+
+        viewModel.getTermsConditionActivity.observe(this) {
+            NavHandler.instance.toTermsAndConditionsActivity(this)
+        }
     }
 }

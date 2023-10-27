@@ -8,6 +8,7 @@ import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseFragment
 import com.ferdidrgn.theatreticket.base.BasePopUp
 import com.ferdidrgn.theatreticket.databinding.FragmentHomeBinding
+import com.ferdidrgn.theatreticket.tools.NavHandler
 import com.ferdidrgn.theatreticket.tools.builderADS
 import com.ferdidrgn.theatreticket.tools.getPositionAndSendHandler2
 import com.ferdidrgn.theatreticket.tools.mainScope
@@ -32,6 +33,9 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
         binding.showAllAdapter = ShowsAllAdapter(viewModel)
         binding.showSliderAdapter = ShowsSliderHorizontalAdapter(viewModel)
 
+        binding.gecicici.setOnClickListener {
+            NavHandler.instance.toOnboardingActivity(requireContext())
+        }
         observe()
     }
 

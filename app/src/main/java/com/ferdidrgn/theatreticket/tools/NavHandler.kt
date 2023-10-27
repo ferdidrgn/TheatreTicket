@@ -5,8 +5,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat.finishAffinity
 import com.ferdidrgn.theatreticket.enums.ToMain
+import com.ferdidrgn.theatreticket.ui.termsAndConditions.TermsAndConditionsActivity
 import com.ferdidrgn.theatreticket.ui.language.LanguageActivity
 import com.ferdidrgn.theatreticket.ui.main.MainActivity
+import com.ferdidrgn.theatreticket.ui.onbarding.OnboardingActivity
 import com.ferdidrgn.theatreticket.ui.showOperations.ShowOperationsActivity
 
 class NavHandler {
@@ -29,7 +31,13 @@ class NavHandler {
         context.startActivity(intent)
     }
 
-    fun toShowOperationsActivity( context: Context) {
+    fun toOnboardingActivity(context: Context) {
+        val intent = Intent(context, OnboardingActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+        context.startActivity(intent)
+    }
+
+    fun toShowOperationsActivity(context: Context) {
         val intent = Intent(context, ShowOperationsActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
         context.startActivity(intent)
@@ -37,6 +45,12 @@ class NavHandler {
 
     fun toLanguageActivity(context: Context) {
         val intent = Intent(context, LanguageActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+        context.startActivity(intent)
+    }
+
+    fun toTermsAndConditionsActivity(context: Context) {
+        val intent = Intent(context, TermsAndConditionsActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
         context.startActivity(intent)
     }

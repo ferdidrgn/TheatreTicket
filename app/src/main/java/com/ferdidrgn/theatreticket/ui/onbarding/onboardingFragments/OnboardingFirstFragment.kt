@@ -4,9 +4,10 @@ import android.os.Bundle
 import androidx.fragment.app.viewModels
 import com.ferdidrgn.theatreticket.base.BaseFragment
 import com.ferdidrgn.theatreticket.databinding.FragmentOnboardingFirstBinding
-import com.ferdidrgn.theatreticket.tools.show
 import com.ferdidrgn.theatreticket.ui.onbarding.OnboardingViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class OnboardingFirstFragment :
     BaseFragment<OnboardingViewModel, FragmentOnboardingFirstBinding>() {
     override fun getVM(): Lazy<OnboardingViewModel> = viewModels()
@@ -14,8 +15,6 @@ class OnboardingFirstFragment :
     override fun getDataBinding(): FragmentOnboardingFirstBinding =
         FragmentOnboardingFirstBinding.inflate(layoutInflater)
 
-    override fun onCreateFinished(savedInstanceState: Bundle?) {
-        binding.imgProduct.show()
-    }
+    override fun onCreateFinished(savedInstanceState: Bundle?) {}
 
 }

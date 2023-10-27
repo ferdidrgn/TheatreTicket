@@ -20,8 +20,8 @@ class TicketBuyFragment : BaseFragment<TicketBuyViewModel, FragmentTicketBuyBind
 
     override fun onCreateFinished(savedInstanceState: Bundle?) {
         binding.viewModel = viewModel
-
         builderADS(requireContext(), binding.adView)
+        binding.cdpDate.setCustomDataPickerClick(requireContext())
 
         observe()
 

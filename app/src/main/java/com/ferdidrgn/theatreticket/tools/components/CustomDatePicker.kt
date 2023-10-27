@@ -37,10 +37,9 @@ class CustomDatePicker : LinearLayout {
         customDatePicker = findViewById(R.id.llCustomDatePicker)
         tvSelectedDate = findViewById(R.id.tvSelectedDate)
 
-        setCustomDataPicker()
     }
 
-    fun setCustomDataPicker(context: Context) {
+    fun setCustomDataPickerClick(context: Context) {
         customDatePicker.onClickDelayed {
 
             val datePickerDialog = DatePickerDialog(

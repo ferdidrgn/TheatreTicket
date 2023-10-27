@@ -12,6 +12,7 @@
     <string name="no">Hayır</string>
     <string name="cancel">İptal</string>
     <string name="ok">Tamam</string>
+    <string name="conitune">Devam</string>
     <string name="next">İleri</string>
     <string name="back">Geri</string>
     <string name="get_started">Başla</string>
@@ -39,6 +40,7 @@
     <string name="are_you_serious_update">Verileri Günecellemek İstediğinize Emin Misiniz</string>
 
     <!--    OnBoarding -->
+    <string name="i_read_and_agree">Okudum &amp;Kabul Ediyorum</string>
 
 
     <!-- TicketBuyFragment -->
@@ -72,7 +74,7 @@
     <string name="success_update_show">Gösteri Başarıyla Güncellendi</string>
 
     <!--     Error Messages -->
-    <string name="error_phone_little">Telefon Numarası 10 karakterden kısa görünüyor. Lütfen kontrol edin</string>
+    <string name="error_phone_little">Telefon Numarası 12 karakterden farklı görünüyor. Lütfen kontrol edin</string>
     <string name="error_first_name_little">İsim çok kısa görünüyor. Lütfen kontrol edin</string>
     <string name="error_last_name_little">Soyisim çok kısa görünüyor. Lütfen kontrol edin</string>
     <string name="error_little_things">Bir ya da birkaç veri çok kısa veya eksik görünüyor. Lütfen kontrol edin</string>

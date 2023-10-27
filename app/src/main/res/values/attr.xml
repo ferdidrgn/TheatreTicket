@@ -3,7 +3,7 @@
 
     <declare-styleable name="CustomEditText">
         <attr name="custom_edit_hint" format="string" />
-        <attr name="custom_edit_input" format="integer" />
+        <attr name="custom_edit_input" format="string" />
     </declare-styleable>
 
     <declare-styleable name="CustomButton">

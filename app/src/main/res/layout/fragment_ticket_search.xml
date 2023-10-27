@@ -61,7 +61,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1">
 
-                        <com.ferdidrgn.theatreticket.tools.components.CustomEditText
+                        <com.ferdidrgn.theatreticket.tools.components.CustomPhoneEditText
                             android:id="@+id/etPhoneNumber"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -69,9 +69,7 @@
                             android:layout_alignParentTop="true"
                             android:layout_marginTop="5dp"
                             android:textAlignment="textStart"
-                            app:custom_edit_hint="@string/phone_number_mask"
-                            app:custom_edit_input="1"
-                            app:custom_edit_text="@={viewModel.phoneNumber}" />
+                            app:cst_phone_text="@={viewModel.phoneNumber}" />
 
                         <com.ferdidrgn.theatreticket.tools.components.CustomEditText
                             android:id="@+id/etFirstName"
@@ -83,7 +81,6 @@
                             android:layout_marginTop="5dp"
                             android:textAlignment="textStart"
                             app:custom_edit_hint="@string/first_name"
-                            app:custom_edit_input="1"
                             app:custom_edit_text="@={viewModel.firstName}" />
 
                         <com.ferdidrgn.theatreticket.tools.components.CustomEditText
@@ -96,7 +93,6 @@
                             android:layout_marginTop="5dp"
                             android:textAlignment="textStart"
                             app:custom_edit_hint="@string/last_name"
-                            app:custom_edit_input="1"
                             app:custom_edit_text="@={viewModel.lastName}" />
 
                     </RelativeLayout>

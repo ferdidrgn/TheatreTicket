@@ -12,13 +12,13 @@ import com.ferdidrgn.theatreticket.tools.NavHandler
 import com.ferdidrgn.theatreticket.tools.builderADS
 import com.ferdidrgn.theatreticket.tools.getPositionAndSendHandler2
 import com.ferdidrgn.theatreticket.tools.mainScope
-import com.google.android.gms.ads.*
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
 
     private lateinit var handler: MainSliderHandler
+    private var currentPosition = 0
 
     override fun getVM(): Lazy<HomeViewModel> = viewModels()
 
@@ -36,6 +36,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
         binding.gecicici.setOnClickListener {
             NavHandler.instance.toOnboardingActivity(requireContext())
         }
+
         observe()
     }
 
@@ -55,44 +56,27 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
             }
         }
 
+        viewModel.goShowDetails.observe(viewLifecycleOwner) { show ->
+            show?.let {
+                NavHandler.instance.toShowDetailsActivity(requireContext(), show)
+            }
+        }
+
         viewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
             if (errorMessage != null)
                 messagePopUp(requireContext(), errorMessage, false)
         }
     }
 
-    private fun addAds() {
-        val adRequest = AdRequest.Builder().build()
-        val adView = binding.adView
-        adView.loadAd(adRequest)
-        adView.adListener = object : AdListener() {
-            override fun onAdClicked() {
-                // Code to be executed when the user clicks on an ad.
-            }
+    override fun onResume() {
+        super.onResume()
+        binding.indicator.selection = 0
+        handler.addChanging()
+    }
 
-            override fun onAdClosed() {
-                // Code to be executed when the user is about to return
-                // to the app after tapping on an ad.
-            }
-
-            override fun onAdFailedToLoad(adError: LoadAdError) {
-                // Code to be executed when an ad request fails.
-            }
-
-            override fun onAdImpression() {
-                // Code to be executed when an impression is recorded
-                // for an ad.
-            }
-
-            override fun onAdLoaded() {
-                // Code to be executed when an ad finishes loading.
-            }
-
-            override fun onAdOpened() {
-                // Code to be executed when an ad opens an overlay that
-                // covers the screen.
-            }
-        }
+    override fun onPause() {
+        super.onPause()
+        handler.removeChanging()
     }
 
     private fun messagePopUp(context: Context, message: String, isSuccess: Boolean) {

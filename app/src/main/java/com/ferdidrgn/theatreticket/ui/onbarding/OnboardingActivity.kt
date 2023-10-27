@@ -72,9 +72,5 @@ class OnboardingActivity : BaseActivity<OnboardingViewModel, ActivityOnboardingB
             ClientPreferences.inst.isFirstLaunch = false
             NavHandler.instance.toMainActivityFinishAffinity(this)
         }
-
-        viewModel.getTermsConditionActivity.observe(this) {
-            NavHandler.instance.toTermsAndConditionsActivity(this)
-        }
     }
 }

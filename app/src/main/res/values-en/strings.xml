@@ -11,6 +11,7 @@
     <string name="no">No</string>
     <string name="cancel">Cancel</string>
     <string name="ok">Ok</string>
+    <string name="conitune">Continue</string>
     <string name="next">Next</string>
     <string name="back">Back</string>
     <string name="get_started">Get Started</string>
@@ -27,6 +28,7 @@
     <string name="are_you_serious_update">Are You Sure You Want To Update Data</string>
 
     <!--    OnBoarding -->
+    <string name="i_read_and_agree">I read&amp;Agree</string>
 
     <!-- TicketBuyFragment -->
     <string name="phone_number_mask">Phone Number:(555)</string>
@@ -59,7 +61,7 @@
     <string name="success_update_show">Show Updated Successfully</string>
 
     <!--     Error Messages -->
-    <string name="error_phone_little">Phone Number Appears To Be Less Than 10 Digits Long. Please Check</string>
+    <string name="error_phone_little">Phone Number Appears To Be Different From 12 Characters. Please Check</string>
     <string name="error_first_name_little">First Name Seems Too Short. Please Check</string>
     <string name="error_last_name_little">Last Name Seems Too Short. Please Check</string>
     <string name="error_little_things">One or more data entries appear to be very short or empty. Please check.</string>

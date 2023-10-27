@@ -77,7 +77,7 @@ class TicketSearchViewModel @Inject constructor(private val sellFirebaseQueries:
             message = message(R.string.error_last_name_little)
         }
 
-        if (phoneNumber.value.length != 10) {
+        if (phoneNumber.value.length != 12) {
             isRequiredFieldsDone = false
             message = message(R.string.error_phone_little)
         }

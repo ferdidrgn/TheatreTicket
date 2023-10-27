@@ -18,13 +18,15 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/main_dark2">
 
         <com.ferdidrgn.theatreticket.tools.components.CustomToolbar
             android:id="@+id/customToolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/main_dark2"
+            app:cst_toolbar_backIcon_visible="true"
             app:cst_toolbar_text="@string/show_operations"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -198,7 +200,6 @@
                             android:layout_marginTop="15dp"
                             android:textAlignment="textStart"
                             app:custom_edit_hint="@string/show_name"
-                            app:custom_edit_input="1"
                             app:custom_edit_text="@={viewModel.name}" />
 
                         <com.ferdidrgn.theatreticket.tools.components.CustomEditText
@@ -208,7 +209,6 @@
                             android:layout_marginTop="5dp"
                             android:textAlignment="textStart"
                             app:custom_edit_hint="@string/show_desc"
-                            app:custom_edit_input="1"
                             app:custom_edit_text="@={viewModel.desc}" />
 
                         <com.ferdidrgn.theatreticket.tools.components.CustomEditText
@@ -218,7 +218,6 @@
                             android:layout_marginTop="5dp"
                             android:textAlignment="textStart"
                             app:custom_edit_hint="@string/price"
-                            app:custom_edit_input="1"
                             app:custom_edit_text="@={viewModel.price}" />
 
                         <com.ferdidrgn.theatreticket.tools.components.CustomEditText
@@ -228,7 +227,6 @@
                             android:layout_marginTop="5dp"
                             android:textAlignment="textStart"
                             app:custom_edit_hint="@string/date_hours"
-                            app:custom_edit_input="1"
                             app:custom_edit_text="@={viewModel.date}" />
 
                         <com.ferdidrgn.theatreticket.tools.components.CustomEditText
@@ -238,7 +236,6 @@
                             android:layout_marginTop="5dp"
                             android:textAlignment="textStart"
                             app:custom_edit_hint="@string/age_limit"
-                            app:custom_edit_input="1"
                             app:custom_edit_text="@={viewModel.ageLimit}" />
 
                         <com.ferdidrgn.theatreticket.tools.components.CustomButton

@@ -56,7 +56,10 @@ fun ViewPager2.getPositionAndSendHandler2(
     handler: MainSliderHandler,
     sendPosition: (Int) -> Unit
 ) {
-    registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+    var currentPosition = 0
+
+    registerOnPageChangeCallback(object :
+        ViewPager2.OnPageChangeCallback() {
         override fun onPageScrollStateChanged(state: Int) {
             super.onPageScrollStateChanged(state)
             if (state == ViewPager2.SCROLL_STATE_DRAGGING) {
@@ -66,29 +69,24 @@ fun ViewPager2.getPositionAndSendHandler2(
             }
         }
 
-        override fun onPageScrolled(
-            position: Int,
-            positionOffset: Float,
-            positionOffsetPixels: Int
-        ) {
-            super.onPageScrolled(position, positionOffset, positionOffsetPixels)
-        }
-
         override fun onPageSelected(position: Int) {
             super.onPageSelected(position)
+            currentPosition = position
             sendPosition.invoke(position)
         }
     })
 
     handler.setHandler {
-        val currentPosition: Int = currentItem
-        if (list?.isNotEmpty() == true) {
-            if (currentPosition == (list.size - 1)) {
-                setCurrentItem(0, true)
-                sendPosition.invoke(0)
-            } else {
-                setCurrentItem(currentPosition + 1, true)
-                sendPosition.invoke(currentPosition + 1)
+        val listSize = list?.size
+        if (listSize != null) {
+            if (listSize > 0) {
+                if (currentPosition == (listSize - 1)) {
+                    currentPosition = 0
+                } else {
+                    currentPosition++
+                }
+                setCurrentItem(currentPosition, true)
+                sendPosition.invoke(currentPosition)
             }
         }
     }

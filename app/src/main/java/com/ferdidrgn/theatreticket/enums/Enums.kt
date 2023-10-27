@@ -29,8 +29,8 @@ enum class Roles(val role: String) {
 
 enum class PhoneNumberLengthsByCountry(val length: Int, val mask: String) {
     Arabic(13, "### ### ## ##"),
-    English(12, "### ### ## #"),
-    Turkish(12, "### ### ## #")
+    English(13, "### ### ## ##"),
+    Turkish(13, "### ### ## ##")
 }
 
 enum class Languages(val language: String) {
@@ -62,4 +62,13 @@ enum class ToolBarTitles(@field:StringRes @param:StringRes private val mLabel: I
             mContext = context
         }
     }
+}
+
+enum class textInputType(val text: String, val type: Int) {
+    Text("text", 0x00000001),
+    NumberDecimal("numberdecimal", 0x00002002),
+    Phone("phone", 0x00000003),
+    DateTime("datetime", 0x00000004),
+    Date("date", 0x00000014),
+    Time("time", 0x00000024)
 }

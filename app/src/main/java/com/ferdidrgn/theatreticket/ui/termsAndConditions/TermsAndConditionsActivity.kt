@@ -15,5 +15,8 @@ class TermsAndConditionsActivity :
     override fun getDataBinding(): ActivityTermsAndConditionsBinding =
         ActivityTermsAndConditionsBinding.inflate(layoutInflater)
 
-    override fun onCreateFinished(savedInstance: Bundle?) {}
+    override fun onCreateFinished(savedInstance: Bundle?) {
+        binding.viewModel = viewModel
+        binding.customToolbar.backIconOnBackPress(this)
+    }
 }

@@ -12,6 +12,10 @@
             type="com.ferdidrgn.theatreticket.commonModels.dummyData.Show" />
 
         <variable
+            name="listener"
+            type="com.ferdidrgn.theatreticket.ui.main.home.ShowDetailsAdapterListener" />
+
+        <variable
             name="index"
             type="Integer" />
     </data>
@@ -21,6 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
+        android:onClick="@{()->listener.onShowDetailsAdapterListener(show)}"
         android:padding="5dp">
 
         <com.google.android.material.card.MaterialCardView

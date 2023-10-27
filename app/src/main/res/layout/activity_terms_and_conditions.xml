@@ -10,13 +10,52 @@
             type="com.ferdidrgn.theatreticket.ui.termsAndConditions.TermsViewModel" />
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/main_dark2"
         android:orientation="vertical"
-        tools:context=".ui.TermsAndConditionsActivity">
+        tools:context=".ui.termsAndConditions.TermsAndConditionsActivity">
 
-    </LinearLayout>
+        <com.ferdidrgn.theatreticket.tools.components.CustomToolbar
+            android:id="@+id/customToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cst_toolbar_backIcon_visible="true"
+            app:cst_toolbar_text="@string/terms_condition"
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:overScrollMode="never"
+            app:layout_constraintBottom_toTopOf="@+id/btnContinue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/customToolbar">
+
+            <TextView
+                android:id="@+id/tvTermsandCondition"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                tools:text="@string/terms_condition" />
+        </androidx.core.widget.NestedScrollView>
+
+
+        <com.ferdidrgn.theatreticket.tools.components.CustomButton
+            android:id="@+id/btnContinue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            app:cst_button_name="@string/i_read_and_agree"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

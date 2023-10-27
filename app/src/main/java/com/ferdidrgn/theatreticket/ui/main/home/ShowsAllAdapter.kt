@@ -15,12 +15,12 @@ class ShowsAllAdapter(
         binding.apply {
             show = item
             index = position
-            //listener = showDetailsAdapterListener
+            listener = showDetailsAdapterListener
             executePendingBindings()
         }
     }
 }
 
 interface ShowDetailsAdapterListener {
-    fun onShowDetailsAdapterListener(position: Int) {}
+    fun onShowDetailsAdapterListener(position: Int, show: Show?)
 }

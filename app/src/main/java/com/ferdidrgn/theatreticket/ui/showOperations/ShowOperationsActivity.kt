@@ -26,6 +26,7 @@ class ShowOperationsActivity :
     override fun onCreateFinished(savedInstance: Bundle?) {
         binding.viewModel = viewModel
         binding.showOperationsAdapter = ShowOperationsAdapter(viewModel)
+        binding.customToolbar.backIconOnBackPress(this)
         builderADS(this, binding.adView)
         builderADS(this, binding.adViewBottomSheet)
         bottomSheetInit()

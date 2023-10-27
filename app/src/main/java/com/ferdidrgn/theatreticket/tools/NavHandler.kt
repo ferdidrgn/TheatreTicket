@@ -4,11 +4,13 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat.finishAffinity
+import com.ferdidrgn.theatreticket.commonModels.dummyData.Show
 import com.ferdidrgn.theatreticket.enums.ToMain
 import com.ferdidrgn.theatreticket.ui.termsAndConditions.TermsAndConditionsActivity
 import com.ferdidrgn.theatreticket.ui.language.LanguageActivity
 import com.ferdidrgn.theatreticket.ui.main.MainActivity
 import com.ferdidrgn.theatreticket.ui.onbarding.OnboardingActivity
+import com.ferdidrgn.theatreticket.ui.showDetails.ShowDetailsActivity
 import com.ferdidrgn.theatreticket.ui.showOperations.ShowOperationsActivity
 
 class NavHandler {
@@ -52,6 +54,13 @@ class NavHandler {
     fun toTermsAndConditionsActivity(context: Context) {
         val intent = Intent(context, TermsAndConditionsActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+        context.startActivity(intent)
+    }
+
+    fun toShowDetailsActivity(context: Context, show: ArrayList<Show?>) {
+        val intent = Intent(context, ShowDetailsActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+        intent.putExtra(SHOW, show)
         context.startActivity(intent)
     }
 }

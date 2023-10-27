@@ -12,6 +12,10 @@
             type="com.ferdidrgn.theatreticket.commonModels.dummyData.Show" />
 
         <variable
+            name="listener"
+            type="com.ferdidrgn.theatreticket.ui.main.home.ShowSliderDetailsAdapterListener" />
+
+        <variable
             name="index"
             type="Integer" />
     </data>
@@ -53,6 +57,7 @@
                 android:id="@+id/imgShow"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
+                android:onClick="@{() -> listener.onShowSliderDetailsAdapterListener(show)}"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_home"
                 app:shapeAppearanceOverlay="@style/ImageView.SquareBorder"

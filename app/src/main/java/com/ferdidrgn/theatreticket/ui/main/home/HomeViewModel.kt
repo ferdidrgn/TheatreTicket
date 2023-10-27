@@ -48,7 +48,10 @@ class HomeViewModel @Inject constructor(private val showFirebaseQuieries: ShowFi
         goShowDetails.postValue(showList)
     }
 
-    override fun onShowDetailsAdapterListener(position: Int) {
-        TODO("Not yet implemented")
+    override fun onShowSliderDetailsAdapterListener(show: Show) {
+        val showList = ArrayList<Show?>()
+        showList.add(show)
+        goShowDetails.postValue(showList)
     }
+
 }

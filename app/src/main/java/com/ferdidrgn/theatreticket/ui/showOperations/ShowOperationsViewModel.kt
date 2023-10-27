@@ -28,9 +28,6 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
     val updateBottonVisibility = MutableLiveData<Boolean?>()
     val bottomSheetVisibility = MutableLiveData<Boolean?>()
 
-    var deleteIndex = 0
-    var updateIndex = 0
-
     val name = MutableStateFlow("")
     val desc = MutableStateFlow("")
     val imageUrl = MutableStateFlow("")
@@ -139,8 +136,6 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
                         errorMessage.postValue(message(R.string.error_server))
                     }
                     true -> {
-                        show.value?.toMutableList()?.removeAt(deleteIndex)
-                        show.postValue(show.value)
                         hideLoading()
                         successMessage.postValue(message(R.string.success_delete_show))
                     }
@@ -168,8 +163,6 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
                         errorMessage.postValue(message(R.string.error_server))
                     }
                     true -> {
-                        show.value?.toMutableList()?.set(updateIndex, updateOrAddShowData)
-                        show.postValue(show.value)
                         hideLoading()
                         successMessage.postValue(message(R.string.success_update_show))
                     }
@@ -205,8 +198,7 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
             errorMessage.postValue(message(R.string.error_little_things))
     }
 
-    override fun onShowsUpdateListener(position: Int, show: Show) {
-        updateIndex = position
+    override fun onShowsUpdateListener(show: Show) {
         show?.name?.let { name.value = it }
         show?.description?.let { desc.value = it }
         show.imageUrl?.let { imageUrl.value = it }
@@ -216,8 +208,7 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
         updateBottonVisibility.postValue(true)
     }
 
-    override fun onShowsDeleteListener(position: Int, show: Show) {
-        deleteIndex = position
+    override fun onShowsDeleteListener(show: Show) {
         deleteClicked.postValue(show)
         deletePopUp.postValue(true)
     }

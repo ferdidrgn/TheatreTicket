@@ -22,6 +22,6 @@ class ShowOperationsAdapter(
 }
 
 interface ShowsUpdateDeleteAdapterListener {
-    fun onShowsUpdateListener(position: Int, show: Show)
-    fun onShowsDeleteListener(position: Int, show: Show)
+    fun onShowsUpdateListener(show: Show)
+    fun onShowsDeleteListener(show: Show)
 }

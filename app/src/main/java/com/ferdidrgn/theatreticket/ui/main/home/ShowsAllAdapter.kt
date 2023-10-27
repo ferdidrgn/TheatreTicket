@@ -22,5 +22,5 @@ class ShowsAllAdapter(
 }
 
 interface ShowDetailsAdapterListener {
-    fun onShowDetailsAdapterListener(position: Int, show: Show?)
+    fun onShowDetailsAdapterListener(show: Show?)
 }

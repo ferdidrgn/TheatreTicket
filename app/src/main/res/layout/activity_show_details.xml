@@ -10,6 +10,10 @@
         <variable
             name="viewModel"
             type="com.ferdidrgn.theatreticket.ui.showDetails.ShowDetailsViewModel" />
+
+        <variable
+            name="show"
+            type="com.ferdidrgn.theatreticket.commonModels.dummyData.Show" />
     </data>
 
     <LinearLayout
@@ -23,7 +27,7 @@
         <com.ferdidrgn.theatreticket.tools.components.CustomToolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cst_toolbar_text="@string/language" />
+            app:cst_toolbar_text="@{show.name}" />
 
         <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
             android:id="@+id/adView"

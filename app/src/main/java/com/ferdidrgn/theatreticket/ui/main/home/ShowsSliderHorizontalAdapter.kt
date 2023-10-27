@@ -15,12 +15,12 @@ class ShowsSliderHorizontalAdapter(
         binding.apply {
             show = item
             index = position
-            //listener = showSliderDetailsAdapterListener
+            listener = showSliderDetailsAdapterListener
             executePendingBindings()
         }
     }
 }
 
 interface ShowSliderDetailsAdapterListener {
-    fun onShowSliderDetailsAdapterListener(position: Int) {}
+    fun onShowSliderDetailsAdapterListener(show: Show)
 }

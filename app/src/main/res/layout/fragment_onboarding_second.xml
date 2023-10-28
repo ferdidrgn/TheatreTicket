@@ -21,10 +21,7 @@
             android:id="@+id/imgWelcome"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginEnd="1dp"
-            android:layout_marginBottom="1dp"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             android:src="@drawable/img_goz_kap_vaz_yap_april_23"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Corner20DP" />

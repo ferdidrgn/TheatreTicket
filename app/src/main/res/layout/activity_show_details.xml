@@ -23,14 +23,6 @@
         android:background="@color/main_dark2"
         tools:context=".ui.showDetails.ShowDetailsActivity">
 
-        <com.ferdidrgn.theatreticket.tools.components.CustomToolbar
-            android:id="@+id/toolbarCustom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:custom_toolbar_changeable_text="@{show.name}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
             android:id="@+id/adView"
@@ -41,39 +33,50 @@
             ads:adUnitId="@string/BANNER_ADS_TEST"
             ads:layout_constraintEnd_toEndOf="parent"
             ads:layout_constraintStart_toStartOf="parent"
-            ads:layout_constraintTop_toBottomOf="@+id/toolbarCustom" />
+            ads:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:padding="16sp"
-            android:text="@string/title_home"
-            android:textColor="#000000"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/adView" />
-
-        <androidx.core.widget.NestedScrollView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:paddingTop="150dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/adView">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="16sp"
-                android:paddingEnd="16sp"
-                android:paddingBottom="16sp"
-                android:text="@string/show_desc"
-                android:textColor="#000000" />
+                android:layout_height="250dp"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                app:layout_constraintBottom_toBottomOf="parent">
 
-        </androidx.core.widget.NestedScrollView>
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="0.5"
+                    app:cardCornerRadius="10dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:strokeColor="@color/main_secondary"
+                    app:strokeWidth="3dp">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/img_goz_kap_vaz_yap_april_23"
+                        app:shapeAppearanceOverlay="@style/ImageView.SquareBorder"
+                        app:strokeColor="@color/main_dark"
+                        app:strokeWidth="12dp" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    android:text="@{show.description}" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
@@ -91,11 +94,11 @@
                 android:layout_gravity="bottom"
                 android:orientation="vertical"
                 app:behavior_hideable="false"
-                app:behavior_peekHeight="200dp"
-                app:fillColor="@color/main_fifth"
+                app:behavior_peekHeight="100dp"
+                app:fillColor="@color/main_dark"
                 app:layout_behavior="com.tayfuncesur.curvedbottomsheet.TopSheetBehavior">
 
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/content"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -106,33 +109,40 @@
                     android:orientation="vertical"
                     android:padding="16dp">
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="@string/privace_policy"
-                        android:textColor="@color/white" />
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cvShow"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="20dp"
+                        app:cardCornerRadius="10dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:strokeColor="@color/main_secondary"
+                        app:strokeWidth="3dp">
 
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/imgShow"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/img_goz_kap_vaz_yap_april_23"
+                            app:shapeAppearanceOverlay="@style/ImageView.SquareBorder"
+                            app:strokeColor="@color/main_dark"
+                            app:strokeWidth="12dp" />
+                    </com.google.android.material.card.MaterialCardView>
 
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/profile_image"
-                        android:layout_width="96dp"
-                        android:layout_height="96dp"
-                        android:layout_marginTop="12dp"
-                        android:src="@drawable/ic_account_avatar_profile_user"
-                        app:civ_border_color="@color/white"
-                        app:civ_border_width="2dp" />
+                    <ImageView
+                        android:id="@+id/imgArrowDown"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="0.1"
+                        android:src="@drawable/ic_arrow_down"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:tint="@color/pink_light" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="About the author"
-                        android:textColor="@color/white" />
-
-
-                </LinearLayout>
-
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </com.tayfuncesur.curvedbottomsheet.CurvedLayout>
 

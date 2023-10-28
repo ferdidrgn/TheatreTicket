@@ -15,6 +15,7 @@ const val CONNECTION = "connection"
 const val IS_FIRST_LUNCH = "isFirstLunch"
 const val TO_MAIN = "TO_MAIN"
 const val SHOW = "show"
+const val DEFAULT_DATE_FORMAT = "dd-MM-yyyy"
 
 //FireBaseRemoteConfig
 const val SHOULD_FIREBASE_AOUTH_BE_ON_ANDROID = "shouldFirebaseAouthBeOnAndroid"

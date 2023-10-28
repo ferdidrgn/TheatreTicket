@@ -30,11 +30,11 @@ class CustomerFirebaseQueries {
     }
 
     fun checkPhoneNumber(customer: Customer?, status: (String, Customer?) -> Unit) {
-        var statusTree: String = ""
+        var statusTree = ""
         var customerInfoList: Customer? = null
-        var customerFirstName: String = ""
-        var customerLastName: String = ""
-        var age: String = ""
+        var customerFirstName = ""
+        var customerLastName = ""
+        var age = ""
         var notEqual: Boolean? = null
 
         fireStoreCustomerRef.whereEqualTo("phoneNumber", customer?.phoneNumber).get()

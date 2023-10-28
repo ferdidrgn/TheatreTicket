@@ -93,3 +93,22 @@ fun showToast(
 fun getContext(): Context? {
     return com.ferdidrgn.theatreticket.TheatreTicketApp.inst.applicationContext
 }
+
+fun getMonthFormat(context: Context, month: Int): String {
+    val stringId = when (month) {
+        1 -> R.string.jan
+        2 -> R.string.feb
+        3 -> R.string.mar
+        4 -> R.string.apr
+        5 -> R.string.may
+        6 -> R.string.jun
+        7 -> R.string.jul
+        8 -> R.string.aug
+        9 -> R.string.sep
+        10 -> R.string.oct
+        11 -> R.string.nov
+        12 -> R.string.dec
+        else -> R.string.jan
+    }
+    return context.resources.getString(stringId)
+}

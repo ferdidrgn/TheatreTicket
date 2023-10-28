@@ -3,6 +3,7 @@ package com.ferdidrgn.theatreticket.commonModels.dummyData
 import com.ferdidrgn.theatreticket.base.ListAdapterItem
 import com.ferdidrgn.theatreticket.commonModels.Players
 import com.ferdidrgn.theatreticket.commonModels.Stage
+import java.io.Serializable
 
 data class Show(
     var _createdAt: String? = null,
@@ -17,4 +18,4 @@ data class Show(
     var stageId: ArrayList<Stage?>? = null,
     var actorsId: ArrayList<Players?>? = null,
     override val mId: Long = 1L
-) : ListAdapterItem
+) : ListAdapterItem, Serializable

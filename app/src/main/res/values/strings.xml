@@ -22,6 +22,20 @@
     <string name="welcome">Hoşgeldiniz</string>
     <string name="search">Ara</string>
 
+    <!--    Mount  -->
+    <string name="jan">OCA</string>
+    <string name="feb">ŞUB</string>
+    <string name="mar">MART</string>
+    <string name="apr">NİS</string>
+    <string name="may">MAY</string>
+    <string name="jun">HAZ</string>
+    <string name="jul">TEM</string>
+    <string name="aug">AĞU</string>
+    <string name="sep">EYL</string>
+    <string name="oct">EKM</string>
+    <string name="nov">KAS</string>
+    <string name="dec">ARA</string>
+
     <!--    ADS Information's -->
     <string name="BANNER_ADS_TEST" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
     <string name="ADS_BANNER_MAIN_ACTVTY_REAL" translatable="false">ca-app-pub-5779807348211992/4555290310</string>
@@ -55,6 +69,8 @@
     <string name="search_for_buy_ticket">Alımları Sorgula</string>
     <string name="age">Yaş</string>
     <string name="price">Ücret</string>
+    <string name="select_time">Saat Seç</string>
+    <string name="select_date">Tarih Seç</string>
 
     <!--    AddShowActivity -->
     <string name="show_name">Gösteri Adı</string>
@@ -74,7 +90,7 @@
     <string name="success_update_show">Gösteri Başarıyla Güncellendi</string>
 
     <!--     Error Messages -->
-    <string name="error_phone_little">Telefon Numarası 12 karakterden farklı görünüyor. Lütfen kontrol edin</string>
+    <string name="error_phone_little">Telefon Numarası 10 karakterden farklı görünüyor. Lütfen kontrol edin</string>
     <string name="error_first_name_little">İsim çok kısa görünüyor. Lütfen kontrol edin</string>
     <string name="error_last_name_little">Soyisim çok kısa görünüyor. Lütfen kontrol edin</string>
     <string name="error_little_things">Bir ya da birkaç veri çok kısa veya eksik görünüyor. Lütfen kontrol edin</string>

@@ -10,7 +10,6 @@
         android:id="@+id/tlCustomPhoneNumber"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
         android:hint="@string/phone_number_mask"
         android:textColorHint="@color/main_fifth"
         app:boxStrokeWidth="0dp"

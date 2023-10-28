@@ -1,11 +1,16 @@
 package com.ferdidrgn.theatreticket.tools.components
 
+import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.app.DatePickerDialog
+import android.app.DatePickerDialog.OnDateSetListener
+import android.app.TimePickerDialog
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.ferdidrgn.theatreticket.R
+import com.ferdidrgn.theatreticket.tools.DEFAULT_DATE_FORMAT
 import com.ferdidrgn.theatreticket.tools.onClickDelayed
 import java.text.SimpleDateFormat
 import java.util.*
@@ -13,8 +18,8 @@ import java.util.*
 class CustomDatePicker : LinearLayout {
 
     private lateinit var customDatePicker: LinearLayout
-    private lateinit var tvSelectedDate: TextView
-    private val calendar = Calendar.getInstance()
+    lateinit var tvSelectedDate: TextView
+    val calendar: Calendar = Calendar.getInstance()
 
     constructor(context: Context) : super(context) {
         initLayout(context, null, null)
@@ -39,22 +44,66 @@ class CustomDatePicker : LinearLayout {
 
     }
 
-    fun setCustomDataPickerClick(context: Context) {
+    init {
+        getDate()
+    }
+
+    fun setCustomDataPickerClick(context: Context, textListener: (String) -> Unit) {
         customDatePicker.onClickDelayed {
 
-            val datePickerDialog = DatePickerDialog(
-                context, { DatePicker, year: Int, monthOfYear: Int, dayOfMonth: Int ->
-                    val selectedDate = Calendar.getInstance()
-                    selectedDate.set(year, monthOfYear, dayOfMonth)
-                    val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-                    val formattedDate = dateFormat.format(selectedDate.time)
-                    tvSelectedDate.text = "Selected Date: $formattedDate"
-                },
-                calendar.get(Calendar.YEAR),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH)
-            )
+            val dateSetListener =
+                OnDateSetListener { datePicker, year, month, day ->
+                    var localMonth = month
+                    localMonth += 1
+                    calendar[year, month] = day
+                    val date: String = makeDateString(day, localMonth, year)
+                    textListener.invoke(date)
+                }
+
+            val style: Int = AlertDialog.THEME_HOLO_LIGHT
+            val cal: Calendar = Calendar.getInstance()
+            val year: Int = cal.get(android.icu.util.Calendar.YEAR)
+            val month: Int = cal.get(android.icu.util.Calendar.MONTH)
+            val day: Int = cal.get(android.icu.util.Calendar.DAY_OF_MONTH)
+            val datePickerDialog =
+                DatePickerDialog(context, style, dateSetListener, year, month, day)
             datePickerDialog.show()
         }
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    fun getDate(): String {
+        val date = Date(calendar.timeInMillis)
+        return SimpleDateFormat(DEFAULT_DATE_FORMAT, Locale("en")).format(date)
+    }
+
+    private fun makeDateString(day: Int, month: Int, year: Int): String {
+        return "$day-$month-$year"
+    }
+
+    private fun popTimePicker(context: Context, textListener: (String) -> Unit) {
+        var hour = 0
+        var minute: Int = 0
+        val style: Int = AlertDialog.THEME_HOLO_LIGHT
+        val onTimeSetListener =
+            TimePickerDialog.OnTimeSetListener { _, selectedHour, selectedMinute ->
+                hour = selectedHour
+                minute = selectedMinute
+                calendar[Calendar.HOUR_OF_DAY] = selectedHour
+                calendar[Calendar.MINUTE] = selectedMinute
+                textListener.invoke(
+                    java.lang.String.format(
+                        Locale.getDefault(),
+                        "%02d:%02d",
+                        hour,
+                        minute
+                    )
+                )
+            }
+
+        val timePickerDialog =
+            TimePickerDialog(context, style, onTimeSetListener, hour, minute, true)
+        timePickerDialog.setTitle(resources.getString(R.string.select_time))
+        timePickerDialog.show()
     }
 }

@@ -6,6 +6,7 @@ import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
 import androidx.databinding.InverseBindingMethod
 import androidx.databinding.InverseBindingMethods
+import com.ferdidrgn.theatreticket.tools.components.CustomDatePicker
 import com.ferdidrgn.theatreticket.tools.components.CustomEditText
 import com.ferdidrgn.theatreticket.tools.components.CustomPhoneEditText
 import com.ferdidrgn.theatreticket.tools.components.CustomToolbar
@@ -26,6 +27,11 @@ object CustomDataBindingUtils {
         InverseBindingMethod(
             type =
             CustomPhoneEditText::class, attribute = "bind:cst_phone_text", event =
+            "bind:textAttrChanged", method = "bind:getText"
+        ),
+        InverseBindingMethod(
+            type =
+            CustomDatePicker::class, attribute = "bind:cst_picker_changeable_text", event =
             "bind:textAttrChanged", method = "bind:getText"
         ),
     )
@@ -118,6 +124,39 @@ object CustomDataBindingUtils {
                 text?.let {
                     if (it != editText.editText.text.toString()) {
                         editText.editText.setText(it)
+                    }
+                }
+            }
+        }
+    }
+
+
+    class CustomDatePickerBinder {
+        companion object {
+
+            @BindingAdapter("app:textAttrChanged")
+            @JvmStatic
+            fun setListener(editText: CustomDatePicker, listener: InverseBindingListener?) {
+                if (listener != null) {
+                    editText.tvSelectedDate.doAfterTextChanged { listener.onChange() }
+                }
+            }
+
+            @InverseBindingAdapter(
+                attribute = "cst_picker_changeable_text",
+                event = "app:textAttrChanged"
+            )
+            @JvmStatic
+            fun getCustomEditText(nMe: CustomDatePicker): String {
+                return nMe.tvSelectedDate.text.toString()
+            }
+
+            @BindingAdapter("cst_picker_changeable_text")
+            @JvmStatic
+            fun setCustomEditText(editText: CustomDatePicker, text: String?) {
+                text?.let {
+                    if (it != editText.tvSelectedDate.text.toString()) {
+                        editText.tvSelectedDate.setText(it)
                     }
                 }
             }

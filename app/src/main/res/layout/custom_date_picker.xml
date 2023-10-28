@@ -13,5 +13,5 @@
         android:padding="16dp"
         android:textColor="@color/main_fifth"
         android:textColorHint="@color/main_fifth"
-        android:textSize="18sp" />
+        android:textSize="12sp" />
 </LinearLayout>

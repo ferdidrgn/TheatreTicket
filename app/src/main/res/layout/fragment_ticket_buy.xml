@@ -133,7 +133,8 @@
                             android:layout_alignEnd="@+id/etLastName"
                             android:layout_alignParentStart="true"
                             android:layout_marginTop="5dp"
-                            android:textAlignment="textStart" />
+                            android:textAlignment="textStart"
+                            app:cst_picker_changeable_text="@={viewModel.age}" />
 
                     </RelativeLayout>
 

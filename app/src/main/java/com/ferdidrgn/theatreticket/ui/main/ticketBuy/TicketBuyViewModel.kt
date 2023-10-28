@@ -44,8 +44,8 @@ class TicketBuyViewModel @Inject constructor(
             customerAdd = Customer(
                 firstName = firstName.value,
                 lastName = lastName.value,
-                phoneNumber = phoneNumber.value
-                //age = userAge.value
+                phoneNumber = phoneNumber.value,
+                age = age.value
             )
 
             customerFirebaseQueries.checkPhoneNumber(customerAdd) { status, customerInfoList ->
@@ -57,8 +57,8 @@ class TicketBuyViewModel @Inject constructor(
                             _id = id + ID.Customer.id,
                             firstName = firstName.value,
                             lastName = lastName.value,
-                            phoneNumber = phoneNumber.value
-                            //age = userAge.value
+                            phoneNumber = phoneNumber.value,
+                            age = age.value
                         )
                         hideLoading()
                         fillDatas(customerAdd, true)
@@ -113,8 +113,8 @@ class TicketBuyViewModel @Inject constructor(
                 _id = customer?._id.toString(),
                 firstName = customer?.firstName.toString(),
                 lastName = customer?.lastName.toString(),
-                phoneNumber = customer?.phoneNumber.toString()
-                //age = userAge.value
+                phoneNumber = customer?.phoneNumber.toString(),
+                age = age.value
             )
 
             val id = UUID.randomUUID().toString()
@@ -181,7 +181,7 @@ class TicketBuyViewModel @Inject constructor(
             message = message(R.string.error_last_name_little)
         }
 
-        if (phoneNumber.value.length != 12) {
+        if (phoneNumber.value.length != 13) {
             isRequiredFieldsDone = false
             message = message(R.string.error_phone_little)
         }

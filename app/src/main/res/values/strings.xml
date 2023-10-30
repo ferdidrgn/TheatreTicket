@@ -71,6 +71,7 @@
     <string name="price">Ücret</string>
     <string name="select_time">Saat Seç</string>
     <string name="select_date">Tarih Seç</string>
+    <string name="list_of_events">Etkinlikleri Listele</string>
 
     <!--    AddShowActivity -->
     <string name="show_name">Gösteri Adı</string>

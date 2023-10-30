@@ -12,5 +12,5 @@ class ShowDetailsViewModel @Inject constructor(
     private val showFirebaseQuieries: ShowFirebaseQuieries
 ) : BaseViewModel() {
 
-    val show = MutableLiveData<List<Show?>?>()
+    val show = MutableLiveData<Show?>()
 }

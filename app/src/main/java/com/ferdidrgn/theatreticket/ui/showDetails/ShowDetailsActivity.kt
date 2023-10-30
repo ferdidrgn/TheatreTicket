@@ -23,7 +23,7 @@ class ShowDetailsActivity : BaseActivity<ShowDetailsViewModel, ActivityShowDetai
         binding.viewModel = viewModel
         builderADS(this, binding.adView)
         bottomSheetInit()
-        observe()
+        getDataIntent()
     }
 
     private fun bottomSheetInit() {
@@ -36,9 +36,19 @@ class ShowDetailsActivity : BaseActivity<ShowDetailsViewModel, ActivityShowDetai
         ).init()
     }
 
-    fun observe() {
-        val getShowDeatils = intent.getSerializableExtra(SHOW) as ArrayList<Show?>
-        viewModel.show.value = getShowDeatils
+    private fun getDataIntent() {
+        val getShowDetails = intent.getSerializableExtra(SHOW) as ArrayList<Show?>
+        getShowDetails.forEach {
+            viewModel.show.value = Show(
+                _id = it?._id,
+                name = it?.name,
+                description = it?.description,
+                imageUrl = it?.imageUrl,
+                price = it?.price,
+                date = it?.date,
+                ageLimit = it?.ageLimit,
+            )
+        }
     }
 
 }

@@ -58,6 +58,7 @@
     <string name="price">Price</string>
     <string name="select_time">Select Time</string>
     <string name="select_date">Select Date</string>
+    <string name="list_of_events">List of Events</string>
 
     <!--    AddShowActivity -->
     <string name="show_name">Show Name</string>

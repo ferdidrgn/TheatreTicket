@@ -4,7 +4,6 @@ import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseFragment
@@ -12,6 +11,8 @@ import com.ferdidrgn.theatreticket.base.BasePopUp
 import com.ferdidrgn.theatreticket.databinding.FragmentSettingsBinding
 import com.ferdidrgn.theatreticket.enums.ToMain
 import com.ferdidrgn.theatreticket.tools.*
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -51,13 +52,13 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
             btnLogout.onClickDelayed {
                 showLogoutDialog(requireContext())
             }
-            binding.btnInviteFriends.setOnClickListener {
+            binding.btnInviteFriends.onClickDelayed {
                 //NavHandler.instance.inviteFriendsScreen(requireContext())
             }
-            binding.btnDeleteAcc.setOnClickListener {
+            binding.btnDeleteAcc.onClickDelayed {
                 //deleteAccountPopup()
             }
-            btnContactUs.setOnClickListener {
+            btnContactUs.onClickDelayed {
                 val i = Intent(Intent.ACTION_SEND)
                 i.type = "message/rfc822"
                 i.putExtra(Intent.EXTRA_EMAIL, arrayOf(getString(R.string.contact_email)))
@@ -81,11 +82,19 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
             setDesc(context.getString(R.string.are_you_sure_you_want_to_logout))
             setOnPositiveClick {
                 ClientPreferences.inst.token = ""
+                ClientPreferences.inst.FCMtoken = ""
                 ClientPreferences.inst.userID = ""
                 ClientPreferences.inst.userPhone = ""
                 ClientPreferences.inst.userFirstName = ""
                 ClientPreferences.inst.userLastName = ""
-                NavHandler.instance.toMainActivity(requireContext(), ToMain.Home)
+
+                FirebaseMessaging.getInstance().deleteToken()
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            FirebaseAuth.getInstance().signOut()
+                            NavHandler.instance.toMainActivity(requireContext(), ToMain.Home)
+                        }
+                    }
             }
             setOnNegativeClick {
                 dismiss()

@@ -2,11 +2,11 @@ package com.ferdidrgn.theatreticket.ui.main.ticketBuy
 
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseViewModel
-import com.ferdidrgn.theatreticket.commonModels.dummyData.Customer
+import com.ferdidrgn.theatreticket.commonModels.dummyData.User
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Sell
 import com.ferdidrgn.theatreticket.enums.ID
 import com.ferdidrgn.theatreticket.enums.Response
-import com.ferdidrgn.theatreticket.repository.CustomerFirebaseQueries
+import com.ferdidrgn.theatreticket.repository.UserFirebaseQueries
 import com.ferdidrgn.theatreticket.repository.SellFirebaseQueries
 import com.ferdidrgn.theatreticket.tools.*
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,12 +14,11 @@ import java.util.UUID
 import javax.inject.Inject
 import com.ferdidrgn.theatreticket.tools.helpers.LiveEvent
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.collectLatest
 
 @HiltViewModel
 class TicketBuyViewModel @Inject constructor(
     private val sellFirebaseQueries: SellFirebaseQueries,
-    private val customerFirebaseQueries: CustomerFirebaseQueries
+    private val userFirebaseQueries: UserFirebaseQueries
 ) :
     BaseViewModel() {
 
@@ -29,7 +28,7 @@ class TicketBuyViewModel @Inject constructor(
     var age = MutableStateFlow("")
     val buyTicketPopUp = LiveEvent<Boolean?>()
 
-    var customerAdd = Customer()
+    var userAdd = User()
     var sellAdd = Sell()
 
 
@@ -41,31 +40,32 @@ class TicketBuyViewModel @Inject constructor(
         showLoading()
         mainScope {
 
-            customerAdd = Customer(
+            userAdd = User(
                 firstName = firstName.value,
                 lastName = lastName.value,
                 phoneNumber = phoneNumber.value,
                 age = age.value
             )
 
-            customerFirebaseQueries.checkPhoneNumber(customerAdd) { status, customerInfoList ->
+            userFirebaseQueries.checkPhoneNumber(userAdd) { status, userInfoList ->
                 when (status) {
                     Response.Empty.response -> {
                         //Universal Unique ID
                         val id = UUID.randomUUID().toString()
-                        customerAdd = Customer(
-                            _id = id + ID.Customer.id,
+                        userAdd = User(
+                            _id = id + ID.User.id,
+                            fcmToken = ClientPreferences.inst.FCMtoken.toString(),
                             firstName = firstName.value,
                             lastName = lastName.value,
                             phoneNumber = phoneNumber.value,
                             age = age.value
                         )
                         hideLoading()
-                        fillDatas(customerAdd, true)
+                        fillDatas(userAdd, true)
                     }
                     Response.ThereIs.response -> {
                         hideLoading()
-                        checkTicket(customerInfoList)
+                        checkTicket(userInfoList)
                     }
                     Response.NotEqual.response -> {
                         hideLoading()
@@ -81,15 +81,15 @@ class TicketBuyViewModel @Inject constructor(
         }
     }
 
-    private fun checkTicket(customer: Customer?) {
+    private fun checkTicket(user: User?) {
 
         showLoading()
         mainScope {
-            sellFirebaseQueries.checkBuyTicketCustomerId(customer?._id.toString()) { status ->
+            sellFirebaseQueries.checkBuyTicketCustomerId(user?._id.toString()) { status ->
                 when (status) {
                     Response.Empty.response -> {
                         hideLoading()
-                        fillDatas(customer, false)
+                        fillDatas(user, false)
                     }
                     Response.ThereIs.response -> {
                         hideLoading()
@@ -104,26 +104,27 @@ class TicketBuyViewModel @Inject constructor(
         }
     }
 
-    private fun fillDatas(customer: Customer?, isNewCustom: Boolean) {
+    private fun fillDatas(user: User?, isNewCustom: Boolean) {
 
         showLoading()
 
         mainScope {
-            customerAdd = Customer(
-                _id = customer?._id.toString(),
-                firstName = customer?.firstName.toString(),
-                lastName = customer?.lastName.toString(),
-                phoneNumber = customer?.phoneNumber.toString(),
+            userAdd = User(
+                _id = user?._id.toString(),
+                fcmToken = ClientPreferences.inst.FCMtoken.toString(),
+                firstName = user?.firstName.toString(),
+                lastName = user?.lastName.toString(),
+                phoneNumber = user?.phoneNumber.toString(),
                 age = age.value
             )
 
             val id = UUID.randomUUID().toString()
             sellAdd = Sell(
                 _id = id + ID.Sell.id,
-                customerId = customer?._id.toString(),
+                customerId = user?._id.toString(),
                 showId = "MockData",
-                customerFullName = customer?.firstName.toString() + " " + customer?.lastName.toString(),
-                customerPhone = customer?.phoneNumber.toString(),
+                customerFullName = user?.firstName.toString() + " " + user?.lastName.toString(),
+                customerPhone = user?.phoneNumber.toString(),
                 showName = "MockData",
                 showDate = "MockData",
                 showTime = "MockData",
@@ -135,13 +136,13 @@ class TicketBuyViewModel @Inject constructor(
         }
 
         hideLoading()
-        if (isNewCustom) addCustomer() else buyTicket()
+        if (isNewCustom) addUser() else buyTicket()
     }
 
-    private fun addCustomer() {
+    private fun addUser() {
         showLoading()
         mainScope {
-            customerFirebaseQueries.addCustomer(customerAdd) { status ->
+            userFirebaseQueries.addUser(userAdd) { status ->
                 if (status) {
                     hideLoading()
                     buyTicket()

@@ -3,7 +3,7 @@ package com.ferdidrgn.theatreticket.ui.main.ticketSearch
 import androidx.lifecycle.MutableLiveData
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseViewModel
-import com.ferdidrgn.theatreticket.commonModels.dummyData.Customer
+import com.ferdidrgn.theatreticket.commonModels.dummyData.User
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Sell
 import com.ferdidrgn.theatreticket.enums.Response
 import com.ferdidrgn.theatreticket.repository.SellFirebaseQueries
@@ -23,7 +23,7 @@ class TicketSearchViewModel @Inject constructor(private val sellFirebaseQueries:
     var phoneNumber = MutableStateFlow("")
     val searchTicketPopUp = LiveEvent<Boolean?>()
 
-    var customerAdd = Customer()
+    var userAdd = User()
     val sell = MutableLiveData<List<Sell?>?>()
 
 
@@ -34,13 +34,13 @@ class TicketSearchViewModel @Inject constructor(private val sellFirebaseQueries:
     fun searchTicket() {
         showLoading()
         mainScope {
-            customerAdd = Customer(
+            userAdd = User(
                 firstName = firstName.value,
                 lastName = lastName.value,
                 phoneNumber = phoneNumber.value
             )
 
-            sellFirebaseQueries.checkSearchBuyTicket(customerAdd) { status, sellList ->
+            sellFirebaseQueries.checkSearchBuyTicket(userAdd) { status, sellList ->
                 when (status) {
                     Response.ServerError.response -> {
                         errorMessage.postValue(message(R.string.error_server))

@@ -1,42 +1,61 @@
 package com.ferdidrgn.theatreticket.repository
 
-import com.ferdidrgn.theatreticket.commonModels.dummyData.Customer
+import com.ferdidrgn.theatreticket.commonModels.dummyData.User
 import com.ferdidrgn.theatreticket.enums.Response
 import com.google.firebase.Timestamp
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class CustomerFirebaseQueries {
 
-    private val fireStoreCustomerRef = Firebase.firestore.collection("Customer")
+class UserFirebaseQueries {
 
-    fun addCustomer(customer: Customer?, status: (Boolean) -> Unit) {
-        val customerMap = HashMap<String, Any>()
-        customerMap["_createdAt"] = Timestamp.now()
-        customerMap["_id"] = customer?._id.toString()
-        customerMap["firstName"] = customer?.firstName.toString()
-        customerMap["lastName"] = customer?.lastName.toString()
-        customerMap["phoneNumber"] = customer?.phoneNumber.toString()
-        customerMap["isActivite"] = customer?.isActivite.toString().toBoolean()
-        customerMap["age"] = customer?.age.toString()
-        customerMap["eMail"] = customer?.eMail.toString()
+    private val fireStoreUserRef = Firebase.firestore.collection("User")
 
-        fireStoreCustomerRef.add(customerMap).addOnSuccessListener {
+    fun currentUserId(): String? {
+        return FirebaseAuth.getInstance().uid
+    }
+
+    fun currentUserDetails(): DocumentReference? {
+        return currentUserId()?.let {
+            FirebaseFirestore.getInstance().collection("users").document(it)
+        }
+    }
+
+    fun allUserCollectionReference(): CollectionReference? {
+        return FirebaseFirestore.getInstance().collection("users")
+    }
+
+    fun addUser(user: User?, status: (Boolean) -> Unit) {
+        val userMap = HashMap<String, Any>()
+        userMap["_createdAt"] = Timestamp.now()
+        userMap["_id"] = user?._id.toString()
+        userMap["firstName"] = user?.firstName.toString()
+        userMap["lastName"] = user?.lastName.toString()
+        userMap["phoneNumber"] = user?.phoneNumber.toString()
+        userMap["isActivite"] = user?.isActivite.toString().toBoolean()
+        userMap["age"] = user?.age.toString()
+        userMap["eMail"] = user?.eMail.toString()
+
+        fireStoreUserRef.add(userMap).addOnSuccessListener {
             status.invoke(true)
         }.addOnFailureListener {
             status.invoke(false)
         }
     }
 
-    fun checkPhoneNumber(customer: Customer?, status: (String, Customer?) -> Unit) {
+    fun checkPhoneNumber(user: User?, status: (String, User?) -> Unit) {
         var statusTree = ""
-        var customerInfoList: Customer? = null
-        var customerFirstName = ""
-        var customerLastName = ""
+        var userInfoList: User? = null
+        var userFirstName = ""
+        var userLastName = ""
         var age = ""
         var notEqual: Boolean? = null
 
-        fireStoreCustomerRef.whereEqualTo("phoneNumber", customer?.phoneNumber).get()
+        fireStoreUserRef.whereEqualTo("phoneNumber", user?.phoneNumber).get()
             .addOnSuccessListener { result ->
                 if (result.isEmpty) {
                     statusTree = Response.Empty.response
@@ -47,14 +66,14 @@ class CustomerFirebaseQueries {
                         notEqual@ for (document in documents) {
                             val customerId =
                                 if (document.get("_id") != null) document.get("_id") as String else ""
-                            customerFirstName =
+                            userFirstName =
                                 if (document.get("firstName") != null) document.get("firstName") as String else ""
-                            if (customerFirstName != customer?.firstName) {
+                            if (userFirstName != user?.firstName) {
                                 notEqual = true; break@notEqual
                             }
-                            customerLastName =
+                            userLastName =
                                 if (document.get("lastName") != null) document.get("lastName") as String else ""
-                            if (customerLastName != customer?.lastName) {
+                            if (userLastName != user?.lastName) {
                                 notEqual = true; break@notEqual
                             }
                             val isActivite =
@@ -64,11 +83,11 @@ class CustomerFirebaseQueries {
                             val eMail =
                                 if (document.get("eMail") != null) document.get("eMail") as String else ""
 
-                            customerInfoList = Customer(
+                            userInfoList = User(
                                 _id = customerId,
-                                firstName = customerFirstName,
-                                lastName = customerLastName,
-                                phoneNumber = customer?.phoneNumber,
+                                firstName = userFirstName,
+                                lastName = userLastName,
+                                phoneNumber = user?.phoneNumber,
                                 isActivite = isActivite,
                                 age = age,
                                 eMail = eMail
@@ -80,7 +99,7 @@ class CustomerFirebaseQueries {
                             status.invoke(statusTree, null)
                         } else {
                             statusTree = Response.ThereIs.response
-                            status.invoke(statusTree, customerInfoList)
+                            status.invoke(statusTree, userInfoList)
                         }
                     }
                 }

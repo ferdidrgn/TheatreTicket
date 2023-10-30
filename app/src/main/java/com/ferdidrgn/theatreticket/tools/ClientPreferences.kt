@@ -27,6 +27,10 @@ class ClientPreferences : PreferencesManager() {
         get() = getString(TOKEN, "")
         set(token) = putString(TOKEN, token)
 
+    var FCMtoken: String?
+        get() = getString(FCMTOKEN, "")
+        set(token) = putString(FCMTOKEN, token)
+
     //for Onboarding
     var isFirstLaunch: Boolean?
         get() = getBooleanValue(IS_FIRST_LUNCH, true)

@@ -2,11 +2,13 @@ package com.ferdidrgn.theatreticket.commonModels
 
 import com.google.gson.annotations.SerializedName
 
-data class Customer(
+data class User(
     @SerializedName("createdAt")
     var _createdAt: String? = "",
     @SerializedName("id")
     var _id: String? = "",
+    @SerializedName("fcmToken")
+    var fcmToken: String? = "",
     @SerializedName("firstName")
     var firstName: String? = "",
     @SerializedName("lastName")

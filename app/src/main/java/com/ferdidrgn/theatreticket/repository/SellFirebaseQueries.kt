@@ -1,6 +1,6 @@
 package com.ferdidrgn.theatreticket.repository
 
-import com.ferdidrgn.theatreticket.commonModels.dummyData.Customer
+import com.ferdidrgn.theatreticket.commonModels.dummyData.User
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Sell
 import com.ferdidrgn.theatreticket.enums.Response
 import com.google.firebase.Timestamp
@@ -30,12 +30,12 @@ class SellFirebaseQueries {
     }
 
     fun checkSearchBuyTicket(
-        customer: Customer,
+        user: User,
         status: (String, ArrayList<Sell?>?) -> Unit
     ) {
         var statusTree = ""
         val sellList: ArrayList<Sell?> = arrayListOf()
-        fireStoreSellRef.whereEqualTo("customerPhone", customer.phoneNumber)
+        fireStoreSellRef.whereEqualTo("customerPhone", user.phoneNumber)
             .addSnapshotListener { value, error ->
                 if (error != null) {
                     statusTree = Response.ServerError.response

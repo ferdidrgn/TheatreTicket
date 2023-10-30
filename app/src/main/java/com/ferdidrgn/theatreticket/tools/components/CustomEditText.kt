@@ -8,7 +8,6 @@ import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.enums.textInputType
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import org.w3c.dom.Text
 
 class CustomEditText : ConstraintLayout {
     lateinit var editText: TextInputEditText

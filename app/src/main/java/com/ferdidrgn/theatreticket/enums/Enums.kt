@@ -10,7 +10,7 @@ enum class ToMain { Home, TicketBuy, TicketSearch, Settings }
 enum class ID(val id: String) {
     Ticket(".t"),
     Sell(".s"),
-    Customer(".c"),
+    User(".u"),
     Show(".sh"),
 }
 

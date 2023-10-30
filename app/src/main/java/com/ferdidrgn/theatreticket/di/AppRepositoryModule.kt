@@ -13,7 +13,7 @@ object AppRepositoryModule {
 
     @Singleton
     @Provides
-    fun provideCustomerFirebaseQueries() = CustomerFirebaseQueries()
+    fun provideUserFirebaseQueries() = UserFirebaseQueries()
 
     @Singleton
     @Provides
@@ -34,4 +34,8 @@ object AppRepositoryModule {
     @Singleton
     @Provides
     fun provideImageFireBase() = ImageFireBase()
+
+    @Singleton
+    @Provides
+    fun provideRetrofitInstance() = RetrofitInstance()
 }

@@ -115,6 +115,8 @@
 
     <!--    Show Details -->
     <string name="show_details">Show Details</string>
+    <string name="permissions_need_galery">Permission needed for gallery</string>
+    <string name="give_permissions">Give Permission</string>
 
     <!--    CustomPhoneCode -->
     <string name="zip_code">Zip Kod</string>"

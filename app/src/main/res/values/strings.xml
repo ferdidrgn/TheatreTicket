@@ -128,6 +128,8 @@
 
     <!--    Show Details -->
     <string name="show_details">Gösteri Detayları</string>
+    <string name="permissions_need_galery">Galeriye erişmek için izninize ihtiyacımız var</string>
+    <string name="give_permissions">İzin verin</string>
 
     <!--    CustomPhoneCode -->
     <string name="zip_code">Zip Code</string>"

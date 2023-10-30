@@ -1,5 +1,6 @@
 package com.ferdidrgn.theatreticket.ui.showOperations
 
+import android.net.Uri
 import androidx.lifecycle.MutableLiveData
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseViewModel
@@ -9,7 +10,6 @@ import com.ferdidrgn.theatreticket.enums.Response
 import com.ferdidrgn.theatreticket.repository.ShowFirebaseQuieries
 import com.ferdidrgn.theatreticket.tools.helpers.LiveEvent
 import com.ferdidrgn.theatreticket.tools.mainScope
-import com.google.firebase.Timestamp
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import java.util.*
@@ -31,7 +31,7 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
 
     val name = MutableStateFlow("")
     val desc = MutableStateFlow("")
-    val imageUrl = MutableStateFlow("")
+    val imageUrl = MutableStateFlow<Uri?>(null)
     val date = MutableStateFlow("")
     val price = MutableStateFlow("")
     val ageLimit = MutableStateFlow("")
@@ -41,7 +41,7 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
     var updateOrAddShowData: Show? = null
 
     fun onBtnBottomSheetCloseClick() {
-        bottomSheetVisibility.postValue(false)
+        //bottomSheetVisibility.postValue(false)
     }
 
     fun onBtnBottomSheetOpenClick() {
@@ -65,7 +65,7 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
     fun fieldClear() {
         name.value = ""
         desc.value = ""
-        imageUrl.value = ""
+        imageUrl.value = null
         date.value = ""
         price.value = ""
         ageLimit.value = ""

@@ -1,5 +1,6 @@
 package com.ferdidrgn.theatreticket.commonModels.dummyData
 
+import android.net.Uri
 import com.ferdidrgn.theatreticket.base.ListAdapterItem
 import com.ferdidrgn.theatreticket.commonModels.Players
 import com.ferdidrgn.theatreticket.commonModels.Stage
@@ -10,7 +11,7 @@ data class Show(
     var _id: String? = null,
     var name: String? = null,
     var description: String? = null,
-    var imageUrl: String? = null,
+    var imageUrl: Uri? = null,
     var date: String? = null,
     var price: String? = null,
     var ageLimit: String? = null,

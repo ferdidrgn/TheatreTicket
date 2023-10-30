@@ -183,6 +183,7 @@
                             app:strokeWidth="3dp">
 
                             <com.google.android.material.imageview.ShapeableImageView
+                                android:id="@+id/imgShow"
                                 android:layout_width="160dp"
                                 android:layout_height="160dp"
                                 android:layout_gravity="center"

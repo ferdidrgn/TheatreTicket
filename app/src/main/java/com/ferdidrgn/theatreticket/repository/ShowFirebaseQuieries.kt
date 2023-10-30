@@ -6,32 +6,47 @@ import com.google.firebase.Timestamp
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.firestore.toObject
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 class ShowFirebaseQuieries {
 
     private val fireStoreShowRef = Firebase.firestore.collection("Show")
+    var storageRef = Firebase.storage.reference
 
-    fun addShow(show: Show, status: (Boolean) -> Unit) {
-        val showMap = HashMap<String, Any>()
-        showMap["_createdAt"] = Timestamp.now()
-        showMap["_id"] = show._id.toString()
-        showMap["name"] = show.name.toString()
-        showMap["description"] = show.description.toString()
-        showMap["date"] = show.date.toString()
-        showMap["price"] = show.price.toString()
-        showMap["ageLimit"] = show.ageLimit.toString()
-        showMap["players"] = show.actorsId.toString()
+    fun addShow(show: Show?, status: (Boolean) -> Unit) {
+        val imageName = "ShowImages/${show?._id}.jpg"
+        val imagesRef = storageRef.child(imageName)
+        if (show?.imageUrl != null) {
+            imagesRef.putFile(show.imageUrl!!).addOnSuccessListener {
+                Firebase.storage.reference.child(imageName).downloadUrl.addOnSuccessListener {
+                    val downloadUrl = it.toString()
+                    val showMap = HashMap<String, Any>()
+                    showMap["_createdAt"] = Timestamp.now()
+                    showMap["_id"] = show._id.toString()
+                    showMap["name"] = show.name.toString()
+                    showMap["imageUrl"] = downloadUrl
+                    showMap["description"] = show.description.toString()
+                    showMap["date"] = show.date.toString()
+                    showMap["price"] = show.price.toString()
+                    showMap["ageLimit"] = show.ageLimit.toString()
+                    showMap["players"] = show.actorsId.toString()
 
-        fireStoreShowRef.add(showMap).addOnSuccessListener {
-            status.invoke(true)
-        }.addOnFailureListener {
+                    fireStoreShowRef.add(showMap).addOnSuccessListener {
+                        status.invoke(true)
+                    }.addOnFailureListener {
+                        status.invoke(false)
+                    }
+                }.addOnFailureListener { status.invoke(false) }
+            }.addOnFailureListener { status.invoke(false) }
+        } else {
             status.invoke(false)
         }
     }

@@ -1,7 +1,6 @@
 package com.ferdidrgn.theatreticket.repository
 
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Customer
-import com.ferdidrgn.theatreticket.commonModels.dummyData.Sell
 import com.ferdidrgn.theatreticket.enums.Response
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.ktx.firestore

@@ -27,6 +27,7 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
     val deletePopUp = LiveEvent<Boolean?>()
     val updateBottonVisibility = MutableLiveData<Boolean?>()
     val bottomSheetVisibility = MutableLiveData<Boolean?>()
+    val imagePermission = MutableLiveData<Boolean?>()
 
     val name = MutableStateFlow("")
     val desc = MutableStateFlow("")
@@ -58,7 +59,7 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
     }
 
     fun onUpdateImageClick() {
-        //dosyaları açan pop up ekle
+        imagePermission.postValue(true)
     }
 
     fun fieldClear() {

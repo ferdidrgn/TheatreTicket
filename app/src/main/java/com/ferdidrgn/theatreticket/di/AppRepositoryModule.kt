@@ -30,4 +30,8 @@ object AppRepositoryModule {
     @Singleton
     @Provides
     fun provideAuthFireBase() = AuthFireBase()
+
+    @Singleton
+    @Provides
+    fun provideImageFireBase() = ImageFireBase()
 }

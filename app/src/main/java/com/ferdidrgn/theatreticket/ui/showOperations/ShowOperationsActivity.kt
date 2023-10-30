@@ -54,6 +54,12 @@ class ShowOperationsActivity :
             viewModel.bottomSheetVisibility.postValue(false)
         }
 
+        viewModel.imagePermission.observe(this) {
+            if (it == true) {
+                viewModel.imagePermission.postValue(false)
+            }
+        }
+
         viewModel.btnAddShowClicked.observe(this) {
             viewModel.checkRequestFields(false)
         }

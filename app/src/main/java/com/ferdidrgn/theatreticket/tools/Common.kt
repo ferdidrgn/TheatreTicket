@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.Err
 import com.google.android.gms.ads.AdListener
@@ -16,6 +17,11 @@ import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.MobileAds
 import com.securepreferences.BuildConfig
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.Period
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 
 fun log(string: String) {
@@ -111,4 +117,42 @@ fun getMonthFormat(context: Context, month: Int): String {
         else -> R.string.jan
     }
     return context.resources.getString(stringId)
+}
+
+fun calculateElapsed(dateString: String, whichData: String): String {
+
+    val years: Int
+    val months: Int
+    val days: Int
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        val dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
+        val givenDate = LocalDate.parse(dateString, dateFormatter)
+        val currentDate = LocalDate.now()
+
+        val period = Period.between(givenDate, currentDate)
+
+        years = period.years
+        months = period.months
+        days = period.days
+    } else {
+
+        val format = SimpleDateFormat("dd-MM-yyyy", Locale.US)
+        val givenDate: Date = format.parse(dateString) as Date
+        val currentDate = Date()
+
+        val difference = currentDate.time - givenDate.time
+        val remainingDays = (difference / (1000 * 60 * 60 * 24)).toInt()
+
+        years = remainingDays / 365
+        months = (remainingDays % 365) / 30
+        days = remainingDays % 30
+    }
+
+    return when (whichData) {
+        "year" -> years.toString()
+        "month" -> months.toString()
+        "day" -> days.toString()
+        else -> ""
+    }
 }

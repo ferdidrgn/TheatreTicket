@@ -104,7 +104,7 @@
     <string name="error_not_mail_installed">Maalesef Yüklü Bir Mail programı Bulunamadı</string>
     <string name="error_google_sign_in">Google ile giriş işleminizde bir hata oluştu.</string>
     <string name="error_auth_failed">Kimlik hatası. Bağlantı başarısız</string>
-    <string name="permission_den">İzin verilmedi</string>
+    <string name="permission_denied">İzin verilmedi</string>
 
 
     <!-- Settings -->

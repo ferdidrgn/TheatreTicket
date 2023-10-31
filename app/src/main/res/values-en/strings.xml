@@ -91,6 +91,7 @@
     <string name="error_not_mail_installed">"There are no email clients installed."</string>
     <string name="error_google_sign_in">Google sign in failed</string>
     <string name="error_auth_failed">Authentication failed</string>
+    <string name="permission_denied">Permission Denied</string>
 
 
     <!-- Settings -->

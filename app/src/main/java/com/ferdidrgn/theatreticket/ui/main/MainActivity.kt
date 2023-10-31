@@ -61,7 +61,6 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
                     }
             }
         } else {
-            //MOCK DATA
             if (ClientPreferences.inst.isFirstLaunch == true)
                 NavHandler.instance.toOnboardingActivityFinishAffinity(this)
             else {
@@ -119,10 +118,8 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
             val userName = user.displayName
             ClientPreferences.inst.userFullName = userName
             ClientPreferences.inst.isGoogleSignIn = true
-            showToast("Welcome, " + userName)
         } else {
-            //MOCKDATA
-            // Handle the case where the user is not signed in
+            showToast(getString(R.string.error_auth_failed))
         }
     }
 
@@ -145,10 +142,9 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         ActivityResultContracts.RequestPermission()
     ) { isGranted: Boolean ->
         if (isGranted) {
-            //MOCK DATA
-            showToast("İzin verildi")
+            showToast(getString(R.string.success_permission_granted))
         } else {
-            showToast("İzin verilmedi")
+            showToast(getString(R.string.permission_denied))
         }
     }
 

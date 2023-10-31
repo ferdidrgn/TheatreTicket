@@ -48,6 +48,7 @@ class CustomEditText : ConstraintLayout {
         tlEditText.hint = text
     }
 
+    //MOCK DATA
     private fun textType(text: String?) {
         when (text) {
             "numberDecimal" -> editText.inputType = InputType.TYPE_NUMBER_FLAG_DECIMAL

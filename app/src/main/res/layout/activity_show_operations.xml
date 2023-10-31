@@ -248,6 +248,7 @@
                             android:layout_weight="1"
                             android:onClick="@{()->viewModel.onBtnAddShowClick()}"
                             android:visibility="@{viewModel.updateBottonVisibility ? View.GONE : View.VISIBLE}"
+                            app:cst_btn_color="@color/main_dark"
                             app:cst_btn_name="@string/show_add" />
 
                         <com.ferdidrgn.theatreticket.tools.components.CustomButton
@@ -259,6 +260,7 @@
                             android:layout_weight="1"
                             android:onClick="@{()->viewModel.onBtnUpdateShowClick()}"
                             android:visibility="@{viewModel.updateBottonVisibility ? View.VISIBLE : View.GONE}"
+                            app:cst_btn_color="@color/main_dark"
                             app:cst_btn_name="@string/show_update" />
 
                         <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"

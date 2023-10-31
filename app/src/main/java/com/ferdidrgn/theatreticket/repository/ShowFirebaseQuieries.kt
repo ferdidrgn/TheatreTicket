@@ -26,8 +26,8 @@ class ShowFirebaseQuieries {
         val imagesRef = storageRef.child(imageName)
         if (show?.imageUrl != null) {
             imagesRef.putFile(show.imageUrl!!).addOnSuccessListener {
-                Firebase.storage.reference.child(imageName).downloadUrl.addOnSuccessListener {
-                    val downloadUrl = it.toString()
+                Firebase.storage.reference.child(imageName).downloadUrl.addOnSuccessListener { uri ->
+                    val downloadUrl = uri.toString()
                     val showMap = HashMap<String, Any>()
                     showMap["_createdAt"] = Timestamp.now()
                     showMap["_id"] = show._id.toString()
@@ -39,16 +39,16 @@ class ShowFirebaseQuieries {
                     showMap["ageLimit"] = show.ageLimit.toString()
                     showMap["players"] = show.actorsId.toString()
 
-                    fireStoreShowRef.add(showMap).addOnSuccessListener {
-                        status.invoke(true)
-                    }.addOnFailureListener {
-                        status.invoke(false)
-                    }
+                    fireStoreShowRef.add(showMap).addOnCompleteListener { task ->
+                        if (task.isComplete && task.isSuccessful) {
+                            status.invoke(true)
+                        } else {
+                            status.invoke(false)
+                        }
+                    }.addOnFailureListener { status.invoke(false) }
                 }.addOnFailureListener { status.invoke(false) }
             }.addOnFailureListener { status.invoke(false) }
-        } else {
-            status.invoke(false)
-        }
+        } else status.invoke(false)
     }
 
     fun deleteShow(show: Show?, status: (Boolean) -> Unit) = CoroutineScope(Dispatchers.IO).launch {

@@ -21,12 +21,12 @@ class UserFirebaseQueries {
 
     fun currentUserDetails(): DocumentReference? {
         return currentUserId()?.let {
-            FirebaseFirestore.getInstance().collection("users").document(it)
+            FirebaseFirestore.getInstance().collection("User").document(it)
         }
     }
 
     fun allUserCollectionReference(): CollectionReference? {
-        return FirebaseFirestore.getInstance().collection("users")
+        return FirebaseFirestore.getInstance().collection("User")
     }
 
     fun addUser(user: User?, status: (Boolean) -> Unit) {

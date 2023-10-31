@@ -176,13 +176,12 @@ class ShowOperationsActivity :
                 )
             ) {
                 Snackbar.make(
-                    binding.root,
+                    binding.imgShow,
                     getString(R.string.permissions_need_galery),
                     Snackbar.LENGTH_INDEFINITE
-                )
-                    .setAction(getString(R.string.give_permissions), View.OnClickListener {
-                        permissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
-                    }).show()
+                ).setAction(getString(R.string.give_permissions)) {
+                    permissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
+                }.show()
             } else {
                 permissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
             }
@@ -190,34 +189,6 @@ class ShowOperationsActivity :
             val intentToGallery =
                 Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             activityResultLauncher.launch(intentToGallery)
-
-        }
-        if (ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.READ_EXTERNAL_STORAGE
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(
-                    this,
-                    Manifest.permission.READ_EXTERNAL_STORAGE
-                )
-            ) {
-                Snackbar.make(
-                    binding.root,
-                    getString(R.string.permissions_need_galery),
-                    Snackbar.LENGTH_INDEFINITE
-                )
-                    .setAction(getString(R.string.give_permissions), View.OnClickListener {
-                        permissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
-                    }).show()
-            } else {
-                permissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
-            }
-        } else {
-            val intentToGallery =
-                Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-            activityResultLauncher.launch(intentToGallery)
-
         }
     }
 
@@ -243,7 +214,6 @@ class ShowOperationsActivity :
                                 selectedPicture
                             )
                             binding.imgShow.setImageBitmap(selectedBitmap)
-                            viewModel.imageUrl.value = selectedPicture
                         }
                     } catch (e: IOException) {
                         e.printStackTrace()

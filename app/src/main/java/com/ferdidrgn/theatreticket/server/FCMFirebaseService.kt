@@ -44,9 +44,9 @@ class FCMFirebaseService : FirebaseMessagingService() {
             this, 0, intent, PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
         )
 
-        val channelId = "Default"
-        val channelName = "channel_name"
-        val channelDescription = "channel_description"
+        val channelId = "default"
+        val channelName = "channelName"
+        val channelDescription = "channelDescription"
 
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
             .setContentTitle(message.title)

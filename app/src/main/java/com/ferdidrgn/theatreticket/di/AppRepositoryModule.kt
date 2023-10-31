@@ -31,11 +31,4 @@ object AppRepositoryModule {
     @Provides
     fun provideAuthFireBase() = AuthFireBase()
 
-    @Singleton
-    @Provides
-    fun provideImageFireBase() = ImageFireBase()
-
-    @Singleton
-    @Provides
-    fun provideRetrofitInstance() = RetrofitInstance()
 }

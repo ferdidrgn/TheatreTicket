@@ -5,6 +5,9 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
         android:name=".TheatreTicketApp"
@@ -19,7 +22,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TheatreTicket"
         tools:targetApi="34">
-       
+
         <activity
             android:name=".ui.termsAndConditions.TermsAndConditionsActivity"
             android:exported="false" />

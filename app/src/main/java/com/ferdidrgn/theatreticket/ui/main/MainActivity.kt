@@ -1,8 +1,8 @@
 package com.ferdidrgn.theatreticket.ui.main
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -10,10 +10,13 @@ import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseActivity
 import com.ferdidrgn.theatreticket.databinding.ActivityMainBinding
 import com.ferdidrgn.theatreticket.enums.ToMain
+import com.ferdidrgn.theatreticket.repository.UserFirebaseQueries
 import com.ferdidrgn.theatreticket.tools.ClientPreferences
 import com.ferdidrgn.theatreticket.tools.NavHandler
 import com.ferdidrgn.theatreticket.tools.TO_MAIN
+import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
@@ -26,17 +29,29 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
 
     override fun onCreateFinished(savedInstance: Bundle?) {
 
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.fragmentContainer) as NavHostFragment
-        navController = navHostFragment.navController
+        getNavHost()
+        getFCMToken()
 
-        val bottomNav =
-            findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(R.id.bottomNav)
-        bottomNav.setupWithNavController(navController)
+        if (intent.extras != null) {
+            //from notification
 
-        if (ClientPreferences.inst.isFirstLaunch == true)
-            NavHandler.instance.toOnboardingActivity(this)
-        else observe()
+            val userId = intent.extras!!.getString("userId")
+            val userFirebaseQueries = UserFirebaseQueries()
+            if (userId != null) {
+                userFirebaseQueries.allUserCollectionReference()?.document(userId)?.get()
+                    ?.addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            //val model: UserModel = task.result.toObject(UserModel::class.java)
+                            NavHandler.instance.toShowOperationsActivity(this)
+                            finish()
+                        }
+                    }
+            }
+        } else {
+            if (ClientPreferences.inst.isFirstLaunch == true)
+                NavHandler.instance.toOnboardingActivity(this)
+            else observe()
+        }
     }
 
     private fun observe() {
@@ -56,6 +71,31 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
 
                 ToMain.Settings -> bottomNav.selectedItemId = R.id.settingsFragmentNav
             }
+        }
+    }
+
+    private fun getNavHost() {
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragmentContainer) as NavHostFragment
+        navController = navHostFragment.navController
+
+        val bottomNav =
+            findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(R.id.bottomNav)
+        bottomNav.setupWithNavController(navController)
+
+    }
+
+    private fun getFCMToken() {
+        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.w("Token", "Fetching FCM registration token failed", task.exception)
+                return@addOnCompleteListener
+            }
+            val fcmToken = task.result
+            Log.e("fcmToken", fcmToken.toString())
+            ClientPreferences.inst.FCMtoken = fcmToken
+            val userFirebaseQueries = UserFirebaseQueries()
+            userFirebaseQueries.currentUserDetails()?.update("fcmToken", fcmToken)
         }
     }
 

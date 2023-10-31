@@ -39,6 +39,7 @@ class UserFirebaseQueries {
         userMap["isActivite"] = user?.isActivite.toString().toBoolean()
         userMap["age"] = user?.age.toString()
         userMap["eMail"] = user?.eMail.toString()
+        userMap["fcmToken"] = user?.fcmToken.toString()
 
         fireStoreUserRef.add(userMap).addOnSuccessListener {
             status.invoke(true)
@@ -78,6 +79,8 @@ class UserFirebaseQueries {
                             }
                             val isActivite =
                                 if (document.get("isActivite") != null) document.get("isActivite") as Boolean else false
+                            val fcmToken =
+                                if (document.get("fcmToken") != null) document.get("fcmToken") as String else ""
                             age =
                                 if (document.get("age") != null) document.get("age") as String else ""
                             val eMail =
@@ -85,6 +88,7 @@ class UserFirebaseQueries {
 
                             userInfoList = User(
                                 _id = customerId,
+                                fcmToken = fcmToken,
                                 firstName = userFirstName,
                                 lastName = userLastName,
                                 phoneNumber = user?.phoneNumber,

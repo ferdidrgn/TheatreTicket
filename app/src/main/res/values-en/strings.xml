@@ -76,6 +76,7 @@
     <string name="success_add_show">Show Saved</string>
     <string name="success_delete_show">Show Deleted Successfully</string>
     <string name="success_update_show">Show Updated Successfully</string>
+    <string name="success_permission_granted">"Permission Granted</string>
 
     <!--     Error Messages -->
     <string name="error_phone_little">Phone Number Appears To Be Different From 10 Characters. Please Check</string>
@@ -88,6 +89,8 @@
     <string name="error_server">Server Error. Please Try Again</string>
     <string name="error_not_equal">Your Phone Number and Your Data Do not Match. Please Check</string>
     <string name="error_not_mail_installed">"There are no email clients installed."</string>
+    <string name="error_google_sign_in">Google sign in failed</string>
+    <string name="error_auth_failed">Authentication failed</string>
 
 
     <!-- Settings -->
@@ -119,5 +122,10 @@
     <string name="give_permissions">Give Permission</string>
 
     <!--    CustomPhoneCode -->
-    <string name="zip_code">Zip Kod</string>"
+    <string name="zip_code">Zip Code</string>
+
+    <!--    Login Activity -->
+    <string name="sign_up_google">Sign up with Google</string>
+    <string name="sign_up_phone_number">Sign up with Phone Number</string>
+    <string name="signed_in_as">Signed in as</string>
 </resources>

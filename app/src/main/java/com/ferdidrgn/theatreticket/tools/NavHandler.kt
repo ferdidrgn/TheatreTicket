@@ -48,11 +48,10 @@ class NavHandler {
         context.startActivity(intent)
     }
 
-    fun toLoginActivityFinishAffinity(context: Context) {
+    fun toLoginActivity(context: Context) {
         val intent = Intent(context, LoginActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
         context.startActivity(intent)
-        finishAffinity(context as AppCompatActivity)
     }
 
     fun toLanguageActivity(context: Context) {

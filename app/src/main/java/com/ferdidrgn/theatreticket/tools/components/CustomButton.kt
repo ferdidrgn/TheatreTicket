@@ -3,16 +3,19 @@ package com.ferdidrgn.theatreticket.tools.components
 import android.content.Context
 import android.content.res.ColorStateList
 import android.util.AttributeSet
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import kotlin.properties.Delegates
 import com.ferdidrgn.theatreticket.R
 
-class CustomButton : LinearLayout {
+class CustomButton : ConstraintLayout {
 
     private var backgroundColorFromAttr by Delegates.notNull<Int>()
     private lateinit var customButton: LinearLayout
+    private lateinit var imageView: ImageView
 
     constructor(context: Context) : super(context) {
         initLayout(context, null, null)
@@ -41,7 +44,12 @@ class CustomButton : LinearLayout {
                 ContextCompat.getColor(context, R.color.light_gray)
             )
         )
-        setButtonColor(layoutAttribute.getInt(R.styleable.CustomButton_cst_buttonColor, R.color.main))
+        setButtonColor(
+            layoutAttribute.getInt(
+                R.styleable.CustomButton_cst_buttonColor,
+                R.color.main
+            )
+        )
     }
 
     private fun getDisableBackgroundTint(color: Int) {

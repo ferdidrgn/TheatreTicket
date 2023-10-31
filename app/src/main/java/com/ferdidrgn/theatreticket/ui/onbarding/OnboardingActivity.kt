@@ -70,7 +70,7 @@ class OnboardingActivity : BaseActivity<OnboardingViewModel, ActivityOnboardingB
 
         viewModel.getLoginActivity.observe(this) {
             ClientPreferences.inst.isFirstLaunch = false
-            NavHandler.instance.toLoginActivityFinishAffinity(this)
+            NavHandler.instance.toLoginActivity(this)
         }
     }
 }

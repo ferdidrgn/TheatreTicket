@@ -13,44 +13,35 @@
 
     </data>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/main_dark2"
-        android:padding="16dp"
+        android:gravity="center"
         tools:context=".ui.login.LoginActivity">
 
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="50dp"
             android:background="@drawable/bg_border_google_sign_in">
 
-            <ImageView
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="11dp"
-                android:layout_marginRight="11dp"
-                android:background="@color/white"
-                android:src="@drawable/googleg_standard_color_18" />
-
-            <Button
+            <com.ferdidrgn.theatreticket.tools.components.CustomButton
                 android:id="@+id/btnSignIn"
-                android:layout_width="200dp"
-                android:layout_height="50dp"
-                android:background="@color/blue"
-                android:text="Sign up with Google"
+                android:layout_width="67dp"
+                android:layout_height="52dp"
+                android:text="@string/sign_up_google"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                app:cst_btn_endIcon="@drawable/googleg_standard_color_18"
+                app:cst_btn_endIcon_visibility="true"
+                app:cst_btn_name="@string/i_read_and_agree" />
 
         </LinearLayout>
 
 
-    </RelativeLayout>
+    </LinearLayout>
 
 
 </layout>

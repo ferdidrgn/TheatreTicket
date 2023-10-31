@@ -33,7 +33,7 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
         auth = FirebaseAuth.getInstance()
         isUserLogIn()
 
-        binding.llSignIn.onClickDelayed {
+        binding.btnSignIn.onClickDelayed {
             sigIn()
         }
     }
@@ -47,7 +47,7 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
                 val account = task.getResult(ApiException::class.java)
                 firebaseAuthWithGoogle(account.idToken!!)
             } catch (e: ApiException) {
-                showToast("Google sign in failed: ${e.message}")
+                showToast(getString(R.string.error_google_sign_in) + "${e.message}")
             }
         }
     }
@@ -68,10 +68,10 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     val user = auth.currentUser
-                    showToast("Signed in as ${user?.displayName}")
+                    showToast(getString(R.string.signed_in_as) + " ${user?.displayName}")
                     NavHandler.instance.toMainActivityFinishAffinity(this)
                 } else {
-                    showToast("Authentication failed")
+                    showToast(getString(R.string.error_auth_failed))
                 }
             }
     }

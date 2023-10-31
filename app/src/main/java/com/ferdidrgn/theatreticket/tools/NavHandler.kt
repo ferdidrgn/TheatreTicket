@@ -2,13 +2,13 @@ package com.ferdidrgn.theatreticket.tools
 
 import android.content.Context
 import android.content.Intent
-import android.os.Parcelable
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat.finishAffinity
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Show
 import com.ferdidrgn.theatreticket.enums.ToMain
 import com.ferdidrgn.theatreticket.ui.termsAndConditions.TermsAndConditionsActivity
 import com.ferdidrgn.theatreticket.ui.language.LanguageActivity
+import com.ferdidrgn.theatreticket.ui.login.LoginActivity
 import com.ferdidrgn.theatreticket.ui.main.MainActivity
 import com.ferdidrgn.theatreticket.ui.onbarding.OnboardingActivity
 import com.ferdidrgn.theatreticket.ui.showDetails.ShowDetailsActivity
@@ -35,16 +35,24 @@ class NavHandler {
         context.startActivity(intent)
     }
 
-    fun toOnboardingActivity(context: Context) {
+    fun toOnboardingActivityFinishAffinity(context: Context) {
         val intent = Intent(context, OnboardingActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
         context.startActivity(intent)
+        finishAffinity(context as AppCompatActivity)
     }
 
     fun toShowOperationsActivity(context: Context) {
         val intent = Intent(context, ShowOperationsActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
         context.startActivity(intent)
+    }
+
+    fun toLoginActivityFinishAffinity(context: Context) {
+        val intent = Intent(context, LoginActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+        context.startActivity(intent)
+        finishAffinity(context as AppCompatActivity)
     }
 
     fun toLanguageActivity(context: Context) {

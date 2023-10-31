@@ -19,6 +19,12 @@ import com.ferdidrgn.theatreticket.repository.UserFirebaseQueries
 import com.ferdidrgn.theatreticket.tools.ClientPreferences
 import com.ferdidrgn.theatreticket.tools.NavHandler
 import com.ferdidrgn.theatreticket.tools.TO_MAIN
+import com.ferdidrgn.theatreticket.tools.showToast
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,6 +33,8 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
 
     private lateinit var navController: NavController
+    private lateinit var mGoogleSignInClient: GoogleSignInClient
+
     override fun getVM(): Lazy<MainViewModel> = viewModels()
 
     override fun getDataBinding(): ActivityMainBinding =
@@ -34,13 +42,12 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
 
     override fun onCreateFinished(savedInstance: Bundle?) {
 
-        askNotificationPermission()
         getNavHost()
-        getFCMToken()
 
         if (intent.extras != null) {
             //from notification
-
+            //MOCK DATA
+            //LOGİN Mİ DEĞİL Mİ KONTROL ET
             val userId = intent.extras!!.getString("userId")
             val userFirebaseQueries = UserFirebaseQueries()
             if (userId != null) {
@@ -54,9 +61,15 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
                     }
             }
         } else {
+            //MOCK DATA
             if (ClientPreferences.inst.isFirstLaunch == true)
-                NavHandler.instance.toOnboardingActivity(this)
-            else observe()
+                NavHandler.instance.toOnboardingActivityFinishAffinity(this)
+            else {
+                askNotificationPermission()
+                getFCMToken()
+                getLogin()
+                observe()
+            }
         }
     }
 
@@ -91,6 +104,28 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
 
     }
 
+    private fun getLogin() {
+
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+
+        val user = Firebase.auth.currentUser
+
+        if (user != null) {
+            val userName = user.displayName
+            ClientPreferences.inst.userFullName = userName
+            ClientPreferences.inst.isGoogleSignIn = true
+            showToast("Welcome, " + userName)
+        } else {
+            //MOCKDATA
+            // Handle the case where the user is not signed in
+        }
+    }
+
     private fun getFCMToken() {
         FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
             if (!task.isSuccessful) {
@@ -98,7 +133,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
                 return@addOnCompleteListener
             }
             val fcmToken = task.result
-            Log.e("fcmToken", fcmToken.toString())
+            Log.d("fcmToken", fcmToken.toString())
             ClientPreferences.inst.FCMtoken = fcmToken
             val userFirebaseQueries = UserFirebaseQueries()
             userFirebaseQueries.currentUserDetails()?.update("fcmToken", fcmToken)
@@ -110,9 +145,10 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         ActivityResultContracts.RequestPermission()
     ) { isGranted: Boolean ->
         if (isGranted) {
-            // İzin verildiğinde yapılacak işlemler
+            //MOCK DATA
+            showToast("İzin verildi")
         } else {
-            // İzin reddedildiğinde yapılacak işlemler
+            showToast("İzin verilmedi")
         }
     }
 

@@ -68,9 +68,9 @@ class OnboardingActivity : BaseActivity<OnboardingViewModel, ActivityOnboardingB
             }
         }
 
-        viewModel.getMainActivity.observe(this) {
+        viewModel.getLoginActivity.observe(this) {
             ClientPreferences.inst.isFirstLaunch = false
-            NavHandler.instance.toMainActivityFinishAffinity(this)
+            NavHandler.instance.toLoginActivityFinishAffinity(this)
         }
     }
 }

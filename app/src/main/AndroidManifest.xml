@@ -32,7 +32,6 @@
         <activity
             android:name=".ui.onbarding.OnboardingActivity"
             android:exported="false" />
-
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-5779807348211992~2861799229" />

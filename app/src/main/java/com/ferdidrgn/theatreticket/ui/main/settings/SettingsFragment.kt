@@ -11,6 +11,9 @@ import com.ferdidrgn.theatreticket.base.BasePopUp
 import com.ferdidrgn.theatreticket.databinding.FragmentSettingsBinding
 import com.ferdidrgn.theatreticket.enums.ToMain
 import com.ferdidrgn.theatreticket.tools.*
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -19,6 +22,9 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding>() {
+
+    private lateinit var mGoogleSignInClient: GoogleSignInClient
+
     override fun getVM(): Lazy<SettingsViewModel> = viewModels()
 
     override fun getDataBinding(): FragmentSettingsBinding =
@@ -30,7 +36,6 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
         viewModel.selectedLayout()
         builderADS(requireContext(), binding.adView)
         clickListener()
-
     }
 
     override fun onResume() {
@@ -83,20 +88,18 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
             setTitle(context.getString(R.string.log_out))
             setDesc(context.getString(R.string.are_you_sure_you_want_to_logout))
             setOnPositiveClick {
-                ClientPreferences.inst.token = ""
-                ClientPreferences.inst.FCMtoken = ""
-                ClientPreferences.inst.userID = ""
-                ClientPreferences.inst.userPhone = ""
-                ClientPreferences.inst.userFirstName = ""
-                ClientPreferences.inst.userLastName = ""
-
-                Firebase.auth.signOut()
 
                 FirebaseMessaging.getInstance().deleteToken()
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
+
+                            if (ClientPreferences.inst.isGoogleSignIn == true)
+                                signOutAndStartSignInActivity()
+
                             FirebaseAuth.getInstance().signOut()
-                            NavHandler.instance.toMainActivity(requireContext(), ToMain.Home)
+
+                            viewModel.clearClientPreferences()
+                            showToast(context.getString(R.string.success))
                             dismiss()
                         }
                     }
@@ -107,6 +110,12 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
         }
 
         pupUp.show(parentFragmentManager, "")
+    }
+
+    private fun signOutAndStartSignInActivity() {
+        mGoogleSignInClient.signOut().addOnCompleteListener(requireActivity()) {
+            NavHandler.instance.toLoginActivityFinishAffinity(requireContext())
+        }
     }
 
 }

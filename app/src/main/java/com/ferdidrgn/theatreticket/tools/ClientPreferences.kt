@@ -38,9 +38,13 @@ class ClientPreferences : PreferencesManager() {
             putBoolean(IS_FIRST_LUNCH, isFirstLaunch ?: true)
         }
 
-    var userPhone: String?
-        get() = getString(PHONE_NUMBER, "")
-        set(token) = putString(PHONE_NUMBER, token)
+    var userID: String?
+        get() = getString(USER_ID, "")
+        set(value) = putString(USER_ID, value)
+
+    var userFullName: String?
+        get() = getString(USER_FULLNAME, "")
+        set(token) = putString(USER_FULLNAME, token)
 
     var userFirstName: String?
         get() = getString(USER_FIRSTNAME, "")
@@ -54,9 +58,25 @@ class ClientPreferences : PreferencesManager() {
         get() = getString(USER_AGE, "")
         set(token) = putString(USER_AGE, token)
 
+    var userPhone: String?
+        get() = getString(PHONE_NUMBER, "")
+        set(token) = putString(PHONE_NUMBER, token)
+
     var role: String?
         get() = getString(ROLE, "")
         set(token) = putString(ROLE, token)
+
+    var isGoogleSignIn: Boolean?
+        get() = getBooleanValue(IS_GOOGLE_SIGN_IN, false)
+        set(isGoogleSignIn) {
+            putBoolean(IS_GOOGLE_SIGN_IN, isGoogleSignIn ?: false)
+        }
+
+    var isPhoneNumberSignIn: Boolean?
+        get() = getBooleanValue(IS_PHONE_NUMBER_SIGN_IN, false)
+        set(isPhoneNumberSignIn) {
+            putBoolean(IS_PHONE_NUMBER_SIGN_IN, isPhoneNumberSignIn ?: false)
+        }
 
     var connection: String?
         get() = getString(CONNECTION, "")
@@ -70,9 +90,6 @@ class ClientPreferences : PreferencesManager() {
         get() = getString(CONTEXT_LANGUAGE, ContextLanguages.TURKISH.language).toString()
         set(token) = putString(CONTEXT_LANGUAGE, token)
 
-    var userID: String?
-        get() = getString(USER_ID, "")
-        set(value) = putString(USER_ID, value)
 
     var interest = ArrayList<String>()
 

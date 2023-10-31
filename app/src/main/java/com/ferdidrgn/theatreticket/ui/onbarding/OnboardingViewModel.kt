@@ -11,7 +11,7 @@ class OnboardingViewModel @Inject constructor(showFirebaseQuieries: ShowFirebase
     BaseViewModel() {
 
     val isPageIndicatorNext = MutableLiveData<Boolean?>()
-    val getMainActivity = MutableLiveData<Boolean?>()
+    val getLoginActivity = MutableLiveData<Boolean?>()
     val getTermsConditionActivity = MutableLiveData<Boolean?>()
 
     fun onRightArrowClick() {
@@ -22,8 +22,8 @@ class OnboardingViewModel @Inject constructor(showFirebaseQuieries: ShowFirebase
         isPageIndicatorNext.postValue(false)
     }
 
-    fun onGetStartedMainActivityClick() {
-        getMainActivity.postValue(true)
+    fun onLoginActivityClick() {
+        getLoginActivity.postValue(true)
     }
 
     fun onTermsConditionClicked() {

@@ -46,4 +46,13 @@ class SettingsViewModel @Inject constructor(private val showFirebaseQuieries: Sh
         }
         hideLoading()
     }
+
+    fun clearClientPreferences() {
+        ClientPreferences.inst.token = ""
+        ClientPreferences.inst.FCMtoken = ""
+        ClientPreferences.inst.userID = ""
+        ClientPreferences.inst.userPhone = ""
+        ClientPreferences.inst.userFirstName = ""
+        ClientPreferences.inst.userLastName = ""
+    }
 }

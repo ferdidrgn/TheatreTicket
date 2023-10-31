@@ -1,8 +1,13 @@
 package com.ferdidrgn.theatreticket.ui.main
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -29,6 +34,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
 
     override fun onCreateFinished(savedInstance: Bundle?) {
 
+        askNotificationPermission()
         getNavHost()
         getFCMToken()
 
@@ -96,6 +102,34 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
             ClientPreferences.inst.FCMtoken = fcmToken
             val userFirebaseQueries = UserFirebaseQueries()
             userFirebaseQueries.currentUserDetails()?.update("fcmToken", fcmToken)
+        }
+    }
+
+
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted: Boolean ->
+        if (isGranted) {
+            // İzin verildiğinde yapılacak işlemler
+        } else {
+            // İzin reddedildiğinde yapılacak işlemler
+        }
+    }
+
+    private fun askNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.POST_NOTIFICATIONS
+                ) == PackageManager.PERMISSION_GRANTED
+            ) {
+                // İzin zaten verilmişse yapılacak işlemler
+            } else if (shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)) {
+                // Kullanıcıya izin talebinin nedenini açıklamak için uygun bir durumdaysa yapılacak işlemler
+            } else {
+                // İzin talebinde bulun
+                requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+            }
         }
     }
 

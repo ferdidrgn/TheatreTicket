@@ -4,17 +4,17 @@ import android.content.Context
 import android.content.res.ColorStateList
 import android.util.AttributeSet
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import kotlin.properties.Delegates
 import com.ferdidrgn.theatreticket.R
+import com.ferdidrgn.theatreticket.tools.show
 
 class CustomButton : ConstraintLayout {
 
     private var backgroundColorFromAttr by Delegates.notNull<Int>()
-    private lateinit var customButton: LinearLayout
+    private lateinit var customButton: ConstraintLayout
     private lateinit var imageView: ImageView
 
     constructor(context: Context) : super(context) {
@@ -37,19 +37,20 @@ class CustomButton : ConstraintLayout {
         inflate(context, R.layout.custom_button, this)
         customButton = findViewById(R.id.btnCustomButton)
         val layoutAttribute = context.obtainStyledAttributes(attributeSet, R.styleable.CustomButton)
-        setTextView(layoutAttribute.getString(R.styleable.CustomButton_cst_button_name))
+        setTextView(layoutAttribute.getString(R.styleable.CustomButton_cst_btn_name))
         getDisableBackgroundTint(
             layoutAttribute.getColor(
-                R.styleable.CustomButton_cst_backgroundColorFromXml,
+                R.styleable.CustomButton_cst_btn_backgroundColorFromXml,
                 ContextCompat.getColor(context, R.color.light_gray)
             )
         )
         setButtonColor(
             layoutAttribute.getInt(
-                R.styleable.CustomButton_cst_buttonColor,
+                R.styleable.CustomButton_cst_btn_color,
                 R.color.main
             )
         )
+        setImage(layoutAttribute.getInt(R.styleable.CustomButton_cst_btn_endIcon, 0))
     }
 
     private fun getDisableBackgroundTint(color: Int) {
@@ -76,5 +77,13 @@ class CustomButton : ConstraintLayout {
     fun setButtonColor(color: Int) {
         customButton.backgroundTintList =
             ColorStateList.valueOf(ContextCompat.getColor(customButton.context, color))
+    }
+
+    fun setImage(image: Int?) {
+        if (image != null) {
+            imageView = findViewById(R.id.imgView)
+            imageView.show()
+            imageView.setImageResource(image)
+        }
     }
 }

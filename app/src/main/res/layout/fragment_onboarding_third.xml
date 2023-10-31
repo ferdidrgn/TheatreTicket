@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="80dp"
             android:onClick="@{()->viewModel.onTermsConditionClicked()}"
-            app:cst_button_name="@string/terms_condition"
+            app:cst_btn_name="@string/terms_condition"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="80dp" />

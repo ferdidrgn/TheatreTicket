@@ -129,4 +129,6 @@
     <string name="sign_up_google">Sign up with Google</string>
     <string name="sign_up_phone_number">Sign up with Phone Number</string>
     <string name="signed_in_as">Signed in as</string>
+    <string name="sign_in">Sign In</string>
+
 </resources>

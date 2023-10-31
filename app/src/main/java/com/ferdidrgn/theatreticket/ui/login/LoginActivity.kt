@@ -7,10 +7,7 @@ import androidx.core.content.ContextCompat.getString
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseActivity
 import com.ferdidrgn.theatreticket.databinding.ActivityLoginBinding
-import com.ferdidrgn.theatreticket.tools.NavHandler
-import com.ferdidrgn.theatreticket.tools.RC_SIGN_IN
-import com.ferdidrgn.theatreticket.tools.onClickDelayed
-import com.ferdidrgn.theatreticket.tools.showToast
+import com.ferdidrgn.theatreticket.tools.*
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
@@ -30,11 +27,15 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
 
     override fun onCreateFinished(savedInstance: Bundle?) {
         binding.viewModel = viewModel
+        builderADS(this, binding.adView)
         auth = FirebaseAuth.getInstance()
         isUserLogIn()
 
-        binding.btnSignIn.onClickDelayed {
+        binding.btnSignInGoogle.onClickDelayed {
             sigIn()
+        }
+        binding.btnSignInPhoneNumber.onClickDelayed {
+
         }
     }
 

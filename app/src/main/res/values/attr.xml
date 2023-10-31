@@ -7,9 +7,10 @@
     </declare-styleable>
 
     <declare-styleable name="CustomButton">
-        <attr name="cst_button_name" format="string" />
-        <attr name="cst_buttonColor" format="integer" />
-        <attr name="cst_backgroundColorFromXml" format="color" />
+        <attr name="cst_btn_name" format="string" />
+        <attr name="cst_btn_color" format="integer" />
+        <attr name="cst_btn_endIcon" format="integer" />
+        <attr name="cst_btn_backgroundColorFromXml" format="color" />
     </declare-styleable>
 
     <declare-styleable name="CustomToolbar">

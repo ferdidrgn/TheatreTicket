@@ -12,7 +12,20 @@
           "package_name": "com.ferdidrgn.theatreticket"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "398342224792-frp3bktedu2hfrsh49lgogl96cdl5qf9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ferdidrgn.theatreticket",
+            "certificate_hash": "a6e4491489f3282ec42a411b69dcaf4f7f70ff44"
+          }
+        },
+        {
+          "client_id": "398342224792-rmid42s6bcq4r4ceke9e9pbblbae2r4v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAo6PWDHwY7oIyj1gREKepzVGENnhJIpvI"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "398342224792-rmid42s6bcq4r4ceke9e9pbblbae2r4v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

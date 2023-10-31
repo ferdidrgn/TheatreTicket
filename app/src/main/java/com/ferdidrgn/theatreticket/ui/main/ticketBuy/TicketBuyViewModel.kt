@@ -54,6 +54,7 @@ class TicketBuyViewModel @Inject constructor(
                         val id = UUID.randomUUID().toString()
                         userAdd = User(
                             _id = id + ID.User.id,
+                            token = ClientPreferences.inst.token.toString(),
                             fcmToken = ClientPreferences.inst.FCMtoken.toString(),
                             firstName = firstName.value,
                             lastName = lastName.value,
@@ -111,6 +112,7 @@ class TicketBuyViewModel @Inject constructor(
         mainScope {
             userAdd = User(
                 _id = user?._id.toString(),
+                token = ClientPreferences.inst.token.toString(),
                 fcmToken = ClientPreferences.inst.FCMtoken.toString(),
                 firstName = user?.firstName.toString(),
                 lastName = user?.lastName.toString(),

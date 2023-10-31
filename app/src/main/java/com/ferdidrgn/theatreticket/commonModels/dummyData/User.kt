@@ -3,6 +3,7 @@ package com.ferdidrgn.theatreticket.commonModels.dummyData
 data class User(
     var _createdAt: String? = null,
     var _id: String? = null,
+    var token: String? = null,
     var fcmToken: String? = null,
     var firstName: String? = null,
     var lastName: String? = null,

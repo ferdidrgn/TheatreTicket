@@ -12,6 +12,8 @@ import com.ferdidrgn.theatreticket.databinding.FragmentSettingsBinding
 import com.ferdidrgn.theatreticket.enums.ToMain
 import com.ferdidrgn.theatreticket.tools.*
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -88,11 +90,14 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
                 ClientPreferences.inst.userFirstName = ""
                 ClientPreferences.inst.userLastName = ""
 
+                Firebase.auth.signOut()
+
                 FirebaseMessaging.getInstance().deleteToken()
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             FirebaseAuth.getInstance().signOut()
                             NavHandler.instance.toMainActivity(requireContext(), ToMain.Home)
+                            dismiss()
                         }
                     }
             }

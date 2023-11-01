@@ -617,7 +617,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="25dp"
-                    android:background="@drawable/bg_rounded_rectangular_10_main_dark_border_main"
+                    android:background="@drawable/bg_primary2_10_border_primary3"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="13dp">
 

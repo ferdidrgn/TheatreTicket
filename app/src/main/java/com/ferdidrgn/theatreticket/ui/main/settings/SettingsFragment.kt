@@ -4,6 +4,7 @@ import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.viewModels
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseFragment
@@ -75,6 +76,9 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
                     showToast(getString(R.string.error_not_mail_installed))
                 }
             }
+            btnChangeTheme.onClickDelayed {
+                themeLightOrDark()
+            }
         }
     }
 
@@ -122,4 +126,14 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
         }
     }
 
+    private fun themeLightOrDark() {
+
+        if (ClientPreferences.inst.isDarkMode == true) {
+            ClientPreferences.inst.isDarkMode = false
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        } else {
+            ClientPreferences.inst.isDarkMode = true
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        }
+    }
 }

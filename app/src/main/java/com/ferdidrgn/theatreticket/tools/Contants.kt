@@ -17,6 +17,7 @@ const val CONNECTION = "connection"
 const val IS_FIRST_LUNCH = "isFirstLunch"
 const val IS_GOOGLE_SIGN_IN = "isGoogleSignIn"
 const val IS_PHONE_NUMBER_SIGN_IN = "isPhoneNumberSignIn"
+const val IS_DARK_MODE = "isDarkMode"
 const val TO_MAIN = "TO_MAIN"
 const val SHOW = "show"
 const val RC_SIGN_IN = 9001

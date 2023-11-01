@@ -39,12 +39,17 @@
     </style>
 
     <style name="TextColor">
-        <item name="android:background">@color/primary7</item>
+        <item name="android:textColor">@color/primary7</item>
     </style>
 
-    <style name="rounded_main_dark_border_main">
-        <item name="android:src">@drawable/bg_dark2_border_dark3</item>
+    <style name="ImageTintColor">
+        <item name="android:tint">@color/pink_light</item>
     </style>
+
+    <style name="rounded_primary2_10_border_primary3">
+        <item name="android:background">@drawable/bg_dark2_10_border_dark3</item>
+    </style>
+
 
 
     <style name="DialogTheme_transparent" parent="Theme.AppCompat.Dialog">

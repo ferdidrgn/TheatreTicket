@@ -90,6 +90,11 @@ class ClientPreferences : PreferencesManager() {
         get() = getString(CONTEXT_LANGUAGE, ContextLanguages.TURKISH.language).toString()
         set(token) = putString(CONTEXT_LANGUAGE, token)
 
+    var isDarkMode: Boolean?
+        get() = getBooleanValue(IS_DARK_MODE, false)
+        set(isDarkMode) {
+            putBoolean(IS_DARK_MODE, isDarkMode ?: false)
+        }
 
     var interest = ArrayList<String>()
 

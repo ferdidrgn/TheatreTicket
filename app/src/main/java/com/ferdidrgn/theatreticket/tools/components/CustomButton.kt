@@ -44,11 +44,10 @@ class CustomButton : ConstraintLayout {
                 ContextCompat.getColor(context, R.color.red_err)
             )
         )
-        setButtonColor(
-            layoutAttribute.getResourceId(
-                R.styleable.CustomButton_cst_btn_color, 0
-            )
-        )
+        val setButtonColor = (
+                layoutAttribute.getResourceId(
+                    R.styleable.CustomButton_cst_btn_color, 0
+                ))
         setImage(layoutAttribute.getInt(R.styleable.CustomButton_cst_btn_endIcon, 0))
     }
 
@@ -71,11 +70,6 @@ class CustomButton : ConstraintLayout {
     fun setButtonDisable() {
         customButton.backgroundTintList = ColorStateList.valueOf(backgroundColorFromAttr)
         isClickable = false
-    }
-
-    fun setButtonColor(color: Int) {
-        customButton.backgroundTintList =
-            ContextCompat.getColorStateList(customButton.context, color)
     }
 
     fun setImage(image: Int?) {

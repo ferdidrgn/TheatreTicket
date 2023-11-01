@@ -129,6 +129,8 @@
     <string name="send_mail">Mail Gönder…</string>
     <string name="terms_condition">Koşullar&amp;Şartlar</string>
     <string name="guest">Misafir</string>
+    <string name="are_you_sure_you_want_to_change_theme">Temayı değiştirmek istediğinize emin misiniz?</string>
+    <string name="are_you_sure_you_want_to_delete_account">Hesabınızı silmek istediğinize emin misiniz?</string>
 
     <!--    Show Details -->
     <string name="show_details">Gösteri Detayları</string>

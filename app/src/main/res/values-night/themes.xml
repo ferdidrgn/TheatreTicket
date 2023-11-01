@@ -38,10 +38,14 @@
     </style>
 
     <style name="TextColor">
-        <item name="android:background">@color/dark7</item>
+        <item name="android:textColor">@color/dark7</item>
     </style>
 
-    <style name="rounded_main_dark_border_main">
-        <item name="android:src">@drawable/bg_primary2_border_primary3</item>
+    <style name="ImageTintColor">
+        <item name="android:tint">@color/dark8</item>
+    </style>
+
+    <style name="rounded_primary2_10_border_primary3">
+        <item name="android:background">@drawable/bg_primary2_10_border_primary3</item>
     </style>
 </resources>

@@ -19,13 +19,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/main_dark2">
+        android:background="@color/primary">
 
         <com.ferdidrgn.theatreticket.tools.components.CustomToolbar
             android:id="@+id/customToolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/main_dark2"
+            android:background="@color/primary"
             app:cst_toolbar_backIcon_visible="true"
             app:cst_toolbar_text="@string/show_operations"
             app:layout_constraintEnd_toEndOf="parent"
@@ -113,7 +113,7 @@
                 android:orientation="vertical"
                 app:behavior_hideable="false"
                 app:behavior_peekHeight="100dp"
-                app:fillColor="@color/main"
+                app:fillColor="@color/primary3"
                 app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
                 <androidx.core.widget.NestedScrollView
@@ -176,10 +176,10 @@
                             android:layout_width="160dp"
                             android:layout_height="160dp"
                             android:layout_marginTop="20dp"
-                            android:backgroundTint="@color/main_dark"
+                            android:backgroundTint="@color/primary2"
                             android:onClick="@{()->viewModel.onUpdateImageClick()}"
                             app:cardCornerRadius="10dp"
-                            app:strokeColor="@color/main_secondary"
+                            app:strokeColor="@color/primary4"
                             app:strokeWidth="3dp">
 
                             <com.google.android.material.imageview.ShapeableImageView
@@ -190,7 +190,7 @@
                                 android:scaleType="centerCrop"
                                 android:src="@drawable/ic_add_cart_new_plus"
                                 app:shapeAppearanceOverlay="@style/ImageView.SquareBorder"
-                                app:strokeColor="@color/main_dark"
+                                app:strokeColor="@color/primary2"
                                 app:strokeWidth="12dp" />
                         </com.google.android.material.card.MaterialCardView>
 
@@ -248,7 +248,7 @@
                             android:layout_weight="1"
                             android:onClick="@{()->viewModel.onBtnAddShowClick()}"
                             android:visibility="@{viewModel.updateBottonVisibility ? View.GONE : View.VISIBLE}"
-                            app:cst_btn_color="@color/main_dark"
+                            app:cst_btn_color="@color/primary2"
                             app:cst_btn_name="@string/show_add" />
 
                         <com.ferdidrgn.theatreticket.tools.components.CustomButton
@@ -260,7 +260,7 @@
                             android:layout_weight="1"
                             android:onClick="@{()->viewModel.onBtnUpdateShowClick()}"
                             android:visibility="@{viewModel.updateBottonVisibility ? View.VISIBLE : View.GONE}"
-                            app:cst_btn_color="@color/main_dark"
+                            app:cst_btn_color="@color/primary2"
                             app:cst_btn_name="@string/show_update" />
 
                         <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"

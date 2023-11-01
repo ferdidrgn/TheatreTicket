@@ -1,13 +1,51 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <!-- Customize your light theme here. -->
-    <style name="Theme.TheatreTicket" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="android:statusBarColor">@color/main_dark2</item>
-        <item name="android:navigationBarColor">@color/main_dark2</item>
-        <item name="colorPrimary">@color/main_dark2</item>
+    <style name="Theme.TheatreTicket" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
+        <item name="android:navigationBarColor">?attr/colorPrimary</item>
         <item name="android:windowBackground">@drawable/splash_screen</item>
         <item name="android:windowLightStatusBar">true</item>
+
+        <!-- Primary Color -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary2</item>
+        <item name="colorOnPrimary">@color/primary3</item>
+        <item name="colorPrimaryFixed">@color/primary4</item>
+        <item name="colorOnPrimarySurface">@color/primary5</item>
+
+        <!-- Secondary Color -->
+        <item name="colorSecondary">@color/primary6</item>
+        <item name="colorSecondaryVariant">@color/primary7</item>
+        <item name="colorOnSecondary">@color/white_light</item>
+        <item name="colorOnSecondaryFixed">@color/pink_light</item>
+
+        <!-- Background Color -->
+        <item name="colorSurface">@color/pink_success</item>
+        <item name="colorOnSurface">@color/red_err</item>
+        <item name="colorOnSurfaceVariant">@color/red</item>
+        <item name="colorOnSurfaceInverse">@color/green_light</item>
+        <item name="colorOnTertiary">@color/blue_light</item>
+
     </style>
+
+    <!-- Customize style -->
+    <style name="ScreenBackgroun">
+        <item name="android:background">@color/primary</item>
+    </style>
+
+    <style name="CardBackground">
+        <item name="android:background">@color/primary</item>
+    </style>
+
+    <style name="TextColor">
+        <item name="android:background">@color/primary7</item>
+    </style>
+
+    <style name="rounded_main_dark_border_main">
+        <item name="android:src">@drawable/rounded_main_dark_border_main</item>
+    </style>
+
 
     <style name="DialogTheme_transparent" parent="Theme.AppCompat.Dialog">
         <item name="android:windowBackground">

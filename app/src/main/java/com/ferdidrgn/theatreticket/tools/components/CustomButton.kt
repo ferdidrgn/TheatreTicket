@@ -41,7 +41,7 @@ class CustomButton : ConstraintLayout {
         getDisableBackgroundTint(
             layoutAttribute.getColor(
                 R.styleable.CustomButton_cst_btn_backgroundColorFromXml,
-                ContextCompat.getColor(context, R.color.light_gray)
+                ContextCompat.getColor(context, R.color.red_err)
             )
         )
         setButtonColor(
@@ -64,7 +64,7 @@ class CustomButton : ConstraintLayout {
 
     fun setButtonActive() {
         customButton.backgroundTintList =
-            ColorStateList.valueOf(ContextCompat.getColor(customButton.context, R.color.main_dark))
+            ColorStateList.valueOf(ContextCompat.getColor(customButton.context, R.color.primary2))
         isClickable = true
     }
 
@@ -76,7 +76,6 @@ class CustomButton : ConstraintLayout {
     fun setButtonColor(color: Int) {
         customButton.backgroundTintList =
             ContextCompat.getColorStateList(customButton.context, color)
-        //customButton.setBackgroundColor(color)
     }
 
     fun setImage(image: Int?) {

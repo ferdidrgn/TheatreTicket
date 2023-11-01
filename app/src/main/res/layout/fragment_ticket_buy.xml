@@ -87,7 +87,7 @@
                             android:padding="13dp"
                             android:text="A18, A20"
                             android:textAlignment="textStart"
-                            android:textColor="@color/white"
+                            android:textColor="@color/white_light"
                             android:textSize="18sp" />
 
                         <com.ferdidrgn.theatreticket.tools.components.CustomPhoneEditText

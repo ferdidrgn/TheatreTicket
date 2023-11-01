@@ -8,7 +8,6 @@ import android.util.Log
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.Err
 import com.google.android.gms.ads.AdListener
@@ -41,7 +40,7 @@ fun handleStatusBar(window: Window) {
     }
 }
 
-fun statusBarColor(context: Context, window: Window, color: Int = R.color.main_dark) {
+fun statusBarColor(context: Context, window: Window, color: Int = R.color.primary2) {
     if (Build.VERSION.SDK_INT >= 21) {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)

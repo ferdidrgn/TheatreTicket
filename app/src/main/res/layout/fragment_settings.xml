@@ -64,7 +64,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@{viewModel.userName}"
-                                android:textColor="@color/main_fifth"
+                                android:textColor="@color/primary7"
                                 android:textSize="16sp"
                                 tools:text="Ferdi Durgun" />
 
@@ -74,7 +74,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="2dp"
                                 android:text="@{viewModel.role}"
-                                android:textColor="@color/main_fifth"
+                                android:textColor="@color/primary7"
                                 android:textDirection="ltr"
                                 android:textSize="14sp"
                                 tools:text="Admin" />
@@ -92,12 +92,6 @@
                         android:padding="10dp"
                         android:src="@drawable/ic_account_avatar_profile_user" />
                 </RelativeLayout>
-
-                <View
-                    android:id="@+id/seperator"
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:background="@color/black" />
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
@@ -148,7 +142,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="15dp"
                             android:text="@string/sold_seats"
-                            android:textColor="@color/main_fifth"
+                            android:textColor="@color/primary7"
                             android:textSize="18sp" />
 
                     </LinearLayout>
@@ -188,7 +182,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="15dp"
                             android:text="@string/show_operations"
-                            android:textColor="@color/main_fifth"
+                            android:textColor="@color/primary7"
                             android:textSize="18sp" />
 
                     </LinearLayout>
@@ -228,7 +222,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="15dp"
                             android:text="@string/stage_operations"
-                            android:textColor="@color/main_fifth"
+                            android:textColor="@color/primary7"
                             android:textSize="18sp" />
 
                     </LinearLayout>
@@ -269,7 +263,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="15dp"
                             android:text="@string/sell_ticket"
-                            android:textColor="@color/main_fifth"
+                            android:textColor="@color/primary7"
                             android:textSize="18sp" />
 
                     </LinearLayout>
@@ -309,7 +303,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="15dp"
                             android:text="@string/change_theme"
-                            android:textColor="@color/main_fifth"
+                            android:textColor="@color/primary7"
                             android:textSize="18sp" />
 
                     </LinearLayout>
@@ -353,7 +347,7 @@
                             android:layout_marginStart="8dp"
                             android:layout_weight="1.1"
                             android:text="@string/change_language"
-                            android:textColor="@color/main_fifth"
+                            android:textColor="@color/primary7"
                             android:textSize="18sp" />
 
                         <TextView
@@ -400,7 +394,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="15dp"
                             android:text="@string/rate_the_app"
-                            android:textColor="@color/main_fifth"
+                            android:textColor="@color/primary7"
                             android:textSize="18sp" />
 
                     </LinearLayout>
@@ -440,7 +434,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="15dp"
                             android:text="@string/share_app"
-                            android:textColor="@color/main_fifth"
+                            android:textColor="@color/primary7"
                             android:textSize="18sp" />
 
                     </LinearLayout>
@@ -481,7 +475,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="15dp"
                             android:text="@string/invite_friends"
-                            android:textColor="@color/main_fifth"
+                            android:textColor="@color/primary7"
                             android:textSize="18sp" />
 
                     </LinearLayout>
@@ -522,7 +516,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="15dp"
                             android:text="@string/acc_delete"
-                            android:textColor="@color/main_fifth"
+                            android:textColor="@color/primary7"
                             android:textSize="18sp" />
 
                     </LinearLayout>
@@ -563,7 +557,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="15dp"
                             android:text="@string/privace_policy"
-                            android:textColor="@color/main_fifth"
+                            android:textColor="@color/primary7"
                             android:textSize="18sp" />
 
                     </LinearLayout>
@@ -604,7 +598,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="15dp"
                             android:text="@string/contact_us"
-                            android:textColor="@color/main_fifth"
+                            android:textColor="@color/primary7"
                             android:textSize="18sp" />
 
                     </LinearLayout>
@@ -645,7 +639,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="15dp"
                             android:text="@string/log_out"
-                            android:textColor="@color/main_fifth"
+                            android:textColor="@color/primary7"
                             android:textSize="18sp" />
 
                     </LinearLayout>

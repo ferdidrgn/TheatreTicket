@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/rounded_main_dark_border_main"
-        android:textColorHint="@color/main_fifth"
+        android:textColorHint="@color/primary7"
         app:boxStrokeWidth="0dp"
         app:boxStrokeWidthFocused="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
-            android:textColor="@color/main_thirth"
+            android:textColor="@color/primary5"
             android:maxLines="1"
             android:textDirection="locale"
             android:textSize="12sp" />

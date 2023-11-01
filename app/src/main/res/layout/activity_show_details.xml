@@ -17,7 +17,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/main_dark2"
+        android:background="@color/primary"
         tools:context=".ui.showDetails.ShowDetailsActivity">
 
 
@@ -79,7 +79,7 @@
                         android:layout_height="20dp"
                         android:layout_marginStart="10dp"
                         android:layout_weight="0.3"
-                        android:shadowColor="@color/white"
+                        android:shadowColor="@color/white_light"
                         android:src="@drawable/ic_calendar_date_schedule_time" />
 
                     <TextView
@@ -98,7 +98,7 @@
                         android:layout_height="20dp"
                         android:layout_marginStart="10dp"
                         android:layout_weight="0.3"
-                        android:shadowColor="@color/white"
+                        android:shadowColor="@color/white_light"
                         android:src="@drawable/ic_alarm_clock_time_watch"
                         app:tint="@color/blue_light" />
 
@@ -124,7 +124,7 @@
                     app:cardCornerRadius="10dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:strokeColor="@color/main_secondary"
+                    app:strokeColor="@color/primary4"
                     app:strokeWidth="3dp">
 
                     <com.google.android.material.imageview.ShapeableImageView
@@ -133,7 +133,7 @@
                         android:scaleType="fitXY"
                         android:src="@drawable/img_goz_kap_vaz_yap_april_23"
                         app:shapeAppearanceOverlay="@style/ImageView.SquareBorder"
-                        app:strokeColor="@color/main_dark"
+                        app:strokeColor="@color/primary2"
                         app:strokeWidth="12dp" />
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
@@ -156,7 +156,7 @@
                 android:orientation="vertical"
                 app:behavior_hideable="false"
                 app:behavior_peekHeight="100dp"
-                app:fillColor="@color/main_dark"
+                app:fillColor="@color/primary2"
                 app:layout_behavior="com.tayfuncesur.curvedbottomsheet.TopSheetBehavior">
 
                 <LinearLayout

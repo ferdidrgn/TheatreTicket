@@ -16,7 +16,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/main_dark2"
+        android:background="@color/primary"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         tools:context=".ui.language.LanguageActivity">
@@ -52,7 +52,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Türkçe"
-                android:textColor="@{viewModel.whichButtonSelected ? @color/main_fourth : @color/main}"
+                android:textColor="@{viewModel.whichButtonSelected ? @color/primary6 : @color/primary3}"
                 android:textSize="25sp" />
 
         </LinearLayout>
@@ -73,7 +73,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="English"
-                android:textColor="@{viewModel.whichButtonSelected ? @color/main : @color/main_fourth}"
+                android:textColor="@{viewModel.whichButtonSelected ? @color/primary3 : @color/primary6}"
                 android:textSize="25sp" />
 
         </LinearLayout>

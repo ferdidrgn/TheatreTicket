@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:textColor="@color/main"
+            android:textColor="@color/primary3"
             android:textSize="21sp"
             tools:text="title" />
 
@@ -40,7 +40,7 @@
             android:layout_marginTop="30dp"
             android:gravity="center_horizontal"
             android:src="@drawable/ic_warning"
-            android:textColor="@color/main"
+            android:textColor="@color/primary3"
             android:textSize="21sp" />
 
         <TextView
@@ -49,7 +49,7 @@
             android:layout_height="60dp"
             android:layout_marginTop="16dp"
             android:textAlignment="center"
-            android:textColor="@color/main"
+            android:textColor="@color/primary3"
             android:textSize="14sp"
             tools:text="description" />
 
@@ -70,7 +70,7 @@
                 android:paddingHorizontal="15dp"
                 android:paddingVertical="10dp"
                 android:textAlignment="center"
-                android:textColor="@color/white"
+                android:textColor="@color/white_light"
                 android:textSize="16sp"
                 tools:text="cancel" />
 
@@ -84,7 +84,7 @@
                 android:paddingHorizontal="15dp"
                 android:paddingVertical="10dp"
                 android:textAlignment="center"
-                android:textColor="@color/white"
+                android:textColor="@color/white_light"
                 android:textSize="16sp"
                 tools:text="Done" />
         </LinearLayout>

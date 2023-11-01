@@ -35,7 +35,7 @@
             android:maxLines="3"
             android:text="@{show.name}"
             android:textAlignment="center"
-            android:textColor="@color/white"
+            android:textColor="@color/white_light"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +50,7 @@
             app:cardCornerRadius="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:strokeColor="@color/main_secondary"
+            app:strokeColor="@color/primary4"
             app:strokeWidth="3dp">
 
             <com.google.android.material.imageview.ShapeableImageView
@@ -61,7 +61,7 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_home"
                 app:shapeAppearanceOverlay="@style/ImageView.SquareBorder"
-                app:strokeColor="@color/main_dark"
+                app:strokeColor="@color/primary2"
                 app:strokeWidth="12dp" />
         </com.google.android.material.card.MaterialCardView>
     </LinearLayout>

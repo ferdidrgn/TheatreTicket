@@ -11,7 +11,7 @@
         android:background="@drawable/rounded_main_dark_border_main"
         android:hint="@string/date_hours"
         android:padding="16dp"
-        android:textColor="@color/main_fifth"
-        android:textColorHint="@color/main_fifth"
+        android:textColor="@color/primary7"
+        android:textColorHint="@color/primary7"
         android:textSize="12sp" />
 </LinearLayout>

@@ -36,7 +36,7 @@
             app:cardCornerRadius="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:strokeColor="@color/main_secondary"
+            app:strokeColor="@color/primary4"
             app:strokeWidth="3dp">
 
             <com.google.android.material.imageview.ShapeableImageView
@@ -45,7 +45,7 @@
                 android:layout_height="100dp"
                 android:scaleType="centerCrop"
                 app:shapeAppearanceOverlay="@style/ImageView.SquareBorder"
-                app:strokeColor="@color/main_dark"
+                app:strokeColor="@color/primary2"
                 app:strokeWidth="12dp"
                 tools:src="@drawable/ic_home" />
         </com.google.android.material.card.MaterialCardView>
@@ -71,7 +71,7 @@
                 android:maxLines="3"
                 android:text="@{show.name}"
                 android:textAlignment="center"
-                android:textColor="@color/white"
+                android:textColor="@color/white_light"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -88,7 +88,7 @@
                 android:gravity="start"
                 android:maxLines="3"
                 android:text="@{show.description}"
-                android:textColor="@color/white"
+                android:textColor="@color/white_light"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout"
                 app:layout_constraintEnd_toEndOf="@+id/tvShowName"
@@ -103,7 +103,7 @@
                 android:layout_marginVertical="10dp"
                 android:text="@{show.price}"
                 android:textAlignment="center"
-                android:textColor="@color/white"
+                android:textColor="@color/white_light"
                 android:textSize="11sp"
                 app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
                 app:layout_constraintStart_toStartOf="@+id/tvDescription"
@@ -134,7 +134,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text="@{show.ageLimit}"
-                    android:textColor="@color/white"
+                    android:textColor="@color/white_light"
                     android:textSize="7sp"
                     tools:ignore="SmallSp"
                     tools:text="@string/done" />

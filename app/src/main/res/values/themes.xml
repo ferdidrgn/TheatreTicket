@@ -43,7 +43,7 @@
     </style>
 
     <style name="rounded_main_dark_border_main">
-        <item name="android:src">@drawable/rounded_main_dark_border_main</item>
+        <item name="android:src">@drawable/bg_dark2_border_dark3</item>
     </style>
 
 

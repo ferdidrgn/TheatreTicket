@@ -42,6 +42,6 @@
     </style>
 
     <style name="rounded_main_dark_border_main">
-        <item name="android:src">@drawable/rounded_main_dark_border_main</item>
+        <item name="android:src">@drawable/bg_primary2_border_primary3</item>
     </style>
 </resources>

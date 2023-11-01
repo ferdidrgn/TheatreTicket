@@ -8,7 +8,7 @@
         android:id="@+id/tlEditText"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/rounded_main_dark_border_main"
+        android:background="@drawable/bg_primary2_border_primary3"
         android:textColorHint="@color/primary7"
         app:boxStrokeWidth="0dp"
         app:boxStrokeWidthFocused="0dp"

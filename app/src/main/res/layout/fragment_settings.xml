@@ -163,7 +163,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/bg_rectangle_primary2_border_primary3"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="13dp">
 
@@ -244,7 +243,7 @@
 
                 <RelativeLayout
                     android:id="@+id/btnSellTicket"
-                    style="@style/rectangle_primary2_border_primary3"
+                    style="@style/rectangle_bottom_10_primary2_border_primary3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -286,10 +285,10 @@
 
                 <RelativeLayout
                     android:id="@+id/btnChangeTheme"
-                    style="@style/rectangle_primary2_border_primary3"
+                    style="@style/rectangle_top_10_primary2_border_primary3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="30dp"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="13dp">
 
@@ -327,7 +326,7 @@
 
                 <RelativeLayout
                     android:id="@+id/btnLanguage"
-                    style="@style/rectangle_bottom_10_primary2_border_primary3"
+                    style="@style/rectangle_primary2_border_primary3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -379,10 +378,10 @@
 
                 <RelativeLayout
                     android:id="@+id/btnRateApp"
-                    style="@style/rectangle_top_10_primary2_border_primary3"
+                    style="@style/rectangle_primary2_border_primary3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="10dp"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="13dp">
 
@@ -447,48 +446,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="15dp"
                             android:text="@string/share_app"
-                            android:textSize="18sp" />
-
-                    </LinearLayout>
-
-                    <ImageView
-                        style="@style/ImgTintColor"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerInParent="true"
-                        android:src="@drawable/ic_arrow_right_couple" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/btnInviteFriends"
-                    style="@style/rectangle_primary2_border_primary3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:paddingHorizontal="10dp"
-                    android:paddingVertical="13dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentStart="true"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            style="@style/ImgTintColor"
-                            android:layout_width="24dp"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/ic_share_social" />
-
-                        <TextView
-                            style="@style/TextColor"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:text="@string/invite_friends"
                             android:textSize="18sp" />
 
                     </LinearLayout>

@@ -60,9 +60,7 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
             btnLogout.onClickDelayed {
                 showLogoutDialog(requireContext())
             }
-            binding.btnInviteFriends.onClickDelayed {
-                //NavHandler.instance.inviteFriendsScreen(requireContext())
-            }
+
             binding.btnDeleteAcc.onClickDelayed {
                 //deleteAccountPopup()
             }

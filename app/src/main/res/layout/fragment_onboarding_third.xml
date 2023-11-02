@@ -7,14 +7,14 @@
 
         <variable
             name="viewModel"
-            type="com.ferdidrgn.theatreticket.ui.onbarding.OnboardingViewModel" />
+            type="com.ferdidrgn.theatreticket.ui.onboarding.OnboardingViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/primary"
-        tools:context=".ui.onbarding.onboardingFragments.OnboardingThirdFragment">
+        tools:context=".ui.onboarding.onboardingFragments.OnboardingThirdFragment">
 
         <com.ferdidrgn.theatreticket.tools.components.CustomToolbar
             android:id="@+id/customToolbar"

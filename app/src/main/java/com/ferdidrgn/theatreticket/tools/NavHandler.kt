@@ -10,7 +10,7 @@ import com.ferdidrgn.theatreticket.ui.termsAndConditions.TermsAndConditionsActiv
 import com.ferdidrgn.theatreticket.ui.language.LanguageActivity
 import com.ferdidrgn.theatreticket.ui.login.LoginActivity
 import com.ferdidrgn.theatreticket.ui.main.MainActivity
-import com.ferdidrgn.theatreticket.ui.onbarding.OnboardingActivity
+import com.ferdidrgn.theatreticket.ui.onboarding.OnboardingActivity
 import com.ferdidrgn.theatreticket.ui.showDetails.ShowDetailsActivity
 import com.ferdidrgn.theatreticket.ui.showOperations.ShowOperationsActivity
 import java.io.Serializable

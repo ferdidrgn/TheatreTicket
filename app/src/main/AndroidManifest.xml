@@ -30,7 +30,7 @@
             android:name=".ui.showDetails.ShowDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.onbarding.OnboardingActivity"
+            android:name=".ui.onboarding.OnboardingActivity"
             android:exported="false" />
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"

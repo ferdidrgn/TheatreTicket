@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.ferdidrgn.theatreticket.ui.onbarding.OnboardingViewModel" />
+            type="com.ferdidrgn.theatreticket.ui.onboarding.OnboardingViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

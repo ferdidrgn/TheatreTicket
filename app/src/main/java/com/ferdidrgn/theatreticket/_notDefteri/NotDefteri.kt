@@ -6,4 +6,5 @@ class NotDefteri {
     //Custom toolbar ayarla, cstdatautil fun ekle
     //settings clicked ayarlarını viewmodel a at
     //image update
+    //logout dark mode olmadı
 }

@@ -72,17 +72,10 @@
 
                 <com.rd.PageIndicatorView
                     android:id="@+id/indicator"
+                    style="@style/PageIndicatorView"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
-                    android:layout_marginTop="12dp"
-                    android:elevation="1dp"
-                    app:piv_animationType="worm"
-                    app:piv_dynamicCount="true"
-                    app:piv_interactiveAnimation="true"
-                    app:piv_padding="3dp"
-                    app:piv_radius="4.5dp"
-                    app:piv_selectedColor="@color/primary3"
-                    app:piv_unselectedColor="@color/primary2" />
+                    android:layout_marginTop="12dp" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"

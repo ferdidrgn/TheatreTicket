@@ -84,23 +84,14 @@
 
             <com.rd.PageIndicatorView
                 android:id="@+id/dotsIndicator"
+                style="@style/PageIndicatorView"
                 android:layout_width="wrap_content"
                 android:layout_height="10dp"
                 android:layout_gravity="bottom|center"
                 android:layout_marginTop="10dp"
-                android:elevation="1dp"
-                android:rotation="0"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:piv_animationType="worm"
-                app:piv_count="3"
-                app:piv_dynamicCount="true"
-                app:piv_interactiveAnimation="true"
-                app:piv_padding="3dp"
-                app:piv_radius="4.5dp"
-                app:piv_selectedColor="@color/primary3"
-                app:piv_unselectedColor="@color/primary" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <RelativeLayout
                 android:id="@+id/rlStarted"

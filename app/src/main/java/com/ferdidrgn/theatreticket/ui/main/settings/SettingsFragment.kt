@@ -131,9 +131,11 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
         if (ClientPreferences.inst.isDarkMode == true) {
             ClientPreferences.inst.isDarkMode = false
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            NavHandler.instance.toMainActivity(requireContext(), ToMain.Settings)
         } else {
             ClientPreferences.inst.isDarkMode = true
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            NavHandler.instance.toMainActivity(requireContext(), ToMain.Settings)
         }
     }
 }

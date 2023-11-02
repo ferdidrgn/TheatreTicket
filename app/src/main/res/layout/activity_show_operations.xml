@@ -23,9 +23,9 @@
 
         <com.ferdidrgn.theatreticket.tools.components.CustomToolbar
             android:id="@+id/customToolbar"
+            style="@style/ScreenBackground"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/primary"
             app:cst_toolbar_backIcon_visible="true"
             app:cst_toolbar_text="@string/show_operations"
             app:layout_constraintEnd_toEndOf="parent"
@@ -48,7 +48,6 @@
             style="@style/rectangle_primary6_10_border_primary3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_primary6_10_border_primary3"
             android:gravity="end|center"
             android:onClick="@{()->viewModel.onBtnBottomSheetOpenClick()}"
             android:orientation="horizontal"

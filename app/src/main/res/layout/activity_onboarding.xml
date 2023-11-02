@@ -13,9 +13,9 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/ScreenBackground"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/primary">
+        android:layout_height="match_parent">
 
         <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
             android:id="@+id/adView"
@@ -47,6 +47,7 @@
 
             <ImageView
                 android:id="@+id/imgLeftArrow"
+                style="@style/ImgTintColor"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_centerVertical="true"
@@ -55,11 +56,11 @@
                 android:src="@drawable/ic_arrow_left"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/vpSlider"
-                app:tint="@color/pink_light" />
+                app:layout_constraintTop_toTopOf="@+id/vpSlider" />
 
             <ImageView
                 android:id="@+id/imgRightArrow"
+                style="@style/ImgTintColor"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_alignParentEnd="true"
@@ -69,8 +70,7 @@
                 android:src="@drawable/ic_right_arrow"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/vpSlider"
-                app:tint="@color/pink_light" />
+                app:layout_constraintTop_toTopOf="@+id/vpSlider" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -104,10 +104,10 @@
 
             <RelativeLayout
                 android:id="@+id/rlStarted"
+                style="@style/rounded_primary2_10_border_primary3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                style="@style/rounded_primary2_10_border_primary3"
                 android:onClick="@{()->viewModel.onLoginActivityClick()}"
                 android:paddingHorizontal="80dp"
                 android:paddingVertical="10dp"
@@ -119,12 +119,12 @@
 
                 <TextView
                     android:id="@+id/tvStarted"
+                    style="@style/TextColor2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:gravity="center"
                     android:text="@string/get_started"
-                    android:textColor="@color/white_light"
                     android:textSize="20sp"
                     tools:text="Started" />
             </RelativeLayout>

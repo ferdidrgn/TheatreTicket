@@ -29,23 +29,20 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cvShow"
+            style="@style/ImgStrokeColor2"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_centerVertical="true"
             app:cardCornerRadius="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:strokeColor="@color/primary4"
             app:strokeWidth="3dp">
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/imgShow"
+                style="ShapeableImageViewStyle"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:scaleType="centerCrop"
-                app:shapeAppearanceOverlay="@style/ImageView.SquareBorder"
-                app:strokeColor="@color/primary2"
-                app:strokeWidth="12dp"
                 tools:src="@drawable/ic_home" />
         </com.google.android.material.card.MaterialCardView>
 
@@ -72,6 +69,7 @@
 
                 <TextView
                     android:id="@+id/tvShowName"
+                    style="@style/TextColor2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="6dp"
@@ -79,7 +77,6 @@
                     android:maxLines="3"
                     android:text="@{show.name}"
                     android:textAlignment="center"
-                    android:textColor="@color/white_light"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toStartOf="@+id/imgUpdate"
                     app:layout_constraintStart_toStartOf="parent"
@@ -88,30 +85,31 @@
 
                 <ImageView
                     android:id="@+id/imgUpdate"
+                    style="@style/ImgTintColor"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginEnd="10dp"
                     android:onClick="@{()->listener.onShowsUpdateListener(show)}"
                     android:src="@drawable/ic_gear_options_preferences_setting"
                     app:layout_constraintEnd_toStartOf="@id/imgDelete"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/pink_light" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:id="@+id/imgDelete"
+                    style="@style/ImgTintColor"
                     android:layout_width="35dp"
                     android:layout_height="27dp"
                     android:layout_marginTop="2dp"
                     android:onClick="@{()->listener.onShowsDeleteListener(show)}"
                     android:src="@drawable/ic_bin_delete_recycle_trash"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/pink_light" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
                 android:id="@+id/tvDescription"
+                style="@style/TextColor2"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_below="@+id/clTitle"
@@ -120,7 +118,6 @@
                 android:gravity="start"
                 android:maxLines="3"
                 android:text="@{show.description}"
-                android:textColor="@color/white_light"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout"
                 app:layout_constraintEnd_toEndOf="@+id/clTitle"
@@ -130,12 +127,12 @@
 
             <TextView
                 android:id="@+id/tvPrice"
+                style="@style/TextColor2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
                 android:text="@{show.price}"
                 android:textAlignment="center"
-                android:textColor="@color/white_light"
                 android:textSize="11sp"
                 app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
                 app:layout_constraintStart_toStartOf="@+id/tvDescription"
@@ -153,12 +150,14 @@
                 app:layout_constraintStart_toEndOf="@+id/tvPrice">
 
                 <ImageView
+                    style="@style/ImgTintColor"
                     android:layout_width="10dp"
                     android:layout_height="10dp"
                     android:src="@drawable/ic_warning" />
 
                 <TextView
                     android:id="@+id/tvPlaceOfLost"
+                    style="@style/TextColor2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -166,7 +165,6 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text="@{show.ageLimit}"
-                    android:textColor="@color/white_light"
                     android:textSize="7sp"
                     tools:ignore="SmallSp"
                     tools:text="@string/done" />

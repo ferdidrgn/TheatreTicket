@@ -173,25 +173,19 @@
 
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/cvShow"
+                            style="@style/CardBackgroundTint_StrokeColor"
                             android:layout_width="160dp"
                             android:layout_height="160dp"
                             android:layout_marginTop="20dp"
-                            android:backgroundTint="@color/primary2"
-                            android:onClick="@{()->viewModel.onUpdateImageClick()}"
-                            app:cardCornerRadius="10dp"
-                            app:strokeColor="@color/primary4"
-                            app:strokeWidth="3dp">
+                            android:onClick="@{()->viewModel.onUpdateImageClick()}">
 
                             <com.google.android.material.imageview.ShapeableImageView
                                 android:id="@+id/imgShow"
+                                style="ShapeableImageViewStyle"
                                 android:layout_width="160dp"
                                 android:layout_height="160dp"
                                 android:layout_gravity="center"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/ic_add_cart_new_plus"
-                                app:shapeAppearanceOverlay="@style/ImageView.SquareBorder"
-                                app:strokeColor="@color/primary2"
-                                app:strokeWidth="12dp" />
+                                android:src="@drawable/ic_add_cart_new_plus" />
                         </com.google.android.material.card.MaterialCardView>
 
                         <com.ferdidrgn.theatreticket.tools.components.CustomEditText

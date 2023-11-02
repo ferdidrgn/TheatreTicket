@@ -38,7 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="10dp"
-                android:textColor="@color/white_light"
+                style="@style/TextColor2"
                 android:textSize="14sp"
                 tools:text="@string/terms_condition" />
         </androidx.core.widget.NestedScrollView>

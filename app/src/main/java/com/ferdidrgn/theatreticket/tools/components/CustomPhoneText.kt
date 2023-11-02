@@ -8,11 +8,11 @@ import android.content.Context
 import android.text.InputFilter
 import android.util.AttributeSet
 import android.widget.ImageView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.widget.addTextChangedListener
 import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
 
-class CustomPhoneEditText : TextInputLayout {
+class CustomPhoneEditText : ConstraintLayout {
 
     lateinit var editText: TextInputEditText
     lateinit var imgView: ImageView

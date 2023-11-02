@@ -30,25 +30,86 @@
     </style>
 
     <!-- Customize style -->
-    <style name="ScreenBackgroun">
+    <style name="ScreenBackground">
         <item name="android:background">@color/primary</item>
+    </style>
+
+    <style name="CardBackgroundTint_StrokeColor">
+        <item name="android:backgroundTint">@color/primary2</item>
+        <item name="strokeColor">@color/primary4</item>
+        <item name="strokeWidth">3dp</item>
+        <item name="cardCornerRadius">10dp</item>
+    </style>
+
+    <style name="ShapeableImageViewStyle">
+        <item name="android:scaleType">centerCrop</item>
+        <item name="shapeAppearanceOverlay">@style/ImageView.SquareBorder</item>
+        <item name="strokeColor">@color/primary2</item>
+        <item name="strokeWidth">12dp</item>
+    </style>
+
+    <style name="ImgStrokeColor">
+        <item name="strokeColor">@color/primary2</item>
+    </style>
+
+    <style name="ImgStrokeColor2">
+        <item name="strokeColor">@color/primary4</item>
     </style>
 
     <style name="CardBackground">
         <item name="android:background">@color/primary</item>
     </style>
 
+    <style name="TintBlueLight">
+        <item name="android:tint">@color/blue_light</item>
+    </style>
+
+    <style name="ViewBackground">
+        <item name="android:background">@color/pink_light</item>
+    </style>
+
     <style name="TextColor">
         <item name="android:textColor">@color/primary7</item>
     </style>
 
-    <style name="ImageTintColor">
+    <style name="TextColor2">
+        <item name="android:textColor">@color/white_light</item>
+    </style>
+
+    <style name="TextColorHint">
+        <item name="android:textColorHint">@color/primary7</item>
+    </style>
+
+    <style name="ImgTintColor">
         <item name="android:tint">@color/pink_light</item>
     </style>
 
-    <style name="rounded_primary2_10_border_primary3">
-        <item name="android:background">@drawable/bg_dark2_10_border_dark3</item>
+    <style name="CstToolbarBg">
+        <item name="android:background">@color/primary</item>
     </style>
+
+    <style name="rounded_primary2_10_border_primary3">
+        <item name="android:background">@drawable/bg_primary2_10_border_primary3</item>
+    </style>
+
+    <style name="rectangle_primary2_border_primary3">
+        <item name="android:background">@drawable/bg_rectangle_primary2_border_primary3</item>
+    </style>
+
+    <style name="rectangle_primary2_10_border_error_red">
+        <item name="android:background">@drawable/bg_primary2_10_border_error_red</item>
+    </style>
+
+    <style name="rectangle_top_10_primary2_border_primary3">
+        <item name="android:background">@drawable/bg_top_10_primary2_border_primary3</item>
+    </style>
+
+    <style name="rectangle_bottom_10_primary2_border_primary3">
+        <item name="android:background">@drawable/bg_bottom_10_primary2_border_primary3</item>
+    </style>
+
+
+
 
 
 

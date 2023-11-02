@@ -45,6 +45,10 @@
     <string name="ADS_BANNER_SHOW_OPERATIONS_ACTVTY_REAL" translatable="false">ca-app-pub-5779807348211992/2323383804</string>
     <string name="ADS_BANNER_SHOW_BOTTOM_SHEET_REAL" translatable="false">ca-app-pub-5779807348211992/3444893781</string>
     <string name="ADS_BANNER_LANGUAGE_ACTVTY_REAL" translatable="false">ca-app-pub-5779807348211992/9247846813</string>
+    <string name="ADS_BANNER_LOGIN_ACTVTY_REAL" translatable="false">ca-app-pub-5779807348211992/9549903603</string>
+    <string name="ADS_BANNER_ONBOARDING_ACTVTY_REAL" translatable="false">ca-app-pub-5779807348211992/1618059808</string>
+    <string name="ADS_BANNER_SHOW_DETAILS_ACTVTY_REAL" translatable="false">ca-app-pub-5779807348211992/2716901944</string>
+    <string name="ADS_BANNER_TERMS_CONDITION_ACTVTY_REAL" translatable="false">ca-app-pub-5779807348211992/5174161432</string>
 
 
     <!--    QUERY -->

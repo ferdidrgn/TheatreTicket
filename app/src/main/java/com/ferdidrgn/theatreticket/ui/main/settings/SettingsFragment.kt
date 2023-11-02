@@ -15,6 +15,8 @@ import com.ferdidrgn.theatreticket.tools.*
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.play.core.review.ReviewInfo
+import com.google.android.play.core.review.ReviewManagerFactory
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.AndroidEntryPoint
@@ -64,6 +66,10 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
             binding.btnDeleteAcc.onClickDelayed {
                 //deleteAccountPopup()
             }
+
+            btnRateApp.onClickDelayed {
+                reviewRequest()
+            }
             btnContactUs.onClickDelayed {
                 val i = Intent(Intent.ACTION_SEND)
                 i.type = "message/rfc822"
@@ -79,6 +85,28 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
             btnChangeTheme.onClickDelayed {
                 themeLightOrDark()
             }
+        }
+    }
+
+    private fun reviewRequest() {
+        try {
+            val manager = ReviewManagerFactory.create(requireActivity())
+            manager.requestReviewFlow()
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val reviewInfo: ReviewInfo = task.result
+                        manager.launchReviewFlow(requireActivity(), reviewInfo)
+                            .addOnFailureListener {
+                                viewModel.errorMessage.postValue(it.message)
+                            }.addOnCompleteListener {
+                                viewModel.successMessage.postValue(getString(R.string.thank_you_for_review))
+                            }
+                    }
+                }.addOnFailureListener {
+                    viewModel.errorMessage.postValue(it.message)
+                }
+        } catch (e: ActivityNotFoundException) {
+            viewModel.errorMessage.postValue(e.localizedMessage)
         }
     }
 

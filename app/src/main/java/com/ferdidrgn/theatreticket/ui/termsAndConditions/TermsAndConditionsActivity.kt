@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import com.ferdidrgn.theatreticket.base.BaseActivity
 import com.ferdidrgn.theatreticket.databinding.ActivityTermsAndConditionsBinding
+import com.ferdidrgn.theatreticket.tools.builderADS
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -17,6 +18,7 @@ class TermsAndConditionsActivity :
 
     override fun onCreateFinished(savedInstance: Bundle?) {
         binding.viewModel = viewModel
+        builderADS(this, binding.adView)
         binding.customToolbar.backIconOnBackPress(this)
     }
 }

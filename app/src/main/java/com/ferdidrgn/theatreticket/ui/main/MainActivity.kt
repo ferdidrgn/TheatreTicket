@@ -65,6 +65,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
                 NavHandler.instance.toOnboardingActivity(this)
             else {
                 askNotificationPermission()
+
                 getFCMToken()
                 getLogin()
                 observe()
@@ -90,6 +91,20 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
                 ToMain.Settings -> bottomNav.selectedItemId = R.id.settingsFragmentNav
             }
         }
+    }
+
+    private fun reviewPopUp() {
+        //Mock Data
+        /*if (ClientPreferences.inst.reviewStatus.not()) {
+            if (ClientPreferences.inst.reviewCounter % 3 == 0) {
+                val review = CustomReviewPopUp(this) { isSuccessful ->
+                    if (isSuccessful) {
+                        ClientPreferences.inst.reviewStatus = true
+                    }
+                }
+                review.show(supportFragmentManager, "CustomReviewPopUp")
+            }
+        }*/
     }
 
     private fun getNavHost() {

@@ -1,5 +1,6 @@
 package com.ferdidrgn.theatreticket.ui.showOperations
 
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.os.Bundle
 import android.util.DisplayMetrics
@@ -12,6 +13,8 @@ import com.ferdidrgn.theatreticket.tools.builderADS
 import com.ferdidrgn.theatreticket.tools.onClickDelayed
 import com.tayfuncesur.curvedbottomsheet.CurvedBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
+import com.google.android.play.core.review.ReviewInfo
+import com.google.android.play.core.review.ReviewManagerFactory
 
 
 @AndroidEntryPoint
@@ -137,5 +140,27 @@ class ShowOperationsActivity :
             }
         }
         pupUp.show(supportFragmentManager, "")
+    }
+
+    private fun reviewRequest() {
+        try {
+            val manager = ReviewManagerFactory.create(this)
+            manager.requestReviewFlow()
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val reviewInfo: ReviewInfo = task.result
+                        manager.launchReviewFlow(this, reviewInfo)
+                            .addOnFailureListener {
+                                viewModel.errorMessage.postValue(it.message)
+                            }.addOnCompleteListener {
+                                viewModel.successMessage.postValue(getString(R.string.thank_you_for_review))
+                            }
+                    }
+                }.addOnFailureListener {
+                    viewModel.errorMessage.postValue(it.message)
+                }
+        } catch (e: ActivityNotFoundException) {
+            viewModel.errorMessage.postValue(e.localizedMessage)
+        }
     }
 }

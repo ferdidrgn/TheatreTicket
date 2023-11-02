@@ -131,6 +131,8 @@
     <string name="guest">Misafir</string>
     <string name="are_you_sure_you_want_to_change_theme">Temayı değiştirmek istediğinize emin misiniz?</string>
     <string name="are_you_sure_you_want_to_delete_account">Hesabınızı silmek istediğinize emin misiniz?</string>
+    <string name="thank_you_for_review">Yorumunuz için Teşekkür ederiz</string>
+
 
     <!--    Show Details -->
     <string name="show_details">Gösteri Detayları</string>

@@ -62,7 +62,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
             }
         } else {
             if (ClientPreferences.inst.isFirstLaunch == true)
-                NavHandler.instance.toOnboardingActivityFinishAffinity(this)
+                NavHandler.instance.toOnboardingActivity(this)
             else {
                 askNotificationPermission()
                 getFCMToken()

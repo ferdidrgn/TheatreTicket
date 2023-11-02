@@ -1,8 +1,6 @@
 package com.ferdidrgn.theatreticket.ui.showOperations
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.net.Uri
 import android.os.Bundle
 import android.util.DisplayMetrics
 import androidx.activity.viewModels
@@ -19,9 +17,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class ShowOperationsActivity :
     BaseActivity<ShowOperationsViewModel, ActivityShowOperationsBinding>() {
-
-    private var selectedPicture: Uri? = null
-    var selectedBitmap: Bitmap? = null
 
     override fun getVM(): Lazy<ShowOperationsViewModel> = viewModels()
 

@@ -35,11 +35,10 @@ class NavHandler {
         context.startActivity(intent)
     }
 
-    fun toOnboardingActivityFinishAffinity(context: Context) {
+    fun toOnboardingActivity(context: Context) {
         val intent = Intent(context, OnboardingActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
         context.startActivity(intent)
-        finishAffinity(context as AppCompatActivity)
     }
 
     fun toShowOperationsActivity(context: Context) {

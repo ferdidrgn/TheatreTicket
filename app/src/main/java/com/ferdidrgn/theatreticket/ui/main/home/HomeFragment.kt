@@ -32,10 +32,6 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
         binding.showAllAdapter = ShowsAllAdapter(viewModel)
         binding.showSliderAdapter = ShowsSliderHorizontalAdapter(viewModel)
 
-        binding.gecicici.setOnClickListener {
-            NavHandler.instance.toOnboardingActivityFinishAffinity(requireContext())
-        }
-
         observe()
     }
 

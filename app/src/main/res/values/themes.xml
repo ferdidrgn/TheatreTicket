@@ -81,8 +81,16 @@
         <item name="android:tint">@color/blue_light</item>
     </style>
 
+    <style name="FillColorPrimary3">
+        <item name="fillColor">@color/primary3</item>
+    </style>
+
     <style name="ViewBackground">
         <item name="android:background">@color/pink_light</item>
+    </style>
+
+    <style name="CstBtnColorPrimary2">
+        <item name="cst_btn_color">@color/primary2</item>
     </style>
 
     <style name="TextColor">
@@ -91,6 +99,14 @@
 
     <style name="TextColor2">
         <item name="android:textColor">@color/white_light</item>
+    </style>
+
+    <style name="PopUpBtnNegative">
+        <item name="android:background">@drawable/bg_primary4_10</item>
+    </style>
+
+    <style name="PopUpBtnPositive">
+        <item name="android:background">@drawable/bg_primary3_10</item>
     </style>
 
     <style name="TextColorHint">
@@ -123,6 +139,10 @@
 
     <style name="rectangle_bottom_10_primary2_border_primary3">
         <item name="android:background">@drawable/bg_bottom_10_primary2_border_primary3</item>
+    </style>
+
+    <style name="rectangle_primary6_10_border_primary3">
+        <item name="android:background">@drawable/bg_primary6_10_border_primary3</item>
     </style>
 
 

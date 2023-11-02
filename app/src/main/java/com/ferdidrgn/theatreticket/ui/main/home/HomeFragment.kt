@@ -18,7 +18,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
 
     private lateinit var handler: MainSliderHandler
-    private var currentPosition = 0
 
     override fun getVM(): Lazy<HomeViewModel> = viewModels()
 

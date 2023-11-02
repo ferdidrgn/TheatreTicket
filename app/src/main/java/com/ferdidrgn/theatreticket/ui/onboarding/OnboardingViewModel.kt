@@ -1,4 +1,4 @@
-package com.ferdidrgn.theatreticket.ui.onbarding
+package com.ferdidrgn.theatreticket.ui.onboarding
 
 import androidx.lifecycle.MutableLiveData
 import com.ferdidrgn.theatreticket.base.BaseViewModel

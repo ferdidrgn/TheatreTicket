@@ -1,4 +1,4 @@
-package com.ferdidrgn.theatreticket.ui.onbarding
+package com.ferdidrgn.theatreticket.ui.onboarding
 
 import android.os.Bundle
 import androidx.activity.viewModels

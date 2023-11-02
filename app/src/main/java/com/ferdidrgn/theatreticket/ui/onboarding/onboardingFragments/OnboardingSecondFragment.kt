@@ -1,10 +1,10 @@
-package com.ferdidrgn.theatreticket.ui.onbarding.onboardingFragments
+package com.ferdidrgn.theatreticket.ui.onboarding.onboardingFragments
 
 import android.os.Bundle
 import androidx.fragment.app.viewModels
 import com.ferdidrgn.theatreticket.base.BaseFragment
 import com.ferdidrgn.theatreticket.databinding.FragmentOnboardingSecondBinding
-import com.ferdidrgn.theatreticket.ui.onbarding.OnboardingViewModel
+import com.ferdidrgn.theatreticket.ui.onboarding.OnboardingViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

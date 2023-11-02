@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.ferdidrgn.theatreticket.ui.onbarding.OnboardingViewModel" />
+            type="com.ferdidrgn.theatreticket.ui.onboarding.OnboardingViewModel" />
     </data>
 
     <LinearLayout
@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         style="@style/ScreenBackground"
         android:orientation="vertical"
-        tools:context=".ui.onbarding.onboardingFragments.OnboardingSecondFragment">
+        tools:context=".ui.onboarding.onboardingFragments.OnboardingSecondFragment">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imgWelcome"

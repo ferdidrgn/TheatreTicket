@@ -1,11 +1,11 @@
-package com.ferdidrgn.theatreticket.ui.onbarding
+package com.ferdidrgn.theatreticket.ui.onboarding
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.ferdidrgn.theatreticket.ui.onbarding.onboardingFragments.OnboardingFirstFragment
-import com.ferdidrgn.theatreticket.ui.onbarding.onboardingFragments.OnboardingSecondFragment
-import com.ferdidrgn.theatreticket.ui.onbarding.onboardingFragments.OnboardingThirdFragment
+import com.ferdidrgn.theatreticket.ui.onboarding.onboardingFragments.OnboardingFirstFragment
+import com.ferdidrgn.theatreticket.ui.onboarding.onboardingFragments.OnboardingSecondFragment
+import com.ferdidrgn.theatreticket.ui.onboarding.onboardingFragments.OnboardingThirdFragment
 
 class OnboardingTabAdapter(fragmentManager: FragmentActivity) :
     FragmentStateAdapter(fragmentManager) {

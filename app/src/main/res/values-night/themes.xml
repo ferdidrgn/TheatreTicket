@@ -92,6 +92,11 @@
         <item name="cst_btn_color">@color/dark2</item>
     </style>
 
+    <style name="TextInputBackground_TextColor">
+        <item name="android:background">@drawable/bg_dark2_10_border_dark3</item>
+        <item name="android:textColor">@color/dark7</item>
+    </style>
+
     <style name="TextColor">
         <item name="android:textColor">@color/dark7</item>
     </style>

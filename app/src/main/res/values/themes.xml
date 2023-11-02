@@ -93,6 +93,11 @@
         <item name="cst_btn_color">@color/primary2</item>
     </style>
 
+    <style name="TextInputBackground_TextColor">
+        <item name="android:background">@drawable/bg_primary2_10_border_primary3</item>
+        <item name="android:textColor">@color/primary7</item>
+    </style>
+
     <style name="TextColor">
         <item name="android:textColor">@color/primary7</item>
     </style>

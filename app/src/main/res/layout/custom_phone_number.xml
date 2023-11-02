@@ -21,10 +21,9 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etCustomPhoneNumber"
-            style="@style/TextColor"
+            style="@style/TextInputBackground_TextColor"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/transparent"
             android:inputType="phone"
             android:textSize="12sp"
             tools:text="09123456789" />
@@ -37,8 +36,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
-        android:visibility="gone"
         android:src="@drawable/ic_account_avatar_profile_user"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -1,8 +1,12 @@
 package com.ferdidrgn.theatreticket.ui.showOperations
 
 import android.content.Context
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.DisplayMetrics
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseActivity
@@ -10,6 +14,7 @@ import com.ferdidrgn.theatreticket.base.BasePopUp
 import com.ferdidrgn.theatreticket.databinding.ActivityShowOperationsBinding
 import com.ferdidrgn.theatreticket.tools.builderADS
 import com.ferdidrgn.theatreticket.tools.onClickDelayed
+import com.ferdidrgn.theatreticket.tools.showToast
 import com.tayfuncesur.curvedbottomsheet.CurvedBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -17,6 +22,8 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class ShowOperationsActivity :
     BaseActivity<ShowOperationsViewModel, ActivityShowOperationsBinding>() {
+
+    private val IMAGE_REQUEST_CODE = 1_000
 
     override fun getVM(): Lazy<ShowOperationsViewModel> = viewModels()
 
@@ -34,14 +41,13 @@ class ShowOperationsActivity :
         binding.customToolbar.backIconOnBackPress(this)
     }
 
-    private fun bottomSheetInit() {
-        val displayMetrics = DisplayMetrics()
-        windowManager.defaultDisplay.getMetrics(displayMetrics)
-        CurvedBottomSheet(
-            (displayMetrics.widthPixels / 6).toFloat(),
-            view = binding.bottomSheet
-        ).init()
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == IMAGE_REQUEST_CODE && resultCode == RESULT_OK) {
+            binding.imgShow.setImageURI(data?.data)
+        }
     }
+
 
     private fun observe() {
         viewModel.getAllShow()
@@ -54,9 +60,8 @@ class ShowOperationsActivity :
             viewModel.bottomSheetVisibility.postValue(false)
         }
 
-
         viewModel.imagePermission.observe(this) {
-
+            permissionCheck()
         }
         viewModel.btnAddShowClicked.observe(this) {
             viewModel.checkRequestFields(false)
@@ -83,6 +88,37 @@ class ShowOperationsActivity :
             if (successMessage != null)
                 errorOrSuccessMessagePopUp(this, successMessage, true)
         }
+    }
+
+    private fun bottomSheetInit() {
+        val displayMetrics = DisplayMetrics()
+        windowManager.defaultDisplay.getMetrics(displayMetrics)
+        CurvedBottomSheet(
+            (displayMetrics.widthPixels / 6).toFloat(),
+            view = binding.bottomSheet
+        ).init()
+    }
+
+    private fun permissionCheck() {
+        val readImagePermission =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
+                android.Manifest.permission.READ_MEDIA_IMAGES else android.Manifest.permission.READ_EXTERNAL_STORAGE
+        requestPermissionLauncher.launch(readImagePermission)
+    }
+
+    private val requestPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+            if (isGranted) {
+                pickImageFromGallery()
+            } else {
+                showToast(getString(R.string.permission_denied))
+            }
+        }
+
+    private fun pickImageFromGallery() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, IMAGE_REQUEST_CODE)
     }
 
     private fun updateOrDeleteInformationPopUp(context: Context, isUpdate: Boolean) {

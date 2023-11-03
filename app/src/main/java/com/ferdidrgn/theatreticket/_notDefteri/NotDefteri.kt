@@ -7,4 +7,7 @@ class NotDefteri {
     //settings clicked ayarlarını viewmodel a at
     //image update
     //logout dark mode olmadı
+    //customdatabindingutils velerde aktif değl. bi sor
+    // bize yaz ı be den çek
+    //mock dataları düzeşt
 }

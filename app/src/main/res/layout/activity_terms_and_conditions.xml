@@ -40,13 +40,13 @@
             android:layout_height="0dp"
             android:layout_marginTop="10dp"
             android:overScrollMode="never"
-            app:layout_constraintBottom_toTopOf="@+id/btnContinue"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/adView">
 
             <TextView
-                android:id="@+id/tvTermsandCondition"
+                android:id="@+id/tvTermsAndCondition"
                 style="@style/TextColor2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -54,17 +54,6 @@
                 android:textSize="14sp"
                 tools:text="@string/terms_condition" />
         </androidx.core.widget.NestedScrollView>
-
-
-        <com.ferdidrgn.theatreticket.tools.components.CustomButton
-            android:id="@+id/btnContinue"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            app:cst_btn_name="@string/i_read_and_agree"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

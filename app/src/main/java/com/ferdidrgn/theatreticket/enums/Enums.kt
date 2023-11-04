@@ -7,18 +7,15 @@ import com.ferdidrgn.theatreticket.R
 
 enum class ToMain { Home, TicketBuy, TicketSearch, Settings }
 
+enum class WhichTermsAndPrivace { TermsAndCondtion, PrivaceAndPolicy }
+
+enum class Response { Empty, ServerError, ThereIs, NotEqual }
+
 enum class ID(val id: String) {
     Ticket(".t"),
     Sell(".s"),
     User(".u"),
     Show(".sh"),
-}
-
-enum class Response(val response: String) {
-    Empty("empty"),
-    ServerError("serverError"),
-    ThereIs("thereIs"),
-    NotEqual("notEqual"),
 }
 
 enum class Roles(val role: String) {

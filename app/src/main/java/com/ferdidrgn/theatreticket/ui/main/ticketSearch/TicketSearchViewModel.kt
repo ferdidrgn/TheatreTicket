@@ -42,19 +42,23 @@ class TicketSearchViewModel @Inject constructor(private val sellFirebaseQueries:
 
             sellFirebaseQueries.checkSearchBuyTicket(userAdd) { status, sellList ->
                 when (status) {
-                    Response.ServerError.response -> {
+                    Response.ServerError -> {
                         errorMessage.postValue(message(R.string.error_server))
                         hideLoading()
                     }
-                    Response.Empty.response -> {
+                    Response.Empty -> {
                         errorMessage.postValue(message(R.string.error_no_any_ticket))
                         hideLoading()
                     }
-                    Response.ThereIs.response -> {
+                    Response.ThereIs -> {
                         successMessage.postValue(message(R.string.success_ticket))
                         sellList.let {
                             sell.postValue(it)
                         }
+                        hideLoading()
+                    }
+                    else -> {
+                        errorMessage.postValue(message(R.string.error))
                         hideLoading()
                     }
                 }

@@ -25,7 +25,7 @@
         tools:targetApi="34">
 
         <activity
-            android:name=".ui.termsAndConditions.TermsAndConditionsActivity"
+            android:name=".ui.termsAndConditionsAndPrivacePolicy.TermsAndConditionsandPrivacePolicyActivity"
             android:exported="false" />
         <activity
             android:name=".ui.showDetails.ShowDetailsActivity"

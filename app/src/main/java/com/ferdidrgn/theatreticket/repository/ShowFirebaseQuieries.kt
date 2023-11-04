@@ -78,16 +78,13 @@ class ShowFirebaseQuieries {
         }
     }
 
-    fun getShow(status: (String, ArrayList<Show?>?) -> Unit) {
+    fun getShow(status: (Response, ArrayList<Show?>?) -> Unit) {
 
-        var statusTree = ""
         val showList: ArrayList<Show?> = arrayListOf()
         fireStoreShowRef.orderBy("name", Query.Direction.ASCENDING)
             .addSnapshotListener { value, error ->
-                if (error != null) {
-                    statusTree = Response.ServerError.response
-                    status.invoke(statusTree, null)
-                } else {
+                if (error != null) status.invoke(Response.ServerError, null)
+                else {
                     if (value != null) {
                         if (!value.isEmpty) {
                             val documents = value.documents
@@ -118,15 +115,12 @@ class ShowFirebaseQuieries {
                                 )
                                 showList?.add(show)
                             }
-                            statusTree = Response.ThereIs.response
-                            status.invoke(statusTree, showList)
+                            status.invoke(Response.ThereIs, showList)
                         } else {
-                            statusTree = Response.Empty.response
-                            status.invoke(statusTree, null)
+                            status.invoke(Response.Empty, null)
                         }
                     } else {
-                        statusTree = Response.Empty.response
-                        status.invoke(statusTree, null)
+                        status.invoke(Response.Empty, null)
                     }
                 }
             }

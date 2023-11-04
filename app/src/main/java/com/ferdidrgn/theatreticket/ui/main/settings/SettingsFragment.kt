@@ -69,16 +69,7 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
                 reviewRequest()
             }
             btnContactUs.onClickDelayed {
-                val i = Intent(Intent.ACTION_SEND)
-                i.type = "message/rfc822"
-                i.putExtra(Intent.EXTRA_EMAIL, arrayOf(getString(R.string.contact_email)))
-                i.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.contact_us_producter))
-                i.putExtra(Intent.EXTRA_TEXT, getString(R.string.notification))
-                try {
-                    startActivity(Intent.createChooser(i, getString(R.string.send_mail)))
-                } catch (ex: ActivityNotFoundException) {
-                    showToast(getString(R.string.error_not_mail_installed))
-                }
+                contactUs()
             }
             btnChangeTheme.onClickDelayed {
                 themeLightOrDark()
@@ -162,6 +153,20 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
             ClientPreferences.inst.isDarkMode = true
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             NavHandler.instance.toMainActivity(requireContext(), ToMain.Settings)
+        }
+    }
+
+    private fun contactUs() {
+        val eMail = viewModel.getContactUs()
+        val i = Intent(Intent.ACTION_SEND)
+        i.type = "message/rfc822"
+        i.putExtra(Intent.EXTRA_EMAIL, arrayOf(eMail))
+        i.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.contact_us_producter))
+        i.putExtra(Intent.EXTRA_TEXT, getString(R.string.notification))
+        try {
+            startActivity(Intent.createChooser(i, getString(R.string.send_mail)))
+        } catch (ex: ActivityNotFoundException) {
+            showToast(getString(R.string.error_not_mail_installed))
         }
     }
 }

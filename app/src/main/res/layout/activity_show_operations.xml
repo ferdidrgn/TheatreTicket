@@ -186,6 +186,7 @@
                                 android:layout_width="160dp"
                                 android:layout_height="160dp"
                                 android:layout_gravity="center"
+                                android:scaleType="centerCrop"
                                 android:src="@drawable/ic_add_cart_new_plus" />
                         </com.google.android.material.card.MaterialCardView>
 

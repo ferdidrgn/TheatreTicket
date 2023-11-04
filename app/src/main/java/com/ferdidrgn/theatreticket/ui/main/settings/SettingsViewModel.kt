@@ -1,17 +1,24 @@
 package com.ferdidrgn.theatreticket.ui.main.settings
 
 import androidx.lifecycle.MutableLiveData
+import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseViewModel
+import com.ferdidrgn.theatreticket.enums.Response
 import com.ferdidrgn.theatreticket.enums.Roles
+import com.ferdidrgn.theatreticket.repository.AppToolsFireBaseQueries
 import com.ferdidrgn.theatreticket.repository.ShowFirebaseQuieries
 import com.ferdidrgn.theatreticket.tools.ClientPreferences
 import com.ferdidrgn.theatreticket.tools.ioScope
+import com.ferdidrgn.theatreticket.tools.mainScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
 
 @HiltViewModel
-class SettingsViewModel @Inject constructor(private val showFirebaseQuieries: ShowFirebaseQuieries) :
+class SettingsViewModel @Inject constructor(
+    private val showFirebaseQuieries: ShowFirebaseQuieries,
+    private val appToolsFireBaseQueries: AppToolsFireBaseQueries
+) :
     BaseViewModel() {
 
     val whichLayout = MutableLiveData<Boolean>()
@@ -45,6 +52,36 @@ class SettingsViewModel @Inject constructor(private val showFirebaseQuieries: Sh
 
         }
         hideLoading()
+    }
+
+    fun getContactUs(): String {
+        var valueReturn = ""
+        mainScope {
+            showLoading()
+            appToolsFireBaseQueries.getContactUsEmail { status, contactUs ->
+                when (status) {
+                    Response.ThereIs -> {
+                        contactUs?.let { data ->
+                            valueReturn = data
+                        }
+                        hideLoading()
+                    }
+                    Response.Empty -> {
+                        errorMessage.postValue(message(R.string.error))
+                        hideLoading()
+                    }
+                    Response.ServerError -> {
+                        errorMessage.postValue(message(R.string.error_server))
+                        hideLoading()
+                    }
+                    else -> {
+                        errorMessage.postValue(message(R.string.error))
+                        hideLoading()
+                    }
+                }
+            }
+        }
+        return valueReturn
     }
 
     fun clearClientPreferences() {

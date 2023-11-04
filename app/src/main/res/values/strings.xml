@@ -109,6 +109,9 @@
     <string name="error_google_sign_in">Google ile giriş işleminizde bir hata oluştu.</string>
     <string name="error_auth_failed">Kimlik hatası. Bağlantı başarısız</string>
     <string name="permission_denied">İzin verilmedi</string>
+    <string name="error">Hata</string>
+    <string name="mistake">Hata</string>
+    <string name="empty">Boş</string>
 
 
     <!-- Settings -->

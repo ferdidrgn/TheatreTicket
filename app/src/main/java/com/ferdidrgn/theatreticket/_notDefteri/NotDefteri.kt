@@ -10,4 +10,6 @@ class NotDefteri {
     //customdatabindingutils velerde aktif değl. bi sor
     // bize yaz ı be den çek
     //mock dataları düzeşt
+    //firebase repository kodlarını düzelt
+    //*********** Response ENUM ı WhicHPolicy e göre ayarla. Çalışacak mı kontrol et ve hepsini düzenle
 }

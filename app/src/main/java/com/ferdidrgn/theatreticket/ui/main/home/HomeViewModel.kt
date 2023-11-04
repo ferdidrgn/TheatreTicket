@@ -23,20 +23,23 @@ class HomeViewModel @Inject constructor(private val showFirebaseQuieries: ShowFi
         mainScope {
             showFirebaseQuieries.getShow() { status, showList ->
                 when (status) {
-                    Response.ServerError.response -> {
+                    Response.ServerError -> {
                         errorMessage.postValue(message(R.string.error_server))
                         hideLoading()
                     }
-                    Response.Empty.response -> {
+                    Response.Empty -> {
                         errorMessage.postValue(message(R.string.error_no_any_show))
                         hideLoading()
                     }
-                    Response.ThereIs.response -> {
+                    Response.ThereIs -> {
                         showList?.let {
                             show.postValue(showList)
                         }
                         hideLoading()
                     }
+                    else -> {
+                        errorMessage.postValue(message(R.string.error))
+                        hideLoading()}
                 }
             }
         }

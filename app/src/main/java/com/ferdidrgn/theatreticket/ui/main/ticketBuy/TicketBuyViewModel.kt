@@ -49,7 +49,7 @@ class TicketBuyViewModel @Inject constructor(
 
             userFirebaseQueries.checkPhoneNumber(userAdd) { status, userInfoList ->
                 when (status) {
-                    Response.Empty.response -> {
+                    Response.Empty -> {
                         //Universal Unique ID
                         val id = UUID.randomUUID().toString()
                         userAdd = User(
@@ -64,18 +64,21 @@ class TicketBuyViewModel @Inject constructor(
                         hideLoading()
                         fillDatas(userAdd, true)
                     }
-                    Response.ThereIs.response -> {
+                    Response.ThereIs -> {
                         hideLoading()
                         checkTicket(userInfoList)
                     }
-                    Response.NotEqual.response -> {
+                    Response.NotEqual -> {
                         hideLoading()
                         errorMessage.postValue(message(R.string.error_not_equal))
                     }
-                    Response.ServerError.response -> {
+                    Response.ServerError-> {
                         hideLoading()
                         errorMessage.postValue(message(R.string.error_server))
                     }
+                    else -> {
+                        hideLoading()
+                        errorMessage.postValue(message(R.string.error))}
                 }
 
             }
@@ -88,17 +91,21 @@ class TicketBuyViewModel @Inject constructor(
         mainScope {
             sellFirebaseQueries.checkBuyTicketCustomerId(user?._id.toString()) { status ->
                 when (status) {
-                    Response.Empty.response -> {
+                    Response.Empty -> {
                         hideLoading()
                         fillDatas(user, false)
                     }
-                    Response.ThereIs.response -> {
+                    Response.ThereIs -> {
                         hideLoading()
                         errorMessage.postValue(message(R.string.error_have_ticket))
                     }
-                    Response.ServerError.response -> {
+                    Response.ServerError -> {
                         hideLoading()
                         errorMessage.postValue(message(R.string.error_server))
+                    }
+                    else -> {
+                        hideLoading()
+                        errorMessage.postValue(message(R.string.error))
                     }
                 }
             }

@@ -11,35 +11,26 @@ class SellFirebaseQueries {
 
     private val fireStoreSellRef = Firebase.firestore.collection("Sell")
 
-    fun checkBuyTicketCustomerId(customerId: String, status: (String) -> Unit) {
-        var statusTree = ""
+    fun checkBuyTicketCustomerId(customerId: String, status: (Response) -> Unit) {
 
         fireStoreSellRef.whereEqualTo("customerId", customerId).get()
             .addOnSuccessListener { result ->
-                if (result.isEmpty) {
-                    statusTree = Response.Empty.response
-                    status.invoke(statusTree)
-                } else {
-                    statusTree = Response.ThereIs.response
-                    status.invoke(statusTree)
-                }
+                if (result.isEmpty) status.invoke(Response.Empty)
+                else status.invoke(Response.ThereIs)
             }.addOnFailureListener {
-                statusTree = Response.ServerError.response
-                status.invoke(statusTree)
+                status.invoke(Response.ServerError)
             }
     }
 
     fun checkSearchBuyTicket(
         user: User,
-        status: (String, ArrayList<Sell?>?) -> Unit
+        status: (Response, ArrayList<Sell?>?) -> Unit
     ) {
-        var statusTree = ""
         val sellList: ArrayList<Sell?> = arrayListOf()
         fireStoreSellRef.whereEqualTo("customerPhone", user.phoneNumber)
             .addSnapshotListener { value, error ->
                 if (error != null) {
-                    statusTree = Response.ServerError.response
-                    status.invoke(statusTree, null)
+                    status.invoke(Response.ServerError, null)
                 } else {
                     if (value != null) {
                         if (!value.isEmpty) {
@@ -95,16 +86,10 @@ class SellFirebaseQueries {
                                 )
                                 sellList?.add(sell)
                             }
-                            statusTree = Response.ThereIs.response
-                            status.invoke(statusTree, sellList)
-                        } else {
-                            statusTree = Response.Empty.response
-                            status.invoke(statusTree, null)
-                        }
-                    } else {
-                        statusTree = Response.Empty.response
-                        status.invoke(statusTree, null)
-                    }
+                            status.invoke(Response.ThereIs, sellList)
+                        } else status.invoke(Response.Empty, null)
+                    } else
+                        status.invoke(Response.Empty, null)
                 }
             }
     }

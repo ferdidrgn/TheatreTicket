@@ -92,6 +92,9 @@
     <string name="error_google_sign_in">Google sign in failed</string>
     <string name="error_auth_failed">Authentication failed</string>
     <string name="permission_denied">Permission Denied</string>
+    <string name="error">Error</string>
+    <string name="mistake">Mistake</string>
+    <string name="empty">Empty</string>
 
 
     <!-- Settings -->

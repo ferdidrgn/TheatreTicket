@@ -7,14 +7,14 @@
 
         <variable
             name="viewModel"
-            type="com.ferdidrgn.theatreticket.ui.termsAndConditions.TermsViewModel" />
+            type="com.ferdidrgn.theatreticket.ui.termsAndConditionsAndPrivacePolicy.TermsConditionsAndPrivacePolicyViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".ui.termsAndConditions.TermsAndConditionsActivity">
+        tools:context=".ui.termsAndConditionsAndPrivacePolicy.TermsAndConditionsandPrivacePolicyActivity">
 
         <com.ferdidrgn.theatreticket.tools.components.CustomToolbar
             android:id="@+id/customToolbar"
@@ -46,11 +46,11 @@
             app:layout_constraintTop_toBottomOf="@+id/adView">
 
             <TextView
-                android:id="@+id/tvTermsAndCondition"
                 style="@style/TextColor2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="10dp"
+                android:text="@{viewModel.tvTermsAndCondition}"
                 android:textSize="14sp"
                 tools:text="@string/terms_condition" />
         </androidx.core.widget.NestedScrollView>

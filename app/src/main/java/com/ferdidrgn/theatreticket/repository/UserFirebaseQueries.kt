@@ -48,8 +48,7 @@ class UserFirebaseQueries {
         }
     }
 
-    fun checkPhoneNumber(user: User?, status: (String, User?) -> Unit) {
-        var statusTree = ""
+    fun checkPhoneNumber(user: User?, status: (Response, User?) -> Unit) {
         var userInfoList: User? = null
         var userFirstName = ""
         var userLastName = ""
@@ -59,8 +58,7 @@ class UserFirebaseQueries {
         fireStoreUserRef.whereEqualTo("phoneNumber", user?.phoneNumber).get()
             .addOnSuccessListener { result ->
                 if (result.isEmpty) {
-                    statusTree = Response.Empty.response
-                    status.invoke(statusTree, null)
+                    status.invoke(Response.Empty, null)
                 } else {
                     if (result != null) {
                         val documents = result.documents
@@ -99,17 +97,14 @@ class UserFirebaseQueries {
                         }
 
                         if (notEqual == true) {
-                            statusTree = Response.NotEqual.response
-                            status.invoke(statusTree, null)
+                            status.invoke(Response.NotEqual, null)
                         } else {
-                            statusTree = Response.ThereIs.response
-                            status.invoke(statusTree, userInfoList)
+                            status.invoke(Response.ThereIs, userInfoList)
                         }
                     }
                 }
             }.addOnFailureListener {
-                statusTree = Response.ServerError.response
-                status.invoke(statusTree, null)
+                status.invoke(Response.ServerError, null)
             }
     }
 }

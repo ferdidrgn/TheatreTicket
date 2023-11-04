@@ -6,7 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat.finishAffinity
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Show
 import com.ferdidrgn.theatreticket.enums.ToMain
-import com.ferdidrgn.theatreticket.ui.termsAndConditions.TermsAndConditionsActivity
+import com.ferdidrgn.theatreticket.enums.WhichTermsAndPrivace
+import com.ferdidrgn.theatreticket.ui.termsAndConditionsAndPrivacePolicy.TermsAndConditionsandPrivacePolicyActivity
 import com.ferdidrgn.theatreticket.ui.language.LanguageActivity
 import com.ferdidrgn.theatreticket.ui.login.LoginActivity
 import com.ferdidrgn.theatreticket.ui.main.MainActivity
@@ -59,9 +60,10 @@ class NavHandler {
         context.startActivity(intent)
     }
 
-    fun toTermsAndConditionsActivity(context: Context) {
-        val intent = Intent(context, TermsAndConditionsActivity::class.java)
+    fun toTermsConditionsAndPrivacePolicyActivity(context: Context, whichTermsAndPrivace: WhichTermsAndPrivace) {
+        val intent = Intent(context, TermsAndConditionsandPrivacePolicyActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+        intent.putExtra(WHICH_TERMS_PRIVACE, whichTermsAndPrivace)
         context.startActivity(intent)
     }
 

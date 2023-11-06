@@ -2,14 +2,19 @@ package com.ferdidrgn.theatreticket.tools
 
 import android.content.Context
 import android.content.res.Configuration
+import android.net.Uri
 import android.os.Handler
 import android.view.View
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.tools.helpers.MainSliderHandler
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Show
 import kotlinx.coroutines.CoroutineScope
@@ -28,6 +33,15 @@ fun View.hide() {
 
 fun View.hideAndHold() {
     this.visibility = View.INVISIBLE
+}
+
+fun ImageView.downloadFromUrl(url: Uri?) {
+    val options = RequestOptions()
+        .error(R.drawable.img_welcome)
+    Glide.with(context)
+        .setDefaultRequestOptions(options)
+        .load(url)
+        .into(this)
 }
 
 fun View.onClickDelayed(skipDurationMillis: Long = 750, action: () -> Unit) {

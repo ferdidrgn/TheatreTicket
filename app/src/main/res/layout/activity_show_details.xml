@@ -133,7 +133,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="fitXY"
-                        style="ShapeableImageViewStyle"
+                        style="@style/ShapeableImageViewStyle"
+                        imageUrl="@{viewModel.imageUrl}"
                         android:src="@drawable/img_goz_kap_vaz_yap_april_23" />
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>

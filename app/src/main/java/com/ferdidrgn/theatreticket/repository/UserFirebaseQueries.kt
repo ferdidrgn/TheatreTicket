@@ -107,4 +107,16 @@ class UserFirebaseQueries {
                 status.invoke(Response.ServerError, null)
             }
     }
+
+    fun deleteUser(status: (Boolean) -> Unit) {
+        fireStoreUserRef.document(currentUserId()!!).delete().addOnSuccessListener {
+            FirebaseAuth.getInstance().currentUser?.delete()?.addOnSuccessListener {
+                status.invoke(true)
+            }?.addOnFailureListener {
+                status.invoke(false)
+            }
+        }.addOnFailureListener {
+            status.invoke(false)
+        }
+    }
 }

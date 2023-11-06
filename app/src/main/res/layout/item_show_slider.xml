@@ -57,6 +57,6 @@
             android:layout_height="250dp"
             android:onClick="@{() -> listener.onShowSliderDetailsAdapterListener(show)}"
             android:src="@drawable/ic_home"
-            style="ShapeableImageViewStyle"/>
+            style="@style/ShapeableImageViewStyle" />
     </com.google.android.material.card.MaterialCardView>
 </LinearLayout></layout>

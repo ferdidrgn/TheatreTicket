@@ -1,13 +1,22 @@
 package com.ferdidrgn.theatreticket.tools.dataBindingHelpers
 
+import android.net.Uri
+import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.ferdidrgn.theatreticket.base.BaseAdapter
 import com.ferdidrgn.theatreticket.base.ListAdapterItem
+import com.ferdidrgn.theatreticket.tools.downloadFromUrl
 
 object DataBindingUtil {
+
+    @JvmStatic
+    @BindingAdapter("imageUrl")
+    fun downloadImage(view: ImageView, url: Uri?) {
+        view.downloadFromUrl(url)
+    }
 
     @BindingAdapter("setAdapter")
     @JvmStatic

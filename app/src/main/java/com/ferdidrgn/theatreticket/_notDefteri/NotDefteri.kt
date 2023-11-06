@@ -6,10 +6,9 @@ class NotDefteri {
     //Custom toolbar ayarla, cstdatautil fun ekle
     //settings clicked ayarlarını viewmodel a at
     //image update
+    //**** image url var model de. ama activity de bimap ekliyoruz. o nası aolacak bir kontorl et
     //logout dark mode olmadı
     //customdatabindingutils velerde aktif değl. bi sor
-    // bize yaz ı be den çek
     //mock dataları düzeşt
     //firebase repository kodlarını düzelt
-    //*********** Response ENUM ı WhicHPolicy e göre ayarla. Çalışacak mı kontrol et ve hepsini düzenle
 }

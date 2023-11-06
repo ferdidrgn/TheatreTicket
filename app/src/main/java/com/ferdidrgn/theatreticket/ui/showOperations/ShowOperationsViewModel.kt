@@ -41,7 +41,7 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
     var updateOrAddShowData: Show? = null
 
     fun onBtnBottomSheetCloseClick() {
-        //bottomSheetVisibility.postValue(false)
+        bottomSheetVisibility.postValue(false)
     }
 
     fun onBtnBottomSheetOpenClick() {
@@ -178,6 +178,9 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
 
     fun checkRequestFields(isUpdate: Boolean) {
         var isRequiredFieldsDone = true
+
+        if (imageUrl.value == null)
+            isRequiredFieldsDone = false
 
         if (name.value.isEmpty())
             isRequiredFieldsDone = false

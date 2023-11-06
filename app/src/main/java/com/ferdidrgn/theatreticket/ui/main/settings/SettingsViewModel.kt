@@ -7,6 +7,7 @@ import com.ferdidrgn.theatreticket.enums.Response
 import com.ferdidrgn.theatreticket.enums.Roles
 import com.ferdidrgn.theatreticket.repository.AppToolsFireBaseQueries
 import com.ferdidrgn.theatreticket.repository.ShowFirebaseQuieries
+import com.ferdidrgn.theatreticket.repository.UserFirebaseQueries
 import com.ferdidrgn.theatreticket.tools.ClientPreferences
 import com.ferdidrgn.theatreticket.tools.ioScope
 import com.ferdidrgn.theatreticket.tools.mainScope
@@ -17,7 +18,8 @@ import javax.inject.Inject
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
     private val showFirebaseQuieries: ShowFirebaseQuieries,
-    private val appToolsFireBaseQueries: AppToolsFireBaseQueries
+    private val appToolsFireBaseQueries: AppToolsFireBaseQueries,
+    private val userFirebaseQueries: UserFirebaseQueries
 ) :
     BaseViewModel() {
 
@@ -82,6 +84,27 @@ class SettingsViewModel @Inject constructor(
             }
         }
         return valueReturn
+    }
+
+
+    fun deleteUser() {
+        mainScope {
+            showLoading()
+
+            userFirebaseQueries.deleteUser { status ->
+                when (status) {
+                    true -> {
+                        clearClientPreferences()
+                        successMessage.postValue(message(R.string.success))
+                        hideLoading()
+                    }
+                    false -> {
+                        errorMessage.postValue(message(R.string.error))
+                        hideLoading()
+                    }
+                }
+            }
+        }
     }
 
     fun clearClientPreferences() {

@@ -11,6 +11,7 @@ import com.ferdidrgn.theatreticket.base.BaseFragment
 import com.ferdidrgn.theatreticket.base.BasePopUp
 import com.ferdidrgn.theatreticket.databinding.FragmentSettingsBinding
 import com.ferdidrgn.theatreticket.enums.ToMain
+import com.ferdidrgn.theatreticket.enums.WhichTermsAndPrivace
 import com.ferdidrgn.theatreticket.tools.*
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -61,7 +62,7 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
                 showLogoutDialog(requireContext())
             }
 
-            binding.btnDeleteAcc.onClickDelayed {
+            btnDeleteAcc.onClickDelayed {
                 //deleteAccountPopup()
             }
 
@@ -73,6 +74,18 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
             }
             btnChangeTheme.onClickDelayed {
                 themeLightOrDark()
+            }
+            btnPrivacePolicy.onClickDelayed {
+                NavHandler.instance.toTermsConditionsAndPrivacePolicyActivity(
+                    requireContext(),
+                    WhichTermsAndPrivace.PrivaceAndPolicy
+                )
+            }
+            btnTermsAndConditions.onClickDelayed {
+                NavHandler.instance.toTermsConditionsAndPrivacePolicyActivity(
+                    requireContext(),
+                    WhichTermsAndPrivace.TermsAndCondtion
+                )
             }
         }
     }

@@ -45,6 +45,7 @@ class ShowOperationsActivity :
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == IMAGE_REQUEST_CODE && resultCode == RESULT_OK) {
             binding.imgShow.setImageURI(data?.data)
+            viewModel.imageUrl.value = data?.data
         }
     }
 

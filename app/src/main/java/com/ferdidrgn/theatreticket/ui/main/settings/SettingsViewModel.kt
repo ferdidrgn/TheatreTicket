@@ -1,14 +1,10 @@
 package com.ferdidrgn.theatreticket.ui.main.settings
 
-import androidx.lifecycle.MutableLiveData
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseViewModel
 import com.ferdidrgn.theatreticket.enums.Response
 import com.ferdidrgn.theatreticket.enums.Roles
-import com.ferdidrgn.theatreticket.enums.ToMain
-import com.ferdidrgn.theatreticket.enums.WhichTermsAndPrivace
 import com.ferdidrgn.theatreticket.repository.AppToolsFireBaseQueries
-import com.ferdidrgn.theatreticket.repository.ShowFirebaseQuieries
 import com.ferdidrgn.theatreticket.repository.UserFirebaseQueries
 import com.ferdidrgn.theatreticket.tools.*
 import com.ferdidrgn.theatreticket.tools.helpers.LiveEvent
@@ -23,9 +19,10 @@ class SettingsViewModel @Inject constructor(
 ) :
     BaseViewModel() {
 
-    val whichLayout = MutableLiveData<Boolean>()
-    val userName = MutableStateFlow("")
+    val userFullName = MutableStateFlow("")
     val role = MutableStateFlow("")
+    val roleAdminLayout = LiveEvent<Boolean>()
+
 
     //Click Events
     val btnSellTicketClicked = LiveEvent<Boolean>()
@@ -33,24 +30,19 @@ class SettingsViewModel @Inject constructor(
     val btnStageOperationsClicked = LiveEvent<Boolean>()
     val btnLanguageClicked = LiveEvent<Boolean>()
     val btnLogoutClicked = LiveEvent<Boolean>()
-    val btnDeleteAccClicked = LiveEvent<Boolean>()
     val btnOnShareAppClick = LiveEvent<Boolean>()
     val btnRateAppClicked = LiveEvent<Boolean>()
     val btnContactUsClicked = LiveEvent<Boolean>()
     val btnChangeThemeClicked = LiveEvent<Boolean>()
     val btnPrivacePolicyClicked = LiveEvent<Boolean>()
     val btnTermsAndConditionsClicked = LiveEvent<Boolean>()
+    val btnEditProfileClicked = LiveEvent<Boolean>()
 
 
     fun selectedLayout() {
-        whichLayout.postValue(false)
-        ClientPreferences.inst.role = Roles.Admin.role //TEST - MOCKDATA
-        when (ClientPreferences.inst.role) {
-            Roles.Admin.role -> whichLayout.postValue(true)
-            Roles.User.role -> whichLayout.postValue(false)
-            Roles.GUEST.role -> whichLayout.postValue(false)
-            else -> whichLayout.postValue(false)
-        }
+        roleAdminLayout.postValue(false)
+        if (ClientPreferences.inst.role == Roles.Admin.role)
+            roleAdminLayout.postValue(true)
     }
 
     fun getMyUser() {
@@ -58,8 +50,12 @@ class SettingsViewModel @Inject constructor(
         ioScope {
             ClientPreferences.inst.userFirstName?.let { firstName ->
                 ClientPreferences.inst.userLastName?.let { lastName ->
-                    userName.emit("$firstName $lastName")
+                    userFullName.emit("$firstName $lastName")
                 }
+            }
+
+            ClientPreferences.inst.userFullName?.let { fullName ->
+                userFullName.emit(fullName)
             }
 
             ClientPreferences.inst.role?.let { role ->
@@ -122,48 +118,65 @@ class SettingsViewModel @Inject constructor(
     }
 
     fun clearClientPreferences() {
-        ClientPreferences.inst.token = ""
-        ClientPreferences.inst.FCMtoken = ""
-        ClientPreferences.inst.userID = ""
-        ClientPreferences.inst.userPhone = ""
-        ClientPreferences.inst.userFirstName = ""
-        ClientPreferences.inst.userLastName = ""
+        ClientPreferences.inst.token = null
+        ClientPreferences.inst.FCMtoken = null
+        ClientPreferences.inst.userID = null
+        ClientPreferences.inst.userPhone = null
+        ClientPreferences.inst.userFirstName = null
+        ClientPreferences.inst.userLastName = null
+        ClientPreferences.inst.userFullName = null
+        ClientPreferences.inst.userEmail = null
+        ClientPreferences.inst.userPhotoUrl = null
+        ClientPreferences.inst.role = null
+        ClientPreferences.inst.isGoogleSignIn = null
+        ClientPreferences.inst.isPhoneNumberSignIn = null
     }
 
     //Click Events
+    fun onEditProfileClick() {
+        btnEditProfileClicked.postValue(true)
+    }
+
     fun onSellTicketClick() {
         btnSellTicketClicked.postValue(true)
     }
+
     fun onShowOperationsClick() {
         btnShowOperationsClicked.postValue(true)
     }
+
     fun onStageOperationsClick() {
         btnStageOperationsClicked.postValue(true)
     }
+
     fun onLanguageClick() {
         btnLanguageClicked.postValue(true)
     }
+
     fun onLogoutClick() {
         btnLogoutClicked.postValue(true)
     }
-    fun onDeleteAccClick() {
-        btnDeleteAccClicked.postValue(true)
-    }
+
     fun onShareAppClick() {
         btnOnShareAppClick.postValue(true)
     }
+
     fun onRateAppClick() {
         btnRateAppClicked.postValue(true)
     }
+
     fun onContactUsClick() {
         btnContactUsClicked.postValue(true)
     }
+
     fun onChangeThemeClick() {
         btnChangeThemeClicked.postValue(true)
     }
+
     fun onPrivacePolicyClick() {
         btnPrivacePolicyClicked.postValue(true)
     }
+
     fun onTermsAndConditionsClick() {
         btnTermsAndConditionsClicked.postValue(true)
     }

@@ -7,6 +7,7 @@ import androidx.core.app.ActivityCompat.finishAffinity
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Show
 import com.ferdidrgn.theatreticket.enums.ToMain
 import com.ferdidrgn.theatreticket.enums.WhichTermsAndPrivace
+import com.ferdidrgn.theatreticket.ui.editProfile.EditProfileActivity
 import com.ferdidrgn.theatreticket.ui.termsAndConditionsAndPrivacePolicy.TermsAndConditionsandPrivacePolicyActivity
 import com.ferdidrgn.theatreticket.ui.language.LanguageActivity
 import com.ferdidrgn.theatreticket.ui.login.LoginActivity
@@ -60,7 +61,10 @@ class NavHandler {
         context.startActivity(intent)
     }
 
-    fun toTermsConditionsAndPrivacePolicyActivity(context: Context, whichTermsAndPrivace: WhichTermsAndPrivace) {
+    fun toTermsConditionsAndPrivacePolicyActivity(
+        context: Context,
+        whichTermsAndPrivace: WhichTermsAndPrivace
+    ) {
         val intent = Intent(context, TermsAndConditionsandPrivacePolicyActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
         intent.putExtra(WHICH_TERMS_PRIVACE, whichTermsAndPrivace)
@@ -71,6 +75,12 @@ class NavHandler {
         val intent = Intent(context, ShowDetailsActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
         intent.putExtra(SHOW, show as Serializable)
+        context.startActivity(intent)
+    }
+
+    fun toEditProfileActivity(context: Context) {
+        val intent = Intent(context, EditProfileActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
         context.startActivity(intent)
     }
 }

@@ -47,6 +47,9 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
 
     private fun clickEvents() {
 
+        viewModel.btnEditProfileClicked.observe(viewLifecycleOwner) {
+            NavHandler.instance.toEditProfileActivity(requireContext())
+        }
         viewModel.btnSellTicketClicked.observe(viewLifecycleOwner) {
             NavHandler.instance.toMainActivity(requireContext(), ToMain.TicketBuy)
         }
@@ -60,9 +63,6 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
         }
         viewModel.btnLogoutClicked.observe(viewLifecycleOwner) {
             showLogoutDialog(requireContext())
-        }
-        viewModel.btnDeleteAccClicked.observe(viewLifecycleOwner) {
-            //deleteAccountPopup()
         }
         viewModel.btnOnShareAppClick.observe(viewLifecycleOwner) {
 

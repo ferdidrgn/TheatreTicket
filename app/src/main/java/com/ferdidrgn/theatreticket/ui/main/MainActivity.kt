@@ -131,8 +131,6 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
             val userName = user.displayName
             ClientPreferences.inst.userFullName = userName
             ClientPreferences.inst.isGoogleSignIn = true
-        } else {
-            showToast(getString(R.string.error_auth_failed))
         }
     }
 

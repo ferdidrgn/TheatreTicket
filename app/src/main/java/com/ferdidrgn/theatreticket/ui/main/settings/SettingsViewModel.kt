@@ -5,12 +5,13 @@ import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseViewModel
 import com.ferdidrgn.theatreticket.enums.Response
 import com.ferdidrgn.theatreticket.enums.Roles
+import com.ferdidrgn.theatreticket.enums.ToMain
+import com.ferdidrgn.theatreticket.enums.WhichTermsAndPrivace
 import com.ferdidrgn.theatreticket.repository.AppToolsFireBaseQueries
 import com.ferdidrgn.theatreticket.repository.ShowFirebaseQuieries
 import com.ferdidrgn.theatreticket.repository.UserFirebaseQueries
-import com.ferdidrgn.theatreticket.tools.ClientPreferences
-import com.ferdidrgn.theatreticket.tools.ioScope
-import com.ferdidrgn.theatreticket.tools.mainScope
+import com.ferdidrgn.theatreticket.tools.*
+import com.ferdidrgn.theatreticket.tools.helpers.LiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
@@ -26,6 +27,19 @@ class SettingsViewModel @Inject constructor(
     val whichLayout = MutableLiveData<Boolean>()
     val userName = MutableStateFlow("")
     val role = MutableStateFlow("")
+
+    //Click Events
+    val btnSellTicketClicked = LiveEvent<Boolean>()
+    val btnShowOperationsClicked = LiveEvent<Boolean>()
+    val btnStageOperationsClicked = LiveEvent<Boolean>()
+    val btnLanguageClicked = LiveEvent<Boolean>()
+    val btnLogoutClicked = LiveEvent<Boolean>()
+    val btnDeleteAccClicked = LiveEvent<Boolean>()
+    val btnRateAppClicked = LiveEvent<Boolean>()
+    val btnContactUsClicked = LiveEvent<Boolean>()
+    val btnChangeThemeClicked = LiveEvent<Boolean>()
+    val btnPrivacePolicyClicked = LiveEvent<Boolean>()
+    val btnTermsAndConditionsClicked = LiveEvent<Boolean>()
 
 
     fun selectedLayout() {
@@ -115,4 +129,41 @@ class SettingsViewModel @Inject constructor(
         ClientPreferences.inst.userFirstName = ""
         ClientPreferences.inst.userLastName = ""
     }
+
+    //Click Events
+
+    fun onSellTicketClick() {
+        btnSellTicketClicked.postValue(true)
+    }
+    fun onShowOperationsClick() {
+        btnShowOperationsClicked.postValue(true)
+    }
+    fun onStageOperationsClick() {
+        btnStageOperationsClicked.postValue(true)
+    }
+    fun onLanguageClick() {
+        btnLanguageClicked.postValue(true)
+    }
+    fun onLogoutClick() {
+        btnLogoutClicked.postValue(true)
+    }
+    fun onDeleteAccClick() {
+        btnDeleteAccClicked.postValue(true)
+    }
+    fun onRateAppClick() {
+        btnRateAppClicked.postValue(true)
+    }
+    fun onContactUsClick() {
+        btnContactUsClicked.postValue(true)
+    }
+    fun onChangeThemeClick() {
+        btnChangeThemeClicked.postValue(true)
+    }
+    fun onPrivacePolicyClick() {
+        btnPrivacePolicyClicked.postValue(true)
+    }
+    fun onTermsAndConditionsClick() {
+        btnTermsAndConditionsClicked.postValue(true)
+    }
+
 }

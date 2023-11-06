@@ -37,7 +37,7 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
         binding.viewModel = viewModel
         viewModel.selectedLayout()
         builderADS(requireContext(), binding.adView)
-        clickListener()
+        clickEvents()
     }
 
     override fun onResume() {
@@ -45,48 +45,45 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
         viewModel.getMyUser()
     }
 
-    private fun clickListener() {
-        binding.apply {
-            btnSellTicket.onClickDelayed {
-                NavHandler.instance.toMainActivity(requireContext(), ToMain.TicketBuy)
-            }
-            btnShowOperations.onClickDelayed {
-                NavHandler.instance.toShowOperationsActivity(requireContext())
-            }
-            btnStageOperations.onClickDelayed {
-            }
-            btnLanguage.onClickDelayed {
-                NavHandler.instance.toLanguageActivity(requireContext())
-            }
-            btnLogout.onClickDelayed {
-                showLogoutDialog(requireContext())
-            }
+    private fun clickEvents() {
 
-            btnDeleteAcc.onClickDelayed {
-                //deleteAccountPopup()
-            }
-
-            btnRateApp.onClickDelayed {
-                reviewRequest()
-            }
-            btnContactUs.onClickDelayed {
-                contactUs()
-            }
-            btnChangeTheme.onClickDelayed {
-                themeLightOrDark()
-            }
-            btnPrivacePolicy.onClickDelayed {
-                NavHandler.instance.toTermsConditionsAndPrivacePolicyActivity(
-                    requireContext(),
-                    WhichTermsAndPrivace.PrivaceAndPolicy
-                )
-            }
-            btnTermsAndConditions.onClickDelayed {
-                NavHandler.instance.toTermsConditionsAndPrivacePolicyActivity(
-                    requireContext(),
-                    WhichTermsAndPrivace.TermsAndCondtion
-                )
-            }
+        viewModel.btnSellTicketClicked.observe(viewLifecycleOwner) {
+            NavHandler.instance.toMainActivity(requireContext(), ToMain.TicketBuy)
+        }
+        viewModel.btnShowOperationsClicked.observe(viewLifecycleOwner) {
+            NavHandler.instance.toShowOperationsActivity(requireContext())
+        }
+        viewModel.btnStageOperationsClicked.observe(viewLifecycleOwner) {
+        }
+        viewModel.btnLanguageClicked.observe(viewLifecycleOwner) {
+            NavHandler.instance.toLanguageActivity(requireContext())
+        }
+        viewModel.btnLogoutClicked.observe(viewLifecycleOwner) {
+            showLogoutDialog(requireContext())
+        }
+        viewModel.btnDeleteAccClicked.observe(viewLifecycleOwner) {
+            //deleteAccountPopup()
+        }
+        viewModel.btnRateAppClicked.observe(viewLifecycleOwner) {
+            reviewRequest()
+        }
+        viewModel.btnContactUsClicked.observe(viewLifecycleOwner) {
+            contactUs()
+        }
+        viewModel.btnChangeThemeClicked.observe(viewLifecycleOwner) {
+            themeLightOrDark()
+        }
+        viewModel.btnPrivacePolicyClicked.observe(viewLifecycleOwner) {
+            NavHandler.instance.toTermsConditionsAndPrivacePolicyActivity(
+                requireContext(),
+                WhichTermsAndPrivace.PrivaceAndPolicy
+            )
+        }
+        viewModel.btnTermsAndConditionsClicked.observe(viewLifecycleOwner) {
+            NavHandler.instance.toTermsConditionsAndPrivacePolicyActivity(
+                requireContext(),
+                WhichTermsAndPrivace.TermsAndCondtion
+            )
         }
     }
 

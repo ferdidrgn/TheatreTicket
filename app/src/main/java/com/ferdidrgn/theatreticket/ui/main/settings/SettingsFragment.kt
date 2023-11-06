@@ -131,6 +131,7 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
                             FirebaseAuth.getInstance().signOut()
 
                             viewModel.clearClientPreferences()
+                            NavHandler.instance.toLoginActivity(requireContext())
                             showToast(context.getString(R.string.success))
                             dismiss()
                         }

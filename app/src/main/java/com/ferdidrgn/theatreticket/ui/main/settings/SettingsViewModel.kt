@@ -20,7 +20,6 @@ class SettingsViewModel @Inject constructor(
     BaseViewModel() {
 
     val userFullName = MutableStateFlow("")
-    val role = MutableStateFlow("")
     val roleAdminLayout = LiveEvent<Boolean>()
 
 
@@ -58,10 +57,6 @@ class SettingsViewModel @Inject constructor(
                 userFullName.emit(fullName)
             }
 
-            ClientPreferences.inst.role?.let { role ->
-                this@SettingsViewModel.role.emit(role)
-            }
-
         }
         hideLoading()
     }
@@ -94,27 +89,6 @@ class SettingsViewModel @Inject constructor(
             }
         }
         return valueReturn
-    }
-
-
-    fun deleteUser() {
-        mainScope {
-            showLoading()
-
-            userFirebaseQueries.deleteUser { status ->
-                when (status) {
-                    true -> {
-                        clearClientPreferences()
-                        successMessage.postValue(message(R.string.success))
-                        hideLoading()
-                    }
-                    false -> {
-                        errorMessage.postValue(message(R.string.error))
-                        hideLoading()
-                    }
-                }
-            }
-        }
     }
 
     fun clearClientPreferences() {

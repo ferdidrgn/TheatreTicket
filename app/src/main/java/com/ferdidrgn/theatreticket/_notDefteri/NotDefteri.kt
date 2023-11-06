@@ -11,4 +11,8 @@ class NotDefteri {
     //customdatabindingutils velerde aktif değl. bi sor
     //mock dataları düzeşt
     //firebase repository kodlarını düzelt
+    //edit profile ı yap add ve update
+    //phone logşn yap
+    //**guest girince  ve çıkınca fxm token nası işliyor kontrol et
+    //**guest girince logout u settingsten login e çevir
 }

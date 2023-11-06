@@ -61,15 +61,10 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
                     }
             }
         } else {
-            if (ClientPreferences.inst.isFirstLaunch == true)
-                NavHandler.instance.toOnboardingActivity(this)
-            else {
-                askNotificationPermission()
-
-                getFCMToken()
-                getLogin()
-                observe()
-            }
+            askNotificationPermission()
+            getFCMToken()
+            getLogin()
+            observe()
         }
     }
 

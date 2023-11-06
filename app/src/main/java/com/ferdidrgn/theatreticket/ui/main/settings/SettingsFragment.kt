@@ -64,6 +64,9 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
         viewModel.btnDeleteAccClicked.observe(viewLifecycleOwner) {
             //deleteAccountPopup()
         }
+        viewModel.btnOnShareAppClick.observe(viewLifecycleOwner) {
+
+        }
         viewModel.btnRateAppClicked.observe(viewLifecycleOwner) {
             reviewRequest()
         }

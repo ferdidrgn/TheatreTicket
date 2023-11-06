@@ -163,6 +163,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:onClick="@{() -> viewModel.onShowOperationsClick()}"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="13dp">
 
@@ -205,6 +206,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:onClick="@{() -> viewModel.onStageOperationsClick()}"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="13dp">
 
@@ -247,6 +249,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:onClick="@{() -> viewModel.onSellTicketClick()}"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="13dp">
 
@@ -289,6 +292,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
+                    android:onClick="@{() -> viewModel.onChangeThemeClick()}"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="13dp">
 
@@ -330,6 +334,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:onClick="@{() -> viewModel.onLanguageClick()}"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="13dp">
 
@@ -382,6 +387,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:onClick="@{() -> viewModel.onRateAppClick()}"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="13dp">
 
@@ -424,6 +430,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:onClick="@{() -> viewModel.onShareAppClick()}"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="13dp">
 
@@ -466,6 +473,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:onClick="@{() -> viewModel.onDeleteAccClick()}"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="13dp">
 
@@ -508,6 +516,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:onClick="@{() -> viewModel.onPrivacePolicyClick()}"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="13dp">
 
@@ -550,6 +559,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:onClick="@{() -> viewModel.onTermsAndConditionsClick()}"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="13dp">
 
@@ -593,6 +603,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="25dp"
+                    android:onClick="@{() -> viewModel.onContactUsClick()}"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="13dp">
 
@@ -635,6 +646,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="25dp"
+                    android:onClick="@{() -> viewModel.onLogoutClick()}"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="13dp">
 

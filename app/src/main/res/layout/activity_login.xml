@@ -66,16 +66,15 @@
             android:layout_weight="0.8" />
 
         <LinearLayout
-            android:id="@+id/llBtnsSingIn"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginHorizontal="40dp"
             android:layout_weight="0.6"
             android:gravity="center"
+            android:onClick="@{() -> viewModel.onGoogleSignInClicked()}"
             android:orientation="vertical">
 
             <com.ferdidrgn.theatreticket.tools.components.CustomButton
-                android:id="@+id/btnSignInGoogle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textAllCaps="false"
@@ -91,13 +90,13 @@
             android:layout_weight="0.2" />
 
         <com.ferdidrgn.theatreticket.tools.components.CustomButton
-            android:id="@+id/btnSignInPhoneNumber"
             style="@style/TextColor2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginHorizontal="40dp"
             android:layout_weight="0.6"
             android:textAllCaps="false"
+            android:onClick="@{() -> viewModel.onPhoneNumberSignInClicked()}"
             android:textSize="20sp"
             app:cst_btn_name="@string/sign_up_phone_number" />
 

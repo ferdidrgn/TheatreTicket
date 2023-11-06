@@ -35,6 +35,7 @@ class SettingsViewModel @Inject constructor(
     val btnLanguageClicked = LiveEvent<Boolean>()
     val btnLogoutClicked = LiveEvent<Boolean>()
     val btnDeleteAccClicked = LiveEvent<Boolean>()
+    val btnOnShareAppClick = LiveEvent<Boolean>()
     val btnRateAppClicked = LiveEvent<Boolean>()
     val btnContactUsClicked = LiveEvent<Boolean>()
     val btnChangeThemeClicked = LiveEvent<Boolean>()
@@ -131,7 +132,6 @@ class SettingsViewModel @Inject constructor(
     }
 
     //Click Events
-
     fun onSellTicketClick() {
         btnSellTicketClicked.postValue(true)
     }
@@ -149,6 +149,9 @@ class SettingsViewModel @Inject constructor(
     }
     fun onDeleteAccClick() {
         btnDeleteAccClicked.postValue(true)
+    }
+    fun onShareAppClick() {
+        btnOnShareAppClick.postValue(true)
     }
     fun onRateAppClick() {
         btnRateAppClicked.postValue(true)

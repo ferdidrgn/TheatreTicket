@@ -42,6 +42,7 @@
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/imgShow"
                 style="@style/ShapeableImageViewStyle"
+                imageUrl="@{show.imageUrl}"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 tools:src="@drawable/ic_home" />

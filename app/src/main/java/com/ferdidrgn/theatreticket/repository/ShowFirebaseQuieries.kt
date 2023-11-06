@@ -1,5 +1,6 @@
 package com.ferdidrgn.theatreticket.repository
 
+import android.net.Uri
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Show
 import com.ferdidrgn.theatreticket.enums.Response
 import com.google.firebase.Timestamp
@@ -25,7 +26,7 @@ class ShowFirebaseQuieries {
         val imageName = "ShowImages/${show?._id}.jpg"
         val imagesRef = storageRef.child(imageName)
         if (show?.imageUrl != null) {
-            imagesRef.putFile(show.imageUrl!!).addOnSuccessListener {
+            imagesRef.putFile(show.addOrUpdateImgUrl!!).addOnSuccessListener {
                 Firebase.storage.reference.child(imageName).downloadUrl.addOnSuccessListener { uri ->
                     val downloadUrl = uri.toString()
                     val showMap = HashMap<String, Any>()
@@ -93,6 +94,8 @@ class ShowFirebaseQuieries {
                                     if (document.get("_createdAt") != null) document.get("_createdAt") as Timestamp else ""
                                 val id =
                                     if (document.get("_id") != null) document.get("_id") as String else ""
+                                val imgUrl =
+                                    if (document.get("imageUrl") != null) document.get("imageUrl") as String else ""
                                 val name =
                                     if (document.get("name") != null) document.get("name") as String else ""
                                 val description =
@@ -107,6 +110,7 @@ class ShowFirebaseQuieries {
                                 val show = Show(
                                     _createdAt = createdAt.toString(),
                                     _id = id,
+                                    imageUrl = imgUrl,
                                     name = name,
                                     description = description,
                                     date = date,
@@ -131,6 +135,7 @@ class ShowFirebaseQuieries {
             "_createdAt" to Timestamp.now(),
             "name" to show?.name.toString(),
             "description" to show?.description.toString(),
+            "imageUrl" to show?.addOrUpdateImgUrl.toString(),
             "date" to show?.date.toString(),
             "price" to show?.price.toString(),
             "ageLimit" to show?.ageLimit.toString()

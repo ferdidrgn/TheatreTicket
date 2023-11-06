@@ -134,7 +134,7 @@
                         android:layout_height="match_parent"
                         android:scaleType="fitXY"
                         style="@style/ShapeableImageViewStyle"
-                        imageUrl="@{viewModel.imageUrl}"
+                        imageUrl="@{viewModel.show.imageUrl}"
                         android:src="@drawable/img_goz_kap_vaz_yap_april_23" />
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>

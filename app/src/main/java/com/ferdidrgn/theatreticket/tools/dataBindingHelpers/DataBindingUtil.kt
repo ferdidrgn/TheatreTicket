@@ -1,6 +1,5 @@
 package com.ferdidrgn.theatreticket.tools.dataBindingHelpers
 
-import android.net.Uri
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.databinding.ViewDataBinding
@@ -14,7 +13,7 @@ object DataBindingUtil {
 
     @JvmStatic
     @BindingAdapter("imageUrl")
-    fun downloadImage(view: ImageView, url: Uri?) {
+    fun downloadImage(view: ImageView, url: String?) {
         view.downloadFromUrl(url)
     }
 

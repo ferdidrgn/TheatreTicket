@@ -51,12 +51,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imgShow"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:onClick="@{() -> listener.onShowSliderDetailsAdapterListener(show)}"
-            android:src="@drawable/ic_home"
-            style="@style/ShapeableImageViewStyle" />
-    </com.google.android.material.card.MaterialCardView>
-</LinearLayout></layout>
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imgShow"
+                style="@style/ShapeableImageViewStyle"
+                imageUrl="@{show.imageUrl}"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:onClick="@{() -> listener.onShowSliderDetailsAdapterListener(show)}"
+                android:src="@drawable/ic_home" />
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+</layout>

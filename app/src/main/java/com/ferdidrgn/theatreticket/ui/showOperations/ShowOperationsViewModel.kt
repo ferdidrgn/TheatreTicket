@@ -31,7 +31,8 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
 
     val name = MutableStateFlow("")
     val desc = MutableStateFlow("")
-    val imageUrl = MutableStateFlow<Uri?>(null)
+    val imageUrl = MutableStateFlow<String?>(null)
+    val addOrUpdateImgUrl = MutableStateFlow<Uri?>(null)
     val date = MutableStateFlow("")
     val price = MutableStateFlow("")
     val ageLimit = MutableStateFlow("")
@@ -109,6 +110,7 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
                 name = name.value,
                 description = desc.value,
                 imageUrl = imageUrl.value,
+                addOrUpdateImgUrl = addOrUpdateImgUrl.value,
                 date = date.value,
                 price = price.value,
                 ageLimit = ageLimit.value,
@@ -156,6 +158,7 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
                 name = name.value,
                 description = desc.value,
                 imageUrl = imageUrl.value,
+                addOrUpdateImgUrl = addOrUpdateImgUrl.value,
                 date = date.value,
                 price = price.value,
                 ageLimit = ageLimit.value

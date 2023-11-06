@@ -2,7 +2,6 @@ package com.ferdidrgn.theatreticket.tools
 
 import android.content.Context
 import android.content.res.Configuration
-import android.net.Uri
 import android.os.Handler
 import android.view.View
 import android.widget.ImageView
@@ -16,7 +15,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.tools.helpers.MainSliderHandler
-import com.ferdidrgn.theatreticket.commonModels.dummyData.Show
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -35,7 +33,7 @@ fun View.hideAndHold() {
     this.visibility = View.INVISIBLE
 }
 
-fun ImageView.downloadFromUrl(url: Uri?) {
+fun ImageView.downloadFromUrl(url: String?) {
     val options = RequestOptions()
         .error(R.drawable.img_welcome)
     Glide.with(context)

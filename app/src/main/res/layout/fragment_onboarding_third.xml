@@ -24,7 +24,6 @@
             android:textAlignment="center"
             android:textSize="30sp"
             app:cst_toolbar_text="@string/app_name"
-            app:layout_constraintBottom_toTopOf="@+id/customButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -38,7 +37,7 @@
             ads:adUnitId="@string/BANNER_ADS_TEST"
             ads:layout_constraintEnd_toEndOf="parent"
             ads:layout_constraintStart_toStartOf="parent"
-            ads:layout_constraintTop_toTopOf="@id/customToolbar" />
+            ads:layout_constraintTop_toBottomOf="@id/customToolbar" />
 
         <com.ferdidrgn.theatreticket.tools.components.CustomButton
             android:id="@+id/customButton"

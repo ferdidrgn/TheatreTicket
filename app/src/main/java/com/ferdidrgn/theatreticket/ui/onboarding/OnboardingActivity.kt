@@ -59,6 +59,7 @@ class OnboardingActivity : BaseActivity<OnboardingViewModel, ActivityOnboardingB
     private fun observe() {
         viewModel.isPageIndicatorNext.observe(this) { isIndicatorNext ->
             if (isIndicatorNext == true) {
+                binding.vpSlider.currentItem++
                 if (lastPage.not())
                     binding.vpSlider.currentItem++
             }

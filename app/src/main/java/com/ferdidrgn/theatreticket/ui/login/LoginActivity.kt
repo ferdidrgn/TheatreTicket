@@ -7,11 +7,13 @@ import androidx.core.content.ContextCompat.getString
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseActivity
 import com.ferdidrgn.theatreticket.databinding.ActivityLoginBinding
+import com.ferdidrgn.theatreticket.enums.Roles
 import com.ferdidrgn.theatreticket.tools.*
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,16 +29,17 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
 
     override fun onCreateFinished(savedInstance: Bundle?) {
         binding.viewModel = viewModel
-        builderADS(this, binding.adView)
         auth = FirebaseAuth.getInstance()
-        isUserLogIn()
+        builderADS(this, binding.adView)
+        checkLandingOrEnter()
+        clickEvents()
+    }
 
-        binding.btnSignInGoogle.onClickDelayed {
-            sigIn()
-        }
-        binding.btnSignInPhoneNumber.onClickDelayed {
-
-        }
+    private fun checkLandingOrEnter() {
+        if (ClientPreferences.inst.isFirstLaunch == true)
+            NavHandler.instance.toOnboardingActivity(this)
+        else
+            isUserLogIn()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -53,16 +56,6 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
         }
     }
 
-    private fun isUserLogIn() {
-
-        // The user is already signed in, navigate to MainActivity
-        if (auth.currentUser != null) {
-            NavHandler.instance.toMainActivityFinishAffinity(this)
-            finish()
-        }
-
-    }
-
     private fun firebaseAuthWithGoogle(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential)
@@ -70,11 +63,28 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
                 if (task.isSuccessful) {
                     val user = auth.currentUser
                     showToast(getString(R.string.signed_in_as) + " ${user?.displayName}")
+
+                    setClientPreferneces(user)
+
                     NavHandler.instance.toMainActivityFinishAffinity(this)
                 } else {
                     showToast(getString(R.string.error_auth_failed))
                 }
             }
+    }
+
+    private fun isUserLogIn() {
+
+        // The user is already signed in, navigate to MainActivity
+        if (auth.currentUser != null ) {
+            NavHandler.instance.toMainActivityFinishAffinity(this)
+            finish()
+        }
+        else if (ClientPreferences.inst.role != null) {
+            NavHandler.instance.toMainActivityFinishAffinity(this)
+            finish()
+        }
+
     }
 
     private fun sigIn() {
@@ -86,5 +96,29 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
         val googleSignInClient = GoogleSignIn.getClient(this, gso)
         val signInIntent = googleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
+    }
+
+    private fun setClientPreferneces(user: FirebaseUser?) {
+        ClientPreferences.inst.role = Roles.User.role
+        ClientPreferences.inst.userFullName = user?.displayName
+        ClientPreferences.inst.userEmail = user?.email
+        ClientPreferences.inst.userPhotoUrl = user?.photoUrl.toString()
+        ClientPreferences.inst.userID = user?.uid
+    }
+
+    private fun clickEvents() {
+
+        viewModel.btnSignInGoogle.observe(this) {
+            sigIn()
+        }
+        viewModel.btnSignInPhoneNumber.observe(this) {
+            // ClientPreferences.inst.role = Roles.User.role
+        }
+
+        viewModel.btnGuest.observe(this) {
+            NavHandler.instance.toMainActivityFinishAffinity(this)
+            ClientPreferences.inst.role = Roles.Guest.role
+            finish()
+        }
     }
 }

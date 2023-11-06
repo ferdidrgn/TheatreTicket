@@ -10,16 +10,22 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(showFirebaseQuieries: ShowFirebaseQuieries) :
     BaseViewModel() {
 
-    //click events
+    //Click Events
     val btnSignInGoogle = LiveEvent<Boolean>()
     val btnSignInPhoneNumber = LiveEvent<Boolean>()
+    val btnGuest = LiveEvent<Boolean>()
 
-    //click events
+
+    //Click Events
     fun onGoogleSignInClicked() {
         btnSignInGoogle.postValue(true)
     }
 
     fun onPhoneNumberSignInClicked() {
         btnSignInPhoneNumber.postValue(true)
+    }
+
+    fun onGuestClicked() {
+        btnGuest.postValue(true)
     }
 }

@@ -18,7 +18,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
-    private val showFirebaseQuieries: ShowFirebaseQuieries,
     private val appToolsFireBaseQueries: AppToolsFireBaseQueries,
     private val userFirebaseQueries: UserFirebaseQueries
 ) :

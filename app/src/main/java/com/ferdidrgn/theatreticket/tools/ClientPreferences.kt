@@ -62,6 +62,14 @@ class ClientPreferences : PreferencesManager() {
         get() = getString(PHONE_NUMBER, "")
         set(token) = putString(PHONE_NUMBER, token)
 
+    var userEmail: String?
+        get() = getString(USER_EMAIL, "")
+        set(token) = putString(USER_EMAIL, token)
+
+    var userPhotoUrl: String?
+        get() = getString(USER_PHOTO_URL, "")
+        set(token) = putString(USER_PHOTO_URL, token)
+
     var role: String?
         get() = getString(ROLE, "")
         set(token) = putString(ROLE, token)

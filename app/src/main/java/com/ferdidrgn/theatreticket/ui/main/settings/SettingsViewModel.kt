@@ -21,6 +21,7 @@ class SettingsViewModel @Inject constructor(
 
     val userFullName = MutableStateFlow("")
     val roleAdminLayout = LiveEvent<Boolean>()
+    val roleGuestLayout = LiveEvent<Boolean>()
 
 
     //Click Events
@@ -29,6 +30,7 @@ class SettingsViewModel @Inject constructor(
     val btnStageOperationsClicked = LiveEvent<Boolean>()
     val btnLanguageClicked = LiveEvent<Boolean>()
     val btnLogoutClicked = LiveEvent<Boolean>()
+    val btnLogInClicked = LiveEvent<Boolean>()
     val btnOnShareAppClick = LiveEvent<Boolean>()
     val btnRateAppClicked = LiveEvent<Boolean>()
     val btnContactUsClicked = LiveEvent<Boolean>()
@@ -40,8 +42,22 @@ class SettingsViewModel @Inject constructor(
 
     fun selectedLayout() {
         roleAdminLayout.postValue(false)
-        if (ClientPreferences.inst.role == Roles.Admin.role)
-            roleAdminLayout.postValue(true)
+        roleGuestLayout.postValue(true)
+        when (ClientPreferences.inst.role) {
+            Roles.Admin.role -> {
+                roleAdminLayout.postValue(true)
+                roleGuestLayout.postValue(false)
+            }
+            Roles.Guest.role -> {
+                roleAdminLayout.postValue(false)
+                roleGuestLayout.postValue(true)
+            }
+            Roles.User.role -> {
+                roleAdminLayout.postValue(false)
+                roleGuestLayout.postValue(false)
+            }
+        }
+
     }
 
     fun getMyUser() {
@@ -129,6 +145,10 @@ class SettingsViewModel @Inject constructor(
 
     fun onLogoutClick() {
         btnLogoutClicked.postValue(true)
+    }
+
+    fun onLogInClick() {
+        btnLogInClicked.postValue(true)
     }
 
     fun onShareAppClick() {

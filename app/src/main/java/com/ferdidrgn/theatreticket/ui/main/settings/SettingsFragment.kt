@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseFragment
 import com.ferdidrgn.theatreticket.base.BasePopUp
@@ -21,6 +22,9 @@ import com.google.android.play.core.review.ReviewManagerFactory
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlin.time.Duration.Companion.seconds
 
 @AndroidEntryPoint
 class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding>() {
@@ -61,9 +65,6 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
         viewModel.btnLanguageClicked.observe(viewLifecycleOwner) {
             NavHandler.instance.toLanguageActivity(requireContext())
         }
-        viewModel.btnLogoutClicked.observe(viewLifecycleOwner) {
-            showLogoutDialog(requireContext())
-        }
         viewModel.btnOnShareAppClick.observe(viewLifecycleOwner) {
 
         }
@@ -75,6 +76,12 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
         }
         viewModel.btnChangeThemeClicked.observe(viewLifecycleOwner) {
             themeLightOrDark()
+        }
+        viewModel.btnLogoutClicked.observe(viewLifecycleOwner) {
+            showLogoutDialog(requireContext())
+        }
+        viewModel.btnLogInClicked.observe(viewLifecycleOwner) {
+            NavHandler.instance.toLoginActivity(requireContext())
         }
         viewModel.btnPrivacePolicyClicked.observe(viewLifecycleOwner) {
             NavHandler.instance.toTermsConditionsAndPrivacePolicyActivity(
@@ -162,11 +169,17 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
         if (ClientPreferences.inst.isDarkMode == true) {
             ClientPreferences.inst.isDarkMode = false
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            NavHandler.instance.toMainActivity(requireContext(), ToMain.Settings)
+            lifecycleScope.launch {
+                delay(5.seconds)
+                NavHandler.instance.toMainActivity(requireContext(), ToMain.Settings)
+            }
         } else {
             ClientPreferences.inst.isDarkMode = true
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            NavHandler.instance.toMainActivity(requireContext(), ToMain.Settings)
+            lifecycleScope.launch {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                delay(5.seconds)
+                NavHandler.instance.toMainActivity(requireContext(), ToMain.Settings)
+            }
         }
     }
 

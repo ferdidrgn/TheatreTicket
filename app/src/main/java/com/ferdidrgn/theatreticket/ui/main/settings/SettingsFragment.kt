@@ -14,6 +14,7 @@ import com.ferdidrgn.theatreticket.databinding.FragmentSettingsBinding
 import com.ferdidrgn.theatreticket.enums.ToMain
 import com.ferdidrgn.theatreticket.enums.WhichTermsAndPrivace
 import com.ferdidrgn.theatreticket.tools.*
+import com.ferdidrgn.theatreticket.ui.main.MainActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -81,7 +82,7 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
             showLogoutDialog(requireContext())
         }
         viewModel.btnLogInClicked.observe(viewLifecycleOwner) {
-            NavHandler.instance.toLoginActivity(requireContext(), true)
+            goToLoginAndFinishAffinity(requireActivity() as MainActivity)
         }
         viewModel.btnPrivacePolicyClicked.observe(viewLifecycleOwner) {
             NavHandler.instance.toTermsConditionsAndPrivacePolicyActivity(
@@ -138,7 +139,8 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
                             FirebaseAuth.getInstance().signOut()
 
                             viewModel.clearClientPreferences()
-                            NavHandler.instance.toLoginActivity(requireContext())
+                            goToLoginAndFinishAffinity(requireActivity() as MainActivity)
+
                             showToast(context.getString(R.string.success))
                             dismiss()
                         }
@@ -195,5 +197,10 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
         } catch (ex: ActivityNotFoundException) {
             showToast(getString(R.string.error_not_mail_installed))
         }
+    }
+
+    private fun goToLoginAndFinishAffinity(context: MainActivity) {
+        NavHandler.instance.toLoginActivity(requireContext(), true)
+        context.finishAffinity()
     }
 }

@@ -6,6 +6,7 @@ import com.ferdidrgn.theatreticket.commonModels.dummyData.User
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Sell
 import com.ferdidrgn.theatreticket.enums.ID
 import com.ferdidrgn.theatreticket.enums.Response
+import com.ferdidrgn.theatreticket.enums.Roles
 import com.ferdidrgn.theatreticket.repository.UserFirebaseQueries
 import com.ferdidrgn.theatreticket.repository.SellFirebaseQueries
 import com.ferdidrgn.theatreticket.tools.*
@@ -51,14 +52,19 @@ class TicketBuyViewModel @Inject constructor(
                 when (status) {
                     Response.Empty -> {
                         //Universal Unique ID
-                        val id = UUID.randomUUID().toString()
+
+                        val id = if (ClientPreferences.inst.role == Roles.Guest.role)
+                            UUID.randomUUID().toString() + ID.User.id
+                        else
+                            ClientPreferences.inst.userID.toString()
                         userAdd = User(
-                            _id = id + ID.User.id,
+                            _id = id,
                             token = ClientPreferences.inst.token.toString(),
                             fcmToken = ClientPreferences.inst.FCMtoken.toString(),
                             firstName = firstName.value,
                             lastName = lastName.value,
                             phoneNumber = phoneNumber.value,
+                            role = ClientPreferences.inst.role.toString(),
                             age = age.value
                         )
                         hideLoading()
@@ -72,13 +78,14 @@ class TicketBuyViewModel @Inject constructor(
                         hideLoading()
                         errorMessage.postValue(message(R.string.error_not_equal))
                     }
-                    Response.ServerError-> {
+                    Response.ServerError -> {
                         hideLoading()
                         errorMessage.postValue(message(R.string.error_server))
                     }
                     else -> {
                         hideLoading()
-                        errorMessage.postValue(message(R.string.error))}
+                        errorMessage.postValue(message(R.string.error))
+                    }
                 }
 
             }

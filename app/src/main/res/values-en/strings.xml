@@ -96,6 +96,7 @@
     <string name="error_auth_failed">Authentication failed</string>
     <string name="permission_denied">Permission Denied</string>
     <string name="error_update_failed">Update failed</string>
+    <string name="error_add_user">Add user failed</string>
     <string name="error">Error</string>
     <string name="mistake">Mistake</string>
     <string name="empty">Empty</string>

@@ -114,6 +114,7 @@
     <string name="error_auth_failed">Kimlik hatası. Bağlantı başarısız</string>
     <string name="permission_denied">İzin verilmedi</string>
     <string name="error_update_failed">Güncelleme Başarısız Oldu</string>
+    <string name="error_add_user">Bilgileriniz Kaydedilirken Bir İnternet Hatası Oluştu</string>
     <string name="error">Hata</string>
     <string name="mistake">Hata</string>
     <string name="empty">Boş</string>

@@ -66,14 +66,19 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     val user = auth.currentUser
-                    showToast(getString(R.string.signed_in_as) + " ${user?.displayName}")
 
                     setClientPreferneces(user)
+                    viewModel.addUser()
 
-                    NavHandler.instance.toMainActivityFinishAffinity(this)
-                } else {
+                    viewModel.isFirebaseUserControl.observe(this) { isFirebaseUserControl ->
+                        if (isFirebaseUserControl) {
+                            showToast(getString(R.string.signed_in_as) + " ${user?.displayName}")
+                            NavHandler.instance.toMainActivityFinishAffinity(this)
+                        } else
+                            showToast(getString(R.string.error_add_user))
+                    }
+                } else
                     showToast(getString(R.string.error_auth_failed))
-                }
             }
     }
 

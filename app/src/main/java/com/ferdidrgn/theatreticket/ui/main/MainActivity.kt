@@ -79,7 +79,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         } else {
             askNotificationPermission()
             getFCMToken()
-            getLogin()
+            getLoginGoogle()
             checkForAppUpdate()
             observe()
         }
@@ -188,7 +188,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
 
     }
 
-    private fun getLogin() {
+    private fun getLoginGoogle() {
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
@@ -197,13 +197,12 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
 
-        val user = Firebase.auth.currentUser
-
+        //Mock Data
+        /*val user = Firebase.auth.currentUser
         if (user != null) {
             val userName = user.displayName
-            ClientPreferences.inst.userFullName = userName
-            ClientPreferences.inst.isGoogleSignIn = true
-        }
+            val userId = user.uid
+        }*/
     }
 
     private fun getFCMToken() {

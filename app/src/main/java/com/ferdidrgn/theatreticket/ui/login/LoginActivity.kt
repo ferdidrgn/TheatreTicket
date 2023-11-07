@@ -99,11 +99,17 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
     }
 
     private fun setClientPreferneces(user: FirebaseUser?) {
-        ClientPreferences.inst.role = Roles.User.role
-        ClientPreferences.inst.userFullName = user?.displayName
-        ClientPreferences.inst.userEmail = user?.email
-        ClientPreferences.inst.userPhotoUrl = user?.photoUrl.toString()
-        ClientPreferences.inst.userID = user?.uid
+        ClientPreferences.inst.apply {
+            role = Roles.User.role
+            userID = user?.uid
+            userFullName = user?.displayName
+            userEmail = user?.email
+            userPhone = user?.phoneNumber
+            userPhotoUrl = user?.photoUrl.toString()
+            isGoogleSignIn = true
+            isPhoneNumberSignIn = false
+
+        }
     }
 
     private fun clickEvents() {

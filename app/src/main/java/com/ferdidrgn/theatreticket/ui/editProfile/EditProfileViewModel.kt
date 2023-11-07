@@ -34,17 +34,19 @@ class EditProfileViewModel @Inject constructor(private val userFirebaseQueries: 
     }
 
     fun clearClientPreferences() {
-        ClientPreferences.inst.token = null
-        ClientPreferences.inst.FCMtoken = null
-        ClientPreferences.inst.userID = null
-        ClientPreferences.inst.userPhone = null
-        ClientPreferences.inst.userFirstName = null
-        ClientPreferences.inst.userLastName = null
-        ClientPreferences.inst.userFullName = null
-        ClientPreferences.inst.userEmail = null
-        ClientPreferences.inst.userPhotoUrl = null
-        ClientPreferences.inst.role = null
-        ClientPreferences.inst.isGoogleSignIn = null
-        ClientPreferences.inst.isPhoneNumberSignIn = null
+        ClientPreferences.inst.apply {
+            role = null
+            token = null
+            FCMtoken = null
+            userPhone = null
+            userFirstName = null
+            userLastName = null
+            userFullName = null
+            userEmail = null
+            userPhotoUrl = null
+            userID = null
+            isGoogleSignIn = null
+            isPhoneNumberSignIn = null
+        }
     }
 }

@@ -1,15 +1,13 @@
 package com.ferdidrgn.theatreticket.tools.dataBindingHelpers
 
+import android.text.InputType
 import androidx.core.widget.doAfterTextChanged
 import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
 import androidx.databinding.InverseBindingMethod
 import androidx.databinding.InverseBindingMethods
-import com.ferdidrgn.theatreticket.tools.components.CustomDatePicker
-import com.ferdidrgn.theatreticket.tools.components.CustomEditText
-import com.ferdidrgn.theatreticket.tools.components.CustomPhoneEditText
-import com.ferdidrgn.theatreticket.tools.components.CustomToolbar
+import com.ferdidrgn.theatreticket.tools.components.*
 import com.ferdidrgn.theatreticket.tools.show
 
 object CustomDataBindingUtils {
@@ -17,6 +15,10 @@ object CustomDataBindingUtils {
     @InverseBindingMethods(
         InverseBindingMethod(
             type = CustomEditText::class, attribute = "bind:custom_edit_text", event =
+            "bind:textAttrChanged", method = "bind:getText"
+        ),
+        InverseBindingMethod(
+            type = CustomNumberEditText::class, attribute = "bind:cst_number_changeable_edit_text", event =
             "bind:textAttrChanged", method = "bind:getText"
         ),
         InverseBindingMethod(
@@ -157,6 +159,36 @@ object CustomDataBindingUtils {
                 text?.let {
                     if (it != editText.tvSelectedDate.text.toString()) {
                         editText.tvSelectedDate.setText(it)
+                    }
+                }
+            }
+        }
+    }
+
+    class CustomNumberEditTextBinder {
+        companion object {
+            @BindingAdapter("app:textAttrChanged")
+            @JvmStatic
+            fun setListener(editText: CustomNumberEditText, listener: InverseBindingListener?) {
+                if (listener != null) {
+                    editText.editTextView.doAfterTextChanged { listener.onChange() }
+                    editText.editTextView.inputType = InputType.TYPE_CLASS_NUMBER
+                }
+            }
+
+            @InverseBindingAdapter(attribute = "cst_number_changeable_edit_text", event = "app:textAttrChanged")
+            @JvmStatic
+            fun getCustomEditText(nMe: CustomNumberEditText): String {
+                return nMe.editTextView.text.toString()
+            }
+
+            @BindingAdapter("cst_number_changeable_edit_text")
+            @JvmStatic
+            fun setCustomEditText(editText: CustomNumberEditText, text: String?) {
+                text?.let {
+                    if (it != editText.editTextView.text.toString()) {
+                        editText.editTextView.setText(it)
+                        editText.editTextView.inputType = InputType.TYPE_CLASS_NUMBER
                     }
                 }
             }

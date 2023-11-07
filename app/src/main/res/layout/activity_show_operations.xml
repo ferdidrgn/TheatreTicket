@@ -215,7 +215,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:textAlignment="textStart"
-                            app:cst_number_edit_text="@={viewModel.price}" />
+                            app:cst_number_changeable_edit_text="@{viewModel.price}" />
 
                         <com.ferdidrgn.theatreticket.tools.components.CustomDatePicker
                             android:id="@+id/cdpDate"

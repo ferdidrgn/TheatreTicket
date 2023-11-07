@@ -16,4 +16,7 @@ class NotDefteri {
     //**guest girince  ve çıkınca fxm token nası işliyor kontrol et
     //**guest girince logout u settingsten login e çevir
     //onClickDelayed kodlarınık temizle
+
+
+    //****ShowOperationsActivity.kt alt çizgiyi sil
 }

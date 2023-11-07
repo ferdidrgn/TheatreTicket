@@ -6,12 +6,12 @@ import android.text.InputType
 import android.text.method.DigitsKeyListener
 import android.text.method.KeyListener
 import android.util.AttributeSet
+import android.widget.EditText
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.ferdidrgn.theatreticket.R
-import com.google.android.material.textfield.TextInputEditText
 
 class CustomNumberEditText : ConstraintLayout {
-    lateinit var editTextView: TextInputEditText
+    lateinit var editTextView: EditText
 
     constructor(context: Context) : super(context) {
         initLayout(context, null, null)
@@ -31,18 +31,24 @@ class CustomNumberEditText : ConstraintLayout {
 
     private fun initLayout(context: Context, attributeSet: AttributeSet?, style: Int?) {
         inflate(context, R.layout.custom_number_edit_text, this)
+        editTextView = findViewById(R.id.custom_number_editText)
+        editTextView.inputType = InputType.TYPE_CLASS_NUMBER
+
         val layoutAttribute =
             context.obtainStyledAttributes(attributeSet, R.styleable.CustomNumberEditText)
 
         layoutAttribute.getString(R.styleable.CustomNumberEditText_cst_number_edit_text)
             ?.let { string -> setText(string) }
 
-        editTextView = findViewById(R.id.custom_field_editText)
-        editTextView.inputType = InputType.TYPE_CLASS_NUMBER
+        hintText(layoutAttribute.getString(R.styleable.CustomNumberEditText_cst_number_hint_text))
     }
 
     fun setText(text: String) {
         editTextView.setText(text)
+    }
+
+    fun hintText(text: String?) {
+        editTextView.hint = text
     }
 
     internal fun emailType() {

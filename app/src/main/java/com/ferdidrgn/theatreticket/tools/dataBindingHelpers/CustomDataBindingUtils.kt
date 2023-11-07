@@ -172,7 +172,6 @@ object CustomDataBindingUtils {
             fun setListener(editText: CustomNumberEditText, listener: InverseBindingListener?) {
                 if (listener != null) {
                     editText.editTextView.doAfterTextChanged { listener.onChange() }
-                    editText.editTextView.inputType = InputType.TYPE_CLASS_NUMBER
                 }
             }
 
@@ -188,7 +187,6 @@ object CustomDataBindingUtils {
                 text?.let {
                     if (it != editText.editTextView.text.toString()) {
                         editText.editTextView.setText(it)
-                        editText.editTextView.inputType = InputType.TYPE_CLASS_NUMBER
                     }
                 }
             }

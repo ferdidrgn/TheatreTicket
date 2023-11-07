@@ -117,7 +117,7 @@
         <item name="android:textColorHint">@color/dark7</item>
     </style>
 
-    <style name="TextColorHintAndTextColor" parent="@android:style/TextAppearance.Widget.TabWidget">
+    <style name="TextColorHintAndTextColor">
         <item name="android:textAllCaps">false</item>
         <item name="android:textColorHint">@color/dark7</item>
         <item name="android:textColor">@color/dark7</item>

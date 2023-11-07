@@ -41,7 +41,9 @@ class SettingsViewModel @Inject constructor(
 
 
     fun selectedLayout() {
-        roleAdminLayout.postValue(false)
+        //MOCK DATA
+        roleAdminLayout.postValue(true)
+        /*roleAdminLayout.postValue(false)
         roleGuestLayout.postValue(true)
         when (ClientPreferences.inst.role) {
             Roles.Admin.role -> {
@@ -56,7 +58,7 @@ class SettingsViewModel @Inject constructor(
                 roleAdminLayout.postValue(false)
                 roleGuestLayout.postValue(false)
             }
-        }
+        }*/
 
     }
 

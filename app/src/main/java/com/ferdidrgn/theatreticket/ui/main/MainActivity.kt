@@ -47,6 +47,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
 
     private lateinit var navController: NavController
     private lateinit var mGoogleSignInClient: GoogleSignInClient
+    private val MY_CODE = 123
     private lateinit var appUpdateManager: AppUpdateManager
     private val updateType = AppUpdateType.IMMEDIATE //IMMEDIATE (force) or FLEXIBLE (recommend)
 
@@ -89,7 +90,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         if (updateType == AppUpdateType.IMMEDIATE) {
             appUpdateManager.appUpdateInfo.addOnSuccessListener { info ->
                 if (info.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS) {
-                    appUpdateManager.startUpdateFlowForResult(info, updateType, this, 123)
+                    appUpdateManager.startUpdateFlowForResult(info, updateType, this, MY_CODE)
                 }
             }
         }
@@ -105,7 +106,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == 123) {
+        if (requestCode == MY_CODE) {
             if (resultCode != RESULT_OK) {
                 showToast(getString(R.string.error_update_failed))
             }
@@ -137,7 +138,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
                 else -> false
             }
             if (isUpdteAvailable && isUpdateAllowed) {
-                appUpdateManager.startUpdateFlowForResult(info, updateType, this, 123)
+                appUpdateManager.startUpdateFlowForResult(info, updateType, this, MY_CODE)
             }
         }
     }

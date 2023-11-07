@@ -209,23 +209,21 @@
                             app:custom_edit_hint="@string/show_desc"
                             app:custom_edit_text="@={viewModel.desc}" />
 
-                        <com.ferdidrgn.theatreticket.tools.components.CustomEditText
+                        <com.ferdidrgn.theatreticket.tools.components.CustomNumberEditText
                             android:id="@+id/etPrice"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:textAlignment="textStart"
-                            app:custom_edit_hint="@string/price"
-                            app:custom_edit_text="@={viewModel.price}" />
+                            app:cst_number_edit_text="@={viewModel.price}" />
 
-                        <com.ferdidrgn.theatreticket.tools.components.CustomEditText
-                            android:id="@+id/etDate"
+                        <com.ferdidrgn.theatreticket.tools.components.CustomDatePicker
+                            android:id="@+id/cdpDate"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:textAlignment="textStart"
-                            app:custom_edit_hint="@string/date_hours"
-                            app:custom_edit_text="@={viewModel.date}" />
+                            app:cst_picker_changeable_text="@={viewModel.date}" />
 
                         <com.ferdidrgn.theatreticket.tools.components.CustomEditText
                             android:id="@+id/etAgeLimit"

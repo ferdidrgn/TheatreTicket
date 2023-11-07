@@ -22,6 +22,7 @@ const val IS_PHONE_NUMBER_SIGN_IN = "isPhoneNumberSignIn"
 const val IS_DARK_MODE = "isDarkMode"
 const val TO_MAIN = "TO_MAIN"
 const val WHICH_TERMS_PRIVACE = "WHICH_TERMS_PRIVACE"
+const val IS_SETTINGS_CLICKED_LOG_IN = "IS_SETTINGS_CLICKED_LOG_IN"
 const val SHOW = "show"
 const val RC_SIGN_IN = 9001
 const val DEFAULT_DATE_FORMAT = "dd-MM-yyyy"

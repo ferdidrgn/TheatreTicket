@@ -81,7 +81,7 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
             showLogoutDialog(requireContext())
         }
         viewModel.btnLogInClicked.observe(viewLifecycleOwner) {
-            NavHandler.instance.toLoginActivity(requireContext())
+            NavHandler.instance.toLoginActivity(requireContext(), true)
         }
         viewModel.btnPrivacePolicyClicked.observe(viewLifecycleOwner) {
             NavHandler.instance.toTermsConditionsAndPrivacePolicyActivity(

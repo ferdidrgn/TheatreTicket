@@ -31,15 +31,15 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
         binding.viewModel = viewModel
         auth = FirebaseAuth.getInstance()
         builderADS(this, binding.adView)
-        checkLandingOrEnter()
+        checkLandingOrEnter(getIntentObserve())
         clickEvents()
     }
 
-    private fun checkLandingOrEnter() {
+    private fun checkLandingOrEnter(isSettingsClickedLogIn: Boolean) {
         if (ClientPreferences.inst.isFirstLaunch == true)
             NavHandler.instance.toOnboardingActivity(this)
         else
-            isUserLogIn()
+            isUserLogIn(isSettingsClickedLogIn)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -54,6 +54,10 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
                 showToast(getString(R.string.error_google_sign_in) + "${e.message}")
             }
         }
+    }
+
+    private fun getIntentObserve(): Boolean {
+        return intent.getBooleanExtra(IS_SETTINGS_CLICKED_LOG_IN, false)
     }
 
     private fun firebaseAuthWithGoogle(idToken: String) {
@@ -73,14 +77,10 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
             }
     }
 
-    private fun isUserLogIn() {
+    private fun isUserLogIn(isSettingsClickedLogIn: Boolean) {
 
         // The user is already signed in, navigate to MainActivity
-        if (auth.currentUser != null ) {
-            NavHandler.instance.toMainActivityFinishAffinity(this)
-            finish()
-        }
-        else if (ClientPreferences.inst.role != null) {
+        if (auth.currentUser != null || (!isSettingsClickedLogIn && ClientPreferences.inst.role != null)) {
             NavHandler.instance.toMainActivityFinishAffinity(this)
             finish()
         }

@@ -54,6 +54,12 @@ class NavHandler {
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
         context.startActivity(intent)
     }
+    fun toLoginActivity(context: Context, isSettingsClickedLogIn: Boolean) {
+        val intent = Intent(context, LoginActivity::class.java)
+        intent.putExtra(IS_SETTINGS_CLICKED_LOG_IN, isSettingsClickedLogIn)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+        context.startActivity(intent)
+    }
 
     fun toLanguageActivity(context: Context) {
         val intent = Intent(context, LanguageActivity::class.java)

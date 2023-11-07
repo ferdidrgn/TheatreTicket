@@ -1,7 +1,6 @@
 package com.ferdidrgn.theatreticket.ui.main
 
 import android.Manifest
-import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
@@ -10,6 +9,7 @@ import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -25,11 +25,21 @@ import com.ferdidrgn.theatreticket.tools.showToast
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.play.core.appupdate.AppUpdateManager
+import com.google.android.play.core.appupdate.AppUpdateManagerFactory
+import com.google.android.play.core.install.InstallStateUpdatedListener
+import com.google.android.play.core.install.model.AppUpdateType
+import com.google.android.play.core.install.model.InstallStatus
+import com.google.android.play.core.install.model.UpdateAvailability
+import com.google.android.play.core.ktx.isFlexibleUpdateAllowed
+import com.google.android.play.core.ktx.isImmediateUpdateAllowed
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.AndroidEntryPoint
-import java.io.Serializable
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlin.time.Duration.Companion.seconds
 
 
 @AndroidEntryPoint
@@ -37,6 +47,8 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
 
     private lateinit var navController: NavController
     private lateinit var mGoogleSignInClient: GoogleSignInClient
+    private lateinit var appUpdateManager: AppUpdateManager
+    private val updateType = AppUpdateType.IMMEDIATE //IMMEDIATE (force) or FLEXIBLE (recommend)
 
     override fun getVM(): Lazy<MainViewModel> = viewModels()
 
@@ -67,7 +79,66 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
             askNotificationPermission()
             getFCMToken()
             getLogin()
+            checkForAppUpdate()
             observe()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (updateType == AppUpdateType.IMMEDIATE) {
+            appUpdateManager.appUpdateInfo.addOnSuccessListener { info ->
+                if (info.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS) {
+                    appUpdateManager.startUpdateFlowForResult(info, updateType, this, 123)
+                }
+            }
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (updateType == AppUpdateType.FLEXIBLE) {
+            appUpdateManager.unregisterListener(installStateUpdatedListener)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == 123) {
+            if (resultCode != RESULT_OK) {
+                showToast(getString(R.string.error_update_failed))
+            }
+        }
+    }
+
+    private val installStateUpdatedListener = InstallStateUpdatedListener { state ->
+        if (state.installStatus() == InstallStatus.DOWNLOADED) {
+            showToast(getString(R.string.success_update_downloaded))
+        }
+        lifecycleScope.launch {
+            delay(5.seconds)
+            appUpdateManager.completeUpdate()
+        }
+    }
+
+    private fun checkForAppUpdate() {
+        appUpdateManager = AppUpdateManagerFactory.create(applicationContext)
+
+        if (updateType == AppUpdateType.FLEXIBLE) {
+            appUpdateManager.registerListener(installStateUpdatedListener)
+        }
+
+        appUpdateManager.appUpdateInfo.addOnSuccessListener { info ->
+            val isUpdteAvailable = info.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
+            val isUpdateAllowed = when (updateType) {
+                AppUpdateType.FLEXIBLE -> info.isFlexibleUpdateAllowed
+                AppUpdateType.IMMEDIATE -> info.isImmediateUpdateAllowed
+                else -> false
+            }
+            if (isUpdteAvailable && isUpdateAllowed) {
+                appUpdateManager.startUpdateFlowForResult(info, updateType, this, 123)
+            }
         }
     }
 

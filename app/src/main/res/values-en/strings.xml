@@ -40,6 +40,8 @@
     <string name="are_you_serious">Are You Sure</string>
     <string name="are_you_serious_delete">Are You Sure You Want To Delete Data</string>
     <string name="are_you_serious_update">Are You Sure You Want To Update Data</string>
+    <string name="are_you_sure_you_want_to_change_theme">Are you sure you want to change theme</string>
+    <string name="are_you_sure_you_want_to_delete_account">Are you sure you want to delete account</string>
 
     <!--    OnBoarding -->
     <string name="i_read_and_agree">I read&amp;Agree</string>
@@ -77,6 +79,7 @@
     <string name="success_delete_show">Show Deleted Successfully</string>
     <string name="success_update_show">Show Updated Successfully</string>
     <string name="success_permission_granted">"Permission Granted</string>
+    <string name="success_update_downloaded">Download successful.Restartimg app in 5 seconds.</string>
 
     <!--     Error Messages -->
     <string name="error_phone_little">Phone Number Appears To Be Different From 10 Characters. Please Check</string>
@@ -92,6 +95,7 @@
     <string name="error_google_sign_in">Google sign in failed</string>
     <string name="error_auth_failed">Authentication failed</string>
     <string name="permission_denied">Permission Denied</string>
+    <string name="error_update_failed">Update failed</string>
     <string name="error">Error</string>
     <string name="mistake">Mistake</string>
     <string name="empty">Empty</string>
@@ -119,8 +123,6 @@
     <string name="send_mail">Send Mail…</string>
     <string name="terms_condition">Term&amp;Condition</string>
     <string name="guest">Guest</string>
-    <string name="are_you_sure_you_want_to_change_theme">Are you sure you want to change theme</string>
-    <string name="are_you_sure_you_want_to_delete_account">Are you sure you want to delete account</string>
     <string name="thank_you_for_review">Thank you for your review</string>
 
     <!--    Show Details -->

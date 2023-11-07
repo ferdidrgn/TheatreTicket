@@ -56,6 +56,8 @@
     <string name="are_you_serious">Emin Misiniz</string>
     <string name="are_you_serious_delete">Verileri Silmek İstediğinize Emin Misiniz</string>
     <string name="are_you_serious_update">Verileri Günecellemek İstediğinize Emin Misiniz</string>
+    <string name="are_you_sure_you_want_to_change_theme">Temayı değiştirmek istediğinize emin misiniz?</string>
+    <string name="are_you_sure_you_want_to_delete_account">Hesabınızı silmek istediğinize emin misiniz?</string>
 
     <!--    OnBoarding -->
     <string name="i_read_and_agree">Okudum &amp;Kabul Ediyorum</string>
@@ -93,7 +95,8 @@
     <string name="success_add_show">Gösteri Kaydedildi</string>
     <string name="success_delete_show">Gösteri Başarıyla Silindi</string>
     <string name="success_update_show">Gösteri Başarıyla Güncellendi</string>
-    <string name="success_permission_granted">"İzin verildi</string>
+    <string name="success_permission_granted">İzin verildi</string>
+    <string name="success_update_downloaded">İndirme Başarılı. Uygulama, 5 saniye içinde tekrar açılacak.</string>
 
     <!--     Error Messages -->
     <string name="error_phone_little">Telefon Numarası 10 karakterden farklı görünüyor. Lütfen kontrol edin</string>
@@ -109,6 +112,7 @@
     <string name="error_google_sign_in">Google ile giriş işleminizde bir hata oluştu.</string>
     <string name="error_auth_failed">Kimlik hatası. Bağlantı başarısız</string>
     <string name="permission_denied">İzin verilmedi</string>
+    <string name="error_update_failed">Güncelleme Başarısız Oldu</string>
     <string name="error">Hata</string>
     <string name="mistake">Hata</string>
     <string name="empty">Boş</string>
@@ -136,8 +140,6 @@
     <string name="send_mail">Mail Gönder…</string>
     <string name="terms_condition">Koşullar&amp;Şartlar</string>
     <string name="guest">Misafir</string>
-    <string name="are_you_sure_you_want_to_change_theme">Temayı değiştirmek istediğinize emin misiniz?</string>
-    <string name="are_you_sure_you_want_to_delete_account">Hesabınızı silmek istediğinize emin misiniz?</string>
     <string name="thank_you_for_review">Yorumunuz için Teşekkür ederiz</string>
 
 
@@ -154,5 +156,8 @@
     <string name="sign_up_phone_number">Telefon Numarası ile Giriş Yap</string>
     <string name="signed_in_as">Giriş Yapıldı</string>
     <string name="sign_in">Giriş Yap</string>
+
+    <!--    CustomNumberEditText -->
+    <string name="numbersKey" translatable="false">1234567890</string>
 
 </resources>

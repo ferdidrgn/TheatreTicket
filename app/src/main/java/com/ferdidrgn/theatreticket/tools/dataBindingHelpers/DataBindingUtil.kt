@@ -17,6 +17,8 @@ object DataBindingUtil {
         view.downloadFromUrl(url)
     }
 
+
+    //RECYCLERVIEW
     @BindingAdapter("setAdapter")
     @JvmStatic
     fun setAdapter(
@@ -28,6 +30,16 @@ object DataBindingUtil {
         }
     }
 
+    @Suppress("UNCHECKED_CAST")
+    @BindingAdapter("submitList")
+    @JvmStatic
+    fun submitList(recyclerView: RecyclerView, list: List<ListAdapterItem>?) {
+        val adapter = recyclerView.adapter as? BaseAdapter<ViewDataBinding, ListAdapterItem>?
+        adapter?.differ?.submitList(list)
+    }
+
+
+    //VIEWPAGER
     @BindingAdapter("setAdapter")
     @JvmStatic
     fun setAdapter(
@@ -44,14 +56,6 @@ object DataBindingUtil {
     @JvmStatic
     fun submitList(vp: ViewPager2, list: List<ListAdapterItem>?) {
         val adapter = vp.adapter as? BaseAdapter<ViewDataBinding, ListAdapterItem>?
-        adapter?.differ?.submitList(list)
-    }
-
-    @Suppress("UNCHECKED_CAST")
-    @BindingAdapter("submitList")
-    @JvmStatic
-    fun submitList(recyclerView: RecyclerView, list: List<ListAdapterItem>?) {
-        val adapter = recyclerView.adapter as? BaseAdapter<ViewDataBinding, ListAdapterItem>?
         adapter?.differ?.submitList(list)
     }
 }

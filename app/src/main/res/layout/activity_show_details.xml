@@ -17,7 +17,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/primary"
+        style="@style/ScreenBackground"
         tools:context=".ui.showDetails.ShowDetailsActivity">
 
 
@@ -130,12 +130,12 @@
                     app:strokeWidth="3dp">
 
                     <com.google.android.material.imageview.ShapeableImageView
+                        style="@style/ShapeableImageViewStyle"
+                        imageUrl="@{viewModel.show.imageUrl}"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="fitXY"
-                        style="@style/ShapeableImageViewStyle"
-                        imageUrl="@{viewModel.show.imageUrl}"
-                        android:src="@drawable/img_goz_kap_vaz_yap_april_23" />
+                        tools:src="@drawable/img_goz_kap_vaz_yap_april_23" />
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -146,8 +146,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/adView"
-            tools:context=".MainActivity">
+            app:layout_constraintTop_toBottomOf="@+id/adView">
 
             <com.tayfuncesur.curvedbottomsheet.CurvedLayout
                 android:id="@+id/bottomSheet"

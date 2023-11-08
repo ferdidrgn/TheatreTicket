@@ -14,5 +14,6 @@ class NotDefteri {
     //phone login yap
     //**guest girince  ve çıkınca fxm token nası işliyor kontrol et
     //guest girdi satın aldı verileri topladık sonra login olursa işlemleri düşün ilk guest girişte guest token ver
+    //*****en üstte custom uygulamaın adı çıkıyo. onu sil
 
 }

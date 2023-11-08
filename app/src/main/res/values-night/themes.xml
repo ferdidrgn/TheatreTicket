@@ -84,6 +84,10 @@
         <item name="fillColor">@color/dark3</item>
     </style>
 
+    <style name="FillColorPrimary2">
+        <item name="fillColor">@color/dark2</item>
+    </style>
+
     <style name="ViewBackground">
         <item name="android:background">@color/dark8</item>
     </style>

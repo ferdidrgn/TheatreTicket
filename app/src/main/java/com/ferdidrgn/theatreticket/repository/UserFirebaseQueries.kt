@@ -37,7 +37,7 @@ class UserFirebaseQueries {
         userMap["lastName"] = user?.lastName.toString()
         userMap["fullName"] = user?.fullName.toString()
         userMap["phoneNumber"] = user?.phoneNumber.toString()
-        userMap["photoUrl"] = user?.photoUrl.toString()
+        userMap["photoUrl"] = user?.imgUrl.toString()
         userMap["isActivite"] = user?.isActivite.toString().toBoolean()
         userMap["age"] = user?.age.toString()
         userMap["eMail"] = user?.eMail.toString()
@@ -49,6 +49,11 @@ class UserFirebaseQueries {
         }.addOnFailureListener {
             status.invoke(false)
         }
+    }
+
+    fun updateUser(user: User?, status: (Boolean) -> Unit) {
+        //MockData
+        status.invoke(true)
     }
 
     fun checkPhoneNumber(user: User?, status: (Response, User?) -> Unit) {
@@ -115,7 +120,7 @@ class UserFirebaseQueries {
                                 age = age,
                                 eMail = eMail,
                                 role = role,
-                                photoUrl = photoUrl
+                                imgUrl = photoUrl
                             )
                         }
 
@@ -193,7 +198,7 @@ class UserFirebaseQueries {
                                 age = age,
                                 eMail = eMail,
                                 role = role,
-                                photoUrl = photoUrl
+                                imgUrl = photoUrl
                             )
                         }
 

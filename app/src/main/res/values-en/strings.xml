@@ -49,6 +49,7 @@
     <!-- TicketBuyFragment -->
     <string name="phone_number_mask">Phone Number:(555)</string>
     <string name="choose_seats">Choose Seats</string>
+    <string name="full_name">Full Name</string>
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
     <string name="buy">Buy</string>

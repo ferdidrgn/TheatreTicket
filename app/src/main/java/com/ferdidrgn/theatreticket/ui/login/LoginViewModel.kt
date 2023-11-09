@@ -4,14 +4,11 @@ import androidx.lifecycle.MutableLiveData
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseViewModel
 import com.ferdidrgn.theatreticket.commonModels.dummyData.User
-import com.ferdidrgn.theatreticket.enums.ID
 import com.ferdidrgn.theatreticket.enums.Response
-import com.ferdidrgn.theatreticket.enums.Roles
 import com.ferdidrgn.theatreticket.repository.UserFirebaseQueries
 import com.ferdidrgn.theatreticket.tools.ClientPreferences
 import com.ferdidrgn.theatreticket.tools.helpers.LiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
-import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -56,7 +53,7 @@ class LoginViewModel @Inject constructor(private val userFirebaseQueries: UserFi
                         userFullName = userInfoList?.fullName
                         userEmail = userInfoList?.eMail
                         userPhone = userInfoList?.phoneNumber
-                        userPhotoUrl = userInfoList?.photoUrl.toString()
+                        userPhotoUrl = userInfoList?.imgUrl.toString()
                     }
                     hideLoading()
                     isFirebaseUserControl.postValue(true)

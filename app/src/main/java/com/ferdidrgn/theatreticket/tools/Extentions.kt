@@ -35,7 +35,7 @@ fun View.hideAndHold() {
 
 fun ImageView.downloadFromUrl(url: String?) {
     val options = RequestOptions()
-        .error(R.drawable.img_welcome)
+        .error(com.github.dhaval2404.imagepicker.R.drawable.ucrop_ic_cross)
     Glide.with(context)
         .setDefaultRequestOptions(options)
         .load(url)

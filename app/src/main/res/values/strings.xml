@@ -67,6 +67,7 @@
     <!-- TicketBuyFragment -->
     <string name="phone_number_mask">Tel No:(555)</string>
     <string name="choose_seats">Seçtiğiniz Koltuklar</string>
+    <string name="full_name">Tam Ad</string>
     <string name="first_name">Ad</string>
     <string name="last_name">Soyad</string>
     <string name="buy">Satın Al</string>

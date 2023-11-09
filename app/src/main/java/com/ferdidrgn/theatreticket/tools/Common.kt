@@ -95,7 +95,7 @@ fun showToast(
     Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
 }
 
-fun getContext(): Context? {
+fun getContext(): Context {
     return com.ferdidrgn.theatreticket.TheatreTicketApp.inst.applicationContext
 }
 

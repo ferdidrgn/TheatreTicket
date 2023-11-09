@@ -24,9 +24,6 @@ class TicketBuyFragment : BaseFragment<TicketBuyViewModel, FragmentTicketBuyBind
     override fun onCreateFinished(savedInstanceState: Bundle?) {
         binding.viewModel = viewModel
         builderADS(requireContext(), binding.adView)
-        binding.cdpDate.setCustomDataPickerClick(requireContext()) { date ->
-            viewModel.age.value = date
-        }
         bottomSheetInit()
         getGridLayout()
         observe()
@@ -37,6 +34,9 @@ class TicketBuyFragment : BaseFragment<TicketBuyViewModel, FragmentTicketBuyBind
 
         viewModel.buyTicketPopUp.observe(viewLifecycleOwner) {
             buyTicketPopUp(requireContext())
+        }
+        viewModel.btnCstmDatePickerClick.observe(this) {
+            binding.cdpDate.setCustomDataPickerClick()
         }
         viewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
             if (errorMessage != null)

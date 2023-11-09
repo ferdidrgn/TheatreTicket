@@ -137,9 +137,9 @@ object CustomDataBindingUtils {
 
             @BindingAdapter("app:textAttrChanged")
             @JvmStatic
-            fun setListener(editText: CustomDatePicker, listener: InverseBindingListener?) {
+            fun setListener(customDatePicker: CustomDatePicker, listener: InverseBindingListener?) {
                 if (listener != null) {
-                    editText.tvSelectedDate.doAfterTextChanged { listener.onChange() }
+                    customDatePicker.tvSelectedDate.doAfterTextChanged { listener.onChange() }
                 }
             }
 
@@ -154,10 +154,10 @@ object CustomDataBindingUtils {
 
             @BindingAdapter("cst_picker_changeable_text")
             @JvmStatic
-            fun setCustomEditText(editText: CustomDatePicker, text: String?) {
+            fun setCustomEditText(customDatePicker: CustomDatePicker, text: String?) {
                 text?.let {
-                    if (it != editText.tvSelectedDate.text.toString()) {
-                        editText.tvSelectedDate.setText(it)
+                    if (it != customDatePicker.tvSelectedDate.text.toString()) {
+                        customDatePicker.tvSelectedDate.text = it
                     }
                 }
             }

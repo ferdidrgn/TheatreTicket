@@ -30,6 +30,7 @@ class TicketBuyViewModel @Inject constructor(
     var phoneNumber = MutableStateFlow("")
     var age = MutableStateFlow("")
     val buyTicketPopUp = LiveEvent<Boolean?>()
+    val btnCstmDatePickerClick = LiveEvent<Boolean?>()
 
     var userAdd = User()
     var sellAdd = Sell()
@@ -240,5 +241,10 @@ class TicketBuyViewModel @Inject constructor(
             checkPhoneNumber()
         } else
             errorMessage.postValue(message)
+    }
+
+    //Click Listener
+    fun onCstmDatePickerClick() {
+        btnCstmDatePickerClick.postValue(true)
     }
 }

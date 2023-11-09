@@ -14,7 +14,8 @@ class NotDefteri {
     //phone login yap
     //**guest girince  ve çıkınca fxm token nası işliyor kontrol et
     //guest girdi satın aldı verileri topladık sonra login olursa işlemleri düşün ilk guest girişte guest token ver
-    //*****en üstte custom uygulamaın adı çıkıyo. onu sil
+    //*****change theme de 2 kere basına donuyor
+    //** bilet 2 kere tıklanınca 2. de çalışıyor
 
     //***WEB kopunca pop up getir refresh ya da cloase app
 

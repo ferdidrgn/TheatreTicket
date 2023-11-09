@@ -25,8 +25,6 @@ open class BaseViewModel : ViewModel() {
     }
 
     fun message(message: Int): String {
-        return getContext().let {
-            it?.resources?.getString(message).toString()
-        }
+        return getContext().resources?.getString(message).toString()
     }
 }

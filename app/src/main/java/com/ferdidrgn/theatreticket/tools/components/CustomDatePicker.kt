@@ -48,27 +48,26 @@ class CustomDatePicker : LinearLayout {
         getDate()
     }
 
-    fun setCustomDataPickerClick(context: Context, textListener: (String) -> Unit) {
-        customDatePicker.onClickDelayed {
+    fun setCustomDataPickerClick() {
 
-            val dateSetListener =
-                OnDateSetListener { datePicker, year, month, day ->
-                    var localMonth = month
-                    localMonth += 1
-                    calendar[year, month] = day
-                    val date: String = makeDateString(day, localMonth, year)
-                    textListener.invoke(date)
-                }
+        val dateSetListener =
+            OnDateSetListener { datePicker, year, month, day ->
+                var localMonth = month
+                localMonth += 1
+                calendar[year, month] = day
+                val date: String = makeDateString(day, localMonth, year)
+                tvSelectedDate.text = date
+            }
 
-            val style: Int = AlertDialog.THEME_HOLO_LIGHT
-            val cal: Calendar = Calendar.getInstance()
-            val year: Int = cal.get(android.icu.util.Calendar.YEAR)
-            val month: Int = cal.get(android.icu.util.Calendar.MONTH)
-            val day: Int = cal.get(android.icu.util.Calendar.DAY_OF_MONTH)
-            val datePickerDialog =
-                DatePickerDialog(context, style, dateSetListener, year, month, day)
-            datePickerDialog.show()
-        }
+        val style: Int = AlertDialog.THEME_HOLO_LIGHT
+        val cal: Calendar = Calendar.getInstance()
+        val year: Int = cal.get(android.icu.util.Calendar.YEAR)
+        val month: Int = cal.get(android.icu.util.Calendar.MONTH)
+        val day: Int = cal.get(android.icu.util.Calendar.DAY_OF_MONTH)
+        val datePickerDialog =
+            DatePickerDialog(context, style, dateSetListener, year, month, day)
+        datePickerDialog.show()
+
     }
 
     @SuppressLint("SimpleDateFormat")

@@ -23,6 +23,7 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
     val deleteClicked = LiveEvent<Show?>()
 
     val btnAddShowClicked = LiveEvent<Boolean?>()
+    val btnCstmDatePickerClick = LiveEvent<Boolean?>()
     val updateShowPopUp = LiveEvent<Boolean?>()
     val deletePopUp = LiveEvent<Boolean?>()
     val updateBottonVisibility = MutableLiveData<Boolean?>()
@@ -59,6 +60,10 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
 
     fun onUpdateImageClick() {
         imagePermission.postValue(true)
+    }
+
+    fun onCstmDatePickerClick() {
+        btnCstmDatePickerClick.postValue(true)
     }
 
     fun fieldClear() {

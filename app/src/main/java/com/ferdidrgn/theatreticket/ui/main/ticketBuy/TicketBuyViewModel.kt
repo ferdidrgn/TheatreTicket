@@ -1,7 +1,9 @@
 package com.ferdidrgn.theatreticket.ui.main.ticketBuy
 
+import androidx.lifecycle.MutableLiveData
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseViewModel
+import com.ferdidrgn.theatreticket.commonModels.dummyData.Seat
 import com.ferdidrgn.theatreticket.commonModels.dummyData.User
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Sell
 import com.ferdidrgn.theatreticket.enums.ID
@@ -32,6 +34,37 @@ class TicketBuyViewModel @Inject constructor(
     var userAdd = User()
     var sellAdd = Sell()
 
+    val seat = MutableLiveData<List<Seat?>?>()
+    val seatColumnCount = MutableLiveData(1)
+
+    init {
+        getSeat()
+    }
+
+
+    private fun getSeat() {
+
+        val seatList = ArrayList<Seat>()
+
+        seatList?.add(Seat("1", "1", false, "1", isSelected = false))
+        seatList?.add(Seat("1", "1", false, "1", isSelected = false))
+        seatList?.add(Seat("1", "1", false, "1", isSelected = false))
+        seatList?.add(Seat("1", "1", false, "1", isSelected = false))
+        seatList?.add(Seat("1", "1", false, "1", isSelected = false))
+        seatList?.add(Seat("1", "1", false, "1", isSelected = false))
+        seatList?.add(Seat("1", "1", false, "1", isSelected = false))
+        seatList?.add(Seat("1", "1", false, "1", isSelected = false))
+        seatList?.add(Seat("1", "1", false, "1", isSelected = false))
+        seatList?.add(Seat("1", "1", false, "1", isSelected = false))
+        seatList?.add(Seat("1", "1", false, "1", isSelected = false))
+        seatList?.add(Seat("1", "1", false, "1", isSelected = false))
+        seatList?.add(Seat("1", "1", false, "1", isSelected = false))
+        seatList?.add(Seat("1", "1", false, "1", isSelected = false))
+        seatList?.add(Seat("1", "1", false, "1", isSelected = false))
+        seatList?.add(Seat("18", "18", false, "18", isSelected = false))
+        seat.postValue(seatList)
+
+    }
 
     fun onBtnBuyTicketClick() {
         buyTicketPopUp.postValue(true)

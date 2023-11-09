@@ -6,7 +6,7 @@ data class Seat(
     var _createdAt: String? = null,
     var _id: String? = null,
     var _statu: Boolean?,
-    var no: String? = null,
+    var name: String? = null,
     var isSelected: Boolean? = null,
 
     override val mId: Long = 1L

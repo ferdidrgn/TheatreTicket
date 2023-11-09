@@ -16,4 +16,11 @@ class NotDefteri {
     //guest girdi satın aldı verileri topladık sonra login olursa işlemleri düşün ilk guest girişte guest token ver
     //*****en üstte custom uygulamaın adı çıkıyo. onu sil
 
+    //***WEB kopunca pop up getir refresh ya da cloase app
+
+    //**Aşağıdaki kodu xm e datautil e almayı dene
+    // binding.cdpDate.setCustomDataPickerClick(this) { date ->
+    //            viewModel.date.value = date
+    //        }
+
 }

@@ -9,4 +9,7 @@ data class Stage(
     var location: String? = null,
     val locationLat: Double? = null,
     val locationLng: Double? = null,
+    val seatId: String? = null,
+    var seatColumnCount: Int? = null,
+    var seatRowCount: Int? = null,
 )

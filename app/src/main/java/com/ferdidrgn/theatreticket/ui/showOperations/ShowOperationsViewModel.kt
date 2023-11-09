@@ -36,8 +36,6 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
     val date = MutableStateFlow("")
     val price = MutableStateFlow("")
     val ageLimit = MutableStateFlow("")
-    val stage = MutableStateFlow("")
-    val players = MutableStateFlow("")
 
     var updateOrAddShowData: Show? = null
 

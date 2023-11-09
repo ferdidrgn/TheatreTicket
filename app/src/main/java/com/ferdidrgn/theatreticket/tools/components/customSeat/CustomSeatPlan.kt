@@ -4,14 +4,14 @@ import android.content.Context
 import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ferdidrgn.theatreticket.R
+import com.ferdidrgn.theatreticket.commonModels.dummyData.Seat
 
 class CustomSeatPlan : ConstraintLayout {
     lateinit var rvSeat: RecyclerView
-    private lateinit var customSeatRecyclerAdapter: CustomSeatRecyclerAdapter
-    val dataList = mutableListOf<String>()
-
+    private lateinit var customSeatRecyclerAdapter: TestCustomSeatRecyclerAdapter
     constructor(context: Context) : super(context) {
         initLayout(context, null, null)
     }
@@ -33,53 +33,13 @@ class CustomSeatPlan : ConstraintLayout {
         rvSeat = findViewById(R.id.rvSeat)
     }
 
-    fun gridLayoutManager(column: Int, orientation: Int? = null, row: Int? = null) {
+    fun setUpGridLayoutManager(list: List<Seat?>?, column: Int) {
 
         //grid layout manager
-        dataList()
 
-        rvSeat.layoutManager = GridLayoutManager(context, column, GridLayoutManager.VERTICAL, false)
-        customSeatRecyclerAdapter = CustomSeatRecyclerAdapter(context, dataList)
+        customSeatRecyclerAdapter = TestCustomSeatRecyclerAdapter(context, list)
         rvSeat.adapter = customSeatRecyclerAdapter
-    }
+        rvSeat.layoutManager = GridLayoutManager(context, column, GridLayoutManager.VERTICAL, false)
 
-    private fun dataList() {
-
-        dataList.add("1X divice")
-        dataList.add("1X divice")
-        dataList.add("1X divice")
-        dataList.add("1X divice")
-        dataList.add("5X divice")
-        dataList.add("5X divice")
-        dataList.add("5X divice")
-        dataList.add("5X divice")
-        dataList.add("5X divice")
-        dataList.add("10X divice")
-        dataList.add("10X divice")
-        dataList.add("10X divice")
-        dataList.add("10X divice")
-        dataList.add("10X divice")
-        dataList.add("15X divice")
-        dataList.add("15X divice")
-        dataList.add("15X divice")
-        dataList.add("15X divice")
-        dataList.add("15X divice")
-        dataList.add("20X divice")
-        dataList.add("20X divice")
-        dataList.add("20X divice")
-        dataList.add("20X divice")
-        dataList.add("20X divice")
-        dataList.add("25X divice")
-        dataList.add("25X divice")
-        dataList.add("20X divice")
-        dataList.add("20X divice")
-        dataList.add("20X divice")
-        dataList.add("30X divice")
-        dataList.add("30X divice")
-        dataList.add("30X divice")
-        dataList.add("30X divice")
-        dataList.add("30X divice")
-        dataList.add("35X divice")
-        dataList.add("36X divice")
     }
 }

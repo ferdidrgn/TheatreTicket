@@ -2,12 +2,15 @@ package com.ferdidrgn.theatreticket.ui.main.ticketBuy
 
 import android.content.Context
 import android.os.Bundle
+import android.util.DisplayMetrics
 import com.ferdidrgn.theatreticket.R
 import androidx.fragment.app.viewModels
 import com.ferdidrgn.theatreticket.base.BaseFragment
 import com.ferdidrgn.theatreticket.base.BasePopUp
 import com.ferdidrgn.theatreticket.databinding.FragmentTicketBuyBinding
 import com.ferdidrgn.theatreticket.tools.builderADS
+import com.ferdidrgn.theatreticket.ui.main.MainActivity
+import com.tayfuncesur.curvedbottomsheet.CurvedBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,7 +27,8 @@ class TicketBuyFragment : BaseFragment<TicketBuyViewModel, FragmentTicketBuyBind
         binding.cdpDate.setCustomDataPickerClick(requireContext()) { date ->
             viewModel.age.value = date
         }
-
+        bottomSheetInit()
+        getGridLayout()
         observe()
 
     }
@@ -41,6 +45,23 @@ class TicketBuyFragment : BaseFragment<TicketBuyViewModel, FragmentTicketBuyBind
         viewModel.successMessage.observe(viewLifecycleOwner) { successMessage ->
             if (successMessage != null)
                 messagePopUp(requireContext(), successMessage, true)
+        }
+    }
+
+    private fun bottomSheetInit() {
+        val displayMetrics = DisplayMetrics()
+        (requireActivity() as MainActivity).windowManager.defaultDisplay.getMetrics(displayMetrics)
+        CurvedBottomSheet(
+            (displayMetrics.widthPixels / 6).toFloat(),
+            view = binding.bottomSheet
+        ).init()
+    }
+
+    fun getGridLayout() {
+        viewModel.seat.observe(this) { seatList ->
+            viewModel.seatColumnCount.observe(this) { columnCount ->
+                binding.customSeatPlan.setUpGridLayoutManager(seatList, columnCount)
+            }
         }
     }
 

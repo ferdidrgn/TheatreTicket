@@ -1,6 +1,5 @@
 package com.ferdidrgn.theatreticket.tools.dataBindingHelpers
 
-import android.text.InputType
 import androidx.core.widget.doAfterTextChanged
 import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingAdapter

@@ -5,6 +5,7 @@ import com.ferdidrgn.theatreticket.base.BaseViewModel
 import com.ferdidrgn.theatreticket.commonModels.dummyData.User
 import com.ferdidrgn.theatreticket.repository.UserFirebaseQueries
 import com.ferdidrgn.theatreticket.tools.ClientPreferences
+import com.ferdidrgn.theatreticket.tools.helpers.LiveEvent
 import com.ferdidrgn.theatreticket.tools.mainScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -22,10 +23,12 @@ class EditProfileViewModel @Inject constructor(private val userFirebaseQueries: 
     val imgPhoto = MutableStateFlow("")
     val eMail = MutableStateFlow("")
 
+    val btnCstmDatePickerClick = LiveEvent<Boolean?>()
+
+
     init {
         getUser()
     }
-
 
     private fun getUser() {
         mainScope {
@@ -118,5 +121,10 @@ class EditProfileViewModel @Inject constructor(private val userFirebaseQueries: 
             isGoogleSignIn = null
             isPhoneNumberSignIn = null
         }
+    }
+
+    //Click Listener
+    fun onCstmDatePickerClick() {
+        btnCstmDatePickerClick.postValue(true)
     }
 }

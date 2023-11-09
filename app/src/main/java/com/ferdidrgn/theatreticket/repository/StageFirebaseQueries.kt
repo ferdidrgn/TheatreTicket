@@ -20,11 +20,21 @@ class StageFirebaseQueries {
         stageMap["location"] = stage.location.toString()
         stageMap["locationLat"] = stage.locationLat.toString()
         stageMap["locationLng"] = stage.locationLng.toString()
+        stageMap["seatColumnCount"] = stage.seatColumnCount.toString()
+        stageMap["seatRowCount"] = stage.seatRowCount.toString()
 
         fireStoreStageRef.add(stageMap).addOnSuccessListener {
             status.invoke(true)
         }.addOnFailureListener {
             status.invoke(false)
         }
+    }
+
+    fun updateStage(stage: Stage) {
+
+    }
+
+    fun deleteStage(stage: Stage) {
+
     }
 }

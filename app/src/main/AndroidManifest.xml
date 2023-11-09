@@ -24,6 +24,9 @@
         android:theme="@style/Theme.TheatreTicket"
         tools:targetApi="34">
         <activity
+            android:name=".StageOperationsActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.editProfile.EditProfileActivity"
             android:exported="false" />
         <activity

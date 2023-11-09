@@ -126,6 +126,7 @@
     <string name="sold_seats">Satılan Koltuklar</string>
     <string name="show_delete">Gösteriyi Kaldır</string>
     <string name="show_operations">Gösteri İşlemleri</string>
+    <string name="edit_profile"> Profil Güncelleme</string>
     <string name="stage_operations">Sahne İşlemleri</string>
     <string name="sell_ticket">Bilet Sat</string>
     <string name="change_language">Dil Değiştirme</string>

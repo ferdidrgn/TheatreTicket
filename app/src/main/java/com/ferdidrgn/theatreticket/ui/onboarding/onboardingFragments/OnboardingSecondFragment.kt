@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.viewModels
 import com.ferdidrgn.theatreticket.base.BaseFragment
 import com.ferdidrgn.theatreticket.databinding.FragmentOnboardingSecondBinding
+import com.ferdidrgn.theatreticket.tools.builderADS
 import com.ferdidrgn.theatreticket.ui.onboarding.OnboardingViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -15,5 +16,7 @@ class OnboardingSecondFragment :
     override fun getDataBinding(): FragmentOnboardingSecondBinding =
         FragmentOnboardingSecondBinding.inflate(layoutInflater)
 
-    override fun onCreateFinished(savedInstanceState: Bundle?) {}
+    override fun onCreateFinished(savedInstanceState: Bundle?) {
+        builderADS(requireContext(), binding.adView)
+    }
 }

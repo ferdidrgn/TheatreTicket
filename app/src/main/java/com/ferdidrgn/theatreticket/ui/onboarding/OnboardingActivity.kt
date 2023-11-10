@@ -22,7 +22,6 @@ class OnboardingActivity : BaseActivity<OnboardingViewModel, ActivityOnboardingB
 
     override fun onCreateFinished(savedInstance: Bundle?) {
         binding.viewModel = viewModel
-        builderADS(this, binding.adView)
         viewPagerSet()
         observe()
     }

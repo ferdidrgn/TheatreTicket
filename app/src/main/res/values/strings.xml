@@ -47,10 +47,13 @@
     <string name="ADS_BANNER_LANGUAGE_ACTVTY_REAL" translatable="false">ca-app-pub-5779807348211992/9247846813</string>
     <string name="ADS_BANNER_LOGIN_ACTVTY_REAL" translatable="false">ca-app-pub-5779807348211992/9549903603</string>
     <string name="ADS_BANNER_ONBOARDING_ACTVTY_REAL" translatable="false">ca-app-pub-5779807348211992/1618059808</string>
+    <string name="ADS_BANNER_ONBOARDING_FRGMT_2_REAL" translatable="false">ca-app-pub-5779807348211992/6820750175</string>
+    <string name="ADS_BANNER_ONBOARDING_FRGMT_3_REAL" translatable="false">ca-app-pub-5779807348211992/4100299637</string>
     <string name="ADS_BANNER_SHOW_DETAILS_ACTVTY_REAL" translatable="false">ca-app-pub-5779807348211992/2716901944</string>
     <string name="ADS_BANNER_TERMS_CONDITION_ACTVTY_REAL" translatable="false">ca-app-pub-5779807348211992/5174161432</string>
     <string name="ADS_BANNER_EDIT_PROFILE_ACTVTY_REAL" translatable="false">ca-app-pub-5779807348211992/8714408040</string>
     <string name="ADS_BANNER_STAGE_OPERATIONS_ACTVTY_REAL" translatable="false">ca-app-pub-5779807348211992/4062423573</string>
+    <string name="ADS_BANNER_STAGE_OPERATIONS_BOTTOM_ACTVTY_REAL" translatable="false">ca-app-pub-5779807348211992/9735769698</string>
 
 
     <!--    QUERY -->

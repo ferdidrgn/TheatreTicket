@@ -15,13 +15,8 @@ class NotDefteri {
     //**guest girince  ve çıkınca fxm token nası işliyor kontrol et
     //guest girdi satın aldı verileri topladık sonra login olursa işlemleri düşün ilk guest girişte guest token ver
     //*****change theme de 2 kere basına donuyor
-    //** bilet 2 kere tıklanınca 2. de çalışıyor
+    //** bilet 2 kere tıklanınca 2. de çalışıyor çünkü null değer
 
     //***WEB kopunca pop up getir refresh ya da cloase app
-
-    //**Aşağıdaki kodu xm e datautil e almayı dene
-    // binding.cdpDate.setCustomDataPickerClick(this) { date ->
-    //            viewModel.date.value = date
-    //        }
 
 }

@@ -17,8 +17,11 @@ object CustomDataBindingUtils {
             "bind:textAttrChanged", method = "bind:getText"
         ),
         InverseBindingMethod(
-            type = CustomNumberEditText::class, attribute = "bind:cst_number_changeable_edit_text", event =
-            "bind:textAttrChanged", method = "bind:getText"
+            type = CustomNumberEditText::class,
+            attribute = "bind:cst_number_changeable_edit_text",
+            event =
+            "bind:textAttrChanged",
+            method = "bind:getText"
         ),
         InverseBindingMethod(
             type =

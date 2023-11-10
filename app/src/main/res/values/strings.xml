@@ -50,6 +50,7 @@
     <string name="ADS_BANNER_SHOW_DETAILS_ACTVTY_REAL" translatable="false">ca-app-pub-5779807348211992/2716901944</string>
     <string name="ADS_BANNER_TERMS_CONDITION_ACTVTY_REAL" translatable="false">ca-app-pub-5779807348211992/5174161432</string>
     <string name="ADS_BANNER_EDIT_PROFILE_ACTVTY_REAL" translatable="false">ca-app-pub-5779807348211992/8714408040</string>
+    <string name="ADS_BANNER_STAGE_OPERATIONS_ACTVTY_REAL" translatable="false">ca-app-pub-5779807348211992/4062423573</string>
 
 
     <!--    QUERY -->
@@ -72,8 +73,19 @@
     <string name="last_name">Soyad</string>
     <string name="buy">Satın Al</string>
     <string name="game_date">Oyun Tarihi</string>
+    <string name="stage_add">Sahne Ekle</string>
+    <string name="stage_update">Sahne Bilgilerini Güncelle</string>
     <string name="stage_name">Sahne Adı</string>
+    <string name="stage_desc">Sahne Tanımı</string>
     <string name="stage_location">Sahne Konumu</string>
+    <string name="communication">İletişim</string>
+    <string name="capacity">Kapasite</string>
+    <string name="address">Açık Adres</string>
+    <string name="latitude">Enlem</string>
+    <string name="longitude">Boylam</string>
+    <string name="seat_column_count">Sütun Koltuk Sayısı</string>
+    <string name="seat_row_count">Satır Koltuk Sayısı</string>
+
     <string name="search_for_buy_ticket">Alımları Sorgula</string>
     <string name="age">Yaş</string>
     <string name="price">Ücret</string>
@@ -97,6 +109,9 @@
     <string name="success_add_show">Gösteri Kaydedildi</string>
     <string name="success_delete_show">Gösteri Başarıyla Silindi</string>
     <string name="success_update_show">Gösteri Başarıyla Güncellendi</string>
+    <string name="success_add_stage">Sahne Kaydedildi</string>
+    <string name="success_update_stage">Sahne Başarıyla Güncellendi</string>
+    <string name="success_delete_stage">Sahne Başarıyla Silindi</string>
     <string name="success_permission_granted">İzin verildi</string>
     <string name="success_update_downloaded">İndirme Başarılı. Uygulama, 5 saniye içinde tekrar açılacak.</string>
 
@@ -108,6 +123,7 @@
     <string name="error_have_ticket">Önceden bilet alınmış. Lütfen kontrol edelin</string>
     <string name="error_no_any_ticket">Herhangi Bir Bilet Bulunamadı</string>
     <string name="error_no_any_show">Herhangi Bir Gösteri Bulunamadı</string>
+    <string name="error_no_any_stage">Herhangi Bir Sahne Bulunamadı</string>
     <string name="error_server">Server Hatası. Lütfen Tekrar Deneyin</string>
     <string name="error_not_equal">Telefon Numaranız ile Verileriniz Uyuşmuyor. Lütfen Kontrol Ediniz</string>
     <string name="error_not_mail_installed">Maalesef Yüklü Bir Mail programı Bulunamadı</string>

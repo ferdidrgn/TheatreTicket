@@ -5,24 +5,31 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="com.ferdidrgn.theatreticket.ui.stageOperations.StageOperationsViewModel" />
 
+        <variable
+            name="stageOperationsAdapter"
+            type="com.ferdidrgn.theatreticket.ui.stageOperations.StageOperationsAdapter" />
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         style="@style/ScreenBackground"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <com.ferdidrgn.theatreticket.tools.components.CustomToolbar
             android:id="@+id/customToolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cst_toolbar_backIcon_visible="true"
-            app:cst_toolbar_text="@string/edit_profile" />
+            app:cst_toolbar_text="@string/stage_operations"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
             android:id="@+id/adView"
@@ -30,81 +37,300 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="5dp"
             ads:adSize="BANNER"
-            ads:adUnitId="@string/BANNER_ADS_TEST" />
+            ads:adUnitId="@string/BANNER_ADS_TEST"
+            ads:layout_constraintEnd_toEndOf="parent"
+            ads:layout_constraintStart_toStartOf="parent"
+            ads:layout_constraintTop_toBottomOf="@+id/customToolbar" />
 
-        <androidx.core.widget.NestedScrollView
+        <LinearLayout
+            android:id="@+id/llStageAdd"
+            style="@style/rectangle_primary6_10_border_primary3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="end|center"
+            android:onClick="@{()->viewModel.onBtnBottomSheetOpenClick()}"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/adView">
+
+            <TextView
+                style="@style/TextColor2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:text="@string/stage_add" />
+
+            <ImageView
+                style="@style/ImgTintColor"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_add_cart_new_plus" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:focusable="false"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="16dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/llStageAdd">
 
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:overScrollMode="never"
+                android:paddingBottom="120dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                app:setAdapter="@{stageOperationsAdapter}"
+                app:submitList="@{viewModel.stage}"
+                tools:listitem="@layout/item_stage_operations" />
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/imgShow"
-                    style="@style/ShapeableImageViewStyle"
-                    imageUrl="@{viewModel.imgPhoto}"
-                    android:layout_width="160dp"
-                    android:layout_height="160dp"
-                    android:layout_gravity="center"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_add_cart_new_plus" />
+        </LinearLayout>
 
-                <com.ferdidrgn.theatreticket.tools.components.CustomEditText
-                    android:id="@+id/etFullName"
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/bottomSheetVisibility"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="@{viewModel.bottomSheetVisibility ? View.VISIBLE:View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/customToolbar">
+
+            <com.tayfuncesur.curvedbottomsheet.CurvedLayout
+                android:id="@+id/bottom_sheet"
+                style="@style/FillColorPrimary3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:behavior_hideable="false"
+                app:behavior_peekHeight="100dp"
+                app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+                <androidx.core.widget.NestedScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:textAlignment="textStart"
-                    app:custom_edit_hint="@string/first_name"
-                    app:custom_edit_text="@={viewModel.fullName}" />
+                    android:layout_height="wrap_content">
 
-                <com.ferdidrgn.theatreticket.tools.components.CustomEditText
-                    android:id="@+id/etFirstName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:textAlignment="textStart"
-                    app:custom_edit_hint="@string/first_name"
-                    app:custom_edit_text="@={viewModel.firstName}" />
+                    <LinearLayout
+                        android:id="@+id/content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical"
+                        android:padding="16dp">
 
-                <com.ferdidrgn.theatreticket.tools.components.CustomEditText
-                    android:id="@+id/etLastName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:textAlignment="textStart"
-                    app:custom_edit_hint="@string/last_name"
-                    app:custom_edit_text="@={viewModel.lastName}" />
+                        <LinearLayout
+                            android:id="@+id/llTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:weightSum="4">
 
-                <com.ferdidrgn.theatreticket.tools.components.CustomPhoneEditText
-                    android:id="@+id/etPhoneNumber"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:textAlignment="textStart"
-                    app:cst_phone_text="@={viewModel.phoneNumber}" />
+                            <Space
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1" />
 
-                <com.ferdidrgn.theatreticket.tools.components.CustomDatePicker
-                    android:id="@+id/cdpAge"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:onClick="@{()-> viewModel.onCstmDatePickerClick()}"
-                    android:textAlignment="textStart"
-                    app:cst_picker_changeable_text="@={viewModel.age}" />
+                            <TextView
+                                style="@style/TextColor2"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_weight="2"
+                                android:gravity="center"
+                                android:text="@{viewModel.updateBottonVisibility ? @string/stage_update : @string/stage_add}"
+                                android:textSize="25sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toStartOf="@+id/imgClose"
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:text="@string/stage_add" />
 
-                <com.ferdidrgn.theatreticket.tools.components.CustomPhoneEditText
-                    android:id="@+id/etEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:textAlignment="textStart"
-                    app:cst_phone_text="@={viewModel.eMail}" />
+                            <ImageView
+                                android:id="@+id/imgClose"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="end"
+                                android:layout_weight="0.65"
+                                android:onClick="@{()->viewModel.onBtnBottomSheetCloseClick()}"
+                                android:src="@drawable/ic_close_delete_exit_remove"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:tint="@color/pink_light" />
+                        </LinearLayout>
 
-            </LinearLayout>
-        </androidx.core.widget.NestedScrollView>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
 
-    </LinearLayout>
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/imgStage"
+                                style="@style/ShapeableImageViewStyle"
+                                imageUrl="@{viewModel.imgUrl}"
+                                android:layout_width="160dp"
+                                android:layout_height="160dp"
+                                android:layout_gravity="center"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/ic_add_cart_new_plus" />
+
+                            <com.ferdidrgn.theatreticket.tools.components.CustomEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:textAlignment="textStart"
+                                app:custom_edit_hint="@string/stage_name"
+                                app:custom_edit_text="@={viewModel.name}" />
+
+                            <com.ferdidrgn.theatreticket.tools.components.CustomEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:textAlignment="textStart"
+                                app:custom_edit_hint="@string/stage_desc"
+                                app:custom_edit_text="@={viewModel.description}" />
+
+                            <com.ferdidrgn.theatreticket.tools.components.CustomEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:textAlignment="textStart"
+                                app:custom_edit_hint="@string/capacity"
+                                app:custom_edit_text="@={viewModel.capacity}" />
+
+                            <com.ferdidrgn.theatreticket.tools.components.CustomEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:textAlignment="textStart"
+                                app:custom_edit_hint="@string/address"
+                                app:custom_edit_text="@={viewModel.address}" />
+
+                            <com.ferdidrgn.theatreticket.tools.components.CustomEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:textAlignment="textStart"
+                                app:custom_edit_hint="@string/communication"
+                                app:custom_edit_text="@={viewModel.communication}" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:orientation="horizontal"
+                                android:weightSum="2.5">
+
+                                <com.ferdidrgn.theatreticket.tools.components.CustomNumberEditText
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_weight="1"
+                                    android:textAlignment="textStart"
+                                    app:cst_number_changeable_edit_text="@={viewModel.locationLat}"
+                                    app:cst_number_hint_text="@string/latitude" />
+
+                                <Space
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.5" />
+
+                                <com.ferdidrgn.theatreticket.tools.components.CustomNumberEditText
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_weight="1"
+                                    android:textAlignment="textStart"
+                                    app:cst_number_changeable_edit_text="@={viewModel.locationLng}"
+                                    app:cst_number_hint_text="@string/longitude" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:orientation="horizontal"
+                                android:weightSum="2.5">
+
+                                <com.ferdidrgn.theatreticket.tools.components.CustomNumberEditText
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_weight="1"
+                                    android:textAlignment="textStart"
+                                    app:cst_number_changeable_edit_text="@={viewModel.seatColumnCount}"
+                                    app:cst_number_hint_text="@string/seat_column_count" />
+
+                                <Space
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.5" />
+
+                                <com.ferdidrgn.theatreticket.tools.components.CustomNumberEditText
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_weight="1"
+                                    android:textAlignment="textStart"
+                                    app:cst_number_changeable_edit_text="@={viewModel.seatRowCount}"
+                                    app:cst_number_hint_text="@string/seat_row_count" />
+
+                                <com.ferdidrgn.theatreticket.tools.components.CustomButton
+                                    android:id="@+id/btnAddStage"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginHorizontal="30dp"
+                                    android:layout_marginTop="20dp"
+                                    android:layout_weight="1"
+                                    android:onClick="@{()->viewModel.onBtnAddStageClick()}"
+                                    android:visibility="@{viewModel.updateBottonVisibility ? View.GONE : View.VISIBLE}"
+                                    app:cst_btn_color="@color/primary2"
+                                    app:cst_btn_name="@string/stage_add" />
+
+                                <com.ferdidrgn.theatreticket.tools.components.CustomButton
+                                    android:id="@+id/btnUpdateStage"
+                                    style="@style/CstBtnColorPrimary2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginHorizontal="30dp"
+                                    android:layout_marginTop="20dp"
+                                    android:layout_weight="1"
+                                    android:onClick="@{()->viewModel.onBtnUpdateStageClick()}"
+                                    android:visibility="@{viewModel.updateBottonVisibility ? View.VISIBLE : View.GONE}"
+                                    app:cst_btn_name="@string/stage_update" />
+
+                                <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+                                    android:id="@+id/adViewBottomSheet"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginVertical="10dp"
+                                    ads:adSize="BANNER"
+                                    ads:adUnitId="@string/BANNER_ADS_TEST" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </androidx.core.widget.NestedScrollView>
+
+
+            </com.tayfuncesur.curvedbottomsheet.CurvedLayout>
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,6 +1,5 @@
 package com.ferdidrgn.theatreticket.repository
 
-import android.net.Uri
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Show
 import com.ferdidrgn.theatreticket.enums.Response
 import com.google.firebase.Timestamp
@@ -53,13 +52,13 @@ class ShowFirebaseQuieries {
     }
 
     fun deleteShow(show: Show?, status: (Boolean) -> Unit) = CoroutineScope(Dispatchers.IO).launch {
-        val shoQuery = fireStoreShowRef
+        val showQuery = fireStoreShowRef
             .whereEqualTo("_id", show?._id)
             .whereEqualTo("name", show?.name)
             .get()
             .await()
-        if (shoQuery.documents.isNotEmpty()) {
-            for (document in shoQuery) {
+        if (showQuery.documents.isNotEmpty()) {
+            for (document in showQuery) {
                 try {
                     fireStoreShowRef.document(document.id).delete().await()
                     /*personCollectionRef.document(document.id).update(mapOf(

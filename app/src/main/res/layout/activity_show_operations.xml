@@ -44,7 +44,7 @@
             ads:layout_constraintTop_toBottomOf="@+id/customToolbar" />
 
         <LinearLayout
-            android:id="@+id/llShowAdd"
+            android:id="@+id/llStageAdd"
             style="@style/rectangle_primary6_10_border_primary3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -80,7 +80,7 @@
             android:padding="16dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/llShowAdd">
+            app:layout_constraintTop_toBottomOf="@+id/llStageAdd">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"

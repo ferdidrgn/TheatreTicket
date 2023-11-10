@@ -15,6 +15,7 @@ import com.ferdidrgn.theatreticket.ui.main.MainActivity
 import com.ferdidrgn.theatreticket.ui.onboarding.OnboardingActivity
 import com.ferdidrgn.theatreticket.ui.showDetails.ShowDetailsActivity
 import com.ferdidrgn.theatreticket.ui.showOperations.ShowOperationsActivity
+import com.ferdidrgn.theatreticket.ui.stageOperations.StageOperationsActivity
 import java.io.Serializable
 
 class NavHandler {
@@ -54,6 +55,7 @@ class NavHandler {
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
         context.startActivity(intent)
     }
+
     fun toLoginActivity(context: Context, isSettingsClickedLogIn: Boolean) {
         val intent = Intent(context, LoginActivity::class.java)
         intent.putExtra(IS_SETTINGS_CLICKED_LOG_IN, isSettingsClickedLogIn)
@@ -86,6 +88,12 @@ class NavHandler {
 
     fun toEditProfileActivity(context: Context) {
         val intent = Intent(context, EditProfileActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+        context.startActivity(intent)
+    }
+
+    fun toStageOperationsActivity(context: Context) {
+        val intent = Intent(context, StageOperationsActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
         context.startActivity(intent)
     }

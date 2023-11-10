@@ -62,6 +62,7 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
             NavHandler.instance.toShowOperationsActivity(requireContext())
         }
         viewModel.btnStageOperationsClicked.observe(viewLifecycleOwner) {
+            NavHandler.instance.toStageOperationsActivity(requireContext())
         }
         viewModel.btnLanguageClicked.observe(viewLifecycleOwner) {
             NavHandler.instance.toLanguageActivity(requireContext())

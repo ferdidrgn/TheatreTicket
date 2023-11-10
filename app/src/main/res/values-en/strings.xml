@@ -54,8 +54,18 @@
     <string name="last_name">Last Name</string>
     <string name="buy">Buy</string>
     <string name="game_date">Game Date</string>
+    <string name="stage_add">Stage Add</string>
+    <string name="stage_update">Stage Information Update</string>
     <string name="stage_name">Stage Name</string>
+    <string name="stage_desc">Stage Description</string>
     <string name="stage_location">Stage Location</string>
+    <string name="communication">Communication</string>
+    <string name="capacity">Capacity</string>
+    <string name="address">Address</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="seat_column_count">Seat Column Count</string>
+    <string name="seat_row_count">Seat Row Count</string>
     <string name="search_for_buy_ticket">Search Buy Ticket</string>
     <string name="age">Age</string>
     <string name="price">Price</string>
@@ -79,6 +89,9 @@
     <string name="success_add_show">Show Saved</string>
     <string name="success_delete_show">Show Deleted Successfully</string>
     <string name="success_update_show">Show Updated Successfully</string>
+    <string name="success_add_stage">Stage Saved</string>
+    <string name="success_update_stage">Stage Deleted Successfully</string>
+    <string name="success_delete_stage">Stage Updated Successfully</string>
     <string name="success_permission_granted">"Permission Granted</string>
     <string name="success_update_downloaded">Download successful.Restartimg app in 5 seconds.</string>
 
@@ -89,7 +102,8 @@
     <string name="error_little_things">One or more data entries appear to be very short or empty. Please check.</string>
     <string name="error_have_ticket">Tickets have ben purchased in advance. Please Check</string>
     <string name="error_no_any_ticket">There Are Not Tickets Found</string>
-    <string name="error_no_any_show">There Are Not Shows Found</string>
+    <string name="error_no_any_show">There Are Not Show Found</string>
+    <string name="error_no_any_stage">There Are Not Stage Found</string>
     <string name="error_server">Server Error. Please Try Again</string>
     <string name="error_not_equal">Your Phone Number and Your Data Do not Match. Please Check</string>
     <string name="error_not_mail_installed">"There are no email clients installed."</string>

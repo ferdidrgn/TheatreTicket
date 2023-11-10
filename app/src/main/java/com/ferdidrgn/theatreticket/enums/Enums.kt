@@ -16,6 +16,7 @@ enum class ID(val id: String) {
     Sell(".s"),
     User(".u"),
     Show(".sh"),
+    Stage(".st"),
 }
 
 enum class Roles(val role: String) {

@@ -97,6 +97,11 @@ fun checkIfTokenDeleted(error: Err?) {
         ClientPreferences.inst.token = ""
 }
 
+fun isEmailValid(email: String): Boolean {
+    val emailRegex = Regex("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")
+    return emailRegex.matches(email)
+}
+
 fun getBitmap(imageUrl: String, context: Context, block: (Bitmap?) -> Unit) {
     CoroutineScope(Dispatchers.IO).launch {
         block(Glide.with(context).asBitmap().load(imageUrl).submit(50, 50).get())

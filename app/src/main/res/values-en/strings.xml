@@ -100,6 +100,7 @@
     <string name="error_first_name_little">First Name Seems Too Short. Please Check</string>
     <string name="error_last_name_little">Last Name Seems Too Short. Please Check</string>
     <string name="error_little_things">One or more data entries appear to be very short or empty. Please check.</string>
+    <string name="error_email">Please Check Your eMail</string>
     <string name="error_have_ticket">Tickets have ben purchased in advance. Please Check</string>
     <string name="error_no_any_ticket">There Are Not Tickets Found</string>
     <string name="error_no_any_show">There Are Not Show Found</string>

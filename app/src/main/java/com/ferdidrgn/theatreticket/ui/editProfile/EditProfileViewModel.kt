@@ -8,6 +8,7 @@ import com.ferdidrgn.theatreticket.enums.Roles
 import com.ferdidrgn.theatreticket.repository.UserFirebaseQueries
 import com.ferdidrgn.theatreticket.tools.ClientPreferences
 import com.ferdidrgn.theatreticket.tools.helpers.LiveEvent
+import com.ferdidrgn.theatreticket.tools.isEmailValid
 import com.ferdidrgn.theatreticket.tools.mainScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -162,10 +163,9 @@ class EditProfileViewModel @Inject constructor(private val userFirebaseQueries: 
             message = message(R.string.error_little_things)
         }
 
-        //Mock Data - e mail maskesi doğru kontrol et
-        if (eMail.value.isEmpty()) {
+        if (eMail.value.isEmpty() || !isEmailValid(eMail.value)) {
             isRequiredFieldsDone = false
-            message = message(R.string.error_little_things)
+            message = message(R.string.error_email)
         }
 
         if (imgPhoto.value.isEmpty()) {

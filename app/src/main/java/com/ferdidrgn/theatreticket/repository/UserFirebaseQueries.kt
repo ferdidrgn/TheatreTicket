@@ -76,8 +76,6 @@ class UserFirebaseQueries {
 
     fun updateUser(user: User?, status: (Boolean) -> Unit) {
 
-        //mock Data
-
         val userMap = HashMap<String, Any>()
         userMap["_updatedAt"] = Timestamp.now()
         userMap["firstName"] = user?.firstName.toString()

@@ -154,4 +154,52 @@ class ShowFirebaseQuieries {
                 }
             }
     }
+
+    fun getShowId(showId: String, status: (Response, Show?) -> Unit) {
+
+        var show: Show? = null
+
+        fireStoreShowRef.whereEqualTo("_id", showId).get()
+            .addOnSuccessListener { result ->
+                if (result.isEmpty) {
+                    status.invoke(Response.Empty, null)
+                } else {
+                    if (result != null) {
+                        val documents = result.documents
+                        for (document in documents) {
+                            val createdAt =
+                                if (document.get("_createdAt") != null) document.get("_createdAt") as Timestamp else ""
+                            val imgUrl =
+                                if (document.get("imageUrl") != null) document.get("imageUrl") as String else ""
+                            val name =
+                                if (document.get("name") != null) document.get("name") as String else ""
+                            val description =
+                                if (document.get("description") != null) document.get("description") as String else ""
+                            val date =
+                                if (document.get("date") != null) document.get("date") as String else ""
+                            val price =
+                                if (document.get("price") != null) document.get("price") as String else ""
+                            val ageLimit =
+                                if (document.get("ageLimit") != null) document.get("ageLimit") as String else ""
+
+                            show = Show(
+                                _createdAt = createdAt.toString(),
+                                _id = showId,
+                                imageUrl = imgUrl,
+                                name = name,
+                                description = description,
+                                date = date,
+                                price = price,
+                                ageLimit = ageLimit,
+                            )
+                        }
+                        status.invoke(Response.ThereIs, show)
+                    } else {
+                        status.invoke(Response.Empty, null)
+                    }
+                }
+            }.addOnFailureListener { exception ->
+                status.invoke(Response.ServerError, null)
+            }
+    }
 }

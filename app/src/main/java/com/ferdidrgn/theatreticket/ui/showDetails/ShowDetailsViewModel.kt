@@ -14,19 +14,40 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ShowDetailsViewModel @Inject constructor(
-    private val stageFirebaseQueries: StageFirebaseQueries
+    private val stageFirebaseQueries: StageFirebaseQueries,
+    private val showFirebaseQueries: ShowFirebaseQuieries
 ) : BaseViewModel() {
 
     val show = MutableLiveData<Show?>()
     val stage = MutableLiveData<Stage?>()
 
     val btnStageOnClick = LiveEvent<Boolean?>()
+
     init {
         getStageId()
     }
 
     fun onBtnStageClick() {
         btnStageOnClick.postValue(true)
+    }
+
+    fun getShowId(showId: String) {
+        showFirebaseQueries.getShowId(showId) { response, shows ->
+            when (response) {
+                Response.Empty -> {
+                    errorMessage.postValue(message(R.string.error))
+                }
+                Response.ServerError -> {
+                    errorMessage.postValue(message(R.string.error_server))
+                }
+                Response.ThereIs -> {
+                    show.postValue(shows)
+                }
+                else -> {
+                    errorMessage.postValue(message(R.string.error))
+                }
+            }
+        }
     }
 
     private fun getStageId() {

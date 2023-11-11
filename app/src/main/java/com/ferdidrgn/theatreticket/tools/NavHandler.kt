@@ -88,6 +88,13 @@ class NavHandler {
         context.startActivity(intent)
     }
 
+    fun toShowDetailsIDActivity(context: Context, showID: String) {
+        val intent = Intent(context, ShowDetailsActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+        intent.putExtra(SHOW_ID, showID)
+        context.startActivity(intent)
+    }
+
     fun toEditProfileActivity(context: Context) {
         val intent = Intent(context, EditProfileActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
@@ -100,7 +107,7 @@ class NavHandler {
         context.startActivity(intent)
     }
 
-    fun toStageActivity(context: Context, stage: Stage?){
+    fun toStageActivity(context: Context, stage: Stage?) {
         val intent = Intent(context, StageActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
         intent.putExtra(STAGE, stage)

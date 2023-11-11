@@ -1,6 +1,7 @@
 package com.ferdidrgn.theatreticket.ui.main
 
 import android.Manifest
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
@@ -18,10 +19,8 @@ import com.ferdidrgn.theatreticket.base.BaseActivity
 import com.ferdidrgn.theatreticket.databinding.ActivityMainBinding
 import com.ferdidrgn.theatreticket.enums.ToMain
 import com.ferdidrgn.theatreticket.repository.UserFirebaseQueries
-import com.ferdidrgn.theatreticket.tools.ClientPreferences
-import com.ferdidrgn.theatreticket.tools.NavHandler
-import com.ferdidrgn.theatreticket.tools.TO_MAIN
-import com.ferdidrgn.theatreticket.tools.showToast
+import com.ferdidrgn.theatreticket.tools.*
+import com.ferdidrgn.theatreticket.tools.helpers.deepLinkHelper
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -33,8 +32,8 @@ import com.google.android.play.core.install.model.InstallStatus
 import com.google.android.play.core.install.model.UpdateAvailability
 import com.google.android.play.core.ktx.isFlexibleUpdateAllowed
 import com.google.android.play.core.ktx.isImmediateUpdateAllowed
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+import com.google.android.play.core.review.ReviewInfo
+import com.google.android.play.core.review.ReviewManagerFactory
 import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
@@ -60,29 +59,13 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
 
         getNavHost()
 
-        if (intent.extras != null) {
-            //from notification
-            //MOCK DATA
-            //LOGİN Mİ DEĞİL Mİ KONTROL ET
-            val userId = intent.extras!!.getString("userId")
-            val userFirebaseQueries = UserFirebaseQueries()
-            if (userId != null) {
-                userFirebaseQueries.allUserCollectionReference()?.document(userId)?.get()
-                    ?.addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            //val model: UserModel = task.result.toObject(UserModel::class.java)
-                            NavHandler.instance.toShowOperationsActivity(this)
-                            finish()
-                        }
-                    }
-            }
-        } else {
-            askNotificationPermission()
-            getFCMToken()
-            getLoginGoogle()
-            checkForAppUpdate()
-            observe()
-        }
+        deepLink()
+        askNotificationPermission()
+        getFCMToken()
+        getLoginGoogle()
+        checkForAppUpdate()
+        reviewPopUp()
+        observe()
     }
 
     override fun onResume() {
@@ -110,6 +93,18 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
             if (resultCode != RESULT_OK) {
                 showToast(getString(R.string.error_update_failed))
             }
+        }
+    }
+
+    private fun deepLink() {
+        ClientPreferences.inst.reviewCounter += 1
+
+        intent.getStringExtra(DEEP_LINK)?.let { deepLink ->
+            deepLinkHelper(this, deepLink)
+        }
+
+        intent.data?.let {
+            deepLinkHelper(this, it.toString())
         }
     }
 
@@ -164,17 +159,29 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     }
 
     private fun reviewPopUp() {
-        //Mock Data
-        /*if (ClientPreferences.inst.reviewStatus.not()) {
+        if (ClientPreferences.inst.reviewStatus.not()) {
             if (ClientPreferences.inst.reviewCounter % 3 == 0) {
-                val review = CustomReviewPopUp(this) { isSuccessful ->
-                    if (isSuccessful) {
-                        ClientPreferences.inst.reviewStatus = true
-                    }
+                try {
+                    val manager = ReviewManagerFactory.create(this)
+                    manager.requestReviewFlow()
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                val reviewInfo: ReviewInfo = task.result
+                                manager.launchReviewFlow(this, reviewInfo)
+                                    .addOnFailureListener {
+                                        viewModel.errorMessage.postValue(it.message)
+                                    }.addOnCompleteListener {
+                                        viewModel.successMessage.postValue(getString(R.string.thank_you_for_review))
+                                    }
+                            }
+                        }.addOnFailureListener {
+                            viewModel.errorMessage.postValue(it.message)
+                        }
+                } catch (e: ActivityNotFoundException) {
+                    viewModel.errorMessage.postValue(e.localizedMessage)
                 }
-                review.show(supportFragmentManager, "CustomReviewPopUp")
             }
-        }*/
+        }
     }
 
     private fun getNavHost() {
@@ -197,7 +204,6 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
 
-        //Mock Data
         /*val user = Firebase.auth.currentUser
         if (user != null) {
             val userName = user.displayName

@@ -58,7 +58,6 @@ class LoginViewModel @Inject constructor(private val userFirebaseQueries: UserFi
                     hideLoading()
                     isFirebaseUserControl.postValue(true)
                 }
-                //Mock Data
                 Response.NotEqual -> {
                     hideLoading()
                     errorMessage.postValue(message(R.string.error_not_equal))

@@ -8,6 +8,7 @@ import com.ferdidrgn.theatreticket.commonModels.dummyData.Show
 import com.ferdidrgn.theatreticket.databinding.ActivityShowDetailsBinding
 import com.ferdidrgn.theatreticket.tools.NavHandler
 import com.ferdidrgn.theatreticket.tools.SHOW
+import com.ferdidrgn.theatreticket.tools.SHOW_ID
 import com.ferdidrgn.theatreticket.tools.builderADS
 import com.tayfuncesur.curvedbottomsheet.CurvedBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
@@ -46,6 +47,11 @@ class ShowDetailsActivity : BaseActivity<ShowDetailsViewModel, ActivityShowDetai
     }
 
     private fun getDataIntent() {
+        val getShowId = intent.getStringExtra(SHOW_ID)
+        getShowId?.let {
+            viewModel.getShowId(it)
+        }
+
         val getShowDetails = intent.getSerializableExtra(SHOW) as ArrayList<Show?>
         getShowDetails.forEach {
             viewModel.show.value = Show(

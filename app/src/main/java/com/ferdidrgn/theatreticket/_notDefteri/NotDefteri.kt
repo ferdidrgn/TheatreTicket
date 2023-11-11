@@ -6,7 +6,7 @@ class NotDefteri {
     //Custom toolbar ayarla, cstdatautil fun ekle
     // firebase update image update
     //logout dark mode olmadı
-    //mock dataları düzelt
+    //mock dataları düzelt 1 tane kaldı
     //firebase repository kodlarını düzelt
     //phone login yap
     //**guest girince  ve çıkınca fxm token nası işliyor kontrol et

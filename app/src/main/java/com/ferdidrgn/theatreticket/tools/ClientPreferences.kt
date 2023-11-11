@@ -104,6 +104,19 @@ class ClientPreferences : PreferencesManager() {
             putBoolean(IS_DARK_MODE, isDarkMode ?: false)
         }
 
+    var reviewStatus: Boolean
+        get() = getBooleanValue(REVIEW_STATUS, false)
+        set(value) {
+            putBoolean(REVIEW_STATUS, value)
+        }
+
+    var reviewCounter: Int
+        get() = getInt(REVIEW_COUNT)
+        set(value) {
+            putInt(REVIEW_COUNT, value ?: 0)
+        }
+
+
     var interest = ArrayList<String>()
 
     var shouldFirebaseAouthOn: Boolean?

@@ -54,6 +54,7 @@
     <string name="ADS_BANNER_EDIT_PROFILE_ACTVTY_REAL" translatable="false">ca-app-pub-5779807348211992/8714408040</string>
     <string name="ADS_BANNER_STAGE_OPERATIONS_ACTVTY_REAL" translatable="false">ca-app-pub-5779807348211992/4062423573</string>
     <string name="ADS_BANNER_STAGE_OPERATIONS_BOTTOM_ACTVTY_REAL" translatable="false">ca-app-pub-5779807348211992/9735769698</string>
+    <string name="ADS_BANNER_STAGE_ACTVTY_REAL" translatable="false">ca-app-pub-5779807348211992/9530673997</string>
 
 
     <!--    QUERY -->
@@ -174,13 +175,19 @@
     <!--    CustomPhoneCode -->
     <string name="zip_code">Zip Kodu</string>
 
+    <!--    CustomNumberEditText -->
+    <string name="numbersKey" translatable="false">1234567890</string>
+
     <!--    Login Activity -->
     <string name="sign_up_google">Google ile Giriş Yap</string>
     <string name="sign_up_phone_number">Telefon Numarası ile Giriş Yap</string>
     <string name="signed_in_as">Giriş Yapıldı</string>
     <string name="sign_in">Giriş Yap</string>
+    <string name="get_directions">Yol Tarifi Al</string>
 
-    <!--    CustomNumberEditText -->
-    <string name="numbersKey" translatable="false">1234567890</string>
+    <string name="http_maps" translatable="false">http://maps.google.com/maps?q=loc:</string>
+    <string name="package_google_map" translatable="false">com.google.android.apps.maps</string>
+    <string name="class_google_maps" translatable="false">com.google.android.maps.MapsActivity</string>
+
 
 </resources>

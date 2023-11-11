@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import com.ferdidrgn.theatreticket.base.BaseActivity
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Show
 import com.ferdidrgn.theatreticket.databinding.ActivityShowDetailsBinding
+import com.ferdidrgn.theatreticket.tools.NavHandler
 import com.ferdidrgn.theatreticket.tools.SHOW
 import com.ferdidrgn.theatreticket.tools.builderADS
 import com.tayfuncesur.curvedbottomsheet.CurvedBottomSheet
@@ -21,9 +22,11 @@ class ShowDetailsActivity : BaseActivity<ShowDetailsViewModel, ActivityShowDetai
 
     override fun onCreateFinished(savedInstance: Bundle?) {
         binding.viewModel = viewModel
+        binding.customToolbar.backIconOnBackPress(this)
         builderADS(this, binding.adView)
         bottomSheetInit()
         getDataIntent()
+        observe()
     }
 
     private fun bottomSheetInit() {
@@ -34,6 +37,12 @@ class ShowDetailsActivity : BaseActivity<ShowDetailsViewModel, ActivityShowDetai
             view = binding.bottomSheet,
             location = CurvedBottomSheet.Location.TOP
         ).init()
+    }
+
+    fun observe() {
+        viewModel.btnStageOnClick.observe(this){
+            NavHandler.instance.toStageActivity(this, viewModel.stage.value)
+        }
     }
 
     private fun getDataIntent() {

@@ -1,6 +1,8 @@
 package com.ferdidrgn.theatreticket.tools
 
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
@@ -8,6 +10,8 @@ import android.util.Log
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import com.bumptech.glide.Glide
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.Err
 import com.google.android.gms.ads.AdListener
@@ -15,7 +19,12 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.maps.model.BitmapDescriptor
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.securepreferences.BuildConfig
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.Period
@@ -86,6 +95,35 @@ fun builderADS(context: Context, view: AdView) {
 fun checkIfTokenDeleted(error: Err?) {
     if (error?.code == 405)
         ClientPreferences.inst.token = ""
+}
+
+fun getBitmap(imageUrl: String, context: Context, block: (Bitmap?) -> Unit) {
+    CoroutineScope(Dispatchers.IO).launch {
+        block(Glide.with(context).asBitmap().load(imageUrl).submit(50, 50).get())
+    }
+}
+
+fun bitMapFromVector(context: Context, vectorResID: Int): BitmapDescriptor? {
+    val vectorDrawable = ContextCompat.getDrawable(context, vectorResID)
+    vectorDrawable?.setBounds(
+        0,
+        0,
+        vectorDrawable.intrinsicWidth,
+        vectorDrawable.intrinsicHeight
+    )
+    val bitmap =
+        vectorDrawable?.intrinsicWidth?.let {
+            Bitmap.createBitmap(
+                it,
+                vectorDrawable.intrinsicHeight,
+                Bitmap.Config.ARGB_8888
+            )
+        }
+    val canvas = bitmap?.let { Canvas(it) }
+    if (canvas != null) {
+        vectorDrawable.draw(canvas)
+    }
+    return bitmap?.let { BitmapDescriptorFactory.fromBitmap(it) }
 }
 
 fun showToast(

@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat.finishAffinity
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Show
+import com.ferdidrgn.theatreticket.commonModels.dummyData.Stage
 import com.ferdidrgn.theatreticket.enums.ToMain
 import com.ferdidrgn.theatreticket.enums.WhichTermsAndPrivace
 import com.ferdidrgn.theatreticket.ui.editProfile.EditProfileActivity
@@ -15,6 +16,7 @@ import com.ferdidrgn.theatreticket.ui.main.MainActivity
 import com.ferdidrgn.theatreticket.ui.onboarding.OnboardingActivity
 import com.ferdidrgn.theatreticket.ui.showDetails.ShowDetailsActivity
 import com.ferdidrgn.theatreticket.ui.showOperations.ShowOperationsActivity
+import com.ferdidrgn.theatreticket.ui.stage.StageActivity
 import com.ferdidrgn.theatreticket.ui.stageOperations.StageOperationsActivity
 import java.io.Serializable
 
@@ -95,6 +97,13 @@ class NavHandler {
     fun toStageOperationsActivity(context: Context) {
         val intent = Intent(context, StageOperationsActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+        context.startActivity(intent)
+    }
+
+    fun toStageActivity(context: Context, stage: Stage?){
+        val intent = Intent(context, StageActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+        intent.putExtra(STAGE, stage)
         context.startActivity(intent)
     }
 }

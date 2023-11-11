@@ -2,6 +2,7 @@ package com.ferdidrgn.theatreticket.commonModels.dummyData
 
 import android.net.Uri
 import com.ferdidrgn.theatreticket.base.ListAdapterItem
+import java.io.Serializable
 
 data class Stage(
     var _createdAt: String? = null,
@@ -20,4 +21,4 @@ data class Stage(
     var seatRowCount: Int? = null,
 
     override val mId: Long = 1,
-) : ListAdapterItem
+) : ListAdapterItem, Serializable

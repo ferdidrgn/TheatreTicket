@@ -29,10 +29,6 @@ object AppRepositoryModule {
 
     @Singleton
     @Provides
-    fun provideAuthFireBase() = AuthFireBase()
-
-    @Singleton
-    @Provides
     fun provideAppToolsFireBase() = AppToolsFireBaseQueries()
 
 }

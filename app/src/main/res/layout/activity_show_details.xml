@@ -20,6 +20,16 @@
         android:layout_height="match_parent"
         tools:context=".ui.showDetails.ShowDetailsActivity">
 
+        <com.ferdidrgn.theatreticket.tools.components.CustomToolbar
+            android:id="@+id/customToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cst_toolbar_backIcon_visible="true"
+            app:cst_toolbar_text="@string/show_operations"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
             android:id="@+id/adView"
             android:layout_width="wrap_content"
@@ -29,7 +39,7 @@
             ads:adUnitId="@string/BANNER_ADS_TEST"
             ads:layout_constraintEnd_toEndOf="parent"
             ads:layout_constraintStart_toStartOf="parent"
-            ads:layout_constraintTop_toTopOf="parent" />
+            ads:layout_constraintTop_toBottomOf="@id/customToolbar"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -69,7 +79,8 @@
                         android:layout_weight="1.2"
                         android:ellipsize="end"
                         android:maxLines="4"
-                        android:text="@{viewModel.show.name}"
+                        android:onClick="@{() -> viewModel.onBtnStageClick()}"
+                        android:text="@{viewModel.stage.name}"
                         android:textSize="12dp"
                         android:textStyle="bold"
                         tools:text="Ses Tiyatrosu" />
@@ -109,7 +120,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_weight="1.2"
-                        android:text="@{viewModel.show.name}"
+                        android:text="@{viewModel.show.time}"
                         android:textSize="12dp"
                         android:textStyle="bold"
                         tools:text="Ses Tiyatrosu" />

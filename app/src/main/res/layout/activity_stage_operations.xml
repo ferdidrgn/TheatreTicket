@@ -179,6 +179,7 @@
                                 android:id="@+id/imgStage"
                                 style="@style/ShapeableImageViewStyle"
                                 imageUrl="@{viewModel.imgUrl}"
+                                android:onClick="@{()->viewModel.onUpdateImageClick()}"
                                 android:layout_width="160dp"
                                 android:layout_height="160dp"
                                 android:layout_gravity="center"

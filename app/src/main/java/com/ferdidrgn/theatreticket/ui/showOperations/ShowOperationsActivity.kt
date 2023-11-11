@@ -13,7 +13,6 @@ import com.ferdidrgn.theatreticket.base.BaseActivity
 import com.ferdidrgn.theatreticket.base.BasePopUp
 import com.ferdidrgn.theatreticket.databinding.ActivityShowOperationsBinding
 import com.ferdidrgn.theatreticket.tools.builderADS
-import com.ferdidrgn.theatreticket.tools.onClickDelayed
 import com.ferdidrgn.theatreticket.tools.showToast
 import com.tayfuncesur.curvedbottomsheet.CurvedBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
@@ -54,13 +53,7 @@ class ShowOperationsActivity :
     private fun observe() {
         viewModel.getAllShow()
 
-        binding.customToolbar.backIcon.onClickDelayed {
-            onBackPressed()
-        }
-
-        binding.imgClose.onClickDelayed {
-            viewModel.bottomSheetVisibility.postValue(false)
-        }
+        binding.customToolbar.backIconOnBackPress(this)
 
         viewModel.imagePermission.observe(this) {
             permissionCheck()

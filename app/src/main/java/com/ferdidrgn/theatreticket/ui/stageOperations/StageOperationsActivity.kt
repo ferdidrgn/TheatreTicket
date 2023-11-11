@@ -12,7 +12,6 @@ import com.ferdidrgn.theatreticket.base.BaseActivity
 import com.ferdidrgn.theatreticket.base.BasePopUp
 import com.ferdidrgn.theatreticket.databinding.ActivityStageOperationsBinding
 import com.ferdidrgn.theatreticket.tools.builderADS
-import com.ferdidrgn.theatreticket.tools.onClickDelayed
 import com.ferdidrgn.theatreticket.tools.showToast
 import com.tayfuncesur.curvedbottomsheet.CurvedBottomSheet
 
@@ -48,13 +47,7 @@ class StageOperationsActivity :
     private fun observe() {
         viewModel.getAllStage()
 
-        binding.customToolbar.backIcon.onClickDelayed {
-            onBackPressed()
-        }
-
-        binding.imgClose.onClickDelayed {
-            viewModel.bottomSheetVisibility.postValue(false)
-        }
+        binding.customToolbar.backIconOnBackPress(this)
 
         viewModel.imagePermission.observe(this) {
             permissionCheck()

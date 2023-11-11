@@ -66,6 +66,10 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
         btnCstmDatePickerClick.postValue(true)
     }
 
+    fun onImgClose() {
+        bottomSheetVisibility.postValue(false)
+    }
+
     fun fieldClear() {
         name.value = ""
         desc.value = ""

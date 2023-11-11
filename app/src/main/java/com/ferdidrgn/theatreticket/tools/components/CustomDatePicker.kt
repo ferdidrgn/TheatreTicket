@@ -11,7 +11,6 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.tools.DEFAULT_DATE_FORMAT
-import com.ferdidrgn.theatreticket.tools.onClickDelayed
 import java.text.SimpleDateFormat
 import java.util.*
 

@@ -37,7 +37,7 @@ class UserFirebaseQueries {
         userMap["lastName"] = user?.lastName.toString()
         userMap["fullName"] = user?.fullName.toString()
         userMap["phoneNumber"] = user?.phoneNumber.toString()
-        userMap["photoUrl"] = user?.imgUrl.toString()
+        userMap["photoUrl"] = user?.addOrUpdateImg.toString()
         userMap["isActivite"] = user?.isActivite.toString().toBoolean()
         userMap["age"] = user?.age.toString()
         userMap["eMail"] = user?.eMail.toString()
@@ -51,9 +51,52 @@ class UserFirebaseQueries {
         }
     }
 
+    fun updateOrAddUser(user: User?, status: (Boolean) -> Unit) {
+
+        fireStoreUserRef.whereEqualTo("_id", user?._id).get().addOnSuccessListener { result ->
+            if (result.isEmpty) {
+                addUser(user) { response ->
+                    when (response) {
+                        true -> status.invoke(true)
+                        false -> status.invoke(false)
+                    }
+                }
+            } else {
+                updateUser(user) { response ->
+                    when (response) {
+                        true -> status.invoke(true)
+                        false -> status.invoke(false)
+                    }
+                }
+            }
+        }.addOnFailureListener {
+            status.invoke(false)
+        }
+    }
+
     fun updateUser(user: User?, status: (Boolean) -> Unit) {
-        //MockData
-        status.invoke(true)
+
+        //mock Data
+
+        val userMap = HashMap<String, Any>()
+        userMap["_updatedAt"] = Timestamp.now()
+        userMap["firstName"] = user?.firstName.toString()
+        userMap["lastName"] = user?.lastName.toString()
+        userMap["fullName"] = user?.fullName.toString()
+        userMap["phoneNumber"] = user?.phoneNumber.toString()
+        userMap["photoUrl"] = user?.addOrUpdateImg.toString()
+        userMap["isActivite"] = user?.isActivite.toString().toBoolean()
+        userMap["age"] = user?.age.toString()
+        userMap["eMail"] = user?.eMail.toString()
+        userMap["fcmToken"] = user?.fcmToken.toString()
+        userMap["role"] = user?.role.toString()
+
+        fireStoreUserRef.document(user?._id.toString()).update(userMap).addOnSuccessListener {
+            status.invoke(true)
+        }.addOnFailureListener {
+            status.invoke(false)
+        }
+
     }
 
     fun checkPhoneNumber(user: User?, status: (Response, User?) -> Unit) {

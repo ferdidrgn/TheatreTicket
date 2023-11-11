@@ -1,5 +1,7 @@
 package com.ferdidrgn.theatreticket.commonModels.dummyData
 
+import android.net.Uri
+
 data class User(
     var _createdAt: String? = null,
     var _id: String? = null,
@@ -9,6 +11,7 @@ data class User(
     var phoneNumber: String? = null,
     var age: String? = null,
     var imgUrl: String? = null,
+    var addOrUpdateImg: Uri? = null,
     var eMail: String? = null,
     var isActivite: Boolean? = null,
     var role: String? = null,

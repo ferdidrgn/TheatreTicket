@@ -30,6 +30,8 @@ class EditProfileViewModel @Inject constructor(private val userFirebaseQueries: 
     val btnUpdateAccClick = LiveEvent<Boolean?>()
     val btnDeleteAccountClick = LiveEvent<Boolean?>()
 
+    val logOut = LiveEvent<Boolean?>()
+
 
     init {
         getUser()
@@ -103,6 +105,7 @@ class EditProfileViewModel @Inject constructor(private val userFirebaseQueries: 
                 when (status) {
                     true -> {
                         clearClientPreferences()
+                        logOut.postValue(true)
                         successMessage.postValue(message(R.string.success))
                         hideLoading()
                     }

@@ -7,11 +7,23 @@ import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseActivity
 import com.ferdidrgn.theatreticket.base.BasePopUp
 import com.ferdidrgn.theatreticket.databinding.ActivityEditProfileBinding
+import com.ferdidrgn.theatreticket.tools.ClientPreferences
+import com.ferdidrgn.theatreticket.tools.NavHandler
 import com.ferdidrgn.theatreticket.tools.builderADS
+import com.ferdidrgn.theatreticket.tools.showToast
+import com.ferdidrgn.theatreticket.ui.main.MainActivity
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class EditProfileActivity : BaseActivity<EditProfileViewModel, ActivityEditProfileBinding>() {
+
+    private lateinit var mGoogleSignInClient: GoogleSignInClient
+
     override fun getVM(): Lazy<EditProfileViewModel> = viewModels()
 
     override fun getDataBinding(): ActivityEditProfileBinding =
@@ -32,6 +44,45 @@ class EditProfileActivity : BaseActivity<EditProfileViewModel, ActivityEditProfi
 
         viewModel.btnDeleteAccountClick.observe(this) {
             updateOrDeleteInformationPopUp(this, false)
+        }
+
+        viewModel.logOut.observe(this) {
+            if (it == true) {
+                logout()
+            }
+        }
+    }
+
+    private fun logout() {
+        FirebaseMessaging.getInstance().deleteToken()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+
+                    if (ClientPreferences.inst.isGoogleSignIn == true)
+                        signOutAndStartSignInActivity()
+
+                    FirebaseAuth.getInstance().signOut()
+
+                    goToLoginAndFinishAffinity()
+                    showToast(getString(R.string.success))
+                }
+            }
+    }
+
+    private fun goToLoginAndFinishAffinity() {
+        NavHandler.instance.toLoginActivity(this, true)
+        finishAffinity()
+    }
+
+    private fun signOutAndStartSignInActivity() {
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+
+        mGoogleSignInClient.signOut().addOnCompleteListener(this) {
+            goToLoginAndFinishAffinity()
         }
     }
 

@@ -163,7 +163,7 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
         mGoogleSignInClient = GoogleSignIn.getClient(requireContext(), gso)
 
         mGoogleSignInClient.signOut().addOnCompleteListener(requireActivity()) {
-            NavHandler.instance.toLoginActivity(requireContext())
+            goToLoginAndFinishAffinity(requireActivity() as MainActivity)
         }
     }
 

@@ -9,6 +9,7 @@ import com.ferdidrgn.theatreticket.base.BaseActivity
 import com.ferdidrgn.theatreticket.databinding.ActivityLoginBinding
 import com.ferdidrgn.theatreticket.enums.Roles
 import com.ferdidrgn.theatreticket.tools.*
+import com.ferdidrgn.theatreticket.ui.zTest.TestActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
@@ -124,6 +125,11 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
         }
         viewModel.btnSignInPhoneNumber.observe(this) {
             // ClientPreferences.inst.role = Roles.User.role
+
+            //MockDATA
+            val intent = Intent(this, TestActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
         }
 
         viewModel.btnGuest.observe(this) {

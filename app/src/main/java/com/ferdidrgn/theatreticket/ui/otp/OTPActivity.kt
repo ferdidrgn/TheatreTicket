@@ -2,16 +2,16 @@ package com.ferdidrgn.theatreticket.ui.otp
 
 import android.content.Context
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.activity.viewModels
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseActivity
 import com.ferdidrgn.theatreticket.base.BasePopUp
 import com.ferdidrgn.theatreticket.databinding.ActivityOtpactivityBinding
 import com.ferdidrgn.theatreticket.enums.WhichEditProfile
-import com.ferdidrgn.theatreticket.tools.NavHandler
-import com.ferdidrgn.theatreticket.tools.builderADS
-import com.ferdidrgn.theatreticket.tools.ioScope
-import com.ferdidrgn.theatreticket.tools.mainScope
+import com.ferdidrgn.theatreticket.tools.*
+import com.google.firebase.auth.PhoneAuthProvider
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 
@@ -27,7 +27,6 @@ class OTPActivity : BaseActivity<OTPViewModel, ActivityOtpactivityBinding>() {
     override fun onCreateFinished(savedInstance: Bundle?) {
         binding.viewModel = viewModel
         builderADS(this, binding.adView)
-        viewModel.selectCountryCode(this)
         observe()
     }
 
@@ -37,6 +36,39 @@ class OTPActivity : BaseActivity<OTPViewModel, ActivityOtpactivityBinding>() {
                 viewModel.startTime(this, false)
                 viewModel.sendOtp(this, false)
             }
+
+            binding.etCode.editTextView.addTextChangedListener(object : TextWatcher {
+                val maxLength = 6
+                override fun beforeTextChanged(
+                    charSequence: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                }
+
+                override fun onTextChanged(
+                    charSequence: CharSequence?,
+                    start: Int,
+                    before: Int,
+                    count: Int
+                ) {
+                    val currentLength = charSequence?.length ?: 0
+
+                    if (currentLength == maxLength) {
+                        binding.etCode.editTextView.hideKeyboard()
+                        val credential = PhoneAuthProvider.getCredential(
+                            viewModel.verificationCode.value.toString(),
+                            charSequence.toString()
+                        )
+                        viewModel.signIn(credential, view = binding.etCode.editTextView)
+                    }
+                }
+
+                override fun afterTextChanged(editable: Editable?) {
+                    // İşlem yapıldıktan sonra durumu kontrol etmek için kullanılır.
+                }
+            })
         }
 
         viewModel.goToUserProfile.observe(this) { goToUserProfile ->
@@ -44,14 +76,8 @@ class OTPActivity : BaseActivity<OTPViewModel, ActivityOtpactivityBinding>() {
                 NavHandler.instance.toEditProfileActivity(this, WhichEditProfile.LogIn)
         }
 
-        ioScope {
-            viewModel.timerFinished.collectLatest { status ->
-                mainScope {
-                    if (status) {
-                        showResendCodeDialog()
-                    }
-                }
-            }
+        viewModel.resendClick.observe(this) { resendClick ->
+            showResendCodeDialog(this)
         }
 
         viewModel.errorMessage.observe(this) { errorMessage ->
@@ -77,12 +103,12 @@ class OTPActivity : BaseActivity<OTPViewModel, ActivityOtpactivityBinding>() {
         pupUp.show(supportFragmentManager, "")
     }
 
-    private fun showResendCodeDialog() {
+    private fun showResendCodeDialog(context: Context) {
         val pupUp = BasePopUp()
         pupUp.apply {
-            setPositiveText(this.getString(R.string.resend_code))
-            setNegativeText(this.getString(R.string.cancel))
-            setDesc(this.getString(R.string.resend_code))
+            setPositiveText(context.getString(R.string.resend_code))
+            setNegativeText(context.getString(R.string.cancel))
+            setDesc(context.getString(R.string.resend_code))
             setOnPositiveClick {
                 viewModel.startTime(this@OTPActivity, true)
                 viewModel.sendOtp(this@OTPActivity, false)

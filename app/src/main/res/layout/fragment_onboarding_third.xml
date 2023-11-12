@@ -16,18 +16,6 @@
         android:background="@color/primary"
         tools:context=".ui.onboarding.onboardingFragments.OnboardingThirdFragment">
 
-        <com.ferdidrgn.theatreticket.tools.components.CustomToolbar
-            android:id="@+id/customToolbar"
-            style="@style/TextColor2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:textSize="30sp"
-            app:cst_toolbar_text="@string/app_name"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
             android:id="@+id/adView"
             android:layout_width="wrap_content"
@@ -37,7 +25,7 @@
             ads:adUnitId="@string/BANNER_ADS_TEST"
             ads:layout_constraintEnd_toEndOf="parent"
             ads:layout_constraintStart_toStartOf="parent"
-            ads:layout_constraintTop_toBottomOf="@id/customToolbar" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.ferdidrgn.theatreticket.tools.components.CustomButton
             android:id="@+id/customButton"

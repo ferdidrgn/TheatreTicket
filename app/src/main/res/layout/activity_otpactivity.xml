@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="10dp"
-                android:clickable="@{viewModel.sendButtonVisibility ? true : false}"
+                android:clickable="@{viewModel.sendButtonClickable ? true : false}"
                 android:onClick="@{()->viewModel.onSendCode()}"
                 app:cst_btn_name="@string/code_send" />
 
@@ -74,7 +74,7 @@
                 android:layout_marginTop="5dp"
                 android:maxLength="6"
                 android:textAlignment="textStart"
-                android:visibility="@{viewModel.sendButtonVisibility ? View.INVISIBLE : View.VISIBLE}"
+                android:visibility="@{viewModel.sendButtonClickable ? View.INVISIBLE : View.VISIBLE}"
                 app:cst_number_changeable_edit_text="@={viewModel.otp}"
                 app:cst_number_hint_text="@string/code_enter" />
 
@@ -84,10 +84,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
-                android:layout_weight="10"
+                android:layout_marginTop="10dp"
                 android:gravity="center"
+                android:onClick="@{()->viewModel.onResendCode()}"
+                android:padding="20dp"
                 app:changeText="@{viewModel.timerFinished ? @string/resend_code : @string/sms_remain_time(viewModel.timerText)}"
-                app:isTextClickable="@{viewModel.timerFinished}" />
+                app:isTextClickable="@{viewModel.timerFinished ? true : false}" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

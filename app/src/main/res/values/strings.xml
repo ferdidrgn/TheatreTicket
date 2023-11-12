@@ -202,7 +202,7 @@
     <string name="code_send">Kod Gönder</string>
     <string name="resend_code">Kodu Tekrar Gönder</string>
     <string name="code_send_success">Kod Gönderme Başarılı</string>
-    <string name="sms_remain_time">You can resend the code within <b>%1$s </b>seconds.</string>
+    <string name="sms_remain_time">Şu süre sonunda tekrar kod isteyebilirsiniz: <b>%1$s </b></string>
 
 
 </resources>

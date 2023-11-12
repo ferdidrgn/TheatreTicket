@@ -18,6 +18,7 @@ import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseActivity
 import com.ferdidrgn.theatreticket.databinding.ActivityMainBinding
 import com.ferdidrgn.theatreticket.enums.ToMain
+import com.ferdidrgn.theatreticket.enums.WhichEditProfile
 import com.ferdidrgn.theatreticket.repository.UserFirebaseQueries
 import com.ferdidrgn.theatreticket.tools.*
 import com.ferdidrgn.theatreticket.tools.helpers.deepLinkHelper
@@ -56,14 +57,15 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         ActivityMainBinding.inflate(layoutInflater)
 
     override fun onCreateFinished(savedInstance: Bundle?) {
+        binding.viewModel = viewModel
 
         getNavHost()
 
+        checkForAppUpdate()
         deepLink()
         askNotificationPermission()
         getFCMToken()
         getLoginGoogle()
-        checkForAppUpdate()
         reviewPopUp()
         observe()
     }

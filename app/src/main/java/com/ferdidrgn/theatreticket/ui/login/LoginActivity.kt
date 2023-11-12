@@ -10,7 +10,6 @@ import com.ferdidrgn.theatreticket.databinding.ActivityLoginBinding
 import com.ferdidrgn.theatreticket.enums.Roles
 import com.ferdidrgn.theatreticket.enums.WhichEditProfile
 import com.ferdidrgn.theatreticket.tools.*
-import com.ferdidrgn.theatreticket.ui.zTest.TestActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
@@ -57,7 +56,7 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
         if (ClientPreferences.inst.isFirstLaunch == true)
             NavHandler.instance.toOnboardingActivity(this)
         else {
-            isUserLogIn(isSettingsClickedLogIn)
+            isUserLogInAndFillInfo(isSettingsClickedLogIn)
         }
     }
 
@@ -102,10 +101,14 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
             }
     }
 
-    private fun isUserLogIn(isSettingsClickedLogIn: Boolean) {
+    private fun isUserLogInAndFillInfo(isSettingsClickedLogIn: Boolean) {
 
+        if (auth.currentUser != null && ClientPreferences.inst.isBlankUserInfo == true) {
+            NavHandler.instance.toEditProfileActivity(this, WhichEditProfile.LogIn)
+            finishAffinity()
+        }
         // The user is already signed in, navigate to MainActivity
-        if (auth.currentUser != null || (!isSettingsClickedLogIn && ClientPreferences.inst.role != null)) {
+        else if (auth.currentUser != null || (!isSettingsClickedLogIn && ClientPreferences.inst.role != null)) {
             NavHandler.instance.toMainActivityFinishAffinity(this)
             finish()
         }

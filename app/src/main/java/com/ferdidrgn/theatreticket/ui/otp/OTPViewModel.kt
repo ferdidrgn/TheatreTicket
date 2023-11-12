@@ -1,8 +1,9 @@
 package com.ferdidrgn.theatreticket.ui.otp
 
 import android.app.Activity
-import android.content.Context
 import android.os.CountDownTimer
+import android.widget.EditText
+import androidx.lifecycle.LiveData
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseViewModel
 import com.ferdidrgn.theatreticket.enums.Roles
@@ -23,31 +24,21 @@ class OTPViewModel @Inject constructor(
 ) : BaseViewModel() {
     var firebaseAuth = FirebaseAuth.getInstance()
     val timeOutSecond = 60L
-    var verificationCode = ""
+    var verificationCode = LiveEvent<String?>()
     lateinit var forceResendingToken: PhoneAuthProvider.ForceResendingToken
 
     val phoneNumber = MutableStateFlow("")
     val otp = MutableStateFlow("")
 
     val sendOtp = LiveEvent<Boolean?>()
-    val sendButtonVisibility = MutableStateFlow(true)
+    val sendButtonClickable = MutableStateFlow(true)
+    val resendClick = LiveEvent<Boolean?>()
     val goToUserProfile = LiveEvent<Boolean?>()
     val timerFinished = MutableStateFlow(false)
     val timerText = MutableStateFlow("")
 
-    var time = 80
+    var time = 10000 // 1.40 minute
     lateinit var timer: CountDownTimer
-    val countryCode = MutableStateFlow("")
-    val countryCodeList = MutableStateFlow<List<String>>(arrayListOf())
-
-    fun selectCountryCode(context: Context) {
-        mainScope {
-            context.resources.getStringArray(R.array.phone_codes).let { list ->
-                countryCodeList.emit(list.toList())
-                countryCode.emit(list.first().toString())
-            }
-        }
-    }
 
     fun checkPhoneNumber() {
         var isRequiredFieldsDone = true
@@ -56,7 +47,7 @@ class OTPViewModel @Inject constructor(
 
         if (isRequiredFieldsDone) {
             sendOtp.postValue(true)
-            sendButtonVisibility.value = false
+            sendButtonClickable.value = false
         } else
             errorMessage.postValue(message(R.string.error_phone_little))
     }
@@ -65,11 +56,14 @@ class OTPViewModel @Inject constructor(
         checkPhoneNumber()
     }
 
+    fun onResendCode() {
+        resendClick.postValue(true)
+    }
+
     fun startTime(activity: Activity, isResend: Boolean) {
         ioScope {
             timerFinished.value = false
         }
-
         timer = object : CountDownTimer(time.toLong(), 1000) {
             override fun onTick(duration: Long) {
                 val Mmin: Long = duration / 1000 / 60
@@ -112,7 +106,7 @@ class OTPViewModel @Inject constructor(
                         token: PhoneAuthProvider.ForceResendingToken
                     ) {
                         super.onCodeSent(verificationId, token)
-                        verificationCode = verificationId
+                        verificationCode.postValue(verificationId)
                         forceResendingToken = token
                         showToast(message(R.string.code_send_success))
                         hideLoading()
@@ -129,7 +123,7 @@ class OTPViewModel @Inject constructor(
         }
     }
 
-    private fun signIn(credential: PhoneAuthCredential) {
+    fun signIn(credential: PhoneAuthCredential, view: EditText? = null) {
         mainScope {
             showLoading()
 
@@ -150,7 +144,8 @@ class OTPViewModel @Inject constructor(
                     } else {
                         errorMessage.value = message(R.string.error_auth_failed)
                         sendOtp.postValue(false)
-                        sendButtonVisibility.value = true
+                        sendButtonClickable.value = true
+                        view?.showKeyboard()
                         hideLoading()
                     }
                 }
@@ -158,7 +153,9 @@ class OTPViewModel @Inject constructor(
     }
 
     override fun onCleared() {
-        timer.cancel()
+        if (::timer.isInitialized) {
+            timer.cancel()
+        }
         super.onCleared()
     }
 }

@@ -12,6 +12,7 @@ import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseActivity
 import com.ferdidrgn.theatreticket.base.BasePopUp
 import com.ferdidrgn.theatreticket.databinding.ActivityShowOperationsBinding
+import com.ferdidrgn.theatreticket.tools.IMAGE_REQUEST_CODE
 import com.ferdidrgn.theatreticket.tools.builderADS
 import com.ferdidrgn.theatreticket.tools.showToast
 import com.tayfuncesur.curvedbottomsheet.CurvedBottomSheet
@@ -21,9 +22,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class ShowOperationsActivity :
     BaseActivity<ShowOperationsViewModel, ActivityShowOperationsBinding>() {
-
-    private val IMAGE_REQUEST_CODE = 1_000
-
     override fun getVM(): Lazy<ShowOperationsViewModel> = viewModels()
 
     override fun getDataBinding(): ActivityShowOperationsBinding =
@@ -97,28 +95,6 @@ class ShowOperationsActivity :
         ).init()
     }
 
-    private fun permissionCheck() {
-        val readImagePermission =
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
-                android.Manifest.permission.READ_MEDIA_IMAGES else android.Manifest.permission.READ_EXTERNAL_STORAGE
-        requestPermissionLauncher.launch(readImagePermission)
-    }
-
-    private val requestPermissionLauncher =
-        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
-            if (isGranted) {
-                pickImageFromGallery()
-            } else {
-                showToast(getString(R.string.permission_denied))
-            }
-        }
-
-    private fun pickImageFromGallery() {
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type = "image/*"
-        startActivityForResult(intent, IMAGE_REQUEST_CODE)
-    }
-
     private fun updateOrDeleteInformationPopUp(context: Context, isUpdate: Boolean) {
         val pupUp = BasePopUp()
         pupUp.apply {
@@ -171,5 +147,27 @@ class ShowOperationsActivity :
             }
         }
         pupUp.show(supportFragmentManager, "")
+    }
+
+    private fun permissionCheck() {
+        val readImagePermission =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
+                android.Manifest.permission.READ_MEDIA_IMAGES else android.Manifest.permission.READ_EXTERNAL_STORAGE
+        requestPermissionLauncher.launch(readImagePermission)
+    }
+
+    private val requestPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+            if (isGranted) {
+                pickImageFromGallery()
+            } else {
+                showToast(getString(R.string.permission_denied))
+            }
+        }
+
+    private fun pickImageFromGallery() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, IMAGE_REQUEST_CODE)
     }
 }

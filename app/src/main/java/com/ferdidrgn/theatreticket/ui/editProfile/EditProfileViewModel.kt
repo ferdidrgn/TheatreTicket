@@ -1,9 +1,11 @@
 package com.ferdidrgn.theatreticket.ui.editProfile
 
+import androidx.lifecycle.MutableLiveData
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseViewModel
 import com.ferdidrgn.theatreticket.commonModels.dummyData.User
 import com.ferdidrgn.theatreticket.enums.ID
+import com.ferdidrgn.theatreticket.enums.Response
 import com.ferdidrgn.theatreticket.enums.Roles
 import com.ferdidrgn.theatreticket.enums.WhichEditProfile
 import com.ferdidrgn.theatreticket.repository.UserFirebaseQueries
@@ -29,6 +31,7 @@ class EditProfileViewModel @Inject constructor(private val userFirebaseQueries: 
     val imgPhoto = MutableStateFlow("")
     val eMail = MutableStateFlow("")
     val toolbarText = MutableStateFlow("")
+    val userId = ClientPreferences.inst.userID
 
     val whichComeAction = MutableStateFlow(WhichEditProfile.LogIn)
     var isAddUserActions = false
@@ -37,6 +40,7 @@ class EditProfileViewModel @Inject constructor(private val userFirebaseQueries: 
     val btnCstmDatePickerClick = LiveEvent<Boolean?>()
     val btnUpdateAccClick = LiveEvent<Boolean?>()
     val btnDeleteAccountClick = LiveEvent<Boolean?>()
+    val imagePermission = MutableLiveData<Boolean?>()
 
     val logOut = LiveEvent<Boolean?>()
 
@@ -63,16 +67,51 @@ class EditProfileViewModel @Inject constructor(private val userFirebaseQueries: 
     private fun getUser() {
         mainScope {
             showLoading()
-            ClientPreferences.inst.apply {
-                fullName.value = userFullName.toString()
-                firstName.value = userFirstName.toString()
-                lastName.value = userLastName.toString()
-                phoneNumber.value = userPhone?.removeWhiteSpace().toString()
-                age.value = userAge.toString()
-                imgPhoto.value = userPhotoUrl.toString()
-                eMail.value = userEmail.toString()
+            userFirebaseQueries.checkUserId(userId) { status, userInfoList ->
+                when (status) {
+                    Response.Empty -> {
+                        ClientPreferences.inst.apply {
+                            fullName.value = userFullName.toString()
+                            firstName.value = userFirstName.toString()
+                            lastName.value = userLastName.toString()
+                            phoneNumber.value = userPhone?.removeWhiteSpace().toString()
+                            age.value = userAge.toString()
+                            imgPhoto.value = userPhotoUrl.toString()
+                            eMail.value = userEmail.toString()
+                        }
+                        hideLoading()
+                    }
+                    Response.ThereIs -> {
+                        ClientPreferences.inst.apply {
+                            role = userInfoList?.role.toString()
+                            userID = userInfoList?._id
+                            userFullName = userInfoList?.fullName
+                            userEmail = userInfoList?.eMail
+                            userPhone = userInfoList?.phoneNumber
+                            userPhotoUrl = userInfoList?.imgUrl.toString()
+                        }
+
+                        fullName.value = userInfoList?.fullName.toString()
+                        firstName.value = userInfoList?.firstName.toString()
+                        lastName.value = userInfoList?.lastName.toString()
+                        phoneNumber.value = userInfoList?.phoneNumber?.removeWhiteSpace().toString()
+                        age.value = userInfoList?.age.toString()
+                        imgPhoto.value = userInfoList?.imgUrl.toString()
+                        eMail.value = userInfoList?.eMail.toString()
+
+                        hideLoading()
+                    }
+                    Response.NotEqual -> {
+                        hideLoading()
+                        errorMessage.postValue(message(R.string.error_not_equal))
+                    }
+                    Response.ServerError -> {
+                        hideLoading()
+                        errorMessage.postValue(message(R.string.error_server))
+                    }
+                }
+
             }
-            hideLoading()
         }
     }
 
@@ -181,25 +220,15 @@ class EditProfileViewModel @Inject constructor(private val userFirebaseQueries: 
             message = message(R.string.error_last_name_little)
         }
 
-        if (phoneNumber.value.removeWhiteSpace().length != 13) {
-            isRequiredFieldsDone = false
-            message = message(R.string.error_phone_little)
-        }
-
         if (eMail.value.isNotEmpty() && !isEmailValid(eMail.value)) {
             isRequiredFieldsDone = false
             message = message(R.string.error_email)
         }
 
-        if (imgPhoto.value.isEmpty()) {
-            isRequiredFieldsDone = false
-            message = message(R.string.error_little_things)
-        }
-
         if (isRequiredFieldsDone) {
             updateOrAddProfile()
         } else
-            errorMessage.postValue(message(R.string.error_little_things))
+            errorMessage.postValue(message)
     }
 
     //Click Listener
@@ -213,5 +242,9 @@ class EditProfileViewModel @Inject constructor(private val userFirebaseQueries: 
 
     fun onDeleteAccount() {
         btnDeleteAccountClick.postValue(true)
+    }
+
+    fun onImageClick() {
+        imagePermission.postValue(true)
     }
 }

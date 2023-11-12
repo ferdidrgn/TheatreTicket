@@ -1,7 +1,10 @@
 package com.ferdidrgn.theatreticket.ui.editProfile
 
 import android.content.Context
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseActivity
@@ -39,6 +42,10 @@ class EditProfileActivity : BaseActivity<EditProfileViewModel, ActivityEditProfi
         viewModel.whichComeAction.value = type
         viewModel.changeToolbarText()
 
+        viewModel.btnCstmDatePickerClick.observe(this) {
+            binding.cdpAge.setCustomDataPickerClick()
+        }
+
         viewModel.btnUpdateAccClick.observe(this) {
             if (it == true) updateOrDeleteInformationPopUp(this, true)
         }
@@ -51,6 +58,10 @@ class EditProfileActivity : BaseActivity<EditProfileViewModel, ActivityEditProfi
             if (it == true) {
                 logout()
             }
+        }
+
+        viewModel.imagePermission.observe(this) {
+            permissionCheck()
         }
 
         viewModel.errorMessage.observe(this) { errorMessage ->
@@ -135,5 +146,27 @@ class EditProfileActivity : BaseActivity<EditProfileViewModel, ActivityEditProfi
             }
         }
         pupUp.show(supportFragmentManager, "")
+    }
+
+    private fun permissionCheck() {
+        val readImagePermission =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
+                android.Manifest.permission.READ_MEDIA_IMAGES else android.Manifest.permission.READ_EXTERNAL_STORAGE
+        requestPermissionLauncher.launch(readImagePermission)
+    }
+
+    private val requestPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+            if (isGranted) {
+                pickImageFromGallery()
+            } else {
+                showToast(getString(R.string.permission_denied))
+            }
+        }
+
+    private fun pickImageFromGallery() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, IMAGE_REQUEST_CODE)
     }
 }

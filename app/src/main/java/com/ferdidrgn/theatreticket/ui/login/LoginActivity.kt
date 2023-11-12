@@ -86,16 +86,9 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
                     val user = auth.currentUser
 
                     setClientPreferneces(user)
-                    viewModel.addUser()
-
-                    viewModel.isFirebaseUserControl.observe(this) { isFirebaseUserControl ->
-                        if (isFirebaseUserControl) {
-                            showToast(getString(R.string.signed_in_as) + " ${user?.displayName}")
-                            NavHandler.instance.toEditProfileActivity(this, WhichEditProfile.LogIn)
-                            finishAffinity()
-                        } else
-                            showToast(getString(R.string.error_add_user))
-                    }
+                    showToast(getString(R.string.signed_in_as) + " ${user?.displayName}")
+                    NavHandler.instance.toEditProfileActivity(this, WhichEditProfile.LogIn)
+                    finishAffinity()
                 } else
                     showToast(getString(R.string.error_auth_failed))
             }

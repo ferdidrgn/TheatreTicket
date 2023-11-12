@@ -191,13 +191,13 @@ class UserFirebaseQueries {
             }
     }
 
-    fun checkUserId(user: User?, status: (Response, User?) -> Unit) {
+    fun checkUserId(userId: String?, status: (Response, User?) -> Unit) {
         var userInfoList: User? = null
         var userFirstName = ""
         var userLastName = ""
         var notEqual: Boolean? = null
 
-        fireStoreUserRef.whereEqualTo("_id", user?._id).get()
+        fireStoreUserRef.whereEqualTo("_id", userId).get()
             .addOnSuccessListener { result ->
                 if (result.isEmpty) {
                     status.invoke(Response.Empty, null)
@@ -230,7 +230,7 @@ class UserFirebaseQueries {
                                 if (document.get("photoUrl") != null) document.get("photoUrl") as String else ""
 
                             userInfoList = User(
-                                _id = user?._id,
+                                _id = userId,
                                 fcmToken = fcmToken,
                                 firstName = userFirstName,
                                 lastName = userLastName,

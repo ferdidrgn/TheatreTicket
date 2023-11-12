@@ -7,11 +7,8 @@ import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseViewModel
 import com.ferdidrgn.theatreticket.enums.Roles
 import com.ferdidrgn.theatreticket.repository.UserFirebaseQueries
-import com.ferdidrgn.theatreticket.tools.ClientPreferences
+import com.ferdidrgn.theatreticket.tools.*
 import com.ferdidrgn.theatreticket.tools.helpers.LiveEvent
-import com.ferdidrgn.theatreticket.tools.ioScope
-import com.ferdidrgn.theatreticket.tools.mainScope
-import com.ferdidrgn.theatreticket.tools.showToast
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.*
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -55,7 +52,7 @@ class OTPViewModel @Inject constructor(
     fun checkPhoneNumber() {
         var isRequiredFieldsDone = true
 
-        if (phoneNumber.value.length != 13)
+        if (phoneNumber.value.removeWhiteSpace().length != 13)
             isRequiredFieldsDone = false
 
         if (isRequiredFieldsDone) {
@@ -97,7 +94,7 @@ class OTPViewModel @Inject constructor(
         mainScope {
             showLoading()
             val builder = PhoneAuthOptions.newBuilder(firebaseAuth)
-                .setPhoneNumber(phoneNumber.value) // Phone number to verify
+                .setPhoneNumber(phoneNumber.value.removeWhiteSpace()) // Phone number to verify
                 .setTimeout(timeOutSecond, TimeUnit.SECONDS) // Timeout and unit
                 .setActivity(activity) // Activity (for callback binding)
                 .setCallbacks(object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -142,7 +139,7 @@ class OTPViewModel @Inject constructor(
                     if (task.isSuccessful) {
                         ClientPreferences.inst.apply {
                             userID = firebaseAuth.currentUser?.uid.toString()
-                            userPhone = phoneNumber.value
+                            userPhone = phoneNumber.value.removeWhiteSpace()
                             isGoogleSignIn = false
                             isPhoneNumberSignIn = true
                             role = Roles.User.role
@@ -153,6 +150,8 @@ class OTPViewModel @Inject constructor(
                         hideLoading()
                     } else {
                         errorMessage.value = message(R.string.error_auth_failed)
+                        sendOtp.postValue(false)
+                        sendButtonVisibility.value = true
                         hideLoading()
                     }
                 }

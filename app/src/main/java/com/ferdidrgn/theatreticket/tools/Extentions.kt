@@ -63,6 +63,10 @@ fun Context.setAppLocale(contextLanguages: String, languages: String): Context {
     return createConfigurationContext(config)
 }
 
+fun String.removeWhiteSpace(): String {
+    return this.filterNot { text -> text.isWhitespace() }
+}
+
 fun ViewPager2.getPositionAndSendHandler2(
     list: List<Any?>?,
     handler: MainSliderHandler,

@@ -129,7 +129,7 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
             userID = user?.uid
             userFullName = user?.displayName
             userEmail = user?.email
-            userPhone = user?.phoneNumber
+            userPhone = user?.phoneNumber?.removeWhiteSpace()
             userPhotoUrl = user?.photoUrl.toString()
             isGoogleSignIn = true
             isPhoneNumberSignIn = false

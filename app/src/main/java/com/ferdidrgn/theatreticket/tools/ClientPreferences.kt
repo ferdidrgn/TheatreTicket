@@ -62,6 +62,10 @@ class ClientPreferences : PreferencesManager() {
         get() = getString(PHONE_NUMBER, null)
         set(token) = putString(PHONE_NUMBER, token)
 
+    var countryCode: String?
+        get() = getString(COUNTRY_CODE, null)
+        set(token) = putString(COUNTRY_CODE, token)
+
     var userEmail: String?
         get() = getString(USER_EMAIL, null)
         set(token) = putString(USER_EMAIL, token)

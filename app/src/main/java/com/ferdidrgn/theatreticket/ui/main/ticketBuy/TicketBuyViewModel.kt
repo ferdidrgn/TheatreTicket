@@ -78,7 +78,7 @@ class TicketBuyViewModel @Inject constructor(
             userAdd = User(
                 firstName = firstName.value,
                 lastName = lastName.value,
-                phoneNumber = phoneNumber.value,
+                phoneNumber = phoneNumber.value.removeWhiteSpace(),
                 age = age.value
             )
 
@@ -97,7 +97,7 @@ class TicketBuyViewModel @Inject constructor(
                             fcmToken = ClientPreferences.inst.FCMtoken.toString(),
                             firstName = firstName.value,
                             lastName = lastName.value,
-                            phoneNumber = phoneNumber.value,
+                            phoneNumber = phoneNumber.value.removeWhiteSpace(),
                             role = ClientPreferences.inst.role.toString(),
                             age = age.value
                         )
@@ -164,7 +164,7 @@ class TicketBuyViewModel @Inject constructor(
                 fcmToken = ClientPreferences.inst.FCMtoken.toString(),
                 firstName = user?.firstName.toString(),
                 lastName = user?.lastName.toString(),
-                phoneNumber = user?.phoneNumber.toString(),
+                phoneNumber = user?.phoneNumber.removeWhiteSpace(),
                 age = age.value
             )
 
@@ -174,7 +174,7 @@ class TicketBuyViewModel @Inject constructor(
                 customerId = user?._id.toString(),
                 showId = "MockData",
                 customerFullName = user?.firstName.toString() + " " + user?.lastName.toString(),
-                customerPhone = user?.phoneNumber.toString(),
+                customerPhone = user?.phoneNumber.removeWhiteSpace(),
                 showName = "MockData",
                 showDate = "MockData",
                 showTime = "MockData",
@@ -232,7 +232,7 @@ class TicketBuyViewModel @Inject constructor(
             message = message(R.string.error_last_name_little)
         }
 
-        if (phoneNumber.value.length != 13) {
+        if (phoneNumber.value.removeWhiteSpace().length != 13) {
             isRequiredFieldsDone = false
             message = message(R.string.error_phone_little)
         }

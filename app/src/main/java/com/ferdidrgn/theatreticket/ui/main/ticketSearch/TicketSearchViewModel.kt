@@ -9,6 +9,7 @@ import com.ferdidrgn.theatreticket.enums.Response
 import com.ferdidrgn.theatreticket.repository.SellFirebaseQueries
 import com.ferdidrgn.theatreticket.tools.helpers.LiveEvent
 import com.ferdidrgn.theatreticket.tools.mainScope
+import com.ferdidrgn.theatreticket.tools.removeWhiteSpace
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
@@ -37,7 +38,7 @@ class TicketSearchViewModel @Inject constructor(private val sellFirebaseQueries:
             userAdd = User(
                 firstName = firstName.value,
                 lastName = lastName.value,
-                phoneNumber = phoneNumber.value
+                phoneNumber = phoneNumber.value.removeWhiteSpace()
             )
 
             sellFirebaseQueries.checkSearchBuyTicket(userAdd) { status, sellList ->
@@ -79,7 +80,7 @@ class TicketSearchViewModel @Inject constructor(private val sellFirebaseQueries:
             message = message(R.string.error_last_name_little)
         }
 
-        if (phoneNumber.value.length != 13) {
+        if (phoneNumber.value.removeWhiteSpace().length != 13) {
             isRequiredFieldsDone = false
             message = message(R.string.error_phone_little)
         }

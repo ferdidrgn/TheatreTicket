@@ -11,6 +11,7 @@ const val CONTEXT_LANGUAGE = "CONTEXT_LANGUAGE"
 
 const val USER_ID = "UserID"
 const val PHONE_NUMBER = "phoneNumber"
+const val COUNTRY_CODE = "COUNTRY_CODE"
 const val USER_FULLNAME = "userFullName"
 const val USER_FIRSTNAME = "userFirstName"
 const val USER_LASTNAME = "userLastName"

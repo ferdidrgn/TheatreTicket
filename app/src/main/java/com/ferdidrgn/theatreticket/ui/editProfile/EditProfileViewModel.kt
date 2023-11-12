@@ -11,6 +11,7 @@ import com.ferdidrgn.theatreticket.tools.ClientPreferences
 import com.ferdidrgn.theatreticket.tools.helpers.LiveEvent
 import com.ferdidrgn.theatreticket.tools.isEmailValid
 import com.ferdidrgn.theatreticket.tools.mainScope
+import com.ferdidrgn.theatreticket.tools.removeWhiteSpace
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import java.util.*
@@ -66,7 +67,7 @@ class EditProfileViewModel @Inject constructor(private val userFirebaseQueries: 
                 fullName.value = userFullName.toString()
                 firstName.value = userFirstName.toString()
                 lastName.value = userLastName.toString()
-                phoneNumber.value = userPhone.toString()
+                phoneNumber.value = userPhone.removeWhiteSpace()
                 age.value = userAge.toString()
                 imgPhoto.value = userPhotoUrl.toString()
                 eMail.value = userEmail.toString()
@@ -88,7 +89,7 @@ class EditProfileViewModel @Inject constructor(private val userFirebaseQueries: 
                 firstName = firstName.value,
                 lastName = lastName.value,
                 fullName = fullName.value,
-                phoneNumber = phoneNumber.value,
+                phoneNumber = phoneNumber.value.removeWhiteSpace(),
                 age = age.value,
                 imgUrl = imgPhoto.value,
                 eMail = eMail.value
@@ -103,7 +104,7 @@ class EditProfileViewModel @Inject constructor(private val userFirebaseQueries: 
                             userFirstName = firstName.value
                             userLastName = lastName.value
                             userFullName = fullName.value
-                            userPhone = phoneNumber.value
+                            userPhone = phoneNumber.value.removeWhiteSpace()
                             userAge = age.value
                             userPhotoUrl = imgPhoto.value
                             userEmail = eMail.value
@@ -180,7 +181,7 @@ class EditProfileViewModel @Inject constructor(private val userFirebaseQueries: 
             message = message(R.string.error_last_name_little)
         }
 
-        if (phoneNumber.value.length != 13) {
+        if (phoneNumber.value.removeWhiteSpace().length != 13) {
             isRequiredFieldsDone = false
             message = message(R.string.error_phone_little)
         }

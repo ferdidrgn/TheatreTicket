@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.ferdidrgn.theatreticket.base.BaseAdapter
 import com.ferdidrgn.theatreticket.base.ListAdapterItem
+import com.ferdidrgn.theatreticket.tools.components.CustomToolbar
 import com.ferdidrgn.theatreticket.tools.downloadFromUrl
 
 object DataBindingUtil {
@@ -39,6 +40,19 @@ object DataBindingUtil {
         view.text = text
     }
 
+    @JvmStatic
+    @BindingAdapter(
+        value = ["cst_tb_back_icon_visibility"],
+        requireAll = false
+    )
+    fun changeVisibility(
+        view: CustomToolbar,
+        boolean: Boolean?
+    ) {
+        if (boolean != null) {
+            view.visibilityOfBackIcon(boolean)
+        }
+    }
 
     //RECYCLERVIEW
     @BindingAdapter("setAdapter")

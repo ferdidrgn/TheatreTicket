@@ -30,7 +30,7 @@ class EditProfileViewModel @Inject constructor(private val userFirebaseQueries: 
     val toolbarText = MutableStateFlow("")
 
     val whichComeAction = MutableStateFlow(WhichEditProfile.LogIn)
-    val isAddUserActions = LiveEvent<Boolean?>()
+    var isAddUserActions = false
     var phoneNumberClickable = false
     var fullNameClickable = false
     val btnCstmDatePickerClick = LiveEvent<Boolean?>()
@@ -46,15 +46,15 @@ class EditProfileViewModel @Inject constructor(private val userFirebaseQueries: 
         fullNameClickable = ClientPreferences.inst.isGoogleSignIn == false
     }
 
-    fun getToolbarText() {
+    fun changeToolbarText() {
         when (whichComeAction.value) {
             WhichEditProfile.LogIn -> {
                 toolbarText.value = message(R.string.edit_profile)
-                isAddUserActions.postValue(false)
+                isAddUserActions = (false)
             }
             WhichEditProfile.Settings -> {
                 toolbarText.value = message(R.string.add_user_info)
-                isAddUserActions.postValue(true)
+                isAddUserActions = (true)
             }
         }
     }

@@ -87,7 +87,7 @@ class CustomToolbar : LinearLayout {
         }
     }
 
-    private fun visibilityOfBackIcon(isEnable: Boolean) {
+    fun visibilityOfBackIcon(isEnable: Boolean) {
         if (isEnable) {
             backIcon.show()
         } else {

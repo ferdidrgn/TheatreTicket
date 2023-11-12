@@ -37,7 +37,7 @@ class EditProfileActivity : BaseActivity<EditProfileViewModel, ActivityEditProfi
 
         val type = intent.getSerializableExtra(WHICH_EDIT_PROFILE) as WhichEditProfile
         viewModel.whichComeAction.value = type
-        viewModel.getToolbarText()
+        viewModel.changeToolbarText()
 
         viewModel.btnUpdateAccClick.observe(this) {
             if (it == true) updateOrDeleteInformationPopUp(this, true)

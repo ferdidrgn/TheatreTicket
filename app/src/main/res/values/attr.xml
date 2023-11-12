@@ -9,6 +9,7 @@
     <declare-styleable name="CustomNumberEditText">
         <attr name="cst_number_edit_text" format="string" />
         <attr name="cst_number_hint_text" format="string" />
+        <attr name="cst_number_add_plus" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="CustomButton">

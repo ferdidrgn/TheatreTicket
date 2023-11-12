@@ -1,8 +1,10 @@
 package com.ferdidrgn.theatreticket.tools.components
 
 import android.content.Context
+import android.text.Editable
 import android.text.InputFilter
 import android.text.InputType
+import android.text.TextWatcher
 import android.text.method.DigitsKeyListener
 import android.text.method.KeyListener
 import android.util.AttributeSet
@@ -37,10 +39,33 @@ class CustomNumberEditText : ConstraintLayout {
         val layoutAttribute =
             context.obtainStyledAttributes(attributeSet, R.styleable.CustomNumberEditText)
 
+        editTextViewAddPlus(
+            layoutAttribute.getBoolean(R.styleable.CustomNumberEditText_cst_number_add_plus, false)
+        )
+
         layoutAttribute.getString(R.styleable.CustomNumberEditText_cst_number_edit_text)
             ?.let { string -> setText(string) }
 
         hintText(layoutAttribute.getString(R.styleable.CustomNumberEditText_cst_number_hint_text))
+    }
+
+    private fun editTextViewAddPlus(isAddPlus: Boolean) {
+        if (isAddPlus) {
+            editTextView.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+
+                override fun afterTextChanged(s: Editable?) {
+                    if (s.toString().isNotEmpty() && s.toString().first() != '+') {
+                        editTextView.setText("+${s.toString()}")
+                        editTextView.setSelection(editTextView.text.length)
+                    }
+                }
+            })
+        }
     }
 
     fun setText(text: String) {

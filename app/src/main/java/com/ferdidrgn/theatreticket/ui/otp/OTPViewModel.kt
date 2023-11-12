@@ -51,8 +51,7 @@ class OTPViewModel @Inject constructor(
 
     fun checkPhoneNumber() {
         var isRequiredFieldsDone = true
-
-        if (phoneNumber.value.removeWhiteSpace().length != 13)
+        if (phoneNumber.value.removeWhiteSpace().length < 12)
             isRequiredFieldsDone = false
 
         if (isRequiredFieldsDone) {

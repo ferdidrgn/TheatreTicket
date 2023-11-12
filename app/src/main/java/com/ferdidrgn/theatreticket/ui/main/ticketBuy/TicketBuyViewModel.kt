@@ -164,7 +164,7 @@ class TicketBuyViewModel @Inject constructor(
                 fcmToken = ClientPreferences.inst.FCMtoken.toString(),
                 firstName = user?.firstName.toString(),
                 lastName = user?.lastName.toString(),
-                phoneNumber = user?.phoneNumber.removeWhiteSpace(),
+                phoneNumber = user?.phoneNumber?.removeWhiteSpace(),
                 age = age.value
             )
 
@@ -174,7 +174,7 @@ class TicketBuyViewModel @Inject constructor(
                 customerId = user?._id.toString(),
                 showId = "MockData",
                 customerFullName = user?.firstName.toString() + " " + user?.lastName.toString(),
-                customerPhone = user?.phoneNumber.removeWhiteSpace(),
+                customerPhone = user?.phoneNumber?.removeWhiteSpace(),
                 showName = "MockData",
                 showDate = "MockData",
                 showTime = "MockData",

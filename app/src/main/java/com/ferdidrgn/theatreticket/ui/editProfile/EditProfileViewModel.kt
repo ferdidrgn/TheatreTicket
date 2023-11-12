@@ -67,7 +67,7 @@ class EditProfileViewModel @Inject constructor(private val userFirebaseQueries: 
                 fullName.value = userFullName.toString()
                 firstName.value = userFirstName.toString()
                 lastName.value = userLastName.toString()
-                phoneNumber.value = userPhone.removeWhiteSpace()
+                phoneNumber.value = userPhone?.removeWhiteSpace().toString()
                 age.value = userAge.toString()
                 imgPhoto.value = userPhotoUrl.toString()
                 eMail.value = userEmail.toString()

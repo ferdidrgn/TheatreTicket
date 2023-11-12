@@ -1,5 +1,6 @@
 package com.ferdidrgn.theatreticket.ui.editProfile
 
+import android.net.Uri
 import androidx.lifecycle.MutableLiveData
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseViewModel
@@ -28,7 +29,8 @@ class EditProfileViewModel @Inject constructor(private val userFirebaseQueries: 
     val lastName = MutableStateFlow("")
     val phoneNumber = MutableStateFlow("")
     val age = MutableStateFlow("")
-    val imgPhoto = MutableStateFlow("")
+    val imageUrl = MutableStateFlow("")
+    val addOrUpdateImgUrl = MutableStateFlow<Uri?>(null)
     val eMail = MutableStateFlow("")
     val toolbarText = MutableStateFlow("")
     val userId = ClientPreferences.inst.userID
@@ -76,7 +78,7 @@ class EditProfileViewModel @Inject constructor(private val userFirebaseQueries: 
                             lastName.value = userLastName.toString()
                             phoneNumber.value = userPhone?.removeWhiteSpace().toString()
                             age.value = userAge.toString()
-                            imgPhoto.value = userPhotoUrl.toString()
+                            imageUrl.value = userPhotoUrl.toString()
                             eMail.value = userEmail.toString()
                         }
                         hideLoading()
@@ -96,7 +98,7 @@ class EditProfileViewModel @Inject constructor(private val userFirebaseQueries: 
                         lastName.value = userInfoList?.lastName.toString()
                         phoneNumber.value = userInfoList?.phoneNumber?.removeWhiteSpace().toString()
                         age.value = userInfoList?.age.toString()
-                        imgPhoto.value = userInfoList?.imgUrl.toString()
+                        imageUrl.value = userInfoList?.imgUrl.toString()
                         eMail.value = userInfoList?.eMail.toString()
 
                         hideLoading()
@@ -130,7 +132,8 @@ class EditProfileViewModel @Inject constructor(private val userFirebaseQueries: 
                 fullName = fullName.value,
                 phoneNumber = phoneNumber.value.removeWhiteSpace(),
                 age = age.value,
-                imgUrl = imgPhoto.value,
+                imgUrl = imageUrl.value,
+                addOrUpdateImgUrl = addOrUpdateImgUrl.value,
                 eMail = eMail.value
             )
 
@@ -145,7 +148,7 @@ class EditProfileViewModel @Inject constructor(private val userFirebaseQueries: 
                             userFullName = fullName.value
                             userPhone = phoneNumber.value.removeWhiteSpace()
                             userAge = age.value
-                            userPhotoUrl = imgPhoto.value
+                            userPhotoUrl = imageUrl.value
                             userEmail = eMail.value
                         }
 

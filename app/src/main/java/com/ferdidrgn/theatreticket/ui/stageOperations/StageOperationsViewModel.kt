@@ -93,7 +93,25 @@ class StageOperationsViewModel @Inject constructor(private val stageFirebaseQuer
         }
     }
 
-    private fun updateStage() {}
+    private fun updateStage() {
+        showLoading()
+        mainScope {
+            updateOrAddStageData?.let { stage ->
+                stageFirebaseQueries.updateStage(stage) { status ->
+                    when (status) {
+                        true -> {
+                            hideLoading()
+                            successMessage.postValue(message(R.string.success_update_stage))
+                        }
+                        false -> {
+                            hideLoading()
+                            errorMessage.postValue(message(R.string.error_server))
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     private fun addStage() {
         showLoading()

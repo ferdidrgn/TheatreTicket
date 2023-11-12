@@ -9,12 +9,13 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 
 class UserFirebaseQueries {
 
     private val fireStoreUserRef = Firebase.firestore.collection("User")
-
+    var storageRef = Firebase.storage.reference
     fun currentUserId(): String? {
         return FirebaseAuth.getInstance().uid
     }
@@ -30,65 +31,92 @@ class UserFirebaseQueries {
     }
 
     fun addUser(user: User?, status: (Boolean) -> Unit) {
-        val userMap = HashMap<String, Any>()
-        userMap["_createdAt"] = Timestamp.now()
-        userMap["_id"] = user?._id.toString()
-        userMap["firstName"] = user?.firstName.toString()
-        userMap["lastName"] = user?.lastName.toString()
-        userMap["fullName"] = user?.fullName.toString()
-        userMap["phoneNumber"] = user?.phoneNumber.toString()
-        userMap["photoUrl"] = user?.addOrUpdateImg.toString()
-        userMap["isActivite"] = user?.isActivite.toString().toBoolean()
-        userMap["age"] = user?.age.toString()
-        userMap["eMail"] = user?.eMail.toString()
-        userMap["fcmToken"] = user?.fcmToken.toString()
-        userMap["role"] = user?.role.toString()
+        val imageName = "UserImages/${user?._id}.jpg"
+        val imagesRef = storageRef.child(imageName)
 
-        fireStoreUserRef.add(userMap).addOnSuccessListener {
-            status.invoke(true)
-        }.addOnFailureListener {
-            status.invoke(false)
+        if (user?.imgUrl != null) {
+            imagesRef.putFile(user.addOrUpdateImgUrl!!).addOnSuccessListener {
+                Firebase.storage.reference.child(imageName).downloadUrl.addOnSuccessListener { uri ->
+                    val downloadUrl = uri.toString()
+                    val userMap = HashMap<String, Any>()
+                    userMap["_createdAt"] = Timestamp.now()
+                    userMap["_id"] = user?._id.toString()
+                    userMap["firstName"] = user?.firstName.toString()
+                    userMap["lastName"] = user?.lastName.toString()
+                    userMap["fullName"] = user?.fullName.toString()
+                    userMap["phoneNumber"] = user?.phoneNumber.toString()
+                    userMap["photoUrl"] = downloadUrl
+                    userMap["isActivite"] = user?.isActivite.toString().toBoolean()
+                    userMap["age"] = user?.age.toString()
+                    userMap["eMail"] = user?.eMail.toString()
+                    userMap["fcmToken"] = user?.fcmToken.toString()
+                    userMap["role"] = user?.role.toString()
+
+                    fireStoreUserRef.add(userMap).addOnSuccessListener {
+                        status.invoke(true)
+                    }.addOnFailureListener {
+                        status.invoke(false)
+                    }
+                }.addOnFailureListener { status.invoke(false) }
+            }.addOnFailureListener {
+                status.invoke(false)
+            }
         }
     }
 
     fun updateOrAddUser(user: User?, status: (Boolean) -> Unit) {
         var documentId = ""
-        fireStoreUserRef.whereEqualTo("_id", user?._id).get().addOnSuccessListener { result ->
-            if (result.isEmpty) {
-                addUser(user) { response ->
-                    when (response) {
-                        true -> status.invoke(true)
-                        false -> status.invoke(false)
-                    }
-                }
-            } else {
-                if (result != null) {
-                    val documents = result.documents
-                    for (document in documents) {
-                        documentId = document.id
-                    }
-                    updateUser(user, documentId) { response ->
+        fireStoreUserRef.whereEqualTo("_id", user?._id).get()
+            .addOnSuccessListener { result ->
+                if (result.isEmpty) {
+                    addUser(user) { response ->
                         when (response) {
                             true -> status.invoke(true)
                             false -> status.invoke(false)
                         }
                     }
+                } else {
+                    if (result != null) {
+                        val documents = result.documents
+                        for (document in documents) {
+                            documentId = document.id
+                        }
+                        updateUser(user, documentId) { response ->
+                            when (response) {
+                                true -> status.invoke(true)
+                                false -> status.invoke(false)
+                            }
+                        }
+                    }
                 }
+            }.addOnFailureListener {
+                status.invoke(false)
             }
-        }.addOnFailureListener {
-            status.invoke(false)
-        }
     }
 
     fun updateUser(user: User?, documentId: String, status: (Boolean) -> Unit) {
 
+        val imageName = "UserImages/${user?._id}.jpg"
+        val imagesRef = storageRef.child(imageName)
+        var downloadUrl = ""
+
+        if (user?.addOrUpdateImgUrl != null) {
+            imagesRef.putFile(user.addOrUpdateImgUrl!!).addOnSuccessListener {
+                Firebase.storage.reference.child(imageName).downloadUrl.addOnSuccessListener { uri ->
+                    downloadUrl = uri.toString()
+                }
+            }.addOnFailureListener {
+                status.invoke(false)
+            }
+        }
+
         val userMap = HashMap<String, Any>()
         userMap["_updatedAt"] = Timestamp.now()
+        userMap["fullName"] = user?.fullName.toString()
         userMap["firstName"] = user?.firstName.toString()
         userMap["lastName"] = user?.lastName.toString()
-        userMap["fullName"] = user?.fullName.toString()
         userMap["phoneNumber"] = user?.phoneNumber.toString()
-        userMap["photoUrl"] = user?.addOrUpdateImg.toString()
+        userMap["photoUrl"] = downloadUrl
         userMap["isActivite"] = user?.isActivite.toString().toBoolean()
         userMap["age"] = user?.age.toString()
         userMap["eMail"] = user?.eMail.toString()
@@ -98,17 +126,9 @@ class UserFirebaseQueries {
         fireStoreUserRef.document(documentId).update(userMap)
             .addOnSuccessListener {
                 status.invoke(true)
-            }.addOnFailureListener { exception ->
-                println("Veri güncelleme başarısız! Hata: ${exception.message}")
+            }.addOnFailureListener {
                 status.invoke(false)
             }
-
-        /*fireStoreUserRef.document(user?._id.toString()).update(userMap).addOnSuccessListener {
-            status.invoke(true)
-        }.addOnFailureListener {
-            status.invoke(false)
-        }*/
-
     }
 
     fun checkPhoneNumber(user: User?, status: (Response, User?) -> Unit) {

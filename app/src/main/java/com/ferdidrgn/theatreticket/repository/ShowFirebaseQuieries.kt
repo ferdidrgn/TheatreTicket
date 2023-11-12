@@ -130,28 +130,44 @@ class ShowFirebaseQuieries {
     }
 
     fun updateShow(show: Show?, status: (Boolean) -> Unit) {
+        var downloadUrl = ""
+        var documentId = ""
+        fireStoreShowRef.whereEqualTo("_id", show?._id).get()
+            .addOnSuccessListener { result ->
+                if (result != null) {
+                    val documents = result.documents
+                    for (document in documents) {
+                        documentId = document.id
+                    }
+                }
+            }.addOnFailureListener {
+                status.invoke(false)
+            }
+
+        val imageName = "ShowImages/${show?._id}.jpg"
+        val imagesRef = storageRef.child(imageName)
+        if (show?.addOrUpdateImgUrl != null) {
+            imagesRef.putFile(show.addOrUpdateImgUrl!!).addOnSuccessListener {
+                Firebase.storage.reference.child(imageName).downloadUrl.addOnSuccessListener { uri ->
+                    downloadUrl = uri.toString()
+                }.addOnFailureListener { status.invoke(false) }
+            }.addOnFailureListener { status.invoke(false) }
+        }
+
         val newShowMap = mapOf(
             "_createdAt" to Timestamp.now(),
             "name" to show?.name.toString(),
             "description" to show?.description.toString(),
-            "imageUrl" to show?.addOrUpdateImgUrl.toString(),
+            "imageUrl" to downloadUrl,
             "date" to show?.date.toString(),
             "price" to show?.price.toString(),
             "ageLimit" to show?.ageLimit.toString()
         )
-
-        fireStoreShowRef.whereEqualTo("name", show?.name)
-            .whereEqualTo("_id", show?._id)
-            .get()
-            .addOnSuccessListener { documents ->
-                for (document in documents) {
-                    fireStoreShowRef.document(document.id).set(newShowMap, SetOptions.merge())
-                        .addOnSuccessListener {
-                            status.invoke(true)
-                        }.addOnFailureListener {
-                            status.invoke(false)
-                        }
-                }
+        fireStoreShowRef.document(documentId).update(newShowMap)
+            .addOnSuccessListener {
+                status.invoke(true)
+            }.addOnFailureListener {
+                status.invoke(false)
             }
     }
 

@@ -1,5 +1,6 @@
 package com.ferdidrgn.theatreticket.repository
 
+import android.net.Uri
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Show
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Stage
 import com.ferdidrgn.theatreticket.enums.Response
@@ -208,5 +209,53 @@ class StageFirebaseQueries {
                     status.invoke(Response.ServerError, null)
                 }
         }
+    }
+
+    fun updateStage(stage: Stage?, status: (Boolean) -> Unit) {
+
+        val imageName = "ShowImages/${stage?._id}.jpg"
+        val imagesRef = storageRef.child(imageName)
+        var downloadUrl = ""
+        var documentId = ""
+        fireStoreStageRef.whereEqualTo("_id", stage?._id).get()
+            .addOnSuccessListener { result ->
+                if (result != null) {
+                    val documents = result.documents
+                    for (document in documents) {
+                        documentId = document.id
+                    }
+                }
+            }.addOnFailureListener { status.invoke(false) }
+
+        if (stage?.addOrUpdateImgUrl != null) {
+            imagesRef.putFile(stage?.addOrUpdateImgUrl!!).addOnSuccessListener {
+                Firebase.storage.reference.child(imageName).downloadUrl.addOnSuccessListener { uri ->
+                    downloadUrl = uri.toString()
+                }.addOnFailureListener { status.invoke(false) }
+            }.addOnFailureListener { status.invoke(false) }
+        }
+
+        val newShowMap = mapOf(
+            "_createdAt" to Timestamp.now(),
+            "_id" to stage?._id.toString(),
+            "name" to stage?.name.toString(),
+            "imgUrl" to downloadUrl,
+            "capacity" to stage?.capacity.toString(),
+            "description" to stage?.description.toString(),
+            "communication" to stage?.communication.toString(),
+            "address" to stage?.address.toString(),
+            "locationLat" to stage?.locationLat.toString(),
+            "locationLng" to stage?.locationLng.toString(),
+            "seatId" to stage?.seatId.toString(),
+            "seatColumnCount" to stage?.seatColumnCount.toString(),
+            "seatRowCount" to stage?.seatRowCount.toString()
+
+        )
+        fireStoreStageRef.document(documentId).update(newShowMap)
+            .addOnSuccessListener {
+                status.invoke(true)
+            }.addOnFailureListener {
+                status.invoke(false)
+            }
     }
 }

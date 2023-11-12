@@ -195,25 +195,12 @@ class UserFirebaseQueries {
                                 if (document.get("phoneNumber") != null) document.get("phoneNumber") as String else ""
                             userFirstName =
                                 if (document.get("firstName") != null) document.get("firstName") as String else ""
-                            if (userFirstName.isEmpty().not()) {
-                                if (userFirstName != user?.firstName)
-                                    notEqual = true; break@notEqual
-                            }
 
                             userLastName =
                                 if (document.get("lastName") != null) document.get("lastName") as String else ""
-                            if (userLastName.isEmpty().not()) {
-                                if (userLastName != user?.lastName)
-                                    notEqual = true; break@notEqual
-                            }
 
                             val fullName =
                                 if (document.get("fullName") != null) document.get("fullName") as String else ""
-
-                            if (fullName.isEmpty().not()) {
-                                if (fullName != user?.fullName)
-                                    notEqual = true; break@notEqual
-                            }
 
                             val isActivite =
                                 if (document.get("isActivite") != null) document.get("isActivite") as Boolean else false

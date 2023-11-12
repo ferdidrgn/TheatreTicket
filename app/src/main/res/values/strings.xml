@@ -55,6 +55,7 @@
     <string name="ADS_BANNER_STAGE_OPERATIONS_ACTVTY_REAL" translatable="false">ca-app-pub-5779807348211992/4062423573</string>
     <string name="ADS_BANNER_STAGE_OPERATIONS_BOTTOM_ACTVTY_REAL" translatable="false">ca-app-pub-5779807348211992/9735769698</string>
     <string name="ADS_BANNER_STAGE_ACTVTY_REAL" translatable="false">ca-app-pub-5779807348211992/9530673997</string>
+    <string name="ADS_BANNER_OTP_ACTVTY_REAL" translatable="false">ca-app-pub-5779807348211992/7027568070</string>
 
 
     <!--    QUERY -->
@@ -92,6 +93,7 @@
 
     <string name="search_for_buy_ticket">Alımları Sorgula</string>
     <string name="age">Yaş</string>
+    <string name="age_optional">Yaş (Opsiyonal)</string>
     <string name="price">Ücret</string>
     <string name="select_time">Saat Seç</string>
     <string name="select_date">Tarih Seç</string>
@@ -102,7 +104,7 @@
     <string name="show_desc">Gösteri Tanımı</string>
     <string name="age_limit">Yaş Sınırı</string>
     <string name="choose_image">Fotoğraf Seç</string>
-    <string name="date_hours">Tarih-Saat</string>
+    <string name="date">Tarih</string>
     <string name="show_add">Gösteri Ekle</string>
     <string name="show_update">Gösteriyi Güncelle</string>
 
@@ -166,6 +168,8 @@
     <string name="terms_condition">Koşullar&amp;Şartlar</string>
     <string name="guest">Misafir</string>
     <string name="thank_you_for_review">Yorumunuz için Teşekkür ederiz</string>
+    <string name="eMail_optional">E-Mail (Opsiyonel)</string>
+    <string name="add_user_info">Birkaç Bilgilierinizi Doldurun</string>
 
 
     <!--    Show Details -->
@@ -179,16 +183,21 @@
     <!--    CustomNumberEditText -->
     <string name="numbersKey" translatable="false">1234567890</string>
 
+    <string name="http_maps" translatable="false">http://maps.google.com/maps?q=loc:</string>
+    <string name="package_google_map" translatable="false">com.google.android.apps.maps</string>
+    <string name="class_google_maps" translatable="false">com.google.android.maps.MapsActivity</string>
+
     <!--    Login Activity -->
     <string name="sign_up_google">Google ile Giriş Yap</string>
     <string name="sign_up_phone_number">Telefon Numarası ile Giriş Yap</string>
     <string name="signed_in_as">Giriş Yapıldı</string>
     <string name="sign_in">Giriş Yap</string>
     <string name="get_directions">Yol Tarifi Al</string>
-
-    <string name="http_maps" translatable="false">http://maps.google.com/maps?q=loc:</string>
-    <string name="package_google_map" translatable="false">com.google.android.apps.maps</string>
-    <string name="class_google_maps" translatable="false">com.google.android.maps.MapsActivity</string>
+    <string name="code_enter">Kodu Gir</string>
+    <string name="code_send">Kod Gönder</string>
+    <string name="resend_code">Kodu Tekrar Gönder</string>
+    <string name="code_send_success">Kod Gönderme Başarılı</string>
+    <string name="sms_remain_time">You can resend the code within <b>%1$s </b>seconds.</string>
 
 
 </resources>

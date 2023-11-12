@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.ferdidrgn.theatreticket.ui.otp.OTPViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.otp.OTPActivity">
+
+        <com.ferdidrgn.theatreticket.tools.components.CustomToolbar
+            android:id="@+id/customToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cst_toolbar_backIcon_visible="true"
+            app:cst_toolbar_text="@string/sign_up_phone_number"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/BANNER_ADS_TEST"
+            ads:layout_constraintEnd_toEndOf="parent"
+            ads:layout_constraintStart_toStartOf="parent"
+            ads:layout_constraintTop_toBottomOf="@id/customToolbar" />
+
+        <com.ferdidrgn.theatreticket.tools.components.CustomPhoneEditText
+            android:id="@+id/etPhoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="5dp"
+            android:textAlignment="textStart"
+            app:cst_phone_text="@={viewModel.phoneNumber}"
+            app:layout_constraintTop_toBottomOf="@id/adView" />
+
+        <com.ferdidrgn.theatreticket.tools.components.CustomButton
+            android:id="@+id/btnSendCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:onClick="@{()->viewModel.onSendCode()}"
+            android:visibility="@{viewModel.sendButtonVisibility ? View.VISIBLE : View.GONE}"
+            app:cst_btn_name="@string/code_send"
+            app:layout_constraintTop_toBottomOf="@id/etPhoneNumber" />
+
+        <com.ferdidrgn.theatreticket.tools.components.CustomNumberEditText
+            android:id="@+id/etCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="5dp"
+            android:textAlignment="textStart"
+            android:visibility="@{viewModel.sendButtonVisibility ? View.GONE : View.VISIBLE}"
+            app:cst_number_changeable_edit_text="@={viewModel.otp}"
+            app:cst_number_hint_text="@string/code_enter"
+            app:layout_constraintTop_toBottomOf="@id/btnSendCode" />
+
+        <TextView
+            android:id="@+id/tvResend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_weight="10"
+            android:gravity="center"
+            app:changeText="@{viewModel.timerFinished ? @string/resend_code : @string/sms_remain_time(viewModel.timerText)}"
+            app:isTextClickable="@{viewModel.timerFinished}"
+            app:layout_constraintTop_toBottomOf="@id/etCode" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

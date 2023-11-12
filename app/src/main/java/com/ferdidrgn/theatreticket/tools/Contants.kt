@@ -34,6 +34,7 @@ const val REVIEW_COUNT = "review count"
 
 const val TO_MAIN = "TO_MAIN"
 const val WHICH_TERMS_PRIVACE = "WHICH_TERMS_PRIVACE"
+const val WHICH_EDIT_PROFILE = "WHICH_EDIT_PROFILE"
 const val IS_SETTINGS_CLICKED_LOG_IN = "IS_SETTINGS_CLICKED_LOG_IN"
 const val SHOW = "show"
 const val SHOW_ID = "show_id"

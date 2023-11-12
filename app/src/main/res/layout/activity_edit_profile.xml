@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="com.ferdidrgn.theatreticket.ui.editProfile.EditProfileViewModel" />
@@ -17,6 +19,13 @@
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
         android:orientation="vertical">
+
+        <com.ferdidrgn.theatreticket.tools.components.CustomToolbar
+            android:id="@+id/toolbar"
+            custom_toolbar_changeable_text="@{viewModel.toolbarText}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" />
 
         <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
             android:id="@+id/adView"
@@ -87,15 +96,17 @@
                     android:layout_marginTop="5dp"
                     android:onClick="@{()-> viewModel.onCstmDatePickerClick()}"
                     android:textAlignment="textStart"
+                    app:cst_date_picker_hint_text="@string/age_optional"
                     app:cst_picker_changeable_text="@={viewModel.age}" />
 
-                <com.ferdidrgn.theatreticket.tools.components.CustomPhoneEditText
+                <com.ferdidrgn.theatreticket.tools.components.CustomEditText
                     android:id="@+id/etEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:textAlignment="textStart"
-                    app:cst_phone_text="@={viewModel.eMail}" />
+                    app:cst_phone_text="@={viewModel.eMail}"
+                    app:custom_edit_hint="@string/eMail_optional" />
 
                 <com.ferdidrgn.theatreticket.tools.components.CustomButton
                     android:layout_width="match_parent"
@@ -112,6 +123,7 @@
                     android:layout_marginTop="30dp"
                     android:onClick="@{() -> viewModel.onDeleteAccount()}"
                     android:padding="10dp"
+                    android:visibility="@{viewModel.isAddUserActions ? View.GONE : View.VISIBLE}"
                     app:cst_btn_name="@string/acc_delete" />
 
             </LinearLayout>

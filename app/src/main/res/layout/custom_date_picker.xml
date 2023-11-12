@@ -9,7 +9,7 @@
         style="@style/rounded_primary2_10_border_primary3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/date_hours"
+        android:hint="@string/date"
         android:padding="16dp"
         android:textColor="@color/primary7"
         android:textColorHint="@color/primary7"

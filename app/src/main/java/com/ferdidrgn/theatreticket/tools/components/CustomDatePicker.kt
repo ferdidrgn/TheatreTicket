@@ -40,11 +40,18 @@ class CustomDatePicker : LinearLayout {
         inflate(context, R.layout.custom_date_picker, this)
         customDatePicker = findViewById(R.id.llCustomDatePicker)
         tvSelectedDate = findViewById(R.id.tvSelectedDate)
+        val layoutAttribute =
+            context.obtainStyledAttributes(attributeSet, R.styleable.CustomDatePicker)
+        hintText(layoutAttribute.getString(R.styleable.CustomDatePicker_cst_date_picker_hint_text))
 
     }
 
     init {
         getDate()
+    }
+
+    private fun hintText(text: String?) {
+        tvSelectedDate.hint = text
     }
 
     fun setCustomDataPickerClick() {

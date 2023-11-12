@@ -28,4 +28,8 @@
         <attr name="cst_phone_icon_visibility" format="boolean" />
     </declare-styleable>
 
+    <declare-styleable name="CustomDatePicker">
+        <attr name="cst_date_picker_hint_text" format="string" />
+    </declare-styleable>
+
 </resources>

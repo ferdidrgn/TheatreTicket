@@ -34,10 +34,10 @@ class CustomEditText : ConstraintLayout {
         val layoutAttribute =
             context.obtainStyledAttributes(attributeSet, R.styleable.CustomEditText)
 
-        visibilityHintText(layoutAttribute.getString(R.styleable.CustomEditText_custom_edit_hint))
+        hintText(layoutAttribute.getString(R.styleable.CustomEditText_custom_edit_hint))
     }
 
-    private fun visibilityHintText(text: String?) {
+    private fun hintText(text: String?) {
         tlEditText.hint = text
     }
 

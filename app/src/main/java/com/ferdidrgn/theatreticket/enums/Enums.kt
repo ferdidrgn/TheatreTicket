@@ -9,6 +9,8 @@ enum class ToMain { Home, TicketBuy, TicketSearch, Settings }
 
 enum class WhichTermsAndPrivace { TermsAndCondtion, PrivaceAndPolicy }
 
+enum class WhichEditProfile { LogIn, Settings }
+
 enum class Response { Empty, ServerError, ThereIs, NotEqual }
 
 enum class ID(val id: String) {

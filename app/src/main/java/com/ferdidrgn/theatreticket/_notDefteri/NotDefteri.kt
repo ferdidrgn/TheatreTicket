@@ -6,7 +6,6 @@ class NotDefteri {
     //Custom toolbar ayarla, cstdatautil fun ekle
     // firebase update image update
     //logout dark mode olmadı
-    //mock dataları düzelt 1 tane kaldı
     //firebase repository kodlarını düzelt
     //phone login yap
     //**guest girince  ve çıkınca fxm token nası işliyor kontrol et
@@ -15,5 +14,11 @@ class NotDefteri {
     //** bilet 2 kere tıklanınca 2. de çalışıyor çünkü null değer
 
     //***WEB kopunca pop up getir refresh ya da cloase app
+
+
+    //EN SON APK da
+
+    //mock dataları düzelt 1 tane kaldı settingste
+    //reklam id leri gerçekleri koy
 
 }

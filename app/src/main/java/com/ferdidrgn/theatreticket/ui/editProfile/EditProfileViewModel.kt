@@ -5,6 +5,7 @@ import com.ferdidrgn.theatreticket.base.BaseViewModel
 import com.ferdidrgn.theatreticket.commonModels.dummyData.User
 import com.ferdidrgn.theatreticket.enums.ID
 import com.ferdidrgn.theatreticket.enums.Roles
+import com.ferdidrgn.theatreticket.enums.WhichEditProfile
 import com.ferdidrgn.theatreticket.repository.UserFirebaseQueries
 import com.ferdidrgn.theatreticket.tools.ClientPreferences
 import com.ferdidrgn.theatreticket.tools.helpers.LiveEvent
@@ -26,7 +27,10 @@ class EditProfileViewModel @Inject constructor(private val userFirebaseQueries: 
     val age = MutableStateFlow("")
     val imgPhoto = MutableStateFlow("")
     val eMail = MutableStateFlow("")
+    val toolbarText = MutableStateFlow("")
 
+    val whichComeAction = MutableStateFlow(WhichEditProfile.LogIn)
+    val isAddUserActions = LiveEvent<Boolean?>()
     val btnCstmDatePickerClick = LiveEvent<Boolean?>()
     val btnUpdateAccClick = LiveEvent<Boolean?>()
     val btnDeleteAccountClick = LiveEvent<Boolean?>()
@@ -36,6 +40,19 @@ class EditProfileViewModel @Inject constructor(private val userFirebaseQueries: 
 
     init {
         getUser()
+    }
+
+    fun getToolbarText() {
+        when (whichComeAction.value) {
+            WhichEditProfile.LogIn -> {
+                toolbarText.value = message(R.string.edit_profile)
+                isAddUserActions.postValue(false)
+            }
+            WhichEditProfile.Settings -> {
+                toolbarText.value = message(R.string.add_user_info)
+                isAddUserActions.postValue(true)
+            }
+        }
     }
 
     private fun getUser() {
@@ -158,12 +175,7 @@ class EditProfileViewModel @Inject constructor(private val userFirebaseQueries: 
             message = message(R.string.error_phone_little)
         }
 
-        if (age.value.isEmpty()) {
-            isRequiredFieldsDone = false
-            message = message(R.string.error_little_things)
-        }
-
-        if (eMail.value.isEmpty() || !isEmailValid(eMail.value)) {
+        if (eMail.value.isNotEmpty() && !isEmailValid(eMail.value)) {
             isRequiredFieldsDone = false
             message = message(R.string.error_email)
         }

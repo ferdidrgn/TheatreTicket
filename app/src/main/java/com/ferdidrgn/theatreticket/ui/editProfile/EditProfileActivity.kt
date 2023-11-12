@@ -7,11 +7,8 @@ import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseActivity
 import com.ferdidrgn.theatreticket.base.BasePopUp
 import com.ferdidrgn.theatreticket.databinding.ActivityEditProfileBinding
-import com.ferdidrgn.theatreticket.tools.ClientPreferences
-import com.ferdidrgn.theatreticket.tools.NavHandler
-import com.ferdidrgn.theatreticket.tools.builderADS
-import com.ferdidrgn.theatreticket.tools.showToast
-import com.ferdidrgn.theatreticket.ui.main.MainActivity
+import com.ferdidrgn.theatreticket.enums.WhichEditProfile
+import com.ferdidrgn.theatreticket.tools.*
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -37,6 +34,10 @@ class EditProfileActivity : BaseActivity<EditProfileViewModel, ActivityEditProfi
     }
 
     private fun observe() {
+
+        val type = intent.getSerializableExtra(WHICH_EDIT_PROFILE) as WhichEditProfile
+        viewModel.whichComeAction.value = type
+        viewModel.getToolbarText()
 
         viewModel.btnUpdateAccClick.observe(this) {
             if (it == true) updateOrDeleteInformationPopUp(this, true)

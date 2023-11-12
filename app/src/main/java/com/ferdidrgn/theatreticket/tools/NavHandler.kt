@@ -7,6 +7,7 @@ import androidx.core.app.ActivityCompat.finishAffinity
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Show
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Stage
 import com.ferdidrgn.theatreticket.enums.ToMain
+import com.ferdidrgn.theatreticket.enums.WhichEditProfile
 import com.ferdidrgn.theatreticket.enums.WhichTermsAndPrivace
 import com.ferdidrgn.theatreticket.ui.editProfile.EditProfileActivity
 import com.ferdidrgn.theatreticket.ui.termsAndConditionsAndPrivacePolicy.TermsAndConditionsandPrivacePolicyActivity
@@ -95,9 +96,12 @@ class NavHandler {
         context.startActivity(intent)
     }
 
-    fun toEditProfileActivity(context: Context) {
+    fun toEditProfileActivity(
+        context: Context, whichEditProfile: WhichEditProfile
+    ) {
         val intent = Intent(context, EditProfileActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+        intent.putExtra(WHICH_EDIT_PROFILE, whichEditProfile)
         context.startActivity(intent)
     }
 

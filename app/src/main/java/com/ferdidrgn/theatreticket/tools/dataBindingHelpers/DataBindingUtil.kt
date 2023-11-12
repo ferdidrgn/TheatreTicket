@@ -1,6 +1,12 @@
 package com.ferdidrgn.theatreticket.tools.dataBindingHelpers
 
+import android.content.res.ColorStateList
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.widget.ImageView
+import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +21,22 @@ object DataBindingUtil {
     @BindingAdapter("imageUrl")
     fun downloadImage(view: ImageView, url: String?) {
         view.downloadFromUrl(url)
+    }
+
+    @JvmStatic
+    @BindingAdapter(
+        value = ["changeText", "isTextClickable"],
+        requireAll = false
+    )
+    fun changeText(
+        view: TextView,
+        text: String?,
+        boolean: Boolean?
+    ) {
+        if (boolean != null) {
+            view.isClickable = boolean
+        }
+        view.text = text
     }
 
 

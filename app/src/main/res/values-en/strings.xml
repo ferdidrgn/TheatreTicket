@@ -68,6 +68,7 @@
     <string name="seat_row_count">Seat Row Count</string>
     <string name="search_for_buy_ticket">Search Buy Ticket</string>
     <string name="age">Age</string>
+    <string name="age_optional">Age (Optional)</string>
     <string name="price">Price</string>
     <string name="select_time">Select Time</string>
     <string name="select_date">Select Date</string>
@@ -78,7 +79,7 @@
     <string name="show_desc">Show Description</string>
     <string name="age_limit">Age Limit</string>
     <string name="choose_image">Choose Image</string>
-    <string name="date_hours">Date - Hours</string>
+    <string name="date">Date</string>
     <string name="show_add">Show Add</string>
     <string name="show_update">Show Update</string>
 
@@ -142,6 +143,8 @@
     <string name="terms_condition">Term&amp;Condition</string>
     <string name="guest">Guest</string>
     <string name="thank_you_for_review">Thank you for your review</string>
+    <string name="eMail_optional">E-Mail (Optional)</string>
+    <string name="add_user_info">Fill Tn the Same Informations</string>
 
     <!--    Show Details -->
     <string name="show_details">Show Details</string>
@@ -157,5 +160,10 @@
     <string name="signed_in_as">Signed in as</string>
     <string name="sign_in">Sign In</string>
     <string name="get_directions">Get Directions</string>
+    <string name="code_enter">Enter Code</string>
+    <string name="code_send">Send Code</string>
+    <string name="resend_code">Resend Code</string>
+    <string name="code_send_success">Send Code Success</string>
+    <string name="sms_remain_time">You can resend the code within <b>%1$s </b>seconds.</string>
 
 </resources>

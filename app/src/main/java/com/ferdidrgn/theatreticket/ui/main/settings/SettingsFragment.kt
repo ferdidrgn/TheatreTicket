@@ -12,6 +12,7 @@ import com.ferdidrgn.theatreticket.base.BaseFragment
 import com.ferdidrgn.theatreticket.base.BasePopUp
 import com.ferdidrgn.theatreticket.databinding.FragmentSettingsBinding
 import com.ferdidrgn.theatreticket.enums.ToMain
+import com.ferdidrgn.theatreticket.enums.WhichEditProfile
 import com.ferdidrgn.theatreticket.enums.WhichTermsAndPrivace
 import com.ferdidrgn.theatreticket.tools.*
 import com.ferdidrgn.theatreticket.ui.main.MainActivity
@@ -53,7 +54,7 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
     private fun clickEvents() {
 
         viewModel.btnEditProfileClicked.observe(viewLifecycleOwner) {
-            NavHandler.instance.toEditProfileActivity(requireContext())
+            NavHandler.instance.toEditProfileActivity(requireContext(), WhichEditProfile.Settings)
         }
         viewModel.btnSellTicketClicked.observe(viewLifecycleOwner) {
             NavHandler.instance.toMainActivity(requireContext(), ToMain.TicketBuy)

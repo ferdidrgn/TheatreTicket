@@ -1,6 +1,7 @@
 package com.ferdidrgn.theatreticket.ui.otp
 
 import android.app.Activity
+import android.content.Context
 import android.os.CountDownTimer
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseViewModel
@@ -32,13 +33,24 @@ class OTPViewModel @Inject constructor(
     val otp = MutableStateFlow("")
 
     val sendOtp = LiveEvent<Boolean?>()
-    val sendButtonVisibility = MutableStateFlow(false)
+    val sendButtonVisibility = MutableStateFlow(true)
     val goToUserProfile = LiveEvent<Boolean?>()
     val timerFinished = MutableStateFlow(false)
     val timerText = MutableStateFlow("")
+
     var time = 80
     lateinit var timer: CountDownTimer
+    val countryCode = MutableStateFlow("")
+    val countryCodeList = MutableStateFlow<List<String>>(arrayListOf())
 
+    fun selectCountryCode(context: Context) {
+        mainScope {
+            context.resources.getStringArray(R.array.phone_codes).let { list ->
+                countryCodeList.emit(list.toList())
+                countryCode.emit(list.first().toString())
+            }
+        }
+    }
 
     fun checkPhoneNumber() {
         var isRequiredFieldsDone = true
@@ -48,7 +60,7 @@ class OTPViewModel @Inject constructor(
 
         if (isRequiredFieldsDone) {
             sendOtp.postValue(true)
-            sendButtonVisibility.value = true
+            sendButtonVisibility.value = false
         } else
             errorMessage.postValue(message(R.string.error_phone_little))
     }

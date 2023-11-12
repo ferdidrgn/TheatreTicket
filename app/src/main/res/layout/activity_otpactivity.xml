@@ -13,6 +13,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/ScreenBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.otp.OTPActivity">
@@ -36,48 +37,78 @@
             ads:layout_constraintStart_toStartOf="parent"
             ads:layout_constraintTop_toBottomOf="@id/customToolbar" />
 
-        <com.ferdidrgn.theatreticket.tools.components.CustomPhoneEditText
-            android:id="@+id/etPhoneNumber"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="5dp"
-            android:textAlignment="textStart"
-            app:cst_phone_text="@={viewModel.phoneNumber}"
-            app:layout_constraintTop_toBottomOf="@id/adView" />
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/adView">
 
-        <com.ferdidrgn.theatreticket.tools.components.CustomButton
-            android:id="@+id/btnSendCode"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
-            android:onClick="@{()->viewModel.onSendCode()}"
-            android:visibility="@{viewModel.sendButtonVisibility ? View.VISIBLE : View.GONE}"
-            app:cst_btn_name="@string/code_send"
-            app:layout_constraintTop_toBottomOf="@id/etPhoneNumber" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3">
 
-        <com.ferdidrgn.theatreticket.tools.components.CustomNumberEditText
-            android:id="@+id/etCode"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="5dp"
-            android:textAlignment="textStart"
-            android:visibility="@{viewModel.sendButtonVisibility ? View.GONE : View.VISIBLE}"
-            app:cst_number_changeable_edit_text="@={viewModel.otp}"
-            app:cst_number_hint_text="@string/code_enter"
-            app:layout_constraintTop_toBottomOf="@id/btnSendCode" />
+                <com.ferdidrgn.theatreticket.tools.components.CustomPhoneCodeSpinner
+                    android:id="@+id/spnCustom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="30dp"
+                    android:layoutDirection="ltr"
+                    app:cst_phone_code_hint_text="@string/zip_code"
+                    app:item_value="@={viewModel.countryCode}"
+                    app:layout_constraintBottom_toBottomOf="@id/etPhoneNumber"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/etPhoneNumber"
+                    app:setArrayList="@{viewModel.countryCodeList}" />
 
-        <TextView
-            android:id="@+id/tvResend"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
-            android:layout_weight="10"
-            android:gravity="center"
-            app:changeText="@{viewModel.timerFinished ? @string/resend_code : @string/sms_remain_time(viewModel.timerText)}"
-            app:isTextClickable="@{viewModel.timerFinished}"
-            app:layout_constraintTop_toBottomOf="@id/etCode" />
+                <com.ferdidrgn.theatreticket.tools.components.CustomPhoneEditText
+                    android:id="@+id/etPhoneNumber"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="30dp"
+                    android:textAlignment="textStart"
+                    app:cst_phone_text="@={viewModel.phoneNumber}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/spnCustom"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.ferdidrgn.theatreticket.tools.components.CustomButton
+                android:id="@+id/btnSendCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="10dp"
+                android:onClick="@{()->viewModel.onSendCode()}"
+                android:visibility="@{viewModel.sendButtonVisibility ? View.VISIBLE : View.INVISIBLE}"
+                app:cst_btn_name="@string/code_send" />
+
+            <com.ferdidrgn.theatreticket.tools.components.CustomNumberEditText
+                android:id="@+id/etCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="5dp"
+                android:textAlignment="textStart"
+                android:visibility="@{viewModel.sendButtonVisibility ? View.INVISIBLE : View.VISIBLE}"
+                app:cst_number_changeable_edit_text="@={viewModel.otp}"
+                app:cst_number_hint_text="@string/code_enter" />
+
+            <TextView
+                android:id="@+id/tvResend"
+                style="@style/TextColor2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_weight="10"
+                android:gravity="center"
+                app:changeText="@{viewModel.timerFinished ? @string/resend_code : @string/sms_remain_time(viewModel.timerText)}"
+                app:isTextClickable="@{viewModel.timerFinished}" />
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

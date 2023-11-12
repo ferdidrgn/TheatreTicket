@@ -32,4 +32,8 @@
         <attr name="cst_date_picker_hint_text" format="string" />
     </declare-styleable>
 
+    <declare-styleable name="CustomPhoneCodeSpinner">
+        <attr name="cst_phone_code_hint_text" format="string" />
+    </declare-styleable>
+
 </resources>

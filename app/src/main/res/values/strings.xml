@@ -58,6 +58,11 @@
     <string name="ADS_BANNER_OTP_ACTVTY_REAL" translatable="false">ca-app-pub-5779807348211992/7027568070</string>
 
 
+    <string-array name="phone_codes">
+        <item>+90</item>
+        <item>+964</item>
+    </string-array>
+
     <!--    QUERY -->
     <string name="are_you_sure_you_want_to_logout">Çıkış Yapmak İstediğinize Emin Misiniz ?</string>
     <string name="are_you_serious">Emin Misiniz</string>

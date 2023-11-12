@@ -1,5 +1,6 @@
 package com.ferdidrgn.theatreticket.ui.otp
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.ferdidrgn.theatreticket.R
@@ -26,6 +27,7 @@ class OTPActivity : BaseActivity<OTPViewModel, ActivityOtpactivityBinding>() {
     override fun onCreateFinished(savedInstance: Bundle?) {
         binding.viewModel = viewModel
         builderADS(this, binding.adView)
+        viewModel.selectCountryCode(this)
         observe()
     }
 
@@ -51,6 +53,28 @@ class OTPActivity : BaseActivity<OTPViewModel, ActivityOtpactivityBinding>() {
                 }
             }
         }
+
+        viewModel.errorMessage.observe(this) { errorMessage ->
+            if (errorMessage != null)
+                errorOrSuccessMessagePopUp(this, errorMessage, false)
+        }
+
+        viewModel.successMessage.observe(this) { successMessage ->
+            if (successMessage != null)
+                errorOrSuccessMessagePopUp(this, successMessage, true)
+        }
+    }
+
+    private fun errorOrSuccessMessagePopUp(context: Context, message: String, isSuccess: Boolean) {
+        val pupUp = BasePopUp(isSuccess = isSuccess)
+        pupUp.apply {
+            setPositiveText(context.getString(R.string.done))
+            setDesc(message)
+            setOnPositiveClick {
+                dismiss()
+            }
+        }
+        pupUp.show(supportFragmentManager, "")
     }
 
     private fun showResendCodeDialog() {

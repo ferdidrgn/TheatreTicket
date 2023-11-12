@@ -57,11 +57,7 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
         if (ClientPreferences.inst.isFirstLaunch == true)
             NavHandler.instance.toOnboardingActivity(this)
         else {
-            if (ClientPreferences.inst.isBlankUserInfo == true) {
-                NavHandler.instance.toEditProfileActivity(this, WhichEditProfile.LogIn)
-                finishAffinity()
-            } else
-                isUserLogIn(isSettingsClickedLogIn)
+            isUserLogIn(isSettingsClickedLogIn)
         }
     }
 

@@ -4,7 +4,9 @@ import android.app.Activity
 import android.os.CountDownTimer
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseViewModel
+import com.ferdidrgn.theatreticket.enums.Roles
 import com.ferdidrgn.theatreticket.repository.UserFirebaseQueries
+import com.ferdidrgn.theatreticket.tools.ClientPreferences
 import com.ferdidrgn.theatreticket.tools.helpers.LiveEvent
 import com.ferdidrgn.theatreticket.tools.ioScope
 import com.ferdidrgn.theatreticket.tools.mainScope
@@ -125,11 +127,22 @@ class OTPViewModel @Inject constructor(
 
             firebaseAuth.signInWithCredential(credential)
                 .addOnCompleteListener { task ->
-                    hideLoading()
-                    if (task.isSuccessful)
+                    if (task.isSuccessful) {
+                        ClientPreferences.inst.apply {
+                            userID = firebaseAuth.currentUser?.uid.toString()
+                            userPhone = phoneNumber.value
+                            isGoogleSignIn = false
+                            isPhoneNumberSignIn = true
+                            role = Roles.User.role
+                            token =
+                                firebaseAuth.currentUser?.getIdToken(true)?.result?.token.toString()
+                        }
                         goToUserProfile.postValue(true)
-                    else
+                        hideLoading()
+                    } else {
                         errorMessage.value = message(R.string.error_auth_failed)
+                        hideLoading()
+                    }
                 }
         }
     }

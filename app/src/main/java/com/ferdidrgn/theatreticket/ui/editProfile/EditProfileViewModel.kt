@@ -31,6 +31,8 @@ class EditProfileViewModel @Inject constructor(private val userFirebaseQueries: 
 
     val whichComeAction = MutableStateFlow(WhichEditProfile.LogIn)
     val isAddUserActions = LiveEvent<Boolean?>()
+    var phoneNumberClickable = false
+    var fullNameClickable = false
     val btnCstmDatePickerClick = LiveEvent<Boolean?>()
     val btnUpdateAccClick = LiveEvent<Boolean?>()
     val btnDeleteAccountClick = LiveEvent<Boolean?>()
@@ -40,6 +42,8 @@ class EditProfileViewModel @Inject constructor(private val userFirebaseQueries: 
 
     init {
         getUser()
+        phoneNumberClickable = ClientPreferences.inst.isPhoneNumberSignIn == false
+        fullNameClickable = ClientPreferences.inst.isGoogleSignIn == false
     }
 
     fun getToolbarText() {
@@ -71,7 +75,7 @@ class EditProfileViewModel @Inject constructor(private val userFirebaseQueries: 
         }
     }
 
-    fun updateOrAddProfile() {
+    private fun updateOrAddProfile() {
         mainScope {
             showLoading()
 
@@ -104,10 +108,16 @@ class EditProfileViewModel @Inject constructor(private val userFirebaseQueries: 
                             userPhotoUrl = imgPhoto.value
                             userEmail = eMail.value
                         }
+
+                        if (whichComeAction.value == WhichEditProfile.LogIn)
+                            ClientPreferences.inst.isBlankUserInfo = false
+
                         hideLoading()
                     }
                     false -> {
                         errorMessage.postValue(message(R.string.error))
+                        if (whichComeAction.value == WhichEditProfile.LogIn)
+                            ClientPreferences.inst.isBlankUserInfo = true
                         hideLoading()
                     }
                 }

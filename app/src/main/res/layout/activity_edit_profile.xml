@@ -21,10 +21,11 @@
         android:orientation="vertical">
 
         <com.ferdidrgn.theatreticket.tools.components.CustomToolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/customToolbar"
             custom_toolbar_changeable_text="@{viewModel.toolbarText}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:cst_toolbar_backIcon_visible="@{viewModel.isAddUserActions ? View.GONE : View.VISIBLE}"
             android:layout_marginTop="10dp" />
 
         <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
@@ -86,6 +87,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
+                    android:clickable="@{viewModel.phoneNumberClickable? true : false}"
                     android:textAlignment="textStart"
                     app:cst_phone_text="@={viewModel.phoneNumber}" />
 

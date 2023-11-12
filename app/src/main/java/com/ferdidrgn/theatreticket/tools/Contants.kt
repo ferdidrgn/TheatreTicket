@@ -23,6 +23,7 @@ const val CONNECTION = "connection"
 const val IS_FIRST_LUNCH = "isFirstLunch"
 const val IS_GOOGLE_SIGN_IN = "isGoogleSignIn"
 const val IS_PHONE_NUMBER_SIGN_IN = "isPhoneNumberSignIn"
+const val IS_BLANK_USER_INFO = "IS_BLANK_USER_INFO"
 
 const val SHOW_NOTIFICATION = "show-notification"
 

@@ -29,7 +29,7 @@ class EditProfileActivity : BaseActivity<EditProfileViewModel, ActivityEditProfi
     override fun onCreateFinished(savedInstance: Bundle?) {
         binding.viewModel = viewModel
         builderADS(this, binding.adView)
-
+        binding.customToolbar.backIconOnBackPress(this)
         observe()
     }
 

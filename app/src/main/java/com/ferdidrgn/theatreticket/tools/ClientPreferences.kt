@@ -86,6 +86,12 @@ class ClientPreferences : PreferencesManager() {
             putBoolean(IS_PHONE_NUMBER_SIGN_IN, isPhoneNumberSignIn ?: false)
         }
 
+    var isBlankUserInfo: Boolean?
+        get() = getBooleanValue(IS_BLANK_USER_INFO, true)
+        set(isFillUserInfo) {
+            putBoolean(IS_BLANK_USER_INFO, isFillUserInfo ?: true)
+        }
+
     var connection: String?
         get() = getString(CONNECTION, null)
         set(token) = putString(CONNECTION, token)

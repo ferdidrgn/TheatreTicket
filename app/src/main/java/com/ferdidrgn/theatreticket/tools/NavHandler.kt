@@ -15,6 +15,7 @@ import com.ferdidrgn.theatreticket.ui.language.LanguageActivity
 import com.ferdidrgn.theatreticket.ui.login.LoginActivity
 import com.ferdidrgn.theatreticket.ui.main.MainActivity
 import com.ferdidrgn.theatreticket.ui.onboarding.OnboardingActivity
+import com.ferdidrgn.theatreticket.ui.otp.OTPActivity
 import com.ferdidrgn.theatreticket.ui.showDetails.ShowDetailsActivity
 import com.ferdidrgn.theatreticket.ui.showOperations.ShowOperationsActivity
 import com.ferdidrgn.theatreticket.ui.stage.StageActivity
@@ -115,6 +116,12 @@ class NavHandler {
         val intent = Intent(context, StageActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
         intent.putExtra(STAGE, stage)
+        context.startActivity(intent)
+    }
+
+    fun toOTPActivity(context: Context) {
+        val intent = Intent(context, OTPActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
         context.startActivity(intent)
     }
 }

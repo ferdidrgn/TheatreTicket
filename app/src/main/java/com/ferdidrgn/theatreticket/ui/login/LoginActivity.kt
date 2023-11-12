@@ -8,6 +8,7 @@ import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseActivity
 import com.ferdidrgn.theatreticket.databinding.ActivityLoginBinding
 import com.ferdidrgn.theatreticket.enums.Roles
+import com.ferdidrgn.theatreticket.enums.WhichEditProfile
 import com.ferdidrgn.theatreticket.tools.*
 import com.ferdidrgn.theatreticket.ui.zTest.TestActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -36,11 +37,32 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
         clickEvents()
     }
 
+    private fun clickEvents() {
+
+        viewModel.btnSignInGoogle.observe(this) {
+            sigIn()
+        }
+        viewModel.btnSignInPhoneNumber.observe(this) {
+            NavHandler.instance.toOTPActivity(this)
+        }
+
+        viewModel.btnGuest.observe(this) {
+            NavHandler.instance.toMainActivityFinishAffinity(this)
+            ClientPreferences.inst.role = Roles.Guest.role
+            finish()
+        }
+    }
+
     private fun checkLandingOrEnter(isSettingsClickedLogIn: Boolean) {
         if (ClientPreferences.inst.isFirstLaunch == true)
             NavHandler.instance.toOnboardingActivity(this)
-        else
-            isUserLogIn(isSettingsClickedLogIn)
+        else {
+            if (ClientPreferences.inst.isBlankUserInfo == true) {
+                NavHandler.instance.toEditProfileActivity(this, WhichEditProfile.LogIn)
+                finishAffinity()
+            } else
+                isUserLogIn(isSettingsClickedLogIn)
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -74,7 +96,8 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
                     viewModel.isFirebaseUserControl.observe(this) { isFirebaseUserControl ->
                         if (isFirebaseUserControl) {
                             showToast(getString(R.string.signed_in_as) + " ${user?.displayName}")
-                            NavHandler.instance.toMainActivityFinishAffinity(this)
+                            NavHandler.instance.toEditProfileActivity(this, WhichEditProfile.LogIn)
+                            finishAffinity()
                         } else
                             showToast(getString(R.string.error_add_user))
                     }
@@ -114,28 +137,7 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
             userPhotoUrl = user?.photoUrl.toString()
             isGoogleSignIn = true
             isPhoneNumberSignIn = false
-
-        }
-    }
-
-    private fun clickEvents() {
-
-        viewModel.btnSignInGoogle.observe(this) {
-            sigIn()
-        }
-        viewModel.btnSignInPhoneNumber.observe(this) {
-            // ClientPreferences.inst.role = Roles.User.role
-
-            //MockDATA
-            val intent = Intent(this, TestActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-            startActivity(intent)
-        }
-
-        viewModel.btnGuest.observe(this) {
-            NavHandler.instance.toMainActivityFinishAffinity(this)
-            ClientPreferences.inst.role = Roles.Guest.role
-            finish()
+            token = user?.getIdToken(true)?.result?.token.toString()
         }
     }
 }

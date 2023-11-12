@@ -136,7 +136,7 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
             userPhotoUrl = user?.photoUrl.toString()
             isGoogleSignIn = true
             isPhoneNumberSignIn = false
-            token = user?.getIdToken(true)?.result?.token.toString()
+            //token = user?.getIdToken(true)?.result?.token.toString()
         }
     }
 }

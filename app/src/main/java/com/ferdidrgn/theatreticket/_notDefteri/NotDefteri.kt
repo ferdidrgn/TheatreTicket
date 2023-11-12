@@ -13,6 +13,8 @@ class NotDefteri {
     //***WEB kopunca pop up getir refresh ya da cloase app
 
 
+    //onboarding bir tıklayışla 2 saygfa atlıyor
+    //*** edit profile age date pciker açılmıyor
     //EN SON APK da
 
     //mock dataları düzelt 1 tane kaldı settingste

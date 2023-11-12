@@ -61,7 +61,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:textAlignment="textStart"
-                    app:custom_edit_hint="@string/first_name"
+                    app:custom_edit_hint="@string/full_name"
                     app:custom_edit_text="@={viewModel.fullName}" />
 
                 <com.ferdidrgn.theatreticket.tools.components.CustomEditText

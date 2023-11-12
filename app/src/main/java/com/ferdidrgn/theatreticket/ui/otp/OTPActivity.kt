@@ -26,6 +26,7 @@ class OTPActivity : BaseActivity<OTPViewModel, ActivityOtpactivityBinding>() {
 
     override fun onCreateFinished(savedInstance: Bundle?) {
         binding.viewModel = viewModel
+        binding.customToolbar.backIconOnBackPress(this)
         builderADS(this, binding.adView)
         observe()
     }

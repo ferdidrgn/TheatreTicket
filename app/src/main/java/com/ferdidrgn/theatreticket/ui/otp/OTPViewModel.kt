@@ -37,7 +37,7 @@ class OTPViewModel @Inject constructor(
     val timerFinished = MutableStateFlow(false)
     val timerText = MutableStateFlow("")
 
-    var time = 10000 // 1.40 minute
+    var time = 100000 // 1.40 minute
     lateinit var timer: CountDownTimer
 
     fun checkPhoneNumber() {

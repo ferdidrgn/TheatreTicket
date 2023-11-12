@@ -52,6 +52,17 @@ class EditProfileActivity : BaseActivity<EditProfileViewModel, ActivityEditProfi
                 logout()
             }
         }
+
+        viewModel.errorMessage.observe(this) { errorMessage ->
+            if (errorMessage != null)
+                errorOrSuccessMessagePopUp(this, errorMessage, false)
+        }
+
+        viewModel.successMessage.observe(this) { successMessage ->
+            if (successMessage != null)
+                errorOrSuccessMessagePopUp(this, successMessage, true)
+        }
+
     }
 
     private fun logout() {
@@ -87,6 +98,19 @@ class EditProfileActivity : BaseActivity<EditProfileViewModel, ActivityEditProfi
         }
     }
 
+    private fun errorOrSuccessMessagePopUp(context: Context, message: String, isSuccess: Boolean) {
+        val pupUp = BasePopUp(isSuccess = isSuccess)
+        pupUp.apply {
+            setPositiveText(context.getString(R.string.done))
+            setDesc(message)
+            setOnPositiveClick {
+                if (isSuccess)
+                    NavHandler.instance.toMainActivityFinishAffinity(this@EditProfileActivity)
+                dismiss()
+            }
+        }
+        pupUp.show(supportFragmentManager, "")
+    }
 
     private fun updateOrDeleteInformationPopUp(context: Context, isUpdate: Boolean) {
         val pupUp = BasePopUp()

@@ -24,7 +24,7 @@
         android:theme="@style/Theme.TheatreTicket"
         tools:targetApi="34">
         <activity
-            android:name=".OTPActivity"
+            android:name=".ui.otp.OTPActivity"
             android:exported="false" />
         <activity
             android:name=".ui.stage.StageActivity"

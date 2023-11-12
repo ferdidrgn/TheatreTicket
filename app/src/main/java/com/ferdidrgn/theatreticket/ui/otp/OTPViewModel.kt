@@ -117,9 +117,12 @@ class OTPViewModel @Inject constructor(
                 PhoneAuthProvider.verifyPhoneNumber(
                     builder.setForceResendingToken(forceResendingToken).build()
                 )
+                hideLoading()
             } else {
                 PhoneAuthProvider.verifyPhoneNumber(builder.build())
+                hideLoading()
             }
+            hideLoading()
         }
     }
 

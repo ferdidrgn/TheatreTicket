@@ -52,7 +52,7 @@ class UserFirebaseQueries {
     }
 
     fun updateOrAddUser(user: User?, status: (Boolean) -> Unit) {
-
+        var documentId = ""
         fireStoreUserRef.whereEqualTo("_id", user?._id).get().addOnSuccessListener { result ->
             if (result.isEmpty) {
                 addUser(user) { response ->
@@ -62,10 +62,16 @@ class UserFirebaseQueries {
                     }
                 }
             } else {
-                updateUser(user) { response ->
-                    when (response) {
-                        true -> status.invoke(true)
-                        false -> status.invoke(false)
+                if (result != null) {
+                    val documents = result.documents
+                    for (document in documents) {
+                        documentId = document.id
+                    }
+                    updateUser(user, documentId) { response ->
+                        when (response) {
+                            true -> status.invoke(true)
+                            false -> status.invoke(false)
+                        }
                     }
                 }
             }
@@ -74,7 +80,7 @@ class UserFirebaseQueries {
         }
     }
 
-    fun updateUser(user: User?, status: (Boolean) -> Unit) {
+    fun updateUser(user: User?, documentId: String, status: (Boolean) -> Unit) {
 
         val userMap = HashMap<String, Any>()
         userMap["_updatedAt"] = Timestamp.now()
@@ -89,11 +95,19 @@ class UserFirebaseQueries {
         userMap["fcmToken"] = user?.fcmToken.toString()
         userMap["role"] = user?.role.toString()
 
-        fireStoreUserRef.document(user?._id.toString()).update(userMap).addOnSuccessListener {
+        fireStoreUserRef.document(documentId).update(userMap)
+            .addOnSuccessListener {
+                status.invoke(true)
+            }.addOnFailureListener { exception ->
+                println("Veri güncelleme başarısız! Hata: ${exception.message}")
+                status.invoke(false)
+            }
+
+        /*fireStoreUserRef.document(user?._id.toString()).update(userMap).addOnSuccessListener {
             status.invoke(true)
         }.addOnFailureListener {
             status.invoke(false)
-        }
+        }*/
 
     }
 

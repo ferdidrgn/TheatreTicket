@@ -23,19 +23,20 @@ class StageFirebaseQueries {
         val imageName = "StageImages/${stage?._id}.jpg"
         val imagesRef = storageRef.child(imageName)
 
-        if (stage?.imgUrl != null) {
+        if (stage?.addOrUpdateImgUrl != null) {
             imagesRef.putFile(stage.addOrUpdateImgUrl!!).addOnSuccessListener {
                 Firebase.storage.reference.child(imageName).downloadUrl.addOnSuccessListener { uri ->
                     downloadUrl = uri.toString()
-                }.addOnFailureListener { status.invoke(false) }
-            }.addOnFailureListener { status.invoke(false) }
+                }
+            }
         }
 
         val stageMap = HashMap<String, Any>()
         stageMap["_createdAt"] = Timestamp.now()
         stageMap["_id"] = stage?._id.toString()
         stageMap["name"] = stage?.name.toString()
-        stageMap["imgUrl"] = downloadUrl ?: 0
+        downloadUrl = if (downloadUrl == "") stage?.imgUrl.toString() else downloadUrl
+        stageMap["imgUrl"] = downloadUrl
         stageMap["capacity"] = stage?.capacity.toString()
         stageMap["description"] = stage?.description.toString()
         stageMap["communication"] = stage?.communication.toString()
@@ -110,13 +111,13 @@ class StageFirebaseQueries {
                                 val address =
                                     if (document.get("address") != null) document.get("address") as String else ""
                                 val locationLat =
-                                    if (document.get("locationLat") != null) document.get("locationLat") as Double else 0.0
+                                    if (document.get("locationLat") != null) document.get("locationLat") as String else "0.0"
                                 val locationLng =
-                                    if (document.get("locationLng") != null) document.get("locationLng") as Double else 0.0
+                                    if (document.get("locationLng") != null) document.get("locationLng") as String else "0.0"
                                 val seatColumnCount =
-                                    if (document.get("seatColumnCount") != null) document.get("seatColumnCount") as Int else 0
+                                    if (document.get("seatColumnCount") != null) document.get("seatColumnCount") as String else "0"
                                 val seatRowCount =
-                                    if (document.get("seatRowCount") != null) document.get("seatRowCount") as Int else 0
+                                    if (document.get("seatRowCount") != null) document.get("seatRowCount") as String else "0"
 
                                 val stage = Stage(
                                     _createdAt = createdAt.toString(),
@@ -127,10 +128,10 @@ class StageFirebaseQueries {
                                     capacity = capacity,
                                     communication = communication,
                                     address = address,
-                                    locationLat = locationLat,
-                                    locationLng = locationLng,
-                                    seatColumnCount = seatColumnCount,
-                                    seatRowCount = seatRowCount
+                                    locationLat = locationLat?.toDoubleOrNull() ?: 0.0,
+                                    locationLng = locationLng?.toDoubleOrNull() ?: 0.0,
+                                    seatColumnCount = seatColumnCount.toIntOrNull(),
+                                    seatRowCount = seatRowCount.toIntOrNull()
                                 )
                                 stageList.add(stage)
                             }
@@ -232,6 +233,8 @@ class StageFirebaseQueries {
                 }.addOnFailureListener { status.invoke(false) }
             }.addOnFailureListener { status.invoke(false) }
         }
+
+        downloadUrl = if (downloadUrl == "") stage?.imgUrl.toString() else downloadUrl
 
         val newShowMap = mapOf(
             "_createdAt" to Timestamp.now(),

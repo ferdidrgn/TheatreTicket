@@ -111,6 +111,7 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
         showLoading()
 
         mainScope {
+            showLoading()
             val id = UUID.randomUUID().toString() + ID.Show.id
             updateOrAddShowData = Show(
                 _id = id,
@@ -152,6 +153,7 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
                     true -> {
                         hideLoading()
                         successMessage.postValue(message(R.string.success_delete_show))
+                        getAllShow()
                     }
                 }
             }

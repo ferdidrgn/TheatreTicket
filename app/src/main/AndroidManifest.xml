@@ -25,6 +25,9 @@
         tools:targetApi="34">
 
         <activity
+            android:name=".ui.zTest.TestActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.stageOperations.StageOperationsActivity"
             android:exported="false" />
         <activity

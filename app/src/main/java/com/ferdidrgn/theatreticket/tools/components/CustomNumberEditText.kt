@@ -34,7 +34,7 @@ class CustomNumberEditText : ConstraintLayout {
     private fun initLayout(context: Context, attributeSet: AttributeSet?, style: Int?) {
         inflate(context, R.layout.custom_number_edit_text, this)
         editTextView = findViewById(R.id.custom_number_editText)
-        editTextView.inputType = InputType.TYPE_CLASS_NUMBER
+        editTextView.inputType = InputType.TYPE_NUMBER_FLAG_DECIMAL
 
         val layoutAttribute =
             context.obtainStyledAttributes(attributeSet, R.styleable.CustomNumberEditText)
@@ -89,7 +89,7 @@ class CustomNumberEditText : ConstraintLayout {
         val keyListener: KeyListener =
             DigitsKeyListener.getInstance(context.getString(R.string.numbersKey))
         editTextView.keyListener = keyListener
-        editTextView.inputType = InputType.TYPE_CLASS_NUMBER
+        editTextView.inputType = InputType.TYPE_NUMBER_FLAG_DECIMAL
     }
 
     fun formatPrice() {

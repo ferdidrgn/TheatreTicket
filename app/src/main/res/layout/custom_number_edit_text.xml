@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         android:layout_marginStart="15dp"
         android:background="@null"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:paddingVertical="16.6dp"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"

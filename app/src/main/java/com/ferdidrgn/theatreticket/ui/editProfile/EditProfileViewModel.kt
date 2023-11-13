@@ -69,50 +69,65 @@ class EditProfileViewModel @Inject constructor(private val userFirebaseQueries: 
     private fun getUser() {
         mainScope {
             showLoading()
-            userFirebaseQueries.checkUserId(userId) { status, userInfoList ->
-                when (status) {
-                    Response.Empty -> {
-                        ClientPreferences.inst.apply {
-                            fullName.value = userFullName.toString()
-                            firstName.value = userFirstName.toString()
-                            lastName.value = userLastName.toString()
-                            phoneNumber.value = userPhone?.removeWhiteSpace().toString()
-                            age.value = userAge.toString()
-                            imageUrl.value = userPhotoUrl.toString()
-                            eMail.value = userEmail.toString()
-                        }
-                        hideLoading()
-                    }
-                    Response.ThereIs -> {
-                        ClientPreferences.inst.apply {
-                            role = userInfoList?.role.toString()
-                            userID = userInfoList?._id
-                            userFullName = userInfoList?.fullName
-                            userEmail = userInfoList?.eMail
-                            userPhone = userInfoList?.phoneNumber
-                            userPhotoUrl = userInfoList?.imgUrl.toString()
-                        }
+            if (ClientPreferences.inst.reviewStatus.not()) {
+                if (ClientPreferences.inst.reviewCounter % 3 == 0) {
+                    userFirebaseQueries.checkUserId(userId) { status, userInfoList ->
+                        when (status) {
+                            Response.Empty -> {
+                                ClientPreferences.inst.apply {
+                                    fullName.value = userFullName.toString()
+                                    firstName.value = userFirstName.toString()
+                                    lastName.value = userLastName.toString()
+                                    phoneNumber.value = userPhone?.removeWhiteSpace().toString()
+                                    age.value = userAge.toString()
+                                    imageUrl.value = userPhotoUrl.toString()
+                                    eMail.value = userEmail.toString()
+                                }
+                                hideLoading()
+                            }
+                            Response.ThereIs -> {
+                                ClientPreferences.inst.apply {
+                                    role = userInfoList?.role.toString()
+                                    userID = userInfoList?._id
+                                    userFullName = userInfoList?.fullName
+                                    userEmail = userInfoList?.eMail
+                                    userPhone = userInfoList?.phoneNumber
+                                    userPhotoUrl = userInfoList?.imgUrl.toString()
+                                }
 
-                        fullName.value = userInfoList?.fullName.toString()
-                        firstName.value = userInfoList?.firstName.toString()
-                        lastName.value = userInfoList?.lastName.toString()
-                        phoneNumber.value = userInfoList?.phoneNumber?.removeWhiteSpace().toString()
-                        age.value = userInfoList?.age.toString()
-                        imageUrl.value = userInfoList?.imgUrl.toString()
-                        eMail.value = userInfoList?.eMail.toString()
+                                fullName.value = userInfoList?.fullName.toString()
+                                firstName.value = userInfoList?.firstName.toString()
+                                lastName.value = userInfoList?.lastName.toString()
+                                phoneNumber.value =
+                                    userInfoList?.phoneNumber?.removeWhiteSpace().toString()
+                                age.value = userInfoList?.age.toString()
+                                imageUrl.value = userInfoList?.imgUrl.toString()
+                                eMail.value = userInfoList?.eMail.toString()
 
-                        hideLoading()
+                                hideLoading()
+                            }
+                            Response.NotEqual -> {
+                                hideLoading()
+                                errorMessage.postValue(message(R.string.error_not_equal))
+                            }
+                            Response.ServerError -> {
+                                hideLoading()
+                                errorMessage.postValue(message(R.string.error_server))
+                            }
+                        }
                     }
-                    Response.NotEqual -> {
-                        hideLoading()
-                        errorMessage.postValue(message(R.string.error_not_equal))
+                } else {
+                    ClientPreferences.inst.apply {
+                        fullName.value = userFullName.toString()
+                        firstName.value = userFirstName.toString()
+                        lastName.value = userLastName.toString()
+                        phoneNumber.value = userPhone?.removeWhiteSpace().toString()
+                        age.value = userAge.toString()
+                        imageUrl.value = userPhotoUrl.toString()
+                        eMail.value = userEmail.toString()
                     }
-                    Response.ServerError -> {
-                        hideLoading()
-                        errorMessage.postValue(message(R.string.error_server))
-                    }
+                    hideLoading()
                 }
-
             }
         }
     }

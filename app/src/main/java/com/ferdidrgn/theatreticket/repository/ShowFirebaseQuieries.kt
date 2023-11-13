@@ -26,7 +26,7 @@ class ShowFirebaseQuieries {
         val imagesRef = storageRef.child(imageName)
         var downloadUrl = ""
 
-        if (show?.imageUrl != null) {
+        if (show?.addOrUpdateImgUrl != null) {
             imagesRef.putFile(show.addOrUpdateImgUrl!!).addOnSuccessListener {
                 Firebase.storage.reference.child(imageName).downloadUrl.addOnSuccessListener { uri ->
                     downloadUrl = uri.toString()
@@ -38,7 +38,8 @@ class ShowFirebaseQuieries {
         showMap["_createdAt"] = Timestamp.now()
         showMap["_id"] = show?._id.toString()
         showMap["name"] = show?.name.toString()
-        showMap["imageUrl"] = downloadUrl ?: 0
+        downloadUrl = if (downloadUrl == "") show?.imageUrl.toString() else downloadUrl
+        showMap["imageUrl"] = downloadUrl
         showMap["description"] = show?.description.toString()
         showMap["date"] = show?.date.toString()
         showMap["price"] = show?.price.toString()
@@ -156,6 +157,8 @@ class ShowFirebaseQuieries {
                 }.addOnFailureListener { status.invoke(false) }
             }.addOnFailureListener { status.invoke(false) }
         }
+
+        downloadUrl = if (downloadUrl == "") show?.imageUrl.toString() else downloadUrl
 
         val newShowMap = mapOf(
             "_createdAt" to Timestamp.now(),

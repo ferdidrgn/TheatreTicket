@@ -45,16 +45,23 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/imgShow"
-                    style="@style/ShapeableImageViewStyle"
-                    imageUrl="@{viewModel.imageUrl}"
+                <com.google.android.material.card.MaterialCardView
+                    style="@style/CardBackgroundTint_StrokeColor"
                     android:layout_width="160dp"
                     android:layout_height="160dp"
-                    android:layout_gravity="center"
-                    android:onClick="@{() -> viewModel.onImageClick()}"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_add_cart_new_plus" />
+                    android:layout_marginTop="20dp"
+                    android:onClick="@{() -> viewModel.onImageClick()}">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/imgProfil"
+                        style="@style/ShapeableImageViewStyle"
+                        imageUrl="@{viewModel.imageUrl}"
+                        android:layout_width="160dp"
+                        android:layout_height="160dp"
+                        android:layout_gravity="center"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_add_cart_new_plus" />
+                </com.google.android.material.card.MaterialCardView>
 
                 <com.ferdidrgn.theatreticket.tools.components.CustomEditText
                     android:id="@+id/etFullName"

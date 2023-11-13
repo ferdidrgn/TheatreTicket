@@ -35,7 +35,7 @@ class UserFirebaseQueries {
         val imagesRef = storageRef.child(imageName)
         var downloadUrl = ""
 
-        if (user?.imgUrl != null) {
+        if (user?.addOrUpdateImgUrl != null) {
             imagesRef.putFile(user.addOrUpdateImgUrl!!).addOnSuccessListener {
                 Firebase.storage.reference.child(imageName).downloadUrl.addOnSuccessListener { uri ->
                     downloadUrl = uri.toString()
@@ -48,6 +48,7 @@ class UserFirebaseQueries {
             userMap["lastName"] = user?.lastName.toString()
             userMap["fullName"] = user?.fullName.toString()
             userMap["phoneNumber"] = user?.phoneNumber.toString()
+            downloadUrl = if (downloadUrl == "") user?.imgUrl.toString() else downloadUrl
             userMap["photoUrl"] = downloadUrl
             userMap["isActivite"] = user?.isActivite.toString().toBoolean()
             userMap["age"] = user?.age.toString()
@@ -115,6 +116,7 @@ class UserFirebaseQueries {
         userMap["firstName"] = user?.firstName.toString()
         userMap["lastName"] = user?.lastName.toString()
         userMap["phoneNumber"] = user?.phoneNumber.toString()
+        downloadUrl = if (downloadUrl == "") user?.imgUrl.toString() else downloadUrl
         userMap["photoUrl"] = downloadUrl
         userMap["isActivite"] = user?.isActivite.toString().toBoolean()
         userMap["age"] = user?.age.toString()

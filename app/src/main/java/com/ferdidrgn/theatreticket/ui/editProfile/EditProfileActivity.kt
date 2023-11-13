@@ -79,7 +79,7 @@ class EditProfileActivity : BaseActivity<EditProfileViewModel, ActivityEditProfi
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == IMAGE_REQUEST_CODE && resultCode == RESULT_OK) {
-            binding.imgShow.setImageURI(data?.data)
+            binding.imgProfil.setImageURI(data?.data)
             viewModel.addOrUpdateImgUrl.value = data?.data
             viewModel.imageUrl.value = data?.data.toString()
         }

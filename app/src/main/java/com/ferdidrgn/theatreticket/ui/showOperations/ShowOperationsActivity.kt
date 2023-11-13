@@ -35,7 +35,6 @@ class ShowOperationsActivity :
         builderADS(this, binding.adViewBottomSheet)
         bottomSheetInit()
         observe()
-        binding.customToolbar.backIconOnBackPress(this)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

@@ -20,6 +20,8 @@ class StageOperationsViewModel @Inject constructor(private val stageFirebaseQuer
     BaseViewModel(), StageUpdateDeleteAdapterListener {
 
     val stage = MutableLiveData<List<Stage?>?>()
+
+    val _id = LiveEvent<String?>()
     var name = MutableStateFlow("")
     var imgUrl = MutableStateFlow("")
     val addOrUpdateImgUrl = MutableStateFlow<Uri?>(null)
@@ -50,7 +52,7 @@ class StageOperationsViewModel @Inject constructor(private val stageFirebaseQuer
     fun getAllStage() {
         mainScope {
             showLoading()
-            stageFirebaseQueries.getStage() { status, stageList ->
+            stageFirebaseQueries.getStage { status, stageList ->
                 when (status) {
                     Response.ServerError -> {
                         errorMessage.postValue(message(R.string.error_server))
@@ -75,27 +77,23 @@ class StageOperationsViewModel @Inject constructor(private val stageFirebaseQuer
         }
     }
 
-    fun deleteStage() {
+    private fun updateStage() {
         mainScope {
             showLoading()
-            stageFirebaseQueries.deleteStage(deleteClicked.value) { status ->
-                when (status) {
-                    false -> {
-                        hideLoading()
-                        errorMessage.postValue(message(R.string.error_server))
-                    }
-                    true -> {
-                        hideLoading()
-                        successMessage.postValue(message(R.string.success_delete_stage))
-                    }
-                }
-            }
-        }
-    }
-
-    private fun updateStage() {
-        showLoading()
-        mainScope {
+            updateOrAddStageData = Stage(
+                _id = _id.value,
+                name = name.value,
+                imgUrl = imgUrl.value,
+                description = description.value,
+                communication = communication.value,
+                capacity = capacity.value,
+                address = address.value,
+                locationLat = locationLat.value.toDouble(),
+                locationLng = locationLng.value.toDouble(),
+                //seatId = seatId.value,
+                //seatColumnCount = seatColumnCount.value.toInt(),
+                //seatRowCount = seatRowCount.value.toInt()
+            )
             stageFirebaseQueries.updateStage(updateOrAddStageData) { status ->
                 when (status) {
                     true -> {
@@ -140,6 +138,24 @@ class StageOperationsViewModel @Inject constructor(private val stageFirebaseQuer
                     false -> {
                         hideLoading()
                         errorMessage.postValue(message(R.string.error_server))
+                    }
+                }
+            }
+        }
+    }
+
+    fun deleteStage() {
+        mainScope {
+            showLoading()
+            stageFirebaseQueries.deleteStage(deleteClicked.value) { status ->
+                when (status) {
+                    false -> {
+                        hideLoading()
+                        errorMessage.postValue(message(R.string.error_server))
+                    }
+                    true -> {
+                        hideLoading()
+                        successMessage.postValue(message(R.string.success_delete_stage))
                     }
                 }
             }
@@ -193,7 +209,6 @@ class StageOperationsViewModel @Inject constructor(private val stageFirebaseQuer
             errorMessage.postValue(message(R.string.error_little_things))
     }
 
-
     fun fieldClear() {
         name.value = ""
         imgUrl.value = ""
@@ -232,6 +247,7 @@ class StageOperationsViewModel @Inject constructor(private val stageFirebaseQuer
     }
 
     override fun onStageUpdateListener(stage: Stage) {
+        stage._id?.let { _id.postValue(it) }
         stage?.name?.let { name.value = it }
         stage?.imgUrl?.let { imgUrl.value = it }
         stage?.description?.let { description.value = it }

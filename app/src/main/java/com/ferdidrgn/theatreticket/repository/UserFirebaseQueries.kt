@@ -111,7 +111,6 @@ class UserFirebaseQueries {
         }
 
         val userMap = HashMap<String, Any>()
-        userMap["_updatedAt"] = Timestamp.now()
         userMap["fullName"] = user?.fullName.toString()
         userMap["firstName"] = user?.firstName.toString()
         userMap["lastName"] = user?.lastName.toString()

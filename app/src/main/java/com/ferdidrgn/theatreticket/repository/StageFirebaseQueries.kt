@@ -86,7 +86,7 @@ class StageFirebaseQueries {
     fun getStage(status: (Response, ArrayList<Stage?>?) -> Unit) {
 
         val stageList: ArrayList<Stage?> = arrayListOf()
-        fireStoreStageRef.orderBy("name", Query.Direction.ASCENDING)
+        fireStoreStageRef.orderBy("_createdAt", Query.Direction.ASCENDING)
             .addSnapshotListener { value, error ->
                 if (error != null) status.invoke(Response.ServerError, null)
                 else {
@@ -128,10 +128,6 @@ class StageFirebaseQueries {
                                     capacity = capacity,
                                     communication = communication,
                                     address = address,
-                                    locationLat = locationLat?.toDoubleOrNull() ?: 0.0,
-                                    locationLng = locationLng?.toDoubleOrNull() ?: 0.0,
-                                    seatColumnCount = seatColumnCount.toIntOrNull(),
-                                    seatRowCount = seatRowCount.toIntOrNull()
                                 )
                                 stageList.add(stage)
                             }
@@ -146,7 +142,7 @@ class StageFirebaseQueries {
             }
     }
 
-    fun getStageId(stageId: ArrayList<Stage?>?, status: (Response, ArrayList<Stage?>?) -> Unit) {
+    fun getStageId(stageId: ArrayList<String?>?, status: (Response, ArrayList<Stage?>?) -> Unit) {
         val stageList: ArrayList<Stage?> = arrayListOf()
 
         stageId?.forEach { stage ->
@@ -237,7 +233,6 @@ class StageFirebaseQueries {
         downloadUrl = if (downloadUrl == "") stage?.imgUrl.toString() else downloadUrl
 
         val newShowMap = mapOf(
-            "_createdAt" to Timestamp.now(),
             "_id" to stage?._id.toString(),
             "name" to stage?.name.toString(),
             "imgUrl" to downloadUrl,

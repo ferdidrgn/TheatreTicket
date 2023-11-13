@@ -5,7 +5,6 @@ import com.ferdidrgn.theatreticket.base.BaseAdapter
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Stage
 import com.ferdidrgn.theatreticket.databinding.ItemStageOperationsBinding
 
-
 class StageOperationsAdapter(
     private val stageDetailsAdapterListener: StageUpdateDeleteAdapterListener
 ) : BaseAdapter<ItemStageOperationsBinding, Stage>() {

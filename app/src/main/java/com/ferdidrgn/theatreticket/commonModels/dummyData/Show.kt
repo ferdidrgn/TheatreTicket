@@ -17,7 +17,7 @@ data class Show(
     var price: String? = null,
     var ageLimit: String? = null,
     var seat: String? = null,
-    var stageId: ArrayList<Stage?>? = null,
+    var stageId: ArrayList<String?>? = null,
     var actorsId: ArrayList<Players?>? = null,
     override val mId: Long = 1L
 ) : ListAdapterItem, Serializable

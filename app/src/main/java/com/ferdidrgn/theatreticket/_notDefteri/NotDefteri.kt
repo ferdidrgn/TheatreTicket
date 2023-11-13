@@ -14,7 +14,8 @@ class NotDefteri {
 
 
     //onboarding bir tıklayışla 2 saygfa atlıyor
-    //*** edit profile age date pciker açılmıyor
+    //stage veriler gelmiyor update denemedik
+    //show update olmuyor
     //EN SON APK da
 
     //mock dataları düzelt 1 tane kaldı settingste

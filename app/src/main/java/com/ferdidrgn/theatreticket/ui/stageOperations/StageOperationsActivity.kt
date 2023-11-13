@@ -13,6 +13,7 @@ import com.ferdidrgn.theatreticket.base.BasePopUp
 import com.ferdidrgn.theatreticket.databinding.ActivityStageOperationsBinding
 import com.ferdidrgn.theatreticket.tools.builderADS
 import com.ferdidrgn.theatreticket.tools.showToast
+import com.ferdidrgn.theatreticket.ui.showOperations.ShowOperationsAdapter
 import com.tayfuncesur.curvedbottomsheet.CurvedBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -29,11 +30,11 @@ class StageOperationsActivity :
     override fun onCreateFinished(savedInstance: Bundle?) {
         binding.viewModel = viewModel
         binding.customToolbar.backIconOnBackPress(this)
+        binding.stageOperationsAdapter = StageOperationsAdapter(viewModel)
         builderADS(this, binding.adView)
         builderADS(this, binding.adViewBottomSheet)
         bottomSheetInit()
         observe()
-        binding.customToolbar.backIconOnBackPress(this)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -55,7 +56,7 @@ class StageOperationsActivity :
             permissionCheck()
         }
         viewModel.btnAddStageClicked.observe(this) {
-            viewModel.checkRequestFields(false)
+            addOrUpdateStagePopUp(this)
         }
 
         viewModel.updateBottonVisibility.observe(this) {
@@ -67,7 +68,7 @@ class StageOperationsActivity :
         }
 
         viewModel.updateStagePopUp.observe(this) {
-            updateStagePopUp(this)
+            addOrUpdateStagePopUp(this)
         }
 
         viewModel.errorMessage.observe(this) { errorMessage ->
@@ -149,7 +150,7 @@ class StageOperationsActivity :
         pupUp.show(supportFragmentManager, "")
     }
 
-    private fun updateStagePopUp(context: Context) {
+    private fun addOrUpdateStagePopUp(context: Context) {
         val pupUp = BasePopUp()
         pupUp.apply {
             setPositiveText(context.getString(R.string.yes))

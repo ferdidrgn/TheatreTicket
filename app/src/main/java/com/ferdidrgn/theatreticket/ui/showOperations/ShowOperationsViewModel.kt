@@ -30,6 +30,7 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
     val bottomSheetVisibility = MutableLiveData<Boolean?>()
     val imagePermission = MutableLiveData<Boolean?>()
 
+    val _id = LiveEvent<String?>()
     val name = MutableStateFlow("")
     val desc = MutableStateFlow("")
     val imageUrl = MutableStateFlow<String?>(null)
@@ -80,8 +81,8 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
     }
 
     fun getAllShow() {
-        showLoading()
         mainScope {
+            showLoading()
             showFirebaseQuieries.getShow { status, showList ->
                 when (status) {
                     Response.ServerError -> {
@@ -108,8 +109,6 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
     }
 
     private fun addShow() {
-        showLoading()
-
         mainScope {
             showLoading()
             val id = UUID.randomUUID().toString() + ID.Show.id
@@ -142,8 +141,8 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
     }
 
     fun deleteShow() {
-        showLoading()
         mainScope {
+            showLoading()
             showFirebaseQuieries.deleteShow(deleteClicked.value) { status ->
                 when (status) {
                     false -> {
@@ -161,9 +160,10 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
     }
 
     private fun updateShow() {
-        showLoading()
         mainScope {
+            showLoading()
             updateOrAddShowData = Show(
+                _id = _id.value,
                 name = name.value,
                 description = desc.value,
                 imageUrl = imageUrl.value,
@@ -182,6 +182,7 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
                     true -> {
                         hideLoading()
                         successMessage.postValue(message(R.string.success_update_show))
+                        getAllShow()
                     }
                 }
             }
@@ -216,6 +217,7 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
     }
 
     override fun onShowsUpdateListener(show: Show) {
+        show._id?.let { _id.postValue(it) }
         show?.name?.let { name.value = it }
         show?.description?.let { desc.value = it }
         show.imageUrl?.let { imageUrl.value = it }

@@ -85,7 +85,7 @@ class ShowFirebaseQuieries {
     fun getShow(status: (Response, ArrayList<Show?>?) -> Unit) {
 
         val showList: ArrayList<Show?> = arrayListOf()
-        fireStoreShowRef.orderBy("name", Query.Direction.ASCENDING)
+        fireStoreShowRef.orderBy("_createdAt", Query.Direction.ASCENDING)
             .addSnapshotListener { value, error ->
                 if (error != null) status.invoke(Response.ServerError, null)
                 else {
@@ -109,6 +109,8 @@ class ShowFirebaseQuieries {
                                     if (document.get("price") != null) document.get("price") as String else ""
                                 val ageLimit =
                                     if (document.get("ageLimit") != null) document.get("ageLimit") as String else ""
+                                val stageId =
+                                    if (document.get("stageId") != null) document.get("stageId") as ArrayList<String?> else arrayListOf()
 
                                 val show = Show(
                                     _createdAt = createdAt.toString(),
@@ -119,6 +121,7 @@ class ShowFirebaseQuieries {
                                     date = date,
                                     price = price,
                                     ageLimit = ageLimit,
+                                    stageId = stageId,
                                 )
                                 showList?.add(show)
                             }
@@ -144,36 +147,33 @@ class ShowFirebaseQuieries {
                         documentId = document.id
                     }
                 }
-            }.addOnFailureListener {
-                status.invoke(false)
-            }
 
-        val imageName = "ShowImages/${show?._id}.jpg"
-        val imagesRef = storageRef.child(imageName)
-        if (show?.addOrUpdateImgUrl != null) {
-            imagesRef.putFile(show.addOrUpdateImgUrl!!).addOnSuccessListener {
-                Firebase.storage.reference.child(imageName).downloadUrl.addOnSuccessListener { uri ->
-                    downloadUrl = uri.toString()
-                }.addOnFailureListener { status.invoke(false) }
-            }.addOnFailureListener { status.invoke(false) }
-        }
+                val imageName = "ShowImages/${show?._id}.jpg"
+                val imagesRef = storageRef.child(imageName)
+                if (show?.addOrUpdateImgUrl != null) {
+                    imagesRef.putFile(show.addOrUpdateImgUrl!!).addOnSuccessListener {
+                        Firebase.storage.reference.child(imageName).downloadUrl.addOnSuccessListener { uri ->
+                            downloadUrl = uri.toString()
+                        }.addOnFailureListener { status.invoke(false) }
+                    }.addOnFailureListener { status.invoke(false) }
+                }
 
-        downloadUrl = if (downloadUrl == "") show?.imageUrl.toString() else downloadUrl
+                downloadUrl = if (downloadUrl == "") show?.imageUrl.toString() else downloadUrl
 
-        val newShowMap = mapOf(
-            "_createdAt" to Timestamp.now(),
-            "name" to show?.name.toString(),
-            "description" to show?.description.toString(),
-            "imageUrl" to downloadUrl,
-            "date" to show?.date.toString(),
-            "price" to show?.price.toString(),
-            "ageLimit" to show?.ageLimit.toString()
-        )
-        fireStoreShowRef.document(documentId).update(newShowMap)
-            .addOnSuccessListener {
-                status.invoke(true)
-            }.addOnFailureListener {
-                status.invoke(false)
+                val newShowMap = mapOf(
+                    "name" to show?.name.toString(),
+                    "description" to show?.description.toString(),
+                    "imageUrl" to downloadUrl,
+                    "date" to show?.date.toString(),
+                    "price" to show?.price.toString(),
+                    "ageLimit" to show?.ageLimit.toString()
+                )
+                fireStoreShowRef.document(documentId).update(newShowMap)
+                    .addOnSuccessListener {
+                        status.invoke(true)
+                    }.addOnFailureListener {
+                        status.invoke(false)
+                    }
             }
     }
 

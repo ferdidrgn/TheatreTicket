@@ -1,7 +1,5 @@
 package com.ferdidrgn.theatreticket.repository
 
-import android.net.Uri
-import com.ferdidrgn.theatreticket.commonModels.dummyData.Show
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Stage
 import com.ferdidrgn.theatreticket.enums.Response
 import com.google.firebase.Timestamp
@@ -20,40 +18,40 @@ class StageFirebaseQueries {
     private val fireStoreStageRef = Firebase.firestore.collection("Stage")
     var storageRef = Firebase.storage.reference
 
-    fun addStage(stage: Stage, status: (Boolean) -> Unit) {
-
-        val imageName = "ShowImages/${stage?._id}.jpg"
+    fun addStage(stage: Stage?, status: (Boolean) -> Unit) {
+        var downloadUrl = ""
+        val imageName = "StageImages/${stage?._id}.jpg"
         val imagesRef = storageRef.child(imageName)
 
         if (stage?.imgUrl != null) {
             imagesRef.putFile(stage.addOrUpdateImgUrl!!).addOnSuccessListener {
                 Firebase.storage.reference.child(imageName).downloadUrl.addOnSuccessListener { uri ->
-                    val downloadUrl = uri.toString()
-
-                    val stageMap = HashMap<String, Any>()
-                    stageMap["_createdAt"] = Timestamp.now()
-                    stageMap["_id"] = stage._id.toString()
-                    stageMap["name"] = stage.name.toString()
-                    stageMap["imgUrl"] = downloadUrl
-                    stageMap["capacity"] = stage.capacity.toString()
-                    stageMap["description"] = stage.description.toString()
-                    stageMap["communication"] = stage.communication.toString()
-                    stageMap["address"] = stage.address.toString()
-                    stageMap["locationLat"] = stage.locationLat.toString()
-                    stageMap["locationLng"] = stage.locationLng.toString()
-                    stageMap["seatColumnCount"] = stage.seatColumnCount.toString()
-                    stageMap["seatRowCount"] = stage.seatRowCount.toString()
-
-                    fireStoreStageRef.add(stageMap).addOnCompleteListener { task ->
-                        if (task.isComplete && task.isSuccessful) {
-                            status.invoke(true)
-                        } else {
-                            status.invoke(false)
-                        }
-                    }.addOnFailureListener { status.invoke(false) }
+                    downloadUrl = uri.toString()
                 }.addOnFailureListener { status.invoke(false) }
             }.addOnFailureListener { status.invoke(false) }
-        } else status.invoke(false)
+        }
+
+        val stageMap = HashMap<String, Any>()
+        stageMap["_createdAt"] = Timestamp.now()
+        stageMap["_id"] = stage?._id.toString()
+        stageMap["name"] = stage?.name.toString()
+        stageMap["imgUrl"] = downloadUrl ?: 0
+        stageMap["capacity"] = stage?.capacity.toString()
+        stageMap["description"] = stage?.description.toString()
+        stageMap["communication"] = stage?.communication.toString()
+        stageMap["address"] = stage?.address.toString()
+        stageMap["locationLat"] = stage?.locationLat.toString()
+        stageMap["locationLng"] = stage?.locationLng.toString()
+        stageMap["seatColumnCount"] = stage?.seatColumnCount.toString()
+        stageMap["seatRowCount"] = stage?.seatRowCount.toString()
+
+        fireStoreStageRef.add(stageMap).addOnCompleteListener { task ->
+            if (task.isComplete && task.isSuccessful) {
+                status.invoke(true)
+            } else {
+                status.invoke(false)
+            }
+        }.addOnFailureListener { status.invoke(false) }
     }
 
     fun deleteStage(show: Stage?, status: (Boolean) -> Unit) =
@@ -213,7 +211,7 @@ class StageFirebaseQueries {
 
     fun updateStage(stage: Stage?, status: (Boolean) -> Unit) {
 
-        val imageName = "ShowImages/${stage?._id}.jpg"
+        val imageName = "StageImages/${stage?._id}.jpg"
         val imagesRef = storageRef.child(imageName)
         var downloadUrl = ""
         var documentId = ""

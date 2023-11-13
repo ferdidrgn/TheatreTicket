@@ -37,7 +37,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
 
     private fun observe() {
 
-        //viewModel.getAllShow()
+        viewModel.getAllShow()
 
         viewModel.show.observe(viewLifecycleOwner) { showList ->
             mainScope {

@@ -14,7 +14,9 @@ import com.ferdidrgn.theatreticket.databinding.ActivityStageOperationsBinding
 import com.ferdidrgn.theatreticket.tools.builderADS
 import com.ferdidrgn.theatreticket.tools.showToast
 import com.tayfuncesur.curvedbottomsheet.CurvedBottomSheet
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class StageOperationsActivity :
     BaseActivity<StageOperationsViewModel, ActivityStageOperationsBinding>() {
 

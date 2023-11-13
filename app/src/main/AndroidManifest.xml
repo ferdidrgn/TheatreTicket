@@ -23,6 +23,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TheatreTicket"
         tools:targetApi="34">
+
+        <activity
+            android:name=".ui.stageOperations.StageOperationsActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.otp.OTPActivity"
             android:exported="false" />
@@ -58,9 +62,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.showOperations.ShowOperationsActivity"
-            android:exported="false" />
         <activity
             android:name=".ui.language.LanguageActivity"
             android:exported="false" />

@@ -24,31 +24,34 @@ class ShowFirebaseQuieries {
     fun addShow(show: Show?, status: (Boolean) -> Unit) {
         val imageName = "ShowImages/${show?._id}.jpg"
         val imagesRef = storageRef.child(imageName)
+        var downloadUrl = ""
+
         if (show?.imageUrl != null) {
             imagesRef.putFile(show.addOrUpdateImgUrl!!).addOnSuccessListener {
                 Firebase.storage.reference.child(imageName).downloadUrl.addOnSuccessListener { uri ->
-                    val downloadUrl = uri.toString()
-                    val showMap = HashMap<String, Any>()
-                    showMap["_createdAt"] = Timestamp.now()
-                    showMap["_id"] = show._id.toString()
-                    showMap["name"] = show.name.toString()
-                    showMap["imageUrl"] = downloadUrl
-                    showMap["description"] = show.description.toString()
-                    showMap["date"] = show.date.toString()
-                    showMap["price"] = show.price.toString()
-                    showMap["ageLimit"] = show.ageLimit.toString()
-                    showMap["players"] = show.actorsId.toString()
-
-                    fireStoreShowRef.add(showMap).addOnCompleteListener { task ->
-                        if (task.isComplete && task.isSuccessful) {
-                            status.invoke(true)
-                        } else {
-                            status.invoke(false)
-                        }
-                    }.addOnFailureListener { status.invoke(false) }
+                    downloadUrl = uri.toString()
                 }.addOnFailureListener { status.invoke(false) }
             }.addOnFailureListener { status.invoke(false) }
-        } else status.invoke(false)
+        }
+
+        val showMap = HashMap<String, Any>()
+        showMap["_createdAt"] = Timestamp.now()
+        showMap["_id"] = show?._id.toString()
+        showMap["name"] = show?.name.toString()
+        showMap["imageUrl"] = downloadUrl ?: 0
+        showMap["description"] = show?.description.toString()
+        showMap["date"] = show?.date.toString()
+        showMap["price"] = show?.price.toString()
+        showMap["ageLimit"] = show?.ageLimit.toString()
+        showMap["players"] = show?.actorsId.toString()
+
+        fireStoreShowRef.add(showMap).addOnCompleteListener { task ->
+            if (task.isComplete && task.isSuccessful) {
+                status.invoke(true)
+            } else {
+                status.invoke(false)
+            }
+        }.addOnFailureListener { status.invoke(false) }
     }
 
     fun deleteShow(show: Show?, status: (Boolean) -> Unit) = CoroutineScope(Dispatchers.IO).launch {

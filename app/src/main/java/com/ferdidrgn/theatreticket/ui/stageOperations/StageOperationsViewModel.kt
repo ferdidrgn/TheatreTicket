@@ -48,8 +48,8 @@ class StageOperationsViewModel @Inject constructor(private val stageFirebaseQuer
 
 
     fun getAllStage() {
-        showLoading()
         mainScope {
+            showLoading()
             stageFirebaseQueries.getStage() { status, stageList ->
                 when (status) {
                     Response.ServerError -> {
@@ -76,8 +76,8 @@ class StageOperationsViewModel @Inject constructor(private val stageFirebaseQuer
     }
 
     fun deleteStage() {
-        showLoading()
         mainScope {
+            showLoading()
             stageFirebaseQueries.deleteStage(deleteClicked.value) { status ->
                 when (status) {
                     false -> {
@@ -96,17 +96,15 @@ class StageOperationsViewModel @Inject constructor(private val stageFirebaseQuer
     private fun updateStage() {
         showLoading()
         mainScope {
-            updateOrAddStageData?.let { stage ->
-                stageFirebaseQueries.updateStage(stage) { status ->
-                    when (status) {
-                        true -> {
-                            hideLoading()
-                            successMessage.postValue(message(R.string.success_update_stage))
-                        }
-                        false -> {
-                            hideLoading()
-                            errorMessage.postValue(message(R.string.error_server))
-                        }
+            stageFirebaseQueries.updateStage(updateOrAddStageData) { status ->
+                when (status) {
+                    true -> {
+                        hideLoading()
+                        successMessage.postValue(message(R.string.success_update_stage))
+                    }
+                    false -> {
+                        hideLoading()
+                        errorMessage.postValue(message(R.string.error_server))
                     }
                 }
             }
@@ -114,9 +112,9 @@ class StageOperationsViewModel @Inject constructor(private val stageFirebaseQuer
     }
 
     private fun addStage() {
-        showLoading()
 
         mainScope {
+            showLoading()
             val id = UUID.randomUUID().toString() + ID.Stage.id
             updateOrAddStageData = Stage(
                 _id = id,
@@ -132,17 +130,16 @@ class StageOperationsViewModel @Inject constructor(private val stageFirebaseQuer
                 seatColumnCount = seatColumnCount.value.toInt(),
                 seatRowCount = seatRowCount.value.toInt()
             )
-            updateOrAddStageData?.let { stage ->
-                stageFirebaseQueries.addStage(stage) { status ->
-                    when (status) {
-                        true -> {
-                            hideLoading()
-                            successMessage.postValue(message(R.string.success_add_stage))
-                        }
-                        false -> {
-                            hideLoading()
-                            errorMessage.postValue(message(R.string.error_server))
-                        }
+
+            stageFirebaseQueries.addStage(updateOrAddStageData) { status ->
+                when (status) {
+                    true -> {
+                        hideLoading()
+                        successMessage.postValue(message(R.string.success_add_stage))
+                    }
+                    false -> {
+                        hideLoading()
+                        errorMessage.postValue(message(R.string.error_server))
                     }
                 }
             }
@@ -156,9 +153,6 @@ class StageOperationsViewModel @Inject constructor(private val stageFirebaseQuer
             isRequiredFieldsDone = false
 
         if (description.value.length < 3)
-            isRequiredFieldsDone = false
-
-        if (imgUrl.value.isEmpty())
             isRequiredFieldsDone = false
 
         if (communication.value.isEmpty())
@@ -190,26 +184,6 @@ class StageOperationsViewModel @Inject constructor(private val stageFirebaseQuer
             }
         }
 
-        if (seatColumnCount.value.isEmpty())
-            isRequiredFieldsDone = false
-        else {
-            try {
-                seatColumnCount.value.toInt()
-            } catch (e: Exception) {
-                isRequiredFieldsDone = false
-            }
-        }
-
-        if (seatRowCount.value.isEmpty())
-            isRequiredFieldsDone = false
-        else {
-            try {
-                seatRowCount.value.toInt()
-            } catch (e: Exception) {
-                isRequiredFieldsDone = false
-            }
-        }
-
         if (isRequiredFieldsDone) {
             if (isUpdate)
                 updateStage()
@@ -233,7 +207,7 @@ class StageOperationsViewModel @Inject constructor(private val stageFirebaseQuer
         seatRowCount.value = ""
     }
 
-    //Click Event
+//Click Event
 
     fun onBtnBottomSheetCloseClick() {
         bottomSheetVisibility.postValue(false)

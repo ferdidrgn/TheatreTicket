@@ -189,9 +189,6 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
     fun checkRequestFields(isUpdate: Boolean) {
         var isRequiredFieldsDone = true
 
-        if (imageUrl.value == null)
-            isRequiredFieldsDone = false
-
         if (name.value.isEmpty())
             isRequiredFieldsDone = false
 

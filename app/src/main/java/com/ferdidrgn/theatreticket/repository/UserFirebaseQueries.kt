@@ -33,31 +33,30 @@ class UserFirebaseQueries {
     fun addUser(user: User?, status: (Boolean) -> Unit) {
         val imageName = "UserImages/${user?._id}.jpg"
         val imagesRef = storageRef.child(imageName)
+        var downloadUrl = ""
 
         if (user?.imgUrl != null) {
             imagesRef.putFile(user.addOrUpdateImgUrl!!).addOnSuccessListener {
                 Firebase.storage.reference.child(imageName).downloadUrl.addOnSuccessListener { uri ->
-                    val downloadUrl = uri.toString()
-                    val userMap = HashMap<String, Any>()
-                    userMap["_createdAt"] = Timestamp.now()
-                    userMap["_id"] = user?._id.toString()
-                    userMap["firstName"] = user?.firstName.toString()
-                    userMap["lastName"] = user?.lastName.toString()
-                    userMap["fullName"] = user?.fullName.toString()
-                    userMap["phoneNumber"] = user?.phoneNumber.toString()
-                    userMap["photoUrl"] = downloadUrl
-                    userMap["isActivite"] = user?.isActivite.toString().toBoolean()
-                    userMap["age"] = user?.age.toString()
-                    userMap["eMail"] = user?.eMail.toString()
-                    userMap["fcmToken"] = user?.fcmToken.toString()
-                    userMap["role"] = user?.role.toString()
-
-                    fireStoreUserRef.add(userMap).addOnSuccessListener {
-                        status.invoke(true)
-                    }.addOnFailureListener {
-                        status.invoke(false)
-                    }
+                    downloadUrl = uri.toString()
                 }.addOnFailureListener { status.invoke(false) }
+            }.addOnFailureListener { status.invoke(false) }
+            val userMap = HashMap<String, Any>()
+            userMap["_createdAt"] = Timestamp.now()
+            userMap["_id"] = user?._id.toString()
+            userMap["firstName"] = user?.firstName.toString()
+            userMap["lastName"] = user?.lastName.toString()
+            userMap["fullName"] = user?.fullName.toString()
+            userMap["phoneNumber"] = user?.phoneNumber.toString()
+            userMap["photoUrl"] = downloadUrl
+            userMap["isActivite"] = user?.isActivite.toString().toBoolean()
+            userMap["age"] = user?.age.toString()
+            userMap["eMail"] = user?.eMail.toString()
+            userMap["fcmToken"] = user?.fcmToken.toString()
+            userMap["role"] = user?.role.toString()
+
+            fireStoreUserRef.add(userMap).addOnSuccessListener {
+                status.invoke(true)
             }.addOnFailureListener {
                 status.invoke(false)
             }

@@ -23,10 +23,6 @@ class ShowDetailsViewModel @Inject constructor(
 
     val btnStageOnClick = LiveEvent<Boolean?>()
 
-    init {
-        getStageId()
-    }
-
     fun onBtnStageClick() {
         btnStageOnClick.postValue(true)
     }
@@ -50,8 +46,8 @@ class ShowDetailsViewModel @Inject constructor(
         }
     }
 
-    private fun getStageId() {
-        stageFirebaseQueries.getStageId(show.value?.stageId) { response, stages ->
+    fun getStageId(stageId: ArrayList<Any>?) {
+        stageFirebaseQueries.getStageId(stageId) { response, stages ->
             when (response) {
                 Response.Empty -> {
                     errorMessage.postValue(message(R.string.error))

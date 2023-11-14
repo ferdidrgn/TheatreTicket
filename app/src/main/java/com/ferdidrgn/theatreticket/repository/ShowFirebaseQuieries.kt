@@ -2,13 +2,10 @@ package com.ferdidrgn.theatreticket.repository
 
 import android.net.Uri
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Show
-import com.ferdidrgn.theatreticket.commonModels.dummyData.Stage
 import com.ferdidrgn.theatreticket.enums.Response
-import com.ferdidrgn.theatreticket.tools.showToast
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
-import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
@@ -217,7 +214,7 @@ class ShowFirebaseQuieries {
             val ageLimit =
                 if (document.get("ageLimit") != null) document.get("ageLimit") as String else ""
             val stageId =
-                if (document.get("stageId") != null) document.get("stageId") as ArrayList<String?> else arrayListOf()
+                if (document.get("stageId") != null) document.get("stageId") as ArrayList<Any> else arrayListOf()
 
             val show = Show(
                 _createdAt = createdAt.toString(),

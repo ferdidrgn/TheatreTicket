@@ -87,19 +87,19 @@ class StageFirebaseQueries {
             }
     }
 
-    fun getStageId(stageId: ArrayList<String?>?, status: (Response, ArrayList<Stage?>?) -> Unit) {
-        var stageList: ArrayList<Stage?> = arrayListOf()
-        stageId?.forEach { stage ->
-            fireStoreStageRef.whereEqualTo("_id", stage).get()
-                .addOnSuccessListener { result ->
-                    if (result.isEmpty || result == null) {
-                        status.invoke(Response.Empty, null)
-                    } else {
-                        stageList = getAllHashMap(result)
-                        status.invoke(Response.ThereIs, stageList)
-                    }
+    fun getStageId(stageId: ArrayList<Any>?, status: (Response, ArrayList<Stage?>?) -> Unit) {
+        var stageList: ArrayList<Stage?>? = null
+        val firstSageId = stageId?.first()
+
+        fireStoreStageRef.whereEqualTo("_id", firstSageId).get()
+            .addOnSuccessListener { result ->
+                if (result.isEmpty || result == null) {
+                    status.invoke(Response.Empty, null)
+                } else {
+                    stageList = getAllHashMap(result)
+                    status.invoke(Response.ThereIs, stageList)
                 }
-        }
+            }
     }
 
     fun updateStage(stage: Stage?, status: (Boolean) -> Unit) {

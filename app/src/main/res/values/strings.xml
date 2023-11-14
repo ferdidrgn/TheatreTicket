@@ -58,6 +58,9 @@
     <string name="ADS_BANNER_OTP_ACTVTY_REAL" translatable="false">ca-app-pub-5779807348211992/7027568070</string>
 
 
+    <string name="API_KEY_LOCATION" translatable="false">AIzaSyBsCOOM3jripwBiQWZBMX7_uPKg-UHNtSs</string>
+    <string name="API_KEY_ADMOB" translatable="false">ca-app-pub-5779807348211992~2861799229</string>
+
     <string-array name="phone_codes">
         <item>+90</item>
         <item>+964</item>

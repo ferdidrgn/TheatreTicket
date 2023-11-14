@@ -83,10 +83,10 @@ class NavHandler {
         context.startActivity(intent)
     }
 
-    fun toShowDetailsActivity(context: Context, show: ArrayList<Show?>) {
+    fun toShowDetailsActivity(context: Context, show: Show) {
         val intent = Intent(context, ShowDetailsActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
-        intent.putExtra(SHOW, show as Serializable)
+        intent.putExtra(SHOW, show)
         context.startActivity(intent)
     }
 

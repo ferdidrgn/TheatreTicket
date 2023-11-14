@@ -49,9 +49,19 @@ class StageActivity : BaseActivity<StageViewModel, ActivityStageBinding>(), OnMa
     }
 
     fun observe() {
-        intent.getSerializableExtra(STAGE)?.let { stage ->
-            viewModel.stage.postValue(stage as Stage?)
-        }
+        val getStageDetails = intent.getSerializableExtra(STAGE) as Stage?
+        viewModel.stage.value = Stage(
+            _id = getStageDetails?._id,
+            name = getStageDetails?.name,
+            description = getStageDetails?.description,
+            communication = getStageDetails?.communication,
+            capacity = getStageDetails?.capacity,
+            address = getStageDetails?.address,
+            imgUrl = getStageDetails?.imgUrl,
+            locationLat = getStageDetails?.locationLat,
+            locationLng = getStageDetails?.locationLng,
+            seatId = getStageDetails?.seatId
+        )
 
         latitude = viewModel.stage.value?.locationLat ?: 0.0
         longitude = viewModel.stage.value?.locationLng ?: 0.0

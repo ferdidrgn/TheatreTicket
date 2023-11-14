@@ -41,7 +41,7 @@ class ShowDetailsActivity : BaseActivity<ShowDetailsViewModel, ActivityShowDetai
     }
 
     fun observe() {
-        viewModel.btnStageOnClick.observe(this){
+        viewModel.btnStageOnClick.observe(this) {
             NavHandler.instance.toStageActivity(this, viewModel.stage.value)
         }
     }
@@ -52,18 +52,19 @@ class ShowDetailsActivity : BaseActivity<ShowDetailsViewModel, ActivityShowDetai
             viewModel.getShowId(it)
         }
 
-        val getShowDetails = intent.getSerializableExtra(SHOW) as ArrayList<Show?>
-        getShowDetails.forEach {
-            viewModel.show.value = Show(
-                _id = it?._id,
-                name = it?.name,
-                description = it?.description,
-                imageUrl = it?.imageUrl,
-                price = it?.price,
-                date = it?.date,
-                ageLimit = it?.ageLimit,
-            )
-        }
+        val getShowDetails = intent.getSerializableExtra(SHOW) as Show?
+        viewModel.show.value = Show(
+            _id = getShowDetails?._id,
+            name = getShowDetails?.name,
+            description = getShowDetails?.description,
+            imageUrl = getShowDetails?.imageUrl,
+            price = getShowDetails?.price,
+            date = getShowDetails?.date,
+            ageLimit = getShowDetails?.ageLimit,
+            stageId = getShowDetails?.stageId
+        )
+
+        viewModel.getStageId(getShowDetails?.stageId)
     }
 
 }

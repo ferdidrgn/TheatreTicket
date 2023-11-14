@@ -16,7 +16,7 @@ class HomeViewModel @Inject constructor(private val showFirebaseQuieries: ShowFi
     BaseViewModel(), ShowDetailsAdapterListener, ShowSliderDetailsAdapterListener {
 
     val show = MutableLiveData<List<Show?>?>()
-    val goShowDetails = MutableLiveData<ArrayList<Show?>?>()
+    val goShowDetails = MutableLiveData<Show?>()
 
     fun getAllShow() {
         showLoading()
@@ -39,22 +39,19 @@ class HomeViewModel @Inject constructor(private val showFirebaseQuieries: ShowFi
                     }
                     else -> {
                         errorMessage.postValue(message(R.string.error))
-                        hideLoading()}
+                        hideLoading()
+                    }
                 }
             }
         }
     }
 
     override fun onShowDetailsAdapterListener(show: Show?) {
-        val showList = ArrayList<Show?>()
-        showList.add(show)
-        goShowDetails.postValue(showList)
+        goShowDetails.postValue(show)
     }
 
     override fun onShowSliderDetailsAdapterListener(show: Show) {
-        val showList = ArrayList<Show?>()
-        showList.add(show)
-        goShowDetails.postValue(showList)
+        goShowDetails.postValue(show)
     }
 
 }

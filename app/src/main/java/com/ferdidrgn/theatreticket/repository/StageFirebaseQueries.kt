@@ -104,21 +104,31 @@ class StageFirebaseQueries {
 
     fun updateStage(stage: Stage?, status: (Boolean) -> Unit) {
 
-        val documentId = getDocumandId(stage?._id.toString())
-
-        val downloadUrl = putStrogeImage(
+        var downloadUrl = putStrogeImage(
             stage?._id.toString(),
             stage?.addOrUpdateImgUrl,
             stage?.imgUrl.toString()
         )
 
-        val newShowMap = putHashMap(stage, downloadUrl, true)
+        var documentId = ""
+        fireStoreStageRef.whereEqualTo("_id", stage?._id).get()
+            .addOnSuccessListener { result ->
+                if (result != null) {
+                    val documents = result.documents
+                    for (document in documents) {
+                        documentId = document.id
+                    }
 
-        fireStoreStageRef.document(documentId).update(newShowMap)
-            .addOnSuccessListener {
-                status.invoke(true)
-            }.addOnFailureListener {
-                status.invoke(false)
+                    downloadUrl = if (downloadUrl == "") stage?.imgUrl.toString() else downloadUrl
+
+                    val stageMap = putHashMap(stage, downloadUrl, true)
+                    fireStoreStageRef.document(documentId).update(stageMap)
+                        .addOnSuccessListener {
+                            status.invoke(true)
+                        }.addOnFailureListener {
+                            status.invoke(false)
+                        }
+                }
             }
     }
 
@@ -226,8 +236,8 @@ class StageFirebaseQueries {
                 capacity = capacity,
                 communication = communication,
                 address = address,
-                locationLat = locationLat.toString().toDouble(),
-                locationLng = locationLng.toString().toDouble(),
+                locationLat = locationLat?.toString()?.toDoubleOrNull() ?: 0.0,
+                locationLng = locationLng?.toString()?.toDoubleOrNull() ?: 0.0,
                 //seatColumnCount = seatColumnCount,
                 //seatRowCount = seatRowCount
             )

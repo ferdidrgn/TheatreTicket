@@ -83,13 +83,13 @@ class StageOperationsViewModel @Inject constructor(private val stageFirebaseQuer
             updateOrAddStageData = Stage(
                 _id = _id.value,
                 name = name.value,
-                //imgUrl = imgUrl.value,
+                imgUrl = imgUrl.value,
                 description = description.value,
                 communication = communication.value,
                 capacity = capacity.value,
                 address = address.value,
-                //locationLat = locationLat.value.toDouble(),
-                //locationLng = locationLng.value.toDouble(),
+                locationLat = locationLat.value.toDouble(),
+                locationLng = locationLng.value.toDouble(),
                 //seatId = seatId.value,
                 //seatColumnCount = seatColumnCount.value.toInt(),
                 //seatRowCount = seatRowCount.value.toInt()

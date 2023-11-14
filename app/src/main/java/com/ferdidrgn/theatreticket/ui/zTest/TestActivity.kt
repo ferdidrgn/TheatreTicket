@@ -18,15 +18,6 @@ class TestActivity : BaseActivity<TestViewModel, ActivityTestBinding>() {
     override fun onCreateFinished(savedInstance: Bundle?) {
         binding.viewModel = viewModel
 
-        getGridLayout()
     }
 
-
-    fun getGridLayout() {
-        viewModel.seat.observe(this) { seatList ->
-            viewModel.seatColumnCount.observe(this) { columnCount ->
-                binding.customSeatPlan.setUpGridLayoutManager(seatList, columnCount)
-            }
-        }
-    }
 }

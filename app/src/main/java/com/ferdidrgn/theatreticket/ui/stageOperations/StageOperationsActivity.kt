@@ -56,7 +56,7 @@ class StageOperationsActivity :
             permissionCheck()
         }
         viewModel.btnAddStageClicked.observe(this) {
-            addOrUpdateStagePopUp(this)
+            addOrUpdateStagePopUp(this, false)
         }
 
         viewModel.updateBottonVisibility.observe(this) {
@@ -68,7 +68,7 @@ class StageOperationsActivity :
         }
 
         viewModel.updateStagePopUp.observe(this) {
-            addOrUpdateStagePopUp(this)
+            addOrUpdateStagePopUp(this, true)
         }
 
         viewModel.errorMessage.observe(this) { errorMessage ->
@@ -150,14 +150,14 @@ class StageOperationsActivity :
         pupUp.show(supportFragmentManager, "")
     }
 
-    private fun addOrUpdateStagePopUp(context: Context) {
+    private fun addOrUpdateStagePopUp(context: Context, isUpdate: Boolean) {
         val pupUp = BasePopUp()
         pupUp.apply {
             setPositiveText(context.getString(R.string.yes))
             setNegativeText(context.getString(R.string.no))
             setDesc(context.getString(R.string.are_you_serious))
             setOnPositiveClick {
-                viewModel.checkRequestFields(true)
+                viewModel.checkRequestFields(isUpdate)
                 dismiss()
             }
             setOnNegativeClick {

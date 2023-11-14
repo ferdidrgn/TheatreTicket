@@ -137,7 +137,7 @@
                             android:gravity="center_horizontal"
                             android:weightSum="4">
 
-                            <Space
+                            <androidx.legacy.widget.Space
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1" />
@@ -211,13 +211,13 @@
                                 app:custom_edit_hint="@string/stage_desc"
                                 app:custom_edit_text="@={viewModel.description}" />
 
-                            <com.ferdidrgn.theatreticket.tools.components.CustomEditText
+                            <com.ferdidrgn.theatreticket.tools.components.CustomNumberEditText
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
                                 android:textAlignment="textStart"
-                                app:custom_edit_hint="@string/capacity"
-                                app:custom_edit_text="@={viewModel.capacity}" />
+                                app:cst_number_changeable_edit_text="@={viewModel.capacity}"
+                                app:cst_number_hint_text="@string/capacity" />
 
                             <com.ferdidrgn.theatreticket.tools.components.CustomEditText
                                 android:layout_width="match_parent"
@@ -251,7 +251,7 @@
                                     app:cst_number_changeable_edit_text="@={viewModel.locationLat}"
                                     app:cst_number_hint_text="@string/latitude" />
 
-                                <Space
+                                <androidx.legacy.widget.Space
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.5" />
@@ -283,7 +283,7 @@
                                     app:cst_number_changeable_edit_text="@={viewModel.seatColumnCount}"
                                     app:cst_number_hint_text="@string/seat_column_count" />
 
-                                <Space
+                                <androidx.legacy.widget.Space
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.5" />

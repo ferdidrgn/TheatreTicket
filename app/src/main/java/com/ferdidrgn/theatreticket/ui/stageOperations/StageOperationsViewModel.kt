@@ -10,8 +10,11 @@ import com.ferdidrgn.theatreticket.enums.Response
 import com.ferdidrgn.theatreticket.repository.StageFirebaseQueries
 import com.ferdidrgn.theatreticket.tools.helpers.LiveEvent
 import com.ferdidrgn.theatreticket.tools.mainScope
+import com.ferdidrgn.theatreticket.tools.showToast
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.withContext
 import java.util.*
 import javax.inject.Inject
 
@@ -83,13 +86,13 @@ class StageOperationsViewModel @Inject constructor(private val stageFirebaseQuer
             updateOrAddStageData = Stage(
                 _id = _id.value,
                 name = name.value,
-                imgUrl = imgUrl.value,
+                //imgUrl = imgUrl.value,
                 description = description.value,
                 communication = communication.value,
                 capacity = capacity.value,
                 address = address.value,
-                locationLat = locationLat.value.toDouble(),
-                locationLng = locationLng.value.toDouble(),
+                //locationLat = locationLat.value.toDouble(),
+                //locationLng = locationLng.value.toDouble(),
                 //seatId = seatId.value,
                 //seatColumnCount = seatColumnCount.value.toInt(),
                 //seatRowCount = seatRowCount.value.toInt()
@@ -99,6 +102,7 @@ class StageOperationsViewModel @Inject constructor(private val stageFirebaseQuer
                     true -> {
                         hideLoading()
                         successMessage.postValue(message(R.string.success_update_stage))
+                        getAllStage()
                     }
                     false -> {
                         hideLoading()
@@ -134,6 +138,7 @@ class StageOperationsViewModel @Inject constructor(private val stageFirebaseQuer
                     true -> {
                         hideLoading()
                         successMessage.postValue(message(R.string.success_add_stage))
+                        getAllStage()
                     }
                     false -> {
                         hideLoading()
@@ -156,6 +161,7 @@ class StageOperationsViewModel @Inject constructor(private val stageFirebaseQuer
                     true -> {
                         hideLoading()
                         successMessage.postValue(message(R.string.success_delete_stage))
+                        getAllStage()
                     }
                 }
             }
@@ -248,7 +254,7 @@ class StageOperationsViewModel @Inject constructor(private val stageFirebaseQuer
 
     override fun onStageUpdateListener(stage: Stage) {
         stage._id?.let { _id.postValue(it) }
-        stage?.name?.let { name.value = it }
+        stage.name?.let { name.value = it }
         stage?.imgUrl?.let { imgUrl.value = it }
         stage?.description?.let { description.value = it }
         stage?.communication?.let { communication.value = it }

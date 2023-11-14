@@ -187,7 +187,7 @@ class EditProfileViewModel @Inject constructor(private val userFirebaseQueries: 
         mainScope {
             showLoading()
             var userId = ""
-            var name: String = ""
+            var name = ""
             ClientPreferences.inst.apply {
                 userId = userID.toString()
                 name = this.userFirstName.toString()

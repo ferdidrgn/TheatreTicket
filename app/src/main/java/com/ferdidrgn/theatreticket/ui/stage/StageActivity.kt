@@ -21,11 +21,13 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class StageActivity : BaseActivity<StageViewModel, ActivityStageBinding>(), OnMapReadyCallback {
 
     private lateinit var mGoogleMap: GoogleMap
@@ -55,10 +57,12 @@ class StageActivity : BaseActivity<StageViewModel, ActivityStageBinding>(), OnMa
         longitude = viewModel.stage.value?.locationLng ?: 0.0
 
         viewModel.stage.value?.imgUrl.let { stageImg ->
-            getBitmap(stageImg!!, this@StageActivity) {
-                CoroutineScope(Dispatchers.Main).launch {
-                    bm = it?.let { bitmap ->
-                        getMarkerBitmapFromView(bitmap)
+            if (stageImg != null) {
+                getBitmap(stageImg, this@StageActivity) {
+                    CoroutineScope(Dispatchers.Main).launch {
+                        bm = it?.let { bitmap ->
+                            getMarkerBitmapFromView(bitmap)
+                        }
                     }
                 }
             }

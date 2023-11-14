@@ -40,12 +40,12 @@ class StageFirebaseQueries {
         }.addOnFailureListener { status.invoke(false) }
     }
 
-    fun deleteStage(show: Stage?, status: (Boolean) -> Unit) =
+    fun deleteStage(stage: Stage?, status: (Boolean) -> Unit) =
         CoroutineScope(Dispatchers.IO).launch {
 
             val shoQuery = fireStoreStageRef
-                .whereEqualTo("_id", show?._id)
-                .whereEqualTo("name", show?.name)
+                .whereEqualTo("_id", stage?._id)
+                .whereEqualTo("name", stage?.name)
                 .get()
                 .await()
             if (shoQuery.documents.isNotEmpty()) {
@@ -55,7 +55,7 @@ class StageFirebaseQueries {
                         /*personCollectionRef.document(document.id).update(mapOf(
                             "firstName" to FieldValue.delete()
                         )).await()*/
-                        deleteStrogeImage(show?._id.toString())
+                        deleteStrogeImage(stage?._id.toString())
                         status.invoke(true)
                     } catch (e: Exception) {
                         withContext(Dispatchers.Main) {

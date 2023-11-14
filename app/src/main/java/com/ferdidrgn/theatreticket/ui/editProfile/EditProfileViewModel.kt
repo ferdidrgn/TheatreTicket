@@ -25,7 +25,7 @@ class EditProfileViewModel @Inject constructor(private val userFirebaseQueries: 
     BaseViewModel() {
 
     val fullName = MutableStateFlow("")
-    val firstName = MutableStateFlow("")
+    var firstName = MutableStateFlow("")
     val lastName = MutableStateFlow("")
     val phoneNumber = MutableStateFlow("")
     val age = MutableStateFlow("")
@@ -186,8 +186,13 @@ class EditProfileViewModel @Inject constructor(private val userFirebaseQueries: 
     fun deleteUser() {
         mainScope {
             showLoading()
-
-            userFirebaseQueries.deleteUser { status ->
+            var userId = ""
+            var name: String = ""
+            ClientPreferences.inst.apply {
+                userId = userID.toString()
+                name = this.userFirstName.toString()
+            }
+            userFirebaseQueries.deleteUser(userId, name) { status ->
                 when (status) {
                     true -> {
                         clearClientPreferences()

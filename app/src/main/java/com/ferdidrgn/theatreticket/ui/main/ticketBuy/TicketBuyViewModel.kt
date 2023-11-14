@@ -71,61 +71,6 @@ class TicketBuyViewModel @Inject constructor(
         buyTicketPopUp.postValue(true)
     }
 
-    fun checkPhoneNumber() {
-        showLoading()
-        mainScope {
-
-            userAdd = User(
-                firstName = firstName.value,
-                lastName = lastName.value,
-                phoneNumber = phoneNumber.value.removeWhiteSpace(),
-                age = age.value
-            )
-
-            userFirebaseQueries.checkPhoneNumber(userAdd) { status, userInfoList ->
-                when (status) {
-                    Response.Empty -> {
-                        //Universal Unique ID
-
-                        val id = if (ClientPreferences.inst.role == Roles.Guest.role)
-                            UUID.randomUUID().toString() + ID.User.id
-                        else
-                            ClientPreferences.inst.userID.toString()
-                        userAdd = User(
-                            _id = id,
-                            token = ClientPreferences.inst.token.toString(),
-                            fcmToken = ClientPreferences.inst.FCMtoken.toString(),
-                            firstName = firstName.value,
-                            lastName = lastName.value,
-                            phoneNumber = phoneNumber.value.removeWhiteSpace(),
-                            role = ClientPreferences.inst.role.toString(),
-                            age = age.value
-                        )
-                        hideLoading()
-                        fillDatas(userAdd, true)
-                    }
-                    Response.ThereIs -> {
-                        hideLoading()
-                        checkTicket(userInfoList)
-                    }
-                    Response.NotEqual -> {
-                        hideLoading()
-                        errorMessage.postValue(message(R.string.error_not_equal))
-                    }
-                    Response.ServerError -> {
-                        hideLoading()
-                        errorMessage.postValue(message(R.string.error_server))
-                    }
-                    else -> {
-                        hideLoading()
-                        errorMessage.postValue(message(R.string.error))
-                    }
-                }
-
-            }
-        }
-    }
-
     private fun checkTicket(user: User?) {
 
         showLoading()
@@ -238,7 +183,6 @@ class TicketBuyViewModel @Inject constructor(
         }
 
         if (isRequiredFieldsDone) {
-            checkPhoneNumber()
         } else
             errorMessage.postValue(message)
     }

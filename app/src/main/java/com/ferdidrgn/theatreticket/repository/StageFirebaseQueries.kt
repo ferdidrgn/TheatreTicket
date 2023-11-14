@@ -92,16 +92,13 @@ class StageFirebaseQueries {
         stageId?.forEach { stage ->
             fireStoreStageRef.whereEqualTo("_id", stage).get()
                 .addOnSuccessListener { result ->
-                    if (result.isEmpty) {
+                    if (result.isEmpty || result == null) {
                         status.invoke(Response.Empty, null)
                     } else {
-                        if (result != null) {
-                            stageList = getAllHashMap(result)
-                        }
+                        stageList = getAllHashMap(result)
                         status.invoke(Response.ThereIs, stageList)
                     }
                 }
-            status.invoke(Response.Empty, null)
         }
     }
 
@@ -177,7 +174,6 @@ class StageFirebaseQueries {
         if (!isUpdate)
             stageMap["_createdAt"] = Timestamp.now()
 
-        stageMap["_createdAt"] = Timestamp.now()
         stageMap["_id"] = stage?._id.toString()
         stageMap["name"] = stage?.name.toString()
         stageMap["imgUrl"] = downloadUrl

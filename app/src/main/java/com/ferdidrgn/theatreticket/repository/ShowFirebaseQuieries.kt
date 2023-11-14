@@ -1,9 +1,13 @@
 package com.ferdidrgn.theatreticket.repository
 
+import android.net.Uri
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Show
+import com.ferdidrgn.theatreticket.commonModels.dummyData.Stage
 import com.ferdidrgn.theatreticket.enums.Response
+import com.ferdidrgn.theatreticket.tools.showToast
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -22,31 +26,16 @@ class ShowFirebaseQuieries {
     var storageRef = Firebase.storage.reference
 
     fun addShow(show: Show?, status: (Boolean) -> Unit) {
-        val imageName = "ShowImages/${show?._id}.jpg"
-        val imagesRef = storageRef.child(imageName)
-        var downloadUrl = ""
 
-        if (show?.addOrUpdateImgUrl != null) {
-            imagesRef.putFile(show.addOrUpdateImgUrl!!).addOnSuccessListener {
-                Firebase.storage.reference.child(imageName).downloadUrl.addOnSuccessListener { uri ->
-                    downloadUrl = uri.toString()
-                }.addOnFailureListener { status.invoke(false) }
-            }.addOnFailureListener { status.invoke(false) }
-        }
+        val downloadUrl = putStrogeImage(
+            show?._id.toString(),
+            show?.addOrUpdateImgUrl,
+            show?.imageUrl.toString()
+        )
 
-        val showMap = HashMap<String, Any>()
-        showMap["_createdAt"] = Timestamp.now()
-        showMap["_id"] = show?._id.toString()
-        showMap["name"] = show?.name.toString()
-        downloadUrl = if (downloadUrl == "") show?.imageUrl.toString() else downloadUrl
-        showMap["imageUrl"] = downloadUrl
-        showMap["description"] = show?.description.toString()
-        showMap["date"] = show?.date.toString()
-        showMap["price"] = show?.price.toString()
-        showMap["ageLimit"] = show?.ageLimit.toString()
-        showMap["players"] = show?.actorsId.toString()
+        val stageMap = putHashMap(show, downloadUrl, false)
 
-        fireStoreShowRef.add(showMap).addOnCompleteListener { task ->
+        fireStoreShowRef.add(stageMap).addOnCompleteListener { task ->
             if (task.isComplete && task.isSuccessful) {
                 status.invoke(true)
             } else {
@@ -68,6 +57,7 @@ class ShowFirebaseQuieries {
                     /*personCollectionRef.document(document.id).update(mapOf(
                         "firstName" to FieldValue.delete()
                     )).await()*/
+                    deleteStrogeImage(show?._id.toString())
                     status.invoke(true)
                 } catch (e: Exception) {
                     withContext(Dispatchers.Main) {
@@ -84,60 +74,29 @@ class ShowFirebaseQuieries {
 
     fun getShow(status: (Response, ArrayList<Show?>?) -> Unit) {
 
-        val showList: ArrayList<Show?> = arrayListOf()
+        var showList: ArrayList<Show?> = arrayListOf()
         fireStoreShowRef.orderBy("_createdAt", Query.Direction.ASCENDING)
             .addSnapshotListener { value, error ->
                 if (error != null) status.invoke(Response.ServerError, null)
                 else {
-                    if (value != null) {
-                        if (!value.isEmpty) {
-                            val documents = value.documents
-                            for (document in documents) {
-                                val createdAt =
-                                    if (document.get("_createdAt") != null) document.get("_createdAt") as Timestamp else ""
-                                val id =
-                                    if (document.get("_id") != null) document.get("_id") as String else ""
-                                val imgUrl =
-                                    if (document.get("imageUrl") != null) document.get("imageUrl") as String else ""
-                                val name =
-                                    if (document.get("name") != null) document.get("name") as String else ""
-                                val description =
-                                    if (document.get("description") != null) document.get("description") as String else ""
-                                val date =
-                                    if (document.get("date") != null) document.get("date") as String else ""
-                                val price =
-                                    if (document.get("price") != null) document.get("price") as String else ""
-                                val ageLimit =
-                                    if (document.get("ageLimit") != null) document.get("ageLimit") as String else ""
-                                val stageId =
-                                    if (document.get("stageId") != null) document.get("stageId") as ArrayList<String?> else arrayListOf()
-
-                                val show = Show(
-                                    _createdAt = createdAt.toString(),
-                                    _id = id,
-                                    imageUrl = imgUrl,
-                                    name = name,
-                                    description = description,
-                                    date = date,
-                                    price = price,
-                                    ageLimit = ageLimit,
-                                    stageId = stageId,
-                                )
-                                showList?.add(show)
-                            }
-                            status.invoke(Response.ThereIs, showList)
-                        } else {
-                            status.invoke(Response.Empty, null)
-                        }
-                    } else {
+                    if (value == null || value.isEmpty) {
                         status.invoke(Response.Empty, null)
+                    } else {
+                        showList = getAllHashMap(value)
+                        status.invoke(Response.ThereIs, showList)
                     }
                 }
             }
     }
 
     fun updateShow(show: Show?, status: (Boolean) -> Unit) {
-        var downloadUrl = ""
+
+        var downloadUrl = putStrogeImage(
+            show?._id.toString(),
+            show?.addOrUpdateImgUrl,
+            show?.imageUrl.toString()
+        )
+
         var documentId = ""
         fireStoreShowRef.whereEqualTo("_id", show?._id).get()
             .addOnSuccessListener { result ->
@@ -146,82 +105,134 @@ class ShowFirebaseQuieries {
                     for (document in documents) {
                         documentId = document.id
                     }
+
+                    downloadUrl = if (downloadUrl == "") show?.imageUrl.toString() else downloadUrl
+
+                    val showMap = putHashMap(show, downloadUrl, true)
+                    fireStoreShowRef.document(documentId).update(showMap)
+                        .addOnSuccessListener {
+                            status.invoke(true)
+                        }.addOnFailureListener {
+                            status.invoke(false)
+                        }
                 }
-
-                val imageName = "ShowImages/${show?._id}.jpg"
-                val imagesRef = storageRef.child(imageName)
-                if (show?.addOrUpdateImgUrl != null) {
-                    imagesRef.putFile(show.addOrUpdateImgUrl!!).addOnSuccessListener {
-                        Firebase.storage.reference.child(imageName).downloadUrl.addOnSuccessListener { uri ->
-                            downloadUrl = uri.toString()
-                        }.addOnFailureListener { status.invoke(false) }
-                    }.addOnFailureListener { status.invoke(false) }
-                }
-
-                downloadUrl = if (downloadUrl == "") show?.imageUrl.toString() else downloadUrl
-
-                val newShowMap = mapOf(
-                    "name" to show?.name.toString(),
-                    "description" to show?.description.toString(),
-                    "imageUrl" to downloadUrl,
-                    "date" to show?.date.toString(),
-                    "price" to show?.price.toString(),
-                    "ageLimit" to show?.ageLimit.toString()
-                )
-                fireStoreShowRef.document(documentId).update(newShowMap)
-                    .addOnSuccessListener {
-                        status.invoke(true)
-                    }.addOnFailureListener {
-                        status.invoke(false)
-                    }
             }
     }
 
     fun getShowId(showId: String, status: (Response, Show?) -> Unit) {
 
-        var show: Show? = null
+        var showList: ArrayList<Show?> = arrayListOf()
 
         fireStoreShowRef.whereEqualTo("_id", showId).get()
             .addOnSuccessListener { result ->
-                if (result.isEmpty) {
+                if (result.isEmpty || result == null) {
                     status.invoke(Response.Empty, null)
                 } else {
-                    if (result != null) {
-                        val documents = result.documents
-                        for (document in documents) {
-                            val createdAt =
-                                if (document.get("_createdAt") != null) document.get("_createdAt") as Timestamp else ""
-                            val imgUrl =
-                                if (document.get("imageUrl") != null) document.get("imageUrl") as String else ""
-                            val name =
-                                if (document.get("name") != null) document.get("name") as String else ""
-                            val description =
-                                if (document.get("description") != null) document.get("description") as String else ""
-                            val date =
-                                if (document.get("date") != null) document.get("date") as String else ""
-                            val price =
-                                if (document.get("price") != null) document.get("price") as String else ""
-                            val ageLimit =
-                                if (document.get("ageLimit") != null) document.get("ageLimit") as String else ""
-
-                            show = Show(
-                                _createdAt = createdAt.toString(),
-                                _id = showId,
-                                imageUrl = imgUrl,
-                                name = name,
-                                description = description,
-                                date = date,
-                                price = price,
-                                ageLimit = ageLimit,
-                            )
-                        }
-                        status.invoke(Response.ThereIs, show)
-                    } else {
-                        status.invoke(Response.Empty, null)
-                    }
+                    showList = getAllHashMap(result)
+                    status.invoke(Response.ThereIs, showList.first())
                 }
             }.addOnFailureListener {
                 status.invoke(Response.ServerError, null)
             }
     }
+
+    private fun getDocumandId(showId: String): String {
+        var documentId = ""
+        fireStoreShowRef.whereEqualTo("_id", showId).get()
+            .addOnSuccessListener { result ->
+                if (result != null) {
+                    val documents = result.documents
+                    for (document in documents) {
+                        documentId = document.id
+                    }
+                }
+            }
+        return documentId
+    }
+
+    private fun putStrogeImage(
+        showId: String,
+        showIdAddOrUpdateImgUrl: Uri?,
+        showIdImgUrl: String
+    ): String {
+        val imageName = "ShowImages/${showId}.jpg"
+        val imagesRef = storageRef.child(imageName)
+        var downloadUrl = ""
+        if (showIdAddOrUpdateImgUrl != null) {
+            imagesRef.putFile(showIdAddOrUpdateImgUrl).addOnSuccessListener {
+                Firebase.storage.reference.child(imageName).downloadUrl.addOnSuccessListener { uri ->
+                    downloadUrl = uri.toString()
+                }
+            }
+        }
+        downloadUrl = if (downloadUrl == "") showIdImgUrl else downloadUrl
+        return downloadUrl
+    }
+
+    private fun deleteStrogeImage(stageId: String) {
+        val imageName = "ShowImages/${stageId}.jpg"
+        val imagesRef = storageRef.child(imageName)
+        imagesRef.delete().addOnSuccessListener {
+        }.addOnFailureListener {
+        }
+    }
+
+    private fun putHashMap(
+        show: Show?,
+        downloadUrl: String,
+        isUpdate: Boolean
+    ): HashMap<String, Any> {
+        val showMap = HashMap<String, Any>()
+        if (!isUpdate)
+            showMap["_createdAt"] = Timestamp.now()
+
+        showMap["_id"] = show?._id.toString()
+        showMap["name"] = show?.name.toString()
+        showMap["imageUrl"] = downloadUrl
+        showMap["description"] = show?.description.toString()
+        showMap["date"] = show?.date.toString()
+        showMap["price"] = show?.price.toString()
+        showMap["ageLimit"] = show?.ageLimit.toString()
+        return showMap
+    }
+
+    private fun getAllHashMap(result: QuerySnapshot): ArrayList<Show?> {
+        val showList: ArrayList<Show?> = arrayListOf()
+        val documents = result.documents
+        for (document in documents) {
+            val createdAt =
+                if (document.get("_createdAt") != null) document.get("_createdAt") as Timestamp else ""
+            val id =
+                if (document.get("_id") != null) document.get("_id") as String else ""
+            val imgUrl =
+                if (document.get("imageUrl") != null) document.get("imageUrl") as String else ""
+            val name =
+                if (document.get("name") != null) document.get("name") as String else ""
+            val description =
+                if (document.get("description") != null) document.get("description") as String else ""
+            val date =
+                if (document.get("date") != null) document.get("date") as String else ""
+            val price =
+                if (document.get("price") != null) document.get("price") as String else ""
+            val ageLimit =
+                if (document.get("ageLimit") != null) document.get("ageLimit") as String else ""
+            val stageId =
+                if (document.get("stageId") != null) document.get("stageId") as ArrayList<String?> else arrayListOf()
+
+            val show = Show(
+                _createdAt = createdAt.toString(),
+                _id = id,
+                imageUrl = imgUrl,
+                name = name,
+                description = description,
+                date = date,
+                price = price,
+                ageLimit = ageLimit,
+                stageId = stageId,
+            )
+            showList?.add(show)
+        }
+        return showList
+    }
+
 }

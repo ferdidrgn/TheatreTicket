@@ -22,7 +22,7 @@ class ShowFirebaseQuieries {
     var storageRef = Firebase.storage.reference
 
     fun addShow(show: Show?, status: (Boolean) -> Unit) {
-        /*val imageName = "ShowImages/${show?._id}.jpg"
+        val imageName = "ShowImages/${show?._id}.jpg"
         val imagesRef = storageRef.child(imageName)
         var downloadUrl = ""
 
@@ -32,14 +32,14 @@ class ShowFirebaseQuieries {
                     downloadUrl = uri.toString()
                 }.addOnFailureListener { status.invoke(false) }
             }.addOnFailureListener { status.invoke(false) }
-        }*/
+        }
 
         val showMap = HashMap<String, Any>()
         showMap["_createdAt"] = Timestamp.now()
         showMap["_id"] = show?._id.toString()
         showMap["name"] = show?.name.toString()
-        //downloadUrl = if (downloadUrl == "") show?.imageUrl.toString() else downloadUrl
-        //showMap["imageUrl"] = downloadUrl
+        downloadUrl = if (downloadUrl == "") show?.imageUrl.toString() else downloadUrl
+        showMap["imageUrl"] = downloadUrl
         showMap["description"] = show?.description.toString()
         showMap["date"] = show?.date.toString()
         showMap["price"] = show?.price.toString()
@@ -220,7 +220,7 @@ class ShowFirebaseQuieries {
                         status.invoke(Response.Empty, null)
                     }
                 }
-            }.addOnFailureListener { exception ->
+            }.addOnFailureListener {
                 status.invoke(Response.ServerError, null)
             }
     }

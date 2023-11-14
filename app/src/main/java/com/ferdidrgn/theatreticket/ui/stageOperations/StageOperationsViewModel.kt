@@ -10,11 +10,8 @@ import com.ferdidrgn.theatreticket.enums.Response
 import com.ferdidrgn.theatreticket.repository.StageFirebaseQueries
 import com.ferdidrgn.theatreticket.tools.helpers.LiveEvent
 import com.ferdidrgn.theatreticket.tools.mainScope
-import com.ferdidrgn.theatreticket.tools.showToast
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.withContext
 import java.util.*
 import javax.inject.Inject
 

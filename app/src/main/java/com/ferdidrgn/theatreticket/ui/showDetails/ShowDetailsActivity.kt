@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import com.ferdidrgn.theatreticket.base.BaseActivity
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Show
 import com.ferdidrgn.theatreticket.databinding.ActivityShowDetailsBinding
+import com.ferdidrgn.theatreticket.enums.ToMain
 import com.ferdidrgn.theatreticket.tools.NavHandler
 import com.ferdidrgn.theatreticket.tools.SHOW
 import com.ferdidrgn.theatreticket.tools.SHOW_ID
@@ -43,6 +44,14 @@ class ShowDetailsActivity : BaseActivity<ShowDetailsViewModel, ActivityShowDetai
     fun observe() {
         viewModel.btnStageOnClick.observe(this) {
             NavHandler.instance.toStageActivity(this, viewModel.stage.value)
+        }
+
+        viewModel.btnSeatOnClick.observe(this) {
+            NavHandler.instance.toBuyTicketActivity(
+                this,
+                viewModel.show.value,
+                viewModel.stage.value
+            )
         }
     }
 

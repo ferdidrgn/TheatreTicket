@@ -22,9 +22,14 @@ class ShowDetailsViewModel @Inject constructor(
     val stage = MutableLiveData<Stage?>()
 
     val btnStageOnClick = LiveEvent<Boolean?>()
+    val btnSeatOnClick = LiveEvent<Boolean?>()
 
     fun onBtnStageClick() {
         btnStageOnClick.postValue(true)
+    }
+
+    fun onBtnSeatClick() {
+        btnSeatOnClick.postValue(true)
     }
 
     fun getShowId(showId: String) {

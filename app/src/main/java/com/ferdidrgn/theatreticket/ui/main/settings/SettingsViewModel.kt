@@ -14,8 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
-    private val appToolsFireBaseQueries: AppToolsFireBaseQueries,
-    private val userFirebaseQueries: UserFirebaseQueries
+    private val appToolsFireBaseQueries: AppToolsFireBaseQueries
 ) :
     BaseViewModel() {
 
@@ -41,9 +40,7 @@ class SettingsViewModel @Inject constructor(
 
 
     fun selectedLayout() {
-        //MOCK DATA
-        roleAdminLayout.postValue(true)
-        /*roleAdminLayout.postValue(false)
+        roleAdminLayout.postValue(false)
         roleGuestLayout.postValue(true)
         when (ClientPreferences.inst.role) {
             Roles.Admin.role -> {
@@ -58,7 +55,7 @@ class SettingsViewModel @Inject constructor(
                 roleAdminLayout.postValue(false)
                 roleGuestLayout.postValue(false)
             }
-        }*/
+        }
 
     }
 

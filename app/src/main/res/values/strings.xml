@@ -4,6 +4,7 @@
     <string name="app_name">Tiyatro Bileti</string>
     <string name="title_home">Anasayfa</string>
     <string name="ticket_buy">Bilet Al</string>
+    <string name="shop">Satış</string>
     <string name="ticket_search">Bilet Sorgula</string>
     <string name="settings">Ayarlar</string>
     <string name="contact_email" translatable="false">ferdidurgun2@hotmail.com</string>
@@ -207,6 +208,9 @@
     <string name="resend_code">Kodu Tekrar Gönder</string>
     <string name="code_send_success">Kod Gönderme Başarılı</string>
     <string name="sms_remain_time">Şu süre sonunda tekrar kod isteyebilirsiniz: <b>%1$s </b></string>
+    <string name="error_network">İnternet Bağlantısı Yok</string>
+    <string name="again">Tekrar Dene</string>
+    <string name="close_app">Uygulamayı Kapat</string>
 
 
 </resources>

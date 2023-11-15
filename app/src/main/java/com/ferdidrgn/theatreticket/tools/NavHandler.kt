@@ -35,6 +35,14 @@ class NavHandler {
         finishAffinity(context as AppCompatActivity)
     }
 
+    fun toBuyTicketActivity(context: Context, show: Show?, stage: Stage?) {
+        val intent = Intent(context, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+        intent.putExtra(SHOW,show)
+        intent.putExtra(STAGE, stage)
+        context.startActivity(intent)
+    }
+
     fun toMainActivity(context: Context, toMain: ToMain) {
         val intent = Intent(context, MainActivity::class.java)
         intent.putExtra(TO_MAIN, toMain)

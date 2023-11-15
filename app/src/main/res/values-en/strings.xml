@@ -4,6 +4,7 @@
     <string name="app_name">Theatre Ticket</string>
     <string name="title_home">Home</string>
     <string name="ticket_buy">Ticket Buy</string>
+    <string name="shop">Shop</string>
     <string name="ticket_search">Ticket Search</string>
     <string name="settings">Settings</string>
 
@@ -166,5 +167,9 @@
     <string name="resend_code">Resend Code</string>
     <string name="code_send_success">Send Code Success</string>
     <string name="sms_remain_time">You can resend the code within <b>%1$s </b>seconds.</string>
+    <string name="error_network">Network Error</string>
+    <string name="again">Again</string>
+    <string name="close_app">Close the app</string>
+
 
 </resources>

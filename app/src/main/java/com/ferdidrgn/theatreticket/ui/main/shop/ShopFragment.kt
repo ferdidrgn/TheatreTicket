@@ -1,4 +1,4 @@
-package com.ferdidrgn.theatreticket.ui.main.ticketBuy
+package com.ferdidrgn.theatreticket.ui.main.shop
 
 import android.content.Context
 import android.os.Bundle
@@ -7,19 +7,19 @@ import com.ferdidrgn.theatreticket.R
 import androidx.fragment.app.viewModels
 import com.ferdidrgn.theatreticket.base.BaseFragment
 import com.ferdidrgn.theatreticket.base.BasePopUp
-import com.ferdidrgn.theatreticket.databinding.FragmentTicketBuyBinding
+import com.ferdidrgn.theatreticket.databinding.FragmentShopBinding
 import com.ferdidrgn.theatreticket.tools.builderADS
 import com.ferdidrgn.theatreticket.ui.main.MainActivity
 import com.tayfuncesur.curvedbottomsheet.CurvedBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class TicketBuyFragment : BaseFragment<TicketBuyViewModel, FragmentTicketBuyBinding>() {
+class ShopFragment : BaseFragment<ShopViewModel, FragmentShopBinding>() {
 
-    override fun getVM(): Lazy<TicketBuyViewModel> = viewModels()
+    override fun getVM(): Lazy<ShopViewModel> = viewModels()
 
-    override fun getDataBinding(): FragmentTicketBuyBinding =
-        FragmentTicketBuyBinding.inflate(layoutInflater)
+    override fun getDataBinding(): FragmentShopBinding =
+        FragmentShopBinding.inflate(layoutInflater)
 
     override fun onCreateFinished(savedInstanceState: Bundle?) {
         binding.viewModel = viewModel
@@ -36,7 +36,7 @@ class TicketBuyFragment : BaseFragment<TicketBuyViewModel, FragmentTicketBuyBind
             buyTicketPopUp(requireContext())
         }
         viewModel.btnCstmDatePickerClick.observe(this) {
-            binding.cdpDate.setCustomDataPickerClick()
+            //binding.cdpDate.setCustomDataPickerClick()
         }
         viewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
             if (errorMessage != null)
@@ -49,18 +49,18 @@ class TicketBuyFragment : BaseFragment<TicketBuyViewModel, FragmentTicketBuyBind
     }
 
     private fun bottomSheetInit() {
-        val displayMetrics = DisplayMetrics()
+        /*val displayMetrics = DisplayMetrics()
         (requireActivity() as MainActivity).windowManager.defaultDisplay.getMetrics(displayMetrics)
         CurvedBottomSheet(
             (displayMetrics.widthPixels / 6).toFloat(),
             view = binding.bottomSheet
-        ).init()
+        ).init()*/
     }
 
     fun getGridLayout() {
         viewModel.seat.observe(this) { seatList ->
             viewModel.seatColumnCount.observe(this) { columnCount ->
-                binding.customSeatPlan.setUpGridLayoutManager(seatList, columnCount)
+               // binding.customSeatPlan.setUpGridLayoutManager(seatList, columnCount)
             }
         }
     }

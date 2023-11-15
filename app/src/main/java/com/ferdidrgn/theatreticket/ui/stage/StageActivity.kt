@@ -68,13 +68,13 @@ class StageActivity : BaseActivity<StageViewModel, ActivityStageBinding>(), OnMa
 
         viewModel.stage.value?.imgUrl.let { stageImg ->
             if (stageImg != null) {
-                getBitmap(stageImg, this@StageActivity) {
+                /*getBitmap(stageImg, this@StageActivity) {
                     CoroutineScope(Dispatchers.Main).launch {
                         bm = it?.let { bitmap ->
                             getMarkerBitmapFromView(bitmap)
                         }
                     }
-                }
+                }*/
             }
         }
         binding.expandedMap?.getMapAsync(this@StageActivity)

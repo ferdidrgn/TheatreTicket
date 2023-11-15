@@ -12,10 +12,10 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/ticketBuyFragmentNav"
-        android:name="com.ferdidrgn.theatreticket.ui.main.ticketBuy.TicketBuyFragment"
-        android:label="@string/ticket_buy"
-        tools:layout="@layout/fragment_ticket_buy" />
+        android:id="@+id/shopFragmentNav"
+        android:name="com.ferdidrgn.theatreticket.ui.main.shop.ShopFragment"
+        android:label="@string/shop"
+        tools:layout="@layout/fragment_shop" />
 
     <fragment
         android:id="@+id/ticketSearchFragmentNav"
@@ -27,9 +27,9 @@
         android:id="@+id/settingsFragmentNav"
         android:name="com.ferdidrgn.theatreticket.ui.main.settings.SettingsFragment"
         android:label="@string/settings"
-        tools:layout="@layout/fragment_settings" >
+        tools:layout="@layout/fragment_settings">
         <action
             android:id="@+id/action_navigation_settings_fragment_to_navigation_ticket_buy"
-            app:destination="@id/ticketBuyFragmentNav" />
+            app:destination="@id/shopFragmentNav" />
     </fragment>
 </navigation>

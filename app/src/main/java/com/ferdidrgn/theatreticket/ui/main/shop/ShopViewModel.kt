@@ -1,4 +1,4 @@
-package com.ferdidrgn.theatreticket.ui.main.ticketBuy
+package com.ferdidrgn.theatreticket.ui.main.shop
 
 import androidx.lifecycle.MutableLiveData
 import com.ferdidrgn.theatreticket.R
@@ -8,7 +8,6 @@ import com.ferdidrgn.theatreticket.commonModels.dummyData.User
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Sell
 import com.ferdidrgn.theatreticket.enums.ID
 import com.ferdidrgn.theatreticket.enums.Response
-import com.ferdidrgn.theatreticket.enums.Roles
 import com.ferdidrgn.theatreticket.repository.UserFirebaseQueries
 import com.ferdidrgn.theatreticket.repository.SellFirebaseQueries
 import com.ferdidrgn.theatreticket.tools.*
@@ -19,7 +18,7 @@ import com.ferdidrgn.theatreticket.tools.helpers.LiveEvent
 import kotlinx.coroutines.flow.MutableStateFlow
 
 @HiltViewModel
-class TicketBuyViewModel @Inject constructor(
+class ShopViewModel @Inject constructor(
     private val sellFirebaseQueries: SellFirebaseQueries,
     private val userFirebaseQueries: UserFirebaseQueries
 ) :

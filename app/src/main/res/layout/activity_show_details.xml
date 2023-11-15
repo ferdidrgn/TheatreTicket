@@ -39,7 +39,7 @@
             ads:adUnitId="@string/BANNER_ADS_TEST"
             ads:layout_constraintEnd_toEndOf="parent"
             ads:layout_constraintStart_toStartOf="parent"
-            ads:layout_constraintTop_toBottomOf="@id/customToolbar"/>
+            ads:layout_constraintTop_toBottomOf="@id/customToolbar" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -210,6 +210,15 @@
                                 app:layout_constraintTop_toBottomOf="@id/title"
                                 tools:text="akdjkasldjkasldjasdjaskd asd askd" />
 
+                            <com.ferdidrgn.theatreticket.tools.components.CustomButton
+                                android:id="@+id/btnSeat"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="30dp"
+                                android:onClick="@{() -> viewModel.onBtnSeatClick()}"
+                                app:cst_btn_name="@string/show_add"
+                                app:layout_constraintTop_toBottomOf="@id/tvDesc" />
+
                             <TextView
                                 android:id="@+id/tvEventList"
                                 style="@style/TextColor2"
@@ -217,7 +226,7 @@
                                 android:layout_height="wrap_content"
                                 android:paddingVertical="5dp"
                                 android:text="@string/list_of_events"
-                                app:layout_constraintTop_toBottomOf="@id/tvDesc" />
+                                app:layout_constraintTop_toBottomOf="@id/btnSeat" />
 
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/rvEventList"

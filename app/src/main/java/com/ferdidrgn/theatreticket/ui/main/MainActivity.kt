@@ -18,7 +18,6 @@ import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseActivity
 import com.ferdidrgn.theatreticket.databinding.ActivityMainBinding
 import com.ferdidrgn.theatreticket.enums.ToMain
-import com.ferdidrgn.theatreticket.enums.WhichEditProfile
 import com.ferdidrgn.theatreticket.repository.UserFirebaseQueries
 import com.ferdidrgn.theatreticket.tools.*
 import com.ferdidrgn.theatreticket.tools.helpers.deepLinkHelper
@@ -151,7 +150,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
             when (toWhere) {
                 ToMain.Home -> bottomNav.selectedItemId = R.id.homeFragmentNav
 
-                ToMain.TicketBuy -> bottomNav.selectedItemId = R.id.ticketBuyFragmentNav
+                ToMain.TicketBuy -> bottomNav.selectedItemId = R.id.shopFragmentNav
 
                 ToMain.TicketSearch -> bottomNav.selectedItemId = R.id.ticketSearchFragmentNav
 

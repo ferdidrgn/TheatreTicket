@@ -9,9 +9,9 @@
         app:showAsAction="withText" />
 
     <item
-        android:id="@+id/ticketBuyFragmentNav"
+        android:id="@+id/shopFragmentNav"
         android:icon="@drawable/ic_ticket_buy_selector"
-        android:title="@string/ticket_buy"
+        android:title="@string/shop"
         app:showAsAction="withText" />
 
     <item

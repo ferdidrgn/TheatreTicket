@@ -8,7 +8,7 @@
             <LayoutPositions>
               <option name="myPositions">
                 <map>
-                  <entry key="navigation_home">
+                  <entry key="homeFragmentNav">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
@@ -20,7 +20,7 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="navigation_settings_fragment">
+                  <entry key="settingsFragmentNav">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
@@ -41,7 +41,7 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="navigation_ticket_buy">
+                  <entry key="ticketBuyFragmentNav">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
@@ -53,7 +53,7 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="navigation_ticket_search">
+                  <entry key="ticketSearchFragmentNav">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">

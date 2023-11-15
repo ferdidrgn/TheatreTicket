@@ -119,7 +119,9 @@
     <string name="error">Error</string>
     <string name="mistake">Mistake</string>
     <string name="empty">Empty</string>
-
+    <string name="choose_empty">You did not choose seat</string>
+    <string name="guest_ticket_buy_warning">You are a Guest. For guest entries, we should have something unique to check the number of tickets purchased.
+        Therefore, we only ask you to enter your phone number in the settings. You can proceed with the process after SMS confirmation :)</string>
 
     <!-- Settings -->
     <string name="log_out">Logout</string>

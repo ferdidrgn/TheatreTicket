@@ -58,8 +58,8 @@ class TicketBuyActivity : BaseActivity<TicketBuyActivityViewModel, ActivityTicke
             seatId = show?.seatId,
         )
 
-        viewModel.btnCstmDatePickerClick.observe(this) {
-            binding.cdpDate.setCustomDataPickerClick()
+        viewModel.buyTicketPopUp.observe(this) {
+            ticketBuyPopUp(this)
         }
         viewModel.errorMessage.observe(this) { errorMessage ->
             if (errorMessage != null)
@@ -96,6 +96,20 @@ class TicketBuyActivity : BaseActivity<TicketBuyActivityViewModel, ActivityTicke
             setOnPositiveClick {
                 dismiss()
             }
+        }
+        pupUp.show(supportFragmentManager, "")
+    }
+
+    private fun ticketBuyPopUp(context: Context) {
+        val pupUp = BasePopUp()
+        pupUp.apply {
+            setPositiveText(context.getString(R.string.done))
+            setDesc(context.getString(R.string.are_you_serious))
+            setOnPositiveClick {
+                viewModel.checkTicket()
+                dismiss()
+            }
+            setOnNegativeClick { dismiss() }
         }
         pupUp.show(supportFragmentManager, "")
     }

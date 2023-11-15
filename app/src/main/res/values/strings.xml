@@ -137,7 +137,7 @@
     <string name="error_last_name_little">Soyisim çok kısa görünüyor. Lütfen kontrol edin</string>
     <string name="error_little_things">Bir ya da birkaç veri çok kısa veya eksik görünüyor. Lütfen kontrol edin</string>
     <string name="error_email">Mail adresinizi kontrol edin</string>
-    <string name="error_have_ticket">Önceden bilet alınmış. Lütfen kontrol edelin</string>
+    <string name="error_have_ticket">Önceden bilet alınmış. Lütfen kontrol ediniz</string>
     <string name="error_no_any_ticket">Herhangi Bir Bilet Bulunamadı</string>
     <string name="error_no_any_show">Herhangi Bir Gösteri Bulunamadı</string>
     <string name="error_no_any_stage">Herhangi Bir Sahne Bulunamadı</string>
@@ -152,6 +152,9 @@
     <string name="error">Hata</string>
     <string name="mistake">Hata</string>
     <string name="empty">Boş</string>
+    <string name="choose_empty">Koltuk Seçmediniz</string>
+    <string name="guest_ticket_buy_warning">Siz bir Misafirsiniz. Misafir girişlerde, alınan bilet sayısını kontrol edebilmek için benzersiz bir şeye sahip olmalıyız.
+        Bu yüzden ayarlardan sadece telefon numaranızı girmenizi istiyoruz. Sms onayından sonra işleme devam edebilirsiniz :)</string>
 
 
     <!-- Settings -->

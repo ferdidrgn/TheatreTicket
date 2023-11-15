@@ -173,17 +173,11 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
         if (ClientPreferences.inst.isDarkMode == true) {
             ClientPreferences.inst.isDarkMode = false
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            lifecycleScope.launch {
-                delay(5.seconds)
-                NavHandler.instance.toMainActivity(requireContext(), ToMain.Settings)
-            }
+            (requireActivity() as MainActivity).recreate()
         } else {
             ClientPreferences.inst.isDarkMode = true
-            lifecycleScope.launch {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                delay(5.seconds)
-                NavHandler.instance.toMainActivity(requireContext(), ToMain.Settings)
-            }
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            (requireActivity() as MainActivity).recreate()
         }
     }
 

@@ -16,7 +16,7 @@ data class Show(
     var time: String? = null,
     var price: String? = null,
     var ageLimit: String? = null,
-    var seat: String? = null,
+    var seatId: String? = null,
     var stageId: ArrayList<Any>? = null,
     var actorsId: ArrayList<Players?>? = null,
     override val mId: Long = 1L

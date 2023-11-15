@@ -25,7 +25,7 @@
             layout="@layout/stage_map_marker"
             android:visibility="gone" />
 
-        <com.ferdidrgn.theatreticket.tools.components.CustomToolbar
+        <TextView
             android:id="@+id/customToolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -94,13 +94,13 @@
                         app:custom_edit_hint="@string/stage_name"
                         app:custom_edit_text="@={viewModel.stage.name}" />
 
-                    <com.ferdidrgn.theatreticket.tools.components.CustomEditText
+                    <TextView
+                        style="@style/rounded_primary2_10_border_primary3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:textAlignment="textStart"
-                        app:custom_edit_hint="@string/stage_desc"
-                        app:custom_edit_text="@={viewModel.stage.description}" />
+                        android:text="@={viewModel.stage.description}" />
 
                     <com.ferdidrgn.theatreticket.tools.components.CustomEditText
                         android:layout_width="match_parent"
@@ -125,7 +125,6 @@
                         android:textAlignment="textStart"
                         app:custom_edit_hint="@string/communication"
                         app:custom_edit_text="@={viewModel.stage.communication}" />
-
 
                     <TextView
                         style="@style/TextColor2"
@@ -154,6 +153,7 @@
                                 android:name="com.google.android.gms.maps.SupportMapFragment"
                                 android:layout_width="0dp"
                                 android:layout_height="0dp"
+                                android:contentDescription="@string/stage_location"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"

@@ -9,6 +9,7 @@ import com.ferdidrgn.theatreticket.commonModels.dummyData.Stage
 import com.ferdidrgn.theatreticket.enums.ToMain
 import com.ferdidrgn.theatreticket.enums.WhichEditProfile
 import com.ferdidrgn.theatreticket.enums.WhichTermsAndPrivace
+import com.ferdidrgn.theatreticket.ui.buyTicket.TicketBuyActivity
 import com.ferdidrgn.theatreticket.ui.editProfile.EditProfileActivity
 import com.ferdidrgn.theatreticket.ui.termsAndConditionsAndPrivacePolicy.TermsAndConditionsandPrivacePolicyActivity
 import com.ferdidrgn.theatreticket.ui.language.LanguageActivity
@@ -36,7 +37,7 @@ class NavHandler {
     }
 
     fun toBuyTicketActivity(context: Context, show: Show?, stage: Stage?) {
-        val intent = Intent(context, MainActivity::class.java)
+        val intent = Intent(context, TicketBuyActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
         intent.putExtra(SHOW,show)
         intent.putExtra(STAGE, stage)

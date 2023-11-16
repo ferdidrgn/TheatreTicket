@@ -69,6 +69,7 @@ class ShowDetailsActivity : BaseActivity<ShowDetailsViewModel, ActivityShowDetai
             imageUrl = getShowDetails?.imageUrl,
             price = getShowDetails?.price,
             date = getShowDetails?.date,
+            time = getShowDetails?.time,
             ageLimit = getShowDetails?.ageLimit,
             stageId = getShowDetails?.stageId
         )

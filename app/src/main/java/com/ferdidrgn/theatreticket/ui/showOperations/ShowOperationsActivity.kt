@@ -58,7 +58,7 @@ class ShowOperationsActivity :
         viewModel.btnCstmDatePickerDateClick.observe(this) {
             binding.cdpDate.setCustomDataPickerClick()
         }
-        viewModel.btnCstmDatePickerDateClick.observe(this) {
+        viewModel.btnCstmDatePickerTimeClick.observe(this) {
             binding.cdpTime.popTimePicker()
         }
 

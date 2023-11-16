@@ -68,6 +68,7 @@
                         style="@style/TintBlueLight"
                         android:layout_width="0dp"
                         android:layout_height="20dp"
+                        android:layout_marginStart="20dp"
                         android:layout_weight="0.3"
                         android:src="@drawable/ic_gps_location_navigation_pin" />
 
@@ -81,7 +82,7 @@
                         android:maxLines="4"
                         android:onClick="@{() -> viewModel.onBtnStageClick()}"
                         android:text="@{viewModel.stage.name}"
-                        android:textSize="12dp"
+                        android:textSize="12sp"
                         android:textStyle="bold"
                         tools:text="Ses Tiyatrosu" />
 
@@ -101,7 +102,7 @@
                         android:layout_marginStart="5dp"
                         android:layout_weight="1.2"
                         android:text="@{viewModel.show.date}"
-                        android:textSize="12dp"
+                        android:textSize="12sp"
                         android:textStyle="bold"
                         tools:text="Ses Tiyatrosu" />
 
@@ -121,7 +122,7 @@
                         android:layout_marginStart="5dp"
                         android:layout_weight="1.2"
                         android:text="@{viewModel.show.time}"
-                        android:textSize="12dp"
+                        android:textSize="12sp"
                         android:textStyle="bold"
                         tools:text="Ses Tiyatrosu" />
 

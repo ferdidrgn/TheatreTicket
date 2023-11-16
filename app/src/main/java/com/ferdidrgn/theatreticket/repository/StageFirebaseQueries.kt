@@ -99,7 +99,7 @@ class StageFirebaseQueries {
                     stageList = getAllHashMap(result)
                     status.invoke(Response.ThereIs, stageList)
                 }
-            }
+            }.addOnFailureListener { status.invoke(Response.ServerError, null) }
     }
 
     fun updateStage(stage: Stage?, status: (Boolean) -> Unit) {

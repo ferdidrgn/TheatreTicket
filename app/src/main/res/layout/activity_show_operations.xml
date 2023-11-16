@@ -233,7 +233,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:onClick="@{()-> viewModel.onCstmDatePickerDateClick()}"
+                            android:onClick="@{()-> viewModel.onCstmDatePickerTimeClick()}"
                             android:textAlignment="textStart"
                             app:cst_date_picker_hint_text="@string/show_time"
                             app:cst_picker_changeable_text="@={viewModel.time}" />

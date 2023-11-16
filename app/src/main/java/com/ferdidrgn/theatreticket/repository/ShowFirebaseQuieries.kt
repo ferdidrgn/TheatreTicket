@@ -192,6 +192,13 @@ class ShowFirebaseQuieries {
         showMap["price"] = show?.price.toString()
         showMap["ageLimit"] = show?.ageLimit.toString()
         showMap["stageId"] = show?.stageId.toString()
+
+        val stageIdList = ArrayList<String>()
+        show?.stageId?.forEach { element ->
+            stageIdList.add(element.toString())
+        }
+
+        showMap["stageId"] = stageIdList
         return showMap
     }
 
@@ -216,8 +223,11 @@ class ShowFirebaseQuieries {
                 if (document.get("price") != null) document.get("price") as String else ""
             val ageLimit =
                 if (document.get("ageLimit") != null) document.get("ageLimit") as String else ""
-            val stageId =
-                if (document.get("stageId") != null) document.get("stageId") as ArrayList<Any> else arrayListOf()
+            val stageIdRaw = document.get("stageId")
+            val stageId: ArrayList<Any> = when (stageIdRaw) {
+                is ArrayList<*> -> stageIdRaw as ArrayList<Any>
+                else -> arrayListOf()
+            }
 
             val show = Show(
                 _createdAt = createdAt.toString(),

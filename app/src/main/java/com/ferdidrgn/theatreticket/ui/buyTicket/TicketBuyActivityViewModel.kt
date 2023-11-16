@@ -7,6 +7,7 @@ import com.ferdidrgn.theatreticket.commonModels.dummyData.*
 import com.ferdidrgn.theatreticket.enums.ID
 import com.ferdidrgn.theatreticket.enums.Response
 import com.ferdidrgn.theatreticket.enums.Roles
+import com.ferdidrgn.theatreticket.repository.SeatFirebaseQuieries
 import com.ferdidrgn.theatreticket.repository.SellFirebaseQueries
 import com.ferdidrgn.theatreticket.tools.ClientPreferences
 import com.ferdidrgn.theatreticket.tools.helpers.LiveEvent
@@ -16,11 +17,11 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import java.util.*
 import javax.inject.Inject
-import kotlin.collections.ArrayList
 
 @HiltViewModel
 class TicketBuyActivityViewModel @Inject constructor(
     private val sellFirebaseQueries: SellFirebaseQueries,
+    private val seatFirebaseQuieries: SeatFirebaseQuieries
 ) : BaseViewModel() {
 
     val stage = MutableLiveData<Stage?>()
@@ -49,30 +50,58 @@ class TicketBuyActivityViewModel @Inject constructor(
             phoneNumber = userPhone.toString()
         }
         getSeat()
+        //mock data
+        getSeatTest()
     }
 
 
     private fun getSeat() {
+        mainScope {
+            showLoading()
+            seatFirebaseQuieries.getSeatStageId(stage.value?.seatId.toString()) { status, seatList ->
+                when (status) {
+                    Response.Empty -> {
+                        hideLoading()
+                        errorMessage.postValue(message(R.string.empty))
+                    }
+                    Response.ThereIs -> {
+                        hideLoading()
+                        seat.postValue(seatList)
+                    }
+                    Response.ServerError -> {
+                        hideLoading()
+                        errorMessage.postValue(message(R.string.error_server))
+                    }
+                    else -> {
+                        hideLoading()
+                        errorMessage.postValue(message(R.string.error))
+                    }
+                }
+            }
+        }
+    }
 
-        val seatList = ArrayList<Seat>()
+    private fun getSeatTest() {
 
-        seatList?.add(Seat("1", "1", false, "1", isSelected = false))
-        seatList?.add(Seat("1", "1", false, "1", isSelected = false))
-        seatList?.add(Seat("1", "1", false, "1", isSelected = false))
-        seatList?.add(Seat("1", "1", false, "1", isSelected = false))
-        seatList?.add(Seat("1", "1", false, "1", isSelected = false))
-        seatList?.add(Seat("1", "1", false, "1", isSelected = false))
-        seatList?.add(Seat("1", "1", false, "1", isSelected = false))
-        seatList?.add(Seat("1", "1", false, "1", isSelected = false))
-        seatList?.add(Seat("1", "1", false, "1", isSelected = false))
-        seatList?.add(Seat("1", "1", false, "1", isSelected = false))
-        seatList?.add(Seat("1", "1", false, "1", isSelected = false))
-        seatList?.add(Seat("1", "1", false, "1", isSelected = false))
-        seatList?.add(Seat("1", "1", false, "1", isSelected = false))
-        seatList?.add(Seat("1", "1", false, "1", isSelected = false))
-        seatList?.add(Seat("1", "1", false, "1", isSelected = false))
-        seatList?.add(Seat("18", "18", false, "18", isSelected = false))
-        seat.postValue(seatList)
+        /* val seatList = ArrayList<Seat>()
+
+         seatList?.add(Seat("1", "1", false, "1", isSelected = false))
+         seatList?.add(Seat("1", "1", false, "1", isSelected = false))
+         seatList?.add(Seat("1", "1", false, "1", isSelected = false))
+         seatList?.add(Seat("1", "1", false, "1", isSelected = false))
+         seatList?.add(Seat("1", "1", false, "1", isSelected = false))
+         seatList?.add(Seat("1", "1", false, "1", isSelected = false))
+         seatList?.add(Seat("1", "1", false, "1", isSelected = false))
+         seatList?.add(Seat("1", "1", false, "1", isSelected = false))
+         seatList?.add(Seat("1", "1", false, "1", isSelected = false))
+         seatList?.add(Seat("1", "1", false, "1", isSelected = false))
+         seatList?.add(Seat("1", "1", false, "1", isSelected = false))
+         seatList?.add(Seat("1", "1", false, "1", isSelected = false))
+         seatList?.add(Seat("1", "1", false, "1", isSelected = false))
+         seatList?.add(Seat("1", "1", false, "1", isSelected = false))
+         seatList?.add(Seat("1", "1", false, "1", isSelected = false))
+         seatList?.add(Seat("18", "18", false, "18", isSelected = false))
+         seat.postValue(seatList)*/
 
     }
 

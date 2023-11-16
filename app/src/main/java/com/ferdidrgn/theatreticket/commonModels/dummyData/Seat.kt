@@ -8,6 +8,7 @@ data class Seat(
     var _statu: Boolean? = null,
     var name: String? = null,
     var isSelected: Boolean? = null,
+    var stageId: String? = null,
 
     override val mId: Long = 1L
 ) : ListAdapterItem {

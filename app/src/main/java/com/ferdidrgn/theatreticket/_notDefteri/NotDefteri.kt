@@ -12,6 +12,8 @@ class NotDefteri {
 
     //onboarding bir tıklayışla 2 saygfa atlıyor
 
+    //****stage aktivity konum kaldı
+
     //EN SON APK da
 
     //mock data koltukta kaldı

@@ -96,10 +96,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:clickable="@{viewModel.phoneNumberClickable? true : false}"
                     android:textAlignment="textStart"
                     app:cst_number_add_plus="true"
                     app:cst_number_changeable_edit_text="@={viewModel.phoneNumber}"
+                    app:isTextClickable="@{viewModel.phoneNumberClickable? true : false}"
                     app:cst_number_hint_text="@string/phone_number_mask_optional" />
 
                 <com.ferdidrgn.theatreticket.tools.components.CustomDatePicker

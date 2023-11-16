@@ -49,7 +49,7 @@
 
     <!-- TicketBuyFragment -->
     <string name="phone_number_mask">Phone Number:(+90555)</string>
-    <string name="phone_number_mask_optional">Tel No:(+90555) Optional</string>
+    <string name="phone_number_mask_optional">Tel No:(+90555)  (Only Must Enter Guest *)</string>
     <string name="choose_seats">Choose Seats</string>
     <string name="full_name">Full Name</string>
     <string name="first_name">First Name</string>
@@ -100,7 +100,7 @@
     <string name="success_update_downloaded">Download successful.Restartimg app in 5 seconds.</string>
 
     <!--     Error Messages -->
-    <string name="error_phone_little">Phone Number Appears To Be Different From 10 Characters. Please Check</string>
+    <string name="error_phone_little">Phone Number Appears To Be Different From 13 Characters. Please Check</string>
     <string name="error_first_name_little">First Name Seems Too Short. Please Check</string>
     <string name="error_last_name_little">Last Name Seems Too Short. Please Check</string>
     <string name="error_little_things">One or more data entries appear to be very short or empty. Please check.</string>

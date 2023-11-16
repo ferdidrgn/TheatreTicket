@@ -242,17 +242,16 @@ class EditProfileViewModel @Inject constructor(private val userFirebaseQueries: 
         var isRequiredFieldsDone = true
         var message = ""
 
-        if (fullName.value.length < 3)
-            isRequiredFieldsDone = false
+        if (ClientPreferences.inst.role == Roles.Guest.role) {
+            if (phoneNumber.value.removeWhiteSpace().length != 13) {
+                isRequiredFieldsDone = false
+                message = message(R.string.error_phone_little)
+            }
 
-        if (firstName.value.length < 2) {
-            isRequiredFieldsDone = false
-            message = message(R.string.error_first_name_little)
-        }
-
-        if (lastName.value.length <= 1) {
-            isRequiredFieldsDone = false
-            message = message(R.string.error_last_name_little)
+            if (phoneNumber.value.isNullOrEmpty()) {
+                isRequiredFieldsDone = false
+                message = message(R.string.phone_number_mask_optional)
+            }
         }
 
         if (eMail.value.isNotEmpty() && !isEmailValid(eMail.value)) {

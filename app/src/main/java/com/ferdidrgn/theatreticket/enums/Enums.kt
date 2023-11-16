@@ -22,9 +22,9 @@ enum class ID(val id: String) {
 }
 
 enum class Roles(val role: String) {
-    Admin("Admin"),
-    User("User"),
-    Guest("Guest")
+    Admin("admin"),
+    User("user"),
+    Guest("guest")
 }
 
 enum class PhoneNumberLengthsByCountry(val length: Int, val mask: String) {

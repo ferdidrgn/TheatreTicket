@@ -31,4 +31,8 @@ object AppRepositoryModule {
     @Provides
     fun provideAppToolsFireBase() = AppToolsFireBaseQueries()
 
+    @Singleton
+    @Provides
+    fun provideSeatFirebaseQueries() = SeatFirebaseQuieries()
+
 }

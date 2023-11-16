@@ -22,6 +22,7 @@ class TicketBuyActivity : BaseActivity<TicketBuyActivityViewModel, ActivityTicke
 
     override fun onCreateFinished(savedInstance: Bundle?) {
         binding.viewModel = viewModel
+        //binding.customToolbar.backIcon(this)
         //mock data
         //builderADS()
         bottomSheetInit()
@@ -85,7 +86,7 @@ class TicketBuyActivity : BaseActivity<TicketBuyActivityViewModel, ActivityTicke
     fun getGridLayout() {
         viewModel.seat.observe(this) { seatList ->
             viewModel.seatColumnCount.observe(this) { columnCount ->
-                // binding.customSeatPlan.setUpGridLayoutManager(seatList, columnCount)
+                binding.customSeatPlan.setUpGridLayoutManager(seatList, columnCount)
             }
         }
     }

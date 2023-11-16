@@ -4,6 +4,7 @@ import android.net.Uri
 import androidx.lifecycle.MutableLiveData
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseViewModel
+import com.ferdidrgn.theatreticket.commonModels.dummyData.Show
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Stage
 import com.ferdidrgn.theatreticket.enums.ID
 import com.ferdidrgn.theatreticket.enums.Response
@@ -250,17 +251,21 @@ class StageOperationsViewModel @Inject constructor(private val stageFirebaseQuer
     }
 
     override fun onStageUpdateListener(stage: Stage) {
-        stage._id?.let { _id.postValue(it) }
-        stage.name?.let { name.value = it }
-        stage?.imgUrl?.let { imgUrl.value = it }
-        stage?.description?.let { description.value = it }
-        stage?.communication?.let { communication.value = it }
-        stage?.capacity?.let { capacity.value = it }
-        stage?.address?.let { address.value = it }
-        stage?.locationLat?.let { locationLat.value = it.toString() }
-        stage?.locationLng?.let { locationLng.value = it.toString() }
-        stage?.seatColumnCount?.let { seatColumnCount.value = it.toString() }
-        stage?.seatRowCount?.let { seatRowCount.value = it.toString() }
+        stage?.let {
+            this.stage.postValue(ArrayList<Stage?>().apply { add(it) })
+            updateOrAddStageData = it
+            _id.postValue(it._id.toString())
+            name.value = it.name.toString()
+            imgUrl.value = it.imgUrl.toString()
+            description.value = it.description.toString()
+            communication.value = it.communication.toString()
+            capacity.value = it.capacity.toString()
+            address.value = it.address.toString()
+            locationLat.value = it.locationLat.toString()
+            locationLng.value = it.locationLng.toString()
+            seatColumnCount.value = it.seatColumnCount.toString()
+            seatRowCount.value = it.seatRowCount.toString()
+        }
         updateBottonVisibility.postValue(true)
     }
 

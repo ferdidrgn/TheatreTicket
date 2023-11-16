@@ -34,6 +34,7 @@ class EditProfileViewModel @Inject constructor(private val userFirebaseQueries: 
     val eMail = MutableStateFlow("")
     val toolbarText = MutableStateFlow("")
     val userId = ClientPreferences.inst.userID
+    val role = LiveEvent<String?>()
 
     val whichComeAction = MutableStateFlow(WhichEditProfile.LogIn)
     var isAddUserActions = false
@@ -93,6 +94,11 @@ class EditProfileViewModel @Inject constructor(private val userFirebaseQueries: 
                                     userEmail = userInfoList?.eMail
                                     userPhone = userInfoList?.phoneNumber
                                     userPhotoUrl = userInfoList?.imgUrl.toString()
+                                    token = userInfoList?.token
+                                    FCMtoken = userInfoList?.fcmToken
+                                    this.userFirstName = userInfoList?.firstName
+                                    this.userLastName = userInfoList?.lastName
+                                    this.userAge = userInfoList?.age
                                 }
 
                                 fullName.value = userInfoList?.fullName.toString()
@@ -149,7 +155,11 @@ class EditProfileViewModel @Inject constructor(private val userFirebaseQueries: 
                 age = age.value,
                 imgUrl = imageUrl.value,
                 addOrUpdateImgUrl = addOrUpdateImgUrl.value,
-                eMail = eMail.value
+                eMail = eMail.value,
+                //isActivite =
+                role = ClientPreferences.inst.role.toString(),
+                token = ClientPreferences.inst.token.toString(),
+                fcmToken = ClientPreferences.inst.FCMtoken.toString(),
             )
 
             userFirebaseQueries.updateOrAddUser(updateUser) { status ->
@@ -158,13 +168,15 @@ class EditProfileViewModel @Inject constructor(private val userFirebaseQueries: 
                         successMessage.postValue(message(R.string.success))
 
                         ClientPreferences.inst.apply {
-                            userFirstName = firstName.value
+                            userFirstName = updateUser.firstName
                             userLastName = lastName.value
                             userFullName = fullName.value
                             userPhone = phoneNumber.value.removeWhiteSpace()
                             userAge = age.value
                             userPhotoUrl = imageUrl.value
                             userEmail = eMail.value
+                            FCMtoken = updateUser.fcmToken
+                            token = updateUser.token
                         }
 
                         if (whichComeAction.value == WhichEditProfile.LogIn)

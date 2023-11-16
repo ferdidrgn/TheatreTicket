@@ -101,24 +101,49 @@ class UserFirebaseQueries {
             }
     }
 
+    fun checkRole(userId: String, status: (Response, String?) -> Unit) {
+        var role = ""
+
+        fireStoreUserRef.whereEqualTo("_id", userId).get()
+            .addOnSuccessListener { result ->
+                if (result.isEmpty || result == null) {
+                    status.invoke(Response.Empty, null)
+                } else {
+                    val documents = result.documents
+                    for (document in documents) {
+                        role =
+                            if (document.get("role") != null) document.get("role") as String else ""
+                    }
+                    status.invoke(Response.ThereIs, role)
+                }
+            }.addOnFailureListener {
+                status.invoke(Response.ServerError, null)
+            }
+    }
+
     fun checkUserId(userId: String?, status: (Response, User?) -> Unit) {
         checkList("_id", userId.toString()) { response, user ->
             status.invoke(response, user)
         }
     }
 
-    fun deleteUser(userId: String, userFirstName: String, status: (Boolean) -> Unit) {
+    fun deleteUser(
+        userId: String,
+        userFirstName: String,
+        status: (Boolean) -> Unit
+    ) {
         FirebaseAuth.getInstance().currentUser?.delete()?.addOnSuccessListener {
             status.invoke(true)
         }?.addOnFailureListener {
             status.invoke(false)
         }
 
-        fireStoreUserRef.document(currentUserId()!!).delete().addOnSuccessListener {
-            status.invoke(true)
-        }.addOnFailureListener {
-            status.invoke(false)
-        }
+        fireStoreUserRef.document(currentUserId()!!).delete()
+            .addOnSuccessListener {
+                status.invoke(true)
+            }.addOnFailureListener {
+                status.invoke(false)
+            }
 
         CoroutineScope(Dispatchers.IO).launch {
             val shoQuery = fireStoreUserRef
@@ -223,29 +248,45 @@ class UserFirebaseQueries {
                                 if (document.get("_id") != null) document.get("_id") as String else ""
 
                             val userFirstName =
-                                if (document.get("firstName") != null) document.get("firstName") as String else ""
+                                if (document.get("firstName") != null) document.get(
+                                    "firstName"
+                                ) as String else ""
 
                             val userLastName =
-                                if (document.get("lastName") != null) document.get("lastName") as String else ""
+                                if (document.get("lastName") != null) document.get(
+                                    "lastName"
+                                ) as String else ""
 
                             val fullName =
-                                if (document.get("fullName") != null) document.get("fullName") as String else ""
+                                if (document.get("fullName") != null) document.get(
+                                    "fullName"
+                                ) as String else ""
 
                             val phoneNumber =
-                                if (document.get("phoneNumber") != null) document.get("phoneNumber") as String else ""
+                                if (document.get("phoneNumber") != null) document.get(
+                                    "phoneNumber"
+                                ) as String else ""
 
                             val isActivite =
-                                if (document.get("isActivite") != null) document.get("isActivite") as Boolean else false
+                                if (document.get("isActivite") != null) document.get(
+                                    "isActivite"
+                                ) as Boolean else false
                             val fcmToken =
-                                if (document.get("fcmToken") != null) document.get("fcmToken") as String else ""
+                                if (document.get("fcmToken") != null) document.get(
+                                    "fcmToken"
+                                ) as String else ""
                             val age =
                                 if (document.get("age") != null) document.get("age") as String else ""
                             val eMail =
-                                if (document.get("eMail") != null) document.get("eMail") as String else ""
+                                if (document.get("eMail") != null) document.get(
+                                    "eMail"
+                                ) as String else ""
                             val role =
                                 if (document.get("role") != null) document.get("role") as String else ""
                             val photoUrl =
-                                if (document.get("photoUrl") != null) document.get("photoUrl") as String else ""
+                                if (document.get("photoUrl") != null) document.get(
+                                    "photoUrl"
+                                ) as String else ""
 
                             userInfoList = User(
                                 _id = customerId,

@@ -61,9 +61,7 @@
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="@string/API_KEY_ADMOB" />
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="@string/API_KEY_LOCATION" />
+
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="@string/API_KEY_LOCATION" />

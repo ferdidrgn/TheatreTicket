@@ -56,6 +56,7 @@
     <string name="last_name">Last Name</string>
     <string name="buy">Buy</string>
     <string name="game_date">Game Date</string>
+    <string name="show_time">Game Time</string>
     <string name="stage_add">Stage Add</string>
     <string name="stage_update">Stage Information Update</string>
     <string name="stage_name">Stage Name</string>

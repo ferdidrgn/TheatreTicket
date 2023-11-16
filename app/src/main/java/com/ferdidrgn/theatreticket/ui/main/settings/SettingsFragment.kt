@@ -69,7 +69,7 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
             NavHandler.instance.toLanguageActivity(requireContext())
         }
         viewModel.btnOnShareAppClick.observe(viewLifecycleOwner) {
-
+            viewModel.checkRole()
         }
         viewModel.btnRateAppClicked.observe(viewLifecycleOwner) {
             reviewRequest()

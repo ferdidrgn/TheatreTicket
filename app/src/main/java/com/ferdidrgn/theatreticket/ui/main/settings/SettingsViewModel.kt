@@ -14,7 +14,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
-    private val appToolsFireBaseQueries: AppToolsFireBaseQueries
+    private val appToolsFireBaseQueries: AppToolsFireBaseQueries,
+    private val userFirebaseQueries: UserFirebaseQueries
 ) :
     BaseViewModel() {
 
@@ -40,8 +41,6 @@ class SettingsViewModel @Inject constructor(
 
 
     fun selectedLayout() {
-        roleAdminLayout.postValue(false)
-        roleGuestLayout.postValue(true)
         when (ClientPreferences.inst.role) {
             Roles.Admin.role -> {
                 roleAdminLayout.postValue(true)
@@ -61,19 +60,20 @@ class SettingsViewModel @Inject constructor(
 
     fun getMyUser() {
         showLoading()
-        ioScope {
-            ClientPreferences.inst.userFirstName?.let { firstName ->
-                ClientPreferences.inst.userLastName?.let { lastName ->
-                    userFullName.emit("$firstName $lastName")
+        mainScope {
+            if (ClientPreferences.inst.isGoogleSignIn == true) {
+                ClientPreferences.inst.userFullName?.let { fullName ->
+                    userFullName.emit(fullName)
+                }
+            } else {
+                ClientPreferences.inst.userFirstName?.let { firstName ->
+                    ClientPreferences.inst.userLastName?.let { lastName ->
+                        userFullName.emit("$firstName $lastName")
+                    }
                 }
             }
-
-            ClientPreferences.inst.userFullName?.let { fullName ->
-                userFullName.emit(fullName)
-            }
-
+            hideLoading()
         }
-        hideLoading()
     }
 
     fun getContactUs(): String {
@@ -104,6 +104,35 @@ class SettingsViewModel @Inject constructor(
             }
         }
         return valueReturn
+    }
+
+    fun checkRole() {
+        mainScope {
+            showLoading()
+            userFirebaseQueries.checkRole(ClientPreferences.inst.userID.toString()) { status, roleNull ->
+                when (status) {
+                    Response.ThereIs -> {
+                        roleNull?.let { role ->
+                            ClientPreferences.inst.role = role
+                            selectedLayout()
+                        }
+                        hideLoading()
+                    }
+                    Response.Empty -> {
+                        errorMessage.postValue(message(R.string.error))
+                        hideLoading()
+                    }
+                    Response.ServerError -> {
+                        errorMessage.postValue(message(R.string.error_server))
+                        hideLoading()
+                    }
+                    else -> {
+                        errorMessage.postValue(message(R.string.error))
+                        hideLoading()
+                    }
+                }
+            }
+        }
     }
 
     fun clearClientPreferences() {

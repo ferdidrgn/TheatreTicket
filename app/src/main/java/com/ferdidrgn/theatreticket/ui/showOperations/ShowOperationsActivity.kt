@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.DisplayMetrics
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import com.ferdidrgn.theatreticket.R
@@ -50,16 +49,17 @@ class ShowOperationsActivity :
     private fun observe() {
         viewModel.getAllShow()
 
-        binding.customToolbar.backIconOnBackPress(this)
-
         viewModel.imagePermission.observe(this) {
             permissionCheck()
         }
         viewModel.btnAddShowClicked.observe(this) {
             viewModel.checkRequestFields(false)
         }
-        viewModel.btnCstmDatePickerClick.observe(this) {
+        viewModel.btnCstmDatePickerDateClick.observe(this) {
             binding.cdpDate.setCustomDataPickerClick()
+        }
+        viewModel.btnCstmDatePickerDateClick.observe(this) {
+            binding.cdpTime.popTimePicker()
         }
 
         viewModel.updateBottonVisibility.observe(this) {

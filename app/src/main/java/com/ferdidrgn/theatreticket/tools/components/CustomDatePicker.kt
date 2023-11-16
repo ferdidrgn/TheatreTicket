@@ -86,7 +86,7 @@ class CustomDatePicker : LinearLayout {
         return "$day-$month-$year"
     }
 
-    private fun popTimePicker(textListener: (String) -> Unit) {
+    fun popTimePicker() {
         var hour = 0
         var minute: Int = 0
         val style: Int = AlertDialog.THEME_HOLO_LIGHT
@@ -96,14 +96,6 @@ class CustomDatePicker : LinearLayout {
                 minute = selectedMinute
                 calendar[Calendar.HOUR_OF_DAY] = selectedHour
                 calendar[Calendar.MINUTE] = selectedMinute
-                textListener.invoke(
-                    java.lang.String.format(
-                        Locale.getDefault(),
-                        "%02d:%02d",
-                        hour,
-                        minute
-                    )
-                )
 
                 tvSelectedDate.text = java.lang.String.format(
                     Locale.getDefault(),

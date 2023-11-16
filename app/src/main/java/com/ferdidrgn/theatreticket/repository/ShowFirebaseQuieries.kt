@@ -188,8 +188,10 @@ class ShowFirebaseQuieries {
         showMap["imageUrl"] = downloadUrl
         showMap["description"] = show?.description.toString()
         showMap["date"] = show?.date.toString()
+        showMap["time"] = show?.time.toString()
         showMap["price"] = show?.price.toString()
         showMap["ageLimit"] = show?.ageLimit.toString()
+        showMap["stageId"] = show?.stageId.toString()
         return showMap
     }
 
@@ -209,6 +211,7 @@ class ShowFirebaseQuieries {
                 if (document.get("description") != null) document.get("description") as String else ""
             val date =
                 if (document.get("date") != null) document.get("date") as String else ""
+            val time = if (document.get("time") != null) document.get("time") as String else ""
             val price =
                 if (document.get("price") != null) document.get("price") as String else ""
             val ageLimit =
@@ -223,6 +226,7 @@ class ShowFirebaseQuieries {
                 name = name,
                 description = description,
                 date = date,
+                time = time,
                 price = price,
                 ageLimit = ageLimit,
                 stageId = stageId,

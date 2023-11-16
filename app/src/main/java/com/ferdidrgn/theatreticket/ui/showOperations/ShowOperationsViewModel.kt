@@ -14,6 +14,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import java.util.*
 import javax.inject.Inject
+import kotlin.collections.ArrayList
 
 @HiltViewModel
 class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieries: ShowFirebaseQuieries) :
@@ -23,7 +24,8 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
     val deleteClicked = LiveEvent<Show?>()
 
     val btnAddShowClicked = LiveEvent<Boolean?>()
-    val btnCstmDatePickerClick = LiveEvent<Boolean?>()
+    val btnCstmDatePickerDateClick = LiveEvent<Boolean?>()
+    val btnCstmDatePickerTimeClick = LiveEvent<Boolean?>()
     val updateShowPopUp = LiveEvent<Boolean?>()
     val deletePopUp = LiveEvent<Boolean?>()
     val updateBottonVisibility = MutableLiveData<Boolean?>()
@@ -36,6 +38,7 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
     val imageUrl = MutableStateFlow<String?>(null)
     val addOrUpdateImgUrl = MutableStateFlow<Uri?>(null)
     val date = MutableStateFlow("")
+    val time = MutableStateFlow("")
     val price = MutableStateFlow("")
     val ageLimit = MutableStateFlow("")
 
@@ -63,8 +66,12 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
         imagePermission.postValue(true)
     }
 
-    fun onCstmDatePickerClick() {
-        btnCstmDatePickerClick.postValue(true)
+    fun onCstmDatePickerDateClick() {
+        btnCstmDatePickerDateClick.postValue(true)
+    }
+
+    fun onCstmDatePickerTimeClick() {
+        btnCstmDatePickerTimeClick.postValue(false)
     }
 
     fun onImgClose() {
@@ -76,6 +83,7 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
         desc.value = ""
         imageUrl.value = null
         date.value = ""
+        time.value = ""
         price.value = ""
         ageLimit.value = ""
     }
@@ -119,6 +127,7 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
                 imageUrl = imageUrl.value,
                 addOrUpdateImgUrl = addOrUpdateImgUrl.value,
                 date = date.value,
+                time = time.value,
                 price = price.value,
                 ageLimit = ageLimit.value,
             )
@@ -169,8 +178,10 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
                 imageUrl = imageUrl.value,
                 addOrUpdateImgUrl = addOrUpdateImgUrl.value,
                 date = date.value,
+                time = time.value,
                 price = price.value,
-                ageLimit = ageLimit.value
+                ageLimit = ageLimit.value,
+                stageId = updateOrAddShowData?.stageId,
             )
 
             showFirebaseQuieries.updateShow(updateOrAddShowData) { status ->
@@ -201,6 +212,9 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
         if (date.value.isEmpty())
             isRequiredFieldsDone = false
 
+        if (time.value.isEmpty())
+            isRequiredFieldsDone = false
+
         if (price.value.isEmpty())
             isRequiredFieldsDone = false
 
@@ -217,13 +231,18 @@ class ShowOperationsViewModel @Inject constructor(private val showFirebaseQuieri
     }
 
     override fun onShowsUpdateListener(show: Show) {
-        show._id?.let { _id.postValue(it) }
-        show?.name?.let { name.value = it }
-        show?.description?.let { desc.value = it }
-        show.imageUrl?.let { imageUrl.value = it }
-        show?.date?.let { date.value = it }
-        show?.price?.let { price.value = it }
-        show?.ageLimit?.let { ageLimit.value = it }
+        show.let {
+            updateOrAddShowData = it
+            this.show.postValue(ArrayList<Show?>().apply { add(it) })
+            _id.postValue(it._id)
+            name.value = it.name ?: ""
+            desc.value = it.description ?: ""
+            imageUrl.value = it.imageUrl
+            date.value = it.date ?: ""
+            time.value = it.time ?: ""
+            price.value = it.price ?: ""
+            ageLimit.value = it.ageLimit ?: ""
+        }
         updateBottonVisibility.postValue(true)
     }
 

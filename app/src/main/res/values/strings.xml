@@ -88,6 +88,7 @@
     <string name="last_name">Soyad</string>
     <string name="buy">Satın Al</string>
     <string name="game_date">Oyun Tarihi</string>
+    <string name="show_time">Gösteri Saati</string>
     <string name="stage_add">Sahne Ekle</string>
     <string name="stage_update">Sahne Bilgilerini Güncelle</string>
     <string name="stage_name">Sahne Adı</string>

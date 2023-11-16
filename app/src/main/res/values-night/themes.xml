@@ -137,6 +137,7 @@
 
     <style name="rounded_primary2_10_border_primary3">
         <item name="android:background">@drawable/bg_dark2_10_border_dark3</item>
+        <item name="android:textColor">@color/white_light</item>
     </style>
 
     <style name="rectangle_primary2_border_primary3">

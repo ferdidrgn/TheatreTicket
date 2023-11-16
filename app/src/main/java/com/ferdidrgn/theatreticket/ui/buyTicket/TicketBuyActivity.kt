@@ -11,7 +11,9 @@ import com.ferdidrgn.theatreticket.commonModels.dummyData.Show
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Stage
 import com.ferdidrgn.theatreticket.databinding.ActivityTicketBuyBinding
 import com.tayfuncesur.curvedbottomsheet.CurvedBottomSheet
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class TicketBuyActivity : BaseActivity<TicketBuyActivityViewModel, ActivityTicketBuyBinding>() {
     override fun getVM(): Lazy<TicketBuyActivityViewModel> = viewModels()
 

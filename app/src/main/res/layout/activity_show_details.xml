@@ -169,56 +169,118 @@
                 app:layout_behavior="com.tayfuncesur.curvedbottomsheet.TopSheetBehavior">
 
                 <LinearLayout
-                    android:id="@+id/content"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="24dp"
-                    android:clickable="false"
-                    android:focusable="false"
-                    android:gravity="bottom"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:weightSum="2">
 
                     <androidx.core.widget.NestedScrollView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="0dp"
+                        android:layout_weight="1.9">
 
-                        <androidx.constraintlayout.widget.ConstraintLayout
+                        <LinearLayout
+                            android:id="@+id/content"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="24dp"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
 
                             <TextView
-                                android:id="@+id/title"
+                                android:id="@+id/tvShowName"
                                 style="@style/TextColor2"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:gravity="center_horizontal"
+                                android:layout_marginTop="10dp"
+                                android:padding="10dp"
+                                android:text="@string/show_name"
+                                android:textAlignment="textStart"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:id="@+id/title"
+                                style="@style/rounded_primary2_10_border_primary3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
                                 android:paddingVertical="16sp"
                                 android:text="@{viewModel.show.name}"
                                 android:textSize="18sp"
                                 android:textStyle="bold"
-                                app:layout_constraintTop_toTopOf="parent"
                                 tools:text="Gözlerimi Kaparım Vazifemi Yaparım" />
 
                             <TextView
-                                android:id="@+id/tvDesc"
+                                android:id="@+id/desc"
                                 style="@style/TextColor2"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="@string/show_desc"
+                                android:textAlignment="textStart"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:id="@+id/tvDesc"
+                                style="@style/rounded_primary2_10_border_primary3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
                                 android:gravity="start"
-                                android:paddingVertical="10sp"
+                                android:padding="10dp"
                                 android:text="@{viewModel.show.description}"
-                                app:layout_constraintTop_toBottomOf="@id/title"
+                                tools:text="akdjkasldjkasldjasdjaskd asd askd" />
+
+                            <TextView
+                                android:id="@+id/price"
+                                style="@style/TextColor2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="@string/price"
+                                android:textAlignment="textStart"
+                                android:textSize="15sp"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tvPrice"
+                                style="@style/rounded_primary2_10_border_primary3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:padding="10dp"
+                                android:text="@{viewModel.show.price}"
+                                tools:text="akdjkasldjkasldjasdjaskd asd askd" />
+
+                            <TextView
+                                android:id="@+id/ageLimit"
+                                style="@style/TextColor2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="@string/age_limit"
+                                android:textAlignment="textStart"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:id="@+id/tvAgeLimit"
+                                style="@style/rounded_primary2_10_border_primary3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:padding="10dp"
+                                android:text="@{viewModel.show.description}"
                                 tools:text="akdjkasldjkasldjasdjaskd asd askd" />
 
                             <com.ferdidrgn.theatreticket.tools.components.CustomButton
                                 android:id="@+id/btnSeat"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="30dp"
+                                android:layout_marginHorizontal="100dp"
+                                android:layout_marginTop="10dp"
                                 android:onClick="@{() -> viewModel.onBtnSeatClick()}"
-                                app:cst_btn_name="@string/show_add"
-                                app:layout_constraintTop_toBottomOf="@id/tvDesc" />
+                                app:cst_btn_name="@string/ticket_buy" />
 
                             <TextView
                                 android:id="@+id/tvEventList"
@@ -226,16 +288,15 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:paddingVertical="5dp"
-                                android:text="@string/list_of_events"
-                                app:layout_constraintTop_toBottomOf="@id/btnSeat" />
+                                android:text="@string/list_of_events" />
 
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/rvEventList"
                                 android:layout_width="match_parent"
-                                android:layout_height="0dp"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/tvEventList" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
+                                android:layout_height="wrap_content" />
+
+                        </LinearLayout>
+
                     </androidx.core.widget.NestedScrollView>
 
                     <ImageView
@@ -244,9 +305,9 @@
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:layout_gravity="center_horizontal"
+                        android:layout_weight="0.1"
                         android:src="@drawable/ic_arrow_down" />
                 </LinearLayout>
-
             </com.tayfuncesur.curvedbottomsheet.CurvedLayout>
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>

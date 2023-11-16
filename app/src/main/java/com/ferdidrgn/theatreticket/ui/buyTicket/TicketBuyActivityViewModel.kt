@@ -20,7 +20,7 @@ import kotlin.collections.ArrayList
 
 @HiltViewModel
 class TicketBuyActivityViewModel @Inject constructor(
-    private val sellFirebaseQueries: SellFirebaseQueries
+    private val sellFirebaseQueries: SellFirebaseQueries,
 ) : BaseViewModel() {
 
     val stage = MutableLiveData<Stage?>()

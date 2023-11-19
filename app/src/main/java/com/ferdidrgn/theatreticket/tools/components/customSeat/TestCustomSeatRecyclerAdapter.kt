@@ -10,8 +10,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Seat
+import com.ferdidrgn.theatreticket.ui.buyTicket.TicketBuyViewModel
 
-class TestCustomSeatRecyclerAdapter(val context: Context, val seatList: List<Seat?>?) :
+class TestCustomSeatRecyclerAdapter(
+    val context: Context,
+    val seatList: List<Seat?>?,
+    val ticketBuyViewModel: TicketBuyViewModel
+) :
     RecyclerView.Adapter<TestCustomSeatRecyclerAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -30,18 +35,22 @@ class TestCustomSeatRecyclerAdapter(val context: Context, val seatList: List<Sea
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.tvSeatNo.text = seatList?.get(position)?.name
-
+        var checkIsSelected = true
+        val seat = seatList?.get(position)
+        holder.tvSeatNo.text = seat?.name
 
         holder.itemView.setOnClickListener {
 
-            //is selected is used for selecting the position of item
-            if (seatList?.get(position)?.isSelected == true) {
-                seatList[position]?.setIsSelected(false)
-                holder.ll_design.setBackgroundColor(Color.GREEN)
+            if (seatList?.get(position)?.isSelected == false) {
+                if (seat != null) {
+                    checkIsSelected = ticketBuyViewModel.insertSeatSelection(seat)
+                }
+                holder.ll_design.setBackgroundColor(if (checkIsSelected) Color.RED else Color.GREEN)
+                seatList[position]?.setIsSelected(checkIsSelected)
             } else {
-                seatList?.get(position)?.setIsSelected(true)
-                holder.ll_design.setBackgroundColor(Color.WHITE)
+                checkIsSelected = ticketBuyViewModel.removeSeatSelection(seat)
+                seatList?.get(position)?.setIsSelected(checkIsSelected)
+                holder.ll_design.setBackgroundColor(if (checkIsSelected) Color.RED else Color.GREEN)
             }
         }
     }

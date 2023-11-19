@@ -19,7 +19,7 @@ import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
-class TicketBuyActivityViewModel @Inject constructor(
+class TicketBuyViewModel @Inject constructor(
     private val sellFirebaseQueries: SellFirebaseQueries,
     private val seatFirebaseQuieries: SeatFirebaseQuieries
 ) : BaseViewModel() {
@@ -50,7 +50,7 @@ class TicketBuyActivityViewModel @Inject constructor(
             phoneNumber = userPhone.toString()
         }
         getSeat()
-        //mock data
+        //mock data aaa
         getSeatTest()
     }
 
@@ -160,6 +160,79 @@ class TicketBuyActivityViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    fun insertSeatSelection(seat: Seat?): Boolean {
+        var returnValue = true
+        mainScope {
+            showLoading()
+            seatFirebaseQuieries.checkIsSelectedSeat(seat?._id.toString()) { status, isSelected ->
+                when (status) {
+                    true -> {
+                        if (isSelected == true) {
+                            errorMessage.postValue(message(R.string.error_seat_empty))
+                            returnValue = true
+                            hideLoading()
+                        }
+                        if (isSelected == false) {
+                            hideLoading()
+                            returnValue = !insertSelectedSeat(seat)
+                        }
+                        hideLoading()
+                    }
+                    false -> {
+                        hideLoading()
+                        errorMessage.postValue(message(R.string.error_server))
+                    }
+                }
+            }
+        }
+        return returnValue
+    }
+
+    fun removeSeatSelection(seat: Seat?): Boolean {
+        var returnValue = false
+        mainScope {
+            showLoading()
+            seatFirebaseQuieries.updateSeat(seat) { status ->
+                when (status) {
+                    true -> {
+                        hideLoading()
+                        returnValue = true
+                        chooseSeats.value =
+                            chooseSeats.value.replace(seat?.name.toString(), "").trim()
+                    }
+                    false -> {
+                        hideLoading()
+                        returnValue = false
+                        errorMessage.postValue(message(R.string.error_server))
+                    }
+                }
+            }
+        }
+        return !returnValue
+    }
+
+    private fun insertSelectedSeat(seat: Seat?): Boolean {
+        var returnValue = false
+        mainScope {
+            showLoading()
+            seatFirebaseQuieries.updateSeat(seat) { status ->
+                when (status) {
+                    true -> {
+                        hideLoading()
+                        returnValue = true
+                        chooseSeats.value = chooseSeats.value + seat?.name + ", "
+                    }
+                    false -> {
+                        returnValue = false
+                        hideLoading()
+                        errorMessage.postValue(message(R.string.error_server))
+                    }
+                }
+            }
+        }
+        return returnValue
     }
 
     fun onBtnBuyTicketClick() {

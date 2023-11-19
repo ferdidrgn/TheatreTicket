@@ -26,6 +26,25 @@ class SeatFirebaseQuieries {
             }
     }
 
+    fun checkIsSelectedSeat(seatId: String, status: (Boolean, Boolean?) -> Unit) {
+
+        fireStoreSeatRef.whereEqualTo("_id", seatId).get()
+            .addOnSuccessListener { result ->
+
+                if (result == null || result.isEmpty)
+                    status.invoke(false, null)
+                else {
+                    var isSelected = true
+                    val documents = result.documents
+                    for (document in documents) {
+                        isSelected =
+                            if (document.get("isSelected") != null) document.get("isSelected") as Boolean else true
+                    }
+                    status.invoke(true, isSelected)
+                }
+            }
+    }
+
     fun updateSeat(seat: Seat?, status: (Boolean) -> Unit) {
 
         var documentId = ""

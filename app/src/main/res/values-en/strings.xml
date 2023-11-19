@@ -69,6 +69,7 @@
     <string name="longitude">Longitude</string>
     <string name="seat_column_count">Seat Column Count</string>
     <string name="seat_row_count">Seat Row Count</string>
+    <string name="error_seat_empty">Someone else processed it. Refresh the page again and select another seat.</string>
     <string name="search_for_buy_ticket">Search Buy Ticket</string>
     <string name="age">Age</string>
     <string name="age_optional">Age (Optional)</string>

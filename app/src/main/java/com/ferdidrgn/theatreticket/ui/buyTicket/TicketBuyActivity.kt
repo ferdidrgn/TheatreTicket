@@ -14,8 +14,8 @@ import com.tayfuncesur.curvedbottomsheet.CurvedBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class TicketBuyActivity : BaseActivity<TicketBuyActivityViewModel, ActivityTicketBuyBinding>() {
-    override fun getVM(): Lazy<TicketBuyActivityViewModel> = viewModels()
+class TicketBuyActivity : BaseActivity<TicketBuyViewModel, ActivityTicketBuyBinding>() {
+    override fun getVM(): Lazy<TicketBuyViewModel> = viewModels()
 
     override fun getDataBinding(): ActivityTicketBuyBinding =
         ActivityTicketBuyBinding.inflate(layoutInflater)
@@ -86,7 +86,7 @@ class TicketBuyActivity : BaseActivity<TicketBuyActivityViewModel, ActivityTicke
     fun getGridLayout() {
         viewModel.seat.observe(this) { seatList ->
             viewModel.seatColumnCount.observe(this) { columnCount ->
-                binding.customSeatPlan.setUpGridLayoutManager(seatList, columnCount)
+                binding.customSeatPlan.setUpGridLayoutManager(seatList, columnCount, viewModel)
             }
         }
     }

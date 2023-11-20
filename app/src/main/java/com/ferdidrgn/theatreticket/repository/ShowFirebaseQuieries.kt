@@ -191,7 +191,6 @@ class ShowFirebaseQuieries {
         showMap["time"] = show?.time.toString()
         showMap["price"] = show?.price.toString()
         showMap["ageLimit"] = show?.ageLimit.toString()
-        showMap["stageId"] = show?.stageId.toString()
 
         val stageIdList = ArrayList<String>()
         show?.stageId?.forEach { element ->

@@ -195,6 +195,7 @@ class StageFirebaseQueries {
         stageMap["locationLng"] = stage?.locationLng.toString()
         stageMap["seatColumnCount"] = stage?.seatColumnCount.toString()
         stageMap["seatRowCount"] = stage?.seatRowCount.toString()
+        stageMap["seatId"] = stage?.seatId.toString()
         return stageMap
     }
 
@@ -226,6 +227,8 @@ class StageFirebaseQueries {
                 if (document.get("seatColumnCount") != null) document.get("seatColumnCount") as String else 0
             val seatRowCount =
                 if (document.get("seatRowCount") != null) document.get("seatRowCount") as String else 0
+            val seatId =
+                if (document.get("seatId") != null) document.get("seatId") as String else ""
 
             val stages = Stage(
                 _createdAt = createdAt.toString(),
@@ -238,6 +241,7 @@ class StageFirebaseQueries {
                 address = address,
                 locationLat = locationLat?.toString()?.toDoubleOrNull() ?: 0.0,
                 locationLng = locationLng?.toString()?.toDoubleOrNull() ?: 0.0,
+                seatId = seatId,
                 //seatColumnCount = seatColumnCount,
                 //seatRowCount = seatRowCount
             )

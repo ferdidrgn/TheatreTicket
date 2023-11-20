@@ -32,7 +32,7 @@ class TicketBuyViewModel @Inject constructor(
     var firstName = ""
     var lastName = ""
     var phoneNumber = ""
-    var showDetails = ""
+    var showDetails = MutableStateFlow("")
     var chooseSeats = MutableStateFlow("")
     val buyTicketPopUp = LiveEvent<Boolean?>()
 
@@ -49,16 +49,13 @@ class TicketBuyViewModel @Inject constructor(
             lastName = userLastName.toString()
             phoneNumber = userPhone.toString()
         }
-        getSeat()
-        //mock data aaa
-        getSeatTest()
     }
 
 
-    private fun getSeat() {
+    fun getSeat(seatId: String?) {
         mainScope {
             showLoading()
-            seatFirebaseQuieries.getSeatStageId(stage.value?.seatId.toString()) { status, seatList ->
+            seatFirebaseQuieries.getSeatId(seatId) { status, seatList ->
                 when (status) {
                     Response.Empty -> {
                         hideLoading()

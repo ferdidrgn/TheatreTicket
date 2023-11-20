@@ -48,6 +48,8 @@ class TicketBuyActivity : BaseActivity<TicketBuyViewModel, ActivityTicketBuyBind
             seatId = stage?.seatId
         )
 
+        stage?.seatId?.let { viewModel.getSeat(it) }
+
         viewModel.show.value = Show(
             _id = show?._id,
             name = show?.name,
@@ -60,6 +62,7 @@ class TicketBuyActivity : BaseActivity<TicketBuyViewModel, ActivityTicketBuyBind
             ageLimit = show?.ageLimit,
             seatId = show?.seatId,
         )
+        viewModel.showDetails.value = show?.name + " " + show?.date + " " + show?.time
 
         viewModel.buyTicketPopUp.observe(this) {
             ticketBuyPopUp(this)

@@ -68,7 +68,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="13dp"
-                        android:text="@{viewModel.chooseSeats"
+                        android:text="@{viewModel.chooseSeats}"
                         android:textAlignment="textStart"
                         android:textColor="@color/white_light"
                         android:textSize="18sp" />
@@ -87,45 +87,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="13dp"
-                        android:text="@{viewModel.fullName"
-                        android:textAlignment="textStart"
-                        android:textColor="@color/white_light"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        style="@style/TextColor"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="@string/first_name"
-                        android:textAlignment="textStart"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        style="@style/rounded_primary2_10_border_primary3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="13dp"
-                        android:text="@{viewModel.firstName"
-                        android:textAlignment="textStart"
-                        android:textColor="@color/white_light"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        style="@style/TextColor"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="@string/last_name"
-                        android:textAlignment="textStart"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        style="@style/rounded_primary2_10_border_primary3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="13dp"
-                        android:text="@{viewModel.lastName"
+                        android:text="@{viewModel.fullName}"
                         android:textAlignment="textStart"
                         android:textColor="@color/white_light"
                         android:textSize="18sp" />
@@ -144,7 +106,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="13dp"
-                        android:text="@{viewModel.show.price"
+                        android:text="@{viewModel.show.price}"
                         android:textAlignment="textStart"
                         android:textColor="@color/white_light"
                         android:textSize="18sp" />

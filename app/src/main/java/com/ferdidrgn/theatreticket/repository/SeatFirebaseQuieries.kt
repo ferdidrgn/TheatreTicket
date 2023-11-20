@@ -3,7 +3,6 @@ package com.ferdidrgn.theatreticket.repository
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Seat
 import com.ferdidrgn.theatreticket.enums.Response
 import com.google.firebase.Timestamp
-import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -11,10 +10,10 @@ import com.google.firebase.ktx.Firebase
 class SeatFirebaseQuieries {
     private val fireStoreSeatRef = Firebase.firestore.collection("Seat")
 
-    fun getSeatStageId(stageId: String, status: (Response, ArrayList<Seat?>?) -> Unit) {
+    fun getSeatId(seatId: String?, status: (Response, ArrayList<Seat?>?) -> Unit) {
 
         var seatList: ArrayList<Seat?> = arrayListOf()
-        fireStoreSeatRef.whereEqualTo("stageId", stageId).get()
+        fireStoreSeatRef.whereEqualTo("_id", seatId).get()
             .addOnSuccessListener { result ->
 
                 if (result == null || result.isEmpty)
@@ -80,13 +79,8 @@ class SeatFirebaseQuieries {
         seatMap["_id"] = seat?._id.toString()
         seatMap["name"] = seat?.name.toString()
         seatMap["isSelected"] = seat?.isSelected.toString()
-        seatMap["stageId"] = seat?.isSelected.toString()
+        seatMap["stageId"] = seat?.stageId.toString()
 
-        val seatIdList = ArrayList<String>()
-        seat?.name?.forEach { element ->
-            seatIdList.add(element.toString())
-
-        }
         return seatMap
     }
 

@@ -78,30 +78,6 @@ class TicketBuyViewModel @Inject constructor(
         }
     }
 
-    private fun getSeatTest() {
-
-        /* val seatList = ArrayList<Seat>()
-
-         seatList?.add(Seat("1", "1", false, "1", isSelected = false))
-         seatList?.add(Seat("1", "1", false, "1", isSelected = false))
-         seatList?.add(Seat("1", "1", false, "1", isSelected = false))
-         seatList?.add(Seat("1", "1", false, "1", isSelected = false))
-         seatList?.add(Seat("1", "1", false, "1", isSelected = false))
-         seatList?.add(Seat("1", "1", false, "1", isSelected = false))
-         seatList?.add(Seat("1", "1", false, "1", isSelected = false))
-         seatList?.add(Seat("1", "1", false, "1", isSelected = false))
-         seatList?.add(Seat("1", "1", false, "1", isSelected = false))
-         seatList?.add(Seat("1", "1", false, "1", isSelected = false))
-         seatList?.add(Seat("1", "1", false, "1", isSelected = false))
-         seatList?.add(Seat("1", "1", false, "1", isSelected = false))
-         seatList?.add(Seat("1", "1", false, "1", isSelected = false))
-         seatList?.add(Seat("1", "1", false, "1", isSelected = false))
-         seatList?.add(Seat("1", "1", false, "1", isSelected = false))
-         seatList?.add(Seat("18", "18", false, "18", isSelected = false))
-         seat.postValue(seatList)*/
-
-    }
-
     fun checkTicket() {
         showLoading()
         mainScope {

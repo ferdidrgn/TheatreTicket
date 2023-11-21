@@ -15,8 +15,6 @@ class NotDefteri {
     //****stage aktivity konum kaldı
 
     //EN SON APK da
-
-    //mock data koltukta kaldı
-    //reklam id leri gerçekleri koy
+    //reklam id leri gerçekleri koy - ticket buy a aynı id den bir tane ekle
 
 }

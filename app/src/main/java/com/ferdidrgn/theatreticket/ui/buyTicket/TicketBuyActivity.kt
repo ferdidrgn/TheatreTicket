@@ -10,6 +10,7 @@ import com.ferdidrgn.theatreticket.base.BasePopUp
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Show
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Stage
 import com.ferdidrgn.theatreticket.databinding.ActivityTicketBuyBinding
+import com.ferdidrgn.theatreticket.tools.builderADS
 import com.tayfuncesur.curvedbottomsheet.CurvedBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,9 +23,8 @@ class TicketBuyActivity : BaseActivity<TicketBuyViewModel, ActivityTicketBuyBind
 
     override fun onCreateFinished(savedInstance: Bundle?) {
         binding.viewModel = viewModel
-        //binding.customToolbar.backIcon(this)
-        //mock data
-        //builderADS()
+        binding.customToolbar.backIconOnBackPress(this)
+        builderADS(this, binding.adView)
         bottomSheetInit()
         getGridLayout()
         observe()

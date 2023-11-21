@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Seat
+import com.ferdidrgn.theatreticket.tools.onClickDelayed
 import com.ferdidrgn.theatreticket.ui.buyTicket.TicketBuyViewModel
 
 class CustomSeatRecyclerAdapter(
@@ -35,22 +36,34 @@ class CustomSeatRecyclerAdapter(
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        var checkIsSelected = true
-        val seat = seatList?.get(position)
+        var seat = seatList?.get(position)
         holder.tvSeatNo.text = seat?.name
 
-        holder.itemView.setOnClickListener {
+        holder.itemView.onClickDelayed {
 
             if (seatList?.get(position)?.isSelected == false) {
-                if (seat != null) {
-                    checkIsSelected = ticketBuyViewModel.insertSeatSelection(seat)
+                seat = Seat(
+                    _id = seat?._id,
+                    name = seat?.name,
+                    isSelected = true,
+                    stageId = seat?.stageId
+                )
+                ticketBuyViewModel.insertSeatSelection(seat) { response ->
+                    holder.ll_design.setBackgroundColor(if (response) Color.GREEN else Color.WHITE)
+                    seatList[position]?.setIsSelected(response)
                 }
-                holder.ll_design.setBackgroundColor(if (checkIsSelected) Color.RED else Color.GREEN)
-                seatList[position]?.setIsSelected(checkIsSelected)
+
             } else {
-                checkIsSelected = ticketBuyViewModel.removeSeatSelection(seat)
-                seatList?.get(position)?.setIsSelected(checkIsSelected)
-                holder.ll_design.setBackgroundColor(if (checkIsSelected) Color.RED else Color.GREEN)
+                seat = Seat(
+                    _id = seat?._id,
+                    name = seat?.name,
+                    isSelected = false,
+                    stageId = seat?.stageId
+                )
+                ticketBuyViewModel.removeSeatSelection(seat) { response ->
+                    seatList?.get(position)?.setIsSelected(!response)
+                    holder.ll_design.setBackgroundColor(if (response) Color.WHITE else Color.GREEN)
+                }
             }
         }
     }

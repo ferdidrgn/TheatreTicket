@@ -78,7 +78,7 @@ class SeatFirebaseQuieries {
 
         seatMap["_id"] = seat?._id.toString()
         seatMap["name"] = seat?.name.toString()
-        seatMap["isSelected"] = seat?.isSelected.toString()
+        seatMap["isSelected"] = seat?.isSelected.toString().toBoolean()
         seatMap["stageId"] = seat?.stageId.toString()
 
         return seatMap

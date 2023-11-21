@@ -159,8 +159,7 @@ class TicketBuyViewModel @Inject constructor(
         }
     }
 
-    fun insertSeatSelection(seat: Seat?): Boolean {
-        var returnValue = true
+    fun insertSeatSelection(seat: Seat?, response: (Boolean) -> Unit) {
         mainScope {
             showLoading()
             seatFirebaseQuieries.checkIsSelectedSeat(seat?._id.toString()) { status, isSelected ->
@@ -168,46 +167,44 @@ class TicketBuyViewModel @Inject constructor(
                     true -> {
                         if (isSelected == true) {
                             errorMessage.postValue(message(R.string.error_seat_empty))
-                            returnValue = true
+                            response.invoke(true)
                             hideLoading()
                         }
                         if (isSelected == false) {
                             hideLoading()
-                            returnValue = !insertSelectedSeat(seat)
+                            response.invoke(!insertSelectedSeat(seat))
                         }
                         hideLoading()
                     }
                     false -> {
                         hideLoading()
+                        response.invoke(false)
                         errorMessage.postValue(message(R.string.error_server))
                     }
                 }
             }
         }
-        return returnValue
     }
 
-    fun removeSeatSelection(seat: Seat?): Boolean {
-        var returnValue = false
+    fun removeSeatSelection(seat: Seat?, response: (Boolean) -> Unit) {
         mainScope {
             showLoading()
             seatFirebaseQuieries.updateSeat(seat) { status ->
                 when (status) {
                     true -> {
                         hideLoading()
-                        returnValue = true
+                        response.invoke(true)
                         chooseSeats.value =
                             chooseSeats.value.replace(seat?.name.toString(), "").trim()
                     }
                     false -> {
                         hideLoading()
-                        returnValue = false
+                        response.invoke(false)
                         errorMessage.postValue(message(R.string.error_server))
                     }
                 }
             }
         }
-        return !returnValue
     }
 
     private fun insertSelectedSeat(seat: Seat?): Boolean {

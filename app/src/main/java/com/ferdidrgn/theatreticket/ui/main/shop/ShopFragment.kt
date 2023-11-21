@@ -5,6 +5,7 @@ import androidx.fragment.app.viewModels
 import com.ferdidrgn.theatreticket.base.BaseFragment
 import com.ferdidrgn.theatreticket.databinding.FragmentShopBinding
 import com.ferdidrgn.theatreticket.tools.builderADS
+import com.ferdidrgn.theatreticket.tools.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

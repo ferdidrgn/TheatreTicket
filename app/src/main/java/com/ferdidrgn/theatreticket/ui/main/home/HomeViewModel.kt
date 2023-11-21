@@ -7,6 +7,7 @@ import com.ferdidrgn.theatreticket.commonModels.dummyData.Show
 import com.ferdidrgn.theatreticket.enums.Response
 import com.ferdidrgn.theatreticket.repository.ShowFirebaseQuieries
 import com.ferdidrgn.theatreticket.tools.NavHandler
+import com.ferdidrgn.theatreticket.tools.helpers.LiveEvent
 import com.ferdidrgn.theatreticket.tools.mainScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -16,7 +17,7 @@ class HomeViewModel @Inject constructor(private val showFirebaseQuieries: ShowFi
     BaseViewModel(), ShowDetailsAdapterListener, ShowSliderDetailsAdapterListener {
 
     val show = MutableLiveData<List<Show?>?>()
-    val goShowDetails = MutableLiveData<Show?>()
+    val goShowDetails = LiveEvent<Show?>()
 
     fun getAllShow() {
         showLoading()

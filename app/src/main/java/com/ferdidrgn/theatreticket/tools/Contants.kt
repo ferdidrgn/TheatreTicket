@@ -41,6 +41,7 @@ const val IS_SETTINGS_CLICKED_LOG_IN = "IS_SETTINGS_CLICKED_LOG_IN"
 const val SHOW = "show"
 const val SHOW_ID = "show_id"
 const val STAGE = "stage"
+const val SELL_BOX = "sellBox"
 const val RC_SIGN_IN = 9001
 const val IMAGE_REQUEST_CODE = 1_000
 const val DEFAULT_DATE_FORMAT = "dd-MM-yyyy"

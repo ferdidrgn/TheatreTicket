@@ -3,7 +3,6 @@ package com.ferdidrgn.theatreticket.ui.otp
 import android.app.Activity
 import android.os.CountDownTimer
 import android.widget.EditText
-import androidx.lifecycle.LiveData
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseViewModel
 import com.ferdidrgn.theatreticket.enums.Roles

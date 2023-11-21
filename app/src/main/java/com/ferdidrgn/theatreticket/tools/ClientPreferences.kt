@@ -1,5 +1,6 @@
 package com.ferdidrgn.theatreticket.tools
 
+import com.ferdidrgn.theatreticket.commonModels.dummyData.SellBox
 import com.ferdidrgn.theatreticket.enums.ContextLanguages
 import com.ferdidrgn.theatreticket.enums.Languages
 import com.ferdidrgn.theatreticket.tools.helpers.PreferencesManager
@@ -126,15 +127,13 @@ class ClientPreferences : PreferencesManager() {
             putInt(REVIEW_COUNT, value ?: 0)
         }
 
-
-    var interest = ArrayList<String>()
-
     var shouldFirebaseAouthOn: Boolean?
         get() = getBooleanValue(SHOULD_FIREBASE_AOUTH_BE_ON_ANDROID)
         set(value) {
             putBoolean(SHOULD_FIREBASE_AOUTH_BE_ON_ANDROID, value ?: true)
         }
 
+    var interest = ArrayList<String>()
     fun saveArrayList(list: ArrayList<String>, key: String?) {
         val gson = Gson()
         val json: String = gson.toJson(list)

@@ -1,5 +1,6 @@
 package com.ferdidrgn.theatreticket.ui.buyTicket
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.base.BaseViewModel
@@ -11,6 +12,7 @@ import com.ferdidrgn.theatreticket.repository.SeatFirebaseQuieries
 import com.ferdidrgn.theatreticket.repository.SeatsFirebaseQuieries
 import com.ferdidrgn.theatreticket.repository.SellFirebaseQueries
 import com.ferdidrgn.theatreticket.tools.ClientPreferences
+import com.ferdidrgn.theatreticket.tools.SELL_BOX
 import com.ferdidrgn.theatreticket.tools.helpers.LiveEvent
 import com.ferdidrgn.theatreticket.tools.mainScope
 import com.ferdidrgn.theatreticket.tools.removeWhiteSpace
@@ -18,6 +20,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import java.util.*
 import javax.inject.Inject
+import kotlin.collections.ArrayList
 
 @HiltViewModel
 class TicketBuyViewModel @Inject constructor(
@@ -36,6 +39,7 @@ class TicketBuyViewModel @Inject constructor(
     var phoneNumber = ""
     var showDetails = MutableStateFlow("")
     var chooseSeats = MutableStateFlow("")
+    var chooseSeatsArray = ArrayList<String?>()
     val buyTicketPopUp = LiveEvent<Boolean?>()
 
     val seat = MutableLiveData<Seat?>()
@@ -43,6 +47,7 @@ class TicketBuyViewModel @Inject constructor(
     val isGetSeats = LiveEvent<Boolean?>()
     val seatColumnCount = MutableLiveData(18)
 
+    val sellBox: ArrayList<SellBox?> = ArrayList()
     var sellAdd = Sell()
 
     init {
@@ -213,6 +218,7 @@ class TicketBuyViewModel @Inject constructor(
                         hideLoading()
                         returnValue = true
                         chooseSeats.value = chooseSeats.value + seats?.name + ", "
+                        chooseSeatsArray.add(seats?.name.toString())
                     }
                     false -> {
                         returnValue = false
@@ -235,6 +241,7 @@ class TicketBuyViewModel @Inject constructor(
                         response.invoke(true)
                         chooseSeats.value =
                             chooseSeats.value.replace(seats?.name.toString() + ", ", "").trim()
+                        chooseSeatsArray.remove(seats?.name.toString())
                     }
                     false -> {
                         hideLoading()
@@ -246,6 +253,7 @@ class TicketBuyViewModel @Inject constructor(
         }
     }
 
+    //Click Events
     fun onBtnBuyTicketClick() {
         var isRequiredFieldsDone = true
         var messge = ""
@@ -255,7 +263,7 @@ class TicketBuyViewModel @Inject constructor(
             messge = message(R.string.guest_ticket_buy_warning)
         }
 
-        if (chooseSeats.value.isEmpty()) {
+        if (chooseSeatsArray.isEmpty()) {
             isRequiredFieldsDone = false
             messge = message(R.string.choose_empty)
         }

@@ -203,27 +203,6 @@ class TicketBuyViewModel @Inject constructor(
         }
     }
 
-    fun removeSeatSelection(seats: Seats?, response: (Boolean) -> Unit) {
-        mainScope {
-            showLoading()
-            seatsFirebaseQuieries.updateSeats(seats) { status ->
-                when (status) {
-                    true -> {
-                        hideLoading()
-                        response.invoke(true)
-                        chooseSeats.value =
-                            chooseSeats.value.replace(seats?.name.toString(), "").trim()
-                    }
-                    false -> {
-                        hideLoading()
-                        response.invoke(false)
-                        errorMessage.postValue(message(R.string.error_server))
-                    }
-                }
-            }
-        }
-    }
-
     private fun insertSelectedSeat(seats: Seats?): Boolean {
         var returnValue = false
         mainScope {
@@ -244,6 +223,27 @@ class TicketBuyViewModel @Inject constructor(
             }
         }
         return returnValue
+    }
+
+    fun removeSeatSelection(seats: Seats?, response: (Boolean) -> Unit) {
+        mainScope {
+            showLoading()
+            seatsFirebaseQuieries.updateSeats(seats) { status ->
+                when (status) {
+                    true -> {
+                        hideLoading()
+                        response.invoke(true)
+                        chooseSeats.value =
+                            chooseSeats.value.replace(seats?.name.toString() + ", ", "").trim()
+                    }
+                    false -> {
+                        hideLoading()
+                        response.invoke(false)
+                        errorMessage.postValue(message(R.string.error_server))
+                    }
+                }
+            }
+        }
     }
 
     fun onBtnBuyTicketClick() {

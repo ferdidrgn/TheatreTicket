@@ -9,13 +9,13 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ferdidrgn.theatreticket.R
-import com.ferdidrgn.theatreticket.commonModels.dummyData.Seat
+import com.ferdidrgn.theatreticket.commonModels.dummyData.Seats
 import com.ferdidrgn.theatreticket.tools.onClickDelayed
 import com.ferdidrgn.theatreticket.ui.buyTicket.TicketBuyViewModel
 
 class CustomSeatRecyclerAdapter(
     val context: Context,
-    val seatList: List<Seat?>?,
+    val seatsList: List<Seats?>?,
     val ticketBuyViewModel: TicketBuyViewModel
 ) :
     RecyclerView.Adapter<CustomSeatRecyclerAdapter.MyViewHolder>() {
@@ -36,32 +36,32 @@ class CustomSeatRecyclerAdapter(
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        var seat = seatList?.get(position)
-        holder.tvSeatNo.text = seat?.name
+        var seats = seatsList?.get(position)
+        holder.tvSeatNo.text = seats?.name
 
         holder.itemView.onClickDelayed {
 
-            if (seatList?.get(position)?.isSelected == false) {
-                seat = Seat(
-                    _id = seat?._id,
-                    name = seat?.name,
-                    isSelected = true,
-                    stageId = seat?.stageId
+            if (seatsList?.get(position)?.isEmpty == false) {
+                seats = Seats(
+                    _id = seats?._id,
+                    name = seats?.name,
+                    isEmpty = true,
+                    seatId = seats?.seatId
                 )
-                ticketBuyViewModel.insertSeatSelection(seat) { response ->
+                ticketBuyViewModel.insertSeatSelection(seats) { response ->
                     holder.ll_design.setBackgroundColor(if (response) Color.GREEN else Color.WHITE)
-                    seatList[position]?.setIsSelected(response)
+                    seatsList[position]?.setIsSelected(response)
                 }
 
             } else {
-                seat = Seat(
-                    _id = seat?._id,
-                    name = seat?.name,
-                    isSelected = false,
-                    stageId = seat?.stageId
+                seats = Seats(
+                    _id = seats?._id,
+                    name = seats?.name,
+                    isEmpty = false,
+                    seatId = seats?.seatId
                 )
-                ticketBuyViewModel.removeSeatSelection(seat) { response ->
-                    seatList?.get(position)?.setIsSelected(!response)
+                ticketBuyViewModel.removeSeatSelection(seats) { response ->
+                    seatsList?.get(position)?.setIsSelected(!response)
                     holder.ll_design.setBackgroundColor(if (response) Color.WHITE else Color.GREEN)
                 }
             }
@@ -77,6 +77,6 @@ class CustomSeatRecyclerAdapter(
     }
 
     override fun getItemCount(): Int {
-        return seatList?.size ?: 0
+        return seatsList?.size ?: 0
     }
 }

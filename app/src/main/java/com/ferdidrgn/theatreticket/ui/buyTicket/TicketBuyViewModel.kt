@@ -8,6 +8,7 @@ import com.ferdidrgn.theatreticket.enums.ID
 import com.ferdidrgn.theatreticket.enums.Response
 import com.ferdidrgn.theatreticket.enums.Roles
 import com.ferdidrgn.theatreticket.repository.SeatFirebaseQuieries
+import com.ferdidrgn.theatreticket.repository.SeatsFirebaseQuieries
 import com.ferdidrgn.theatreticket.repository.SellFirebaseQueries
 import com.ferdidrgn.theatreticket.tools.ClientPreferences
 import com.ferdidrgn.theatreticket.tools.helpers.LiveEvent
@@ -21,7 +22,8 @@ import javax.inject.Inject
 @HiltViewModel
 class TicketBuyViewModel @Inject constructor(
     private val sellFirebaseQueries: SellFirebaseQueries,
-    private val seatFirebaseQuieries: SeatFirebaseQuieries
+    private val seatFirebaseQuieries: SeatFirebaseQuieries,
+    private val seatsFirebaseQuieries: SeatsFirebaseQuieries
 ) : BaseViewModel() {
 
     val stage = MutableLiveData<Stage?>()
@@ -36,7 +38,9 @@ class TicketBuyViewModel @Inject constructor(
     var chooseSeats = MutableStateFlow("")
     val buyTicketPopUp = LiveEvent<Boolean?>()
 
-    val seat = MutableLiveData<List<Seat?>?>()
+    val seat = MutableLiveData<Seat?>()
+    val seats = MutableLiveData<List<Seats?>?>()
+    val isGetSeats = LiveEvent<Boolean?>()
     val seatColumnCount = MutableLiveData(18)
 
     var sellAdd = Sell()
@@ -62,8 +66,45 @@ class TicketBuyViewModel @Inject constructor(
                         errorMessage.postValue(message(R.string.empty))
                     }
                     Response.ThereIs -> {
+                        if (seatList == null) {
+                            hideLoading()
+                            errorMessage.postValue(message(R.string.error))
+                        } else {
+                            seat.postValue(seatList)
+                            isGetSeats.postValue(true)
+                            hideLoading()
+                        }
+                    }
+                    Response.ServerError -> {
                         hideLoading()
-                        seat.postValue(seatList)
+                        errorMessage.postValue(message(R.string.error_server))
+                    }
+                    else -> {
+                        hideLoading()
+                        errorMessage.postValue(message(R.string.error))
+                    }
+                }
+            }
+        }
+    }
+
+    fun getSeats(seatId: String?) {
+        mainScope {
+            showLoading()
+            seatsFirebaseQuieries.getSeatId(seatId) { status, seatsList ->
+                when (status) {
+                    Response.Empty -> {
+                        hideLoading()
+                        errorMessage.postValue(message(R.string.empty))
+                    }
+                    Response.ThereIs -> {
+                        if (seatsList == null) {
+                            hideLoading()
+                            errorMessage.postValue(message(R.string.error))
+                        } else {
+                            hideLoading()
+                            seats.postValue(seatsList)
+                        }
                     }
                     Response.ServerError -> {
                         hideLoading()
@@ -135,10 +176,10 @@ class TicketBuyViewModel @Inject constructor(
         }
     }
 
-    fun insertSeatSelection(seat: Seat?, response: (Boolean) -> Unit) {
+    fun insertSeatSelection(seats: Seats?, response: (Boolean) -> Unit) {
         mainScope {
             showLoading()
-            seatFirebaseQuieries.checkIsSelectedSeat(seat?._id.toString()) { status, isSelected ->
+            seatsFirebaseQuieries.checkIsEmptySeat(seats?._id.toString()) { status, isSelected ->
                 when (status) {
                     true -> {
                         if (isSelected == true) {
@@ -148,7 +189,7 @@ class TicketBuyViewModel @Inject constructor(
                         }
                         if (isSelected == false) {
                             hideLoading()
-                            response.invoke(!insertSelectedSeat(seat))
+                            response.invoke(!insertSelectedSeat(seats))
                         }
                         hideLoading()
                     }
@@ -162,16 +203,16 @@ class TicketBuyViewModel @Inject constructor(
         }
     }
 
-    fun removeSeatSelection(seat: Seat?, response: (Boolean) -> Unit) {
+    fun removeSeatSelection(seats: Seats?, response: (Boolean) -> Unit) {
         mainScope {
             showLoading()
-            seatFirebaseQuieries.updateSeat(seat) { status ->
+            seatsFirebaseQuieries.updateSeats(seats) { status ->
                 when (status) {
                     true -> {
                         hideLoading()
                         response.invoke(true)
                         chooseSeats.value =
-                            chooseSeats.value.replace(seat?.name.toString(), "").trim()
+                            chooseSeats.value.replace(seats?.name.toString(), "").trim()
                     }
                     false -> {
                         hideLoading()
@@ -183,16 +224,16 @@ class TicketBuyViewModel @Inject constructor(
         }
     }
 
-    private fun insertSelectedSeat(seat: Seat?): Boolean {
+    private fun insertSelectedSeat(seats: Seats?): Boolean {
         var returnValue = false
         mainScope {
             showLoading()
-            seatFirebaseQuieries.updateSeat(seat) { status ->
+            seatsFirebaseQuieries.updateSeats(seats) { status ->
                 when (status) {
                     true -> {
                         hideLoading()
                         returnValue = true
-                        chooseSeats.value = chooseSeats.value + seat?.name + ", "
+                        chooseSeats.value = chooseSeats.value + seats?.name + ", "
                     }
                     false -> {
                         returnValue = false

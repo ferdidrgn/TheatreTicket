@@ -50,6 +50,10 @@ class TicketBuyActivity : BaseActivity<TicketBuyViewModel, ActivityTicketBuyBind
 
         stage?.seatId?.let { viewModel.getSeat(it) }
 
+        viewModel.isGetSeats.observe(this) { isGetSeats ->
+            viewModel.getSeats(viewModel.seat.value?._id)
+        }
+
         viewModel.show.value = Show(
             _id = show?._id,
             name = show?.name,
@@ -86,10 +90,10 @@ class TicketBuyActivity : BaseActivity<TicketBuyViewModel, ActivityTicketBuyBind
         ).init()
     }
 
-    fun getGridLayout() {
-        viewModel.seat.observe(this) { seatList ->
+    private fun getGridLayout() {
+        viewModel.seats.observe(this) { seatsList ->
             viewModel.seatColumnCount.observe(this) { columnCount ->
-                binding.customSeatPlan.setUpGridLayoutManager(seatList, columnCount, viewModel)
+                binding.customSeatPlan.setUpGridLayoutManager(seatsList, columnCount, viewModel)
             }
         }
     }

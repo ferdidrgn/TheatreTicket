@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.commonModels.dummyData.Seat
+import com.ferdidrgn.theatreticket.commonModels.dummyData.Seats
 import com.ferdidrgn.theatreticket.ui.buyTicket.TicketBuyViewModel
 
 class CustomSeatPlan : ConstraintLayout {
@@ -34,7 +35,7 @@ class CustomSeatPlan : ConstraintLayout {
         rvSeat = findViewById(R.id.rvSeat)
     }
 
-    fun setUpGridLayoutManager(list: List<Seat?>?, column: Int, viewModel: TicketBuyViewModel) {
+    fun setUpGridLayoutManager(list: List<Seats?>?, column: Int, viewModel: TicketBuyViewModel) {
 
         //grid layout manager
 

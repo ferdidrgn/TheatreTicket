@@ -205,9 +205,10 @@
                                 style="@style/rounded_primary2_10_border_primary3"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:paddingVertical="16sp"
+                                android:gravity="start"
+                                android:padding="10dp"
                                 android:text="@{viewModel.show.name}"
-                                android:textSize="18sp"
+                                android:textSize="17sp"
                                 android:textStyle="bold"
                                 tools:text="Gözlerimi Kaparım Vazifemi Yaparım" />
 

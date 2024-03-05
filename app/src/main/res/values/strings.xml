@@ -1,0 +1,199 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!--    BASE and NO TRANSLATER -->
+    <string name="app_name">Tiyatro Bileti</string>
+    <string name="title_home">Anasayfa</string>
+    <string name="ticket_buy">Bilet Al</string>
+    <string name="shop">Satış</string>
+    <string name="ticket_search">Bilet Sorgula</string>
+    <string name="settings">Ayarlar</string>
+    <string name="contact_email" translatable="false">ferdidurgun2@hotmail.com</string>
+
+    <string name="yes">Evet</string>
+    <string name="no">Hayır</string>
+    <string name="cancel">İptal</string>
+    <string name="ok">Tamam</string>
+    <string name="conitune">Devam</string>
+    <string name="next">İleri</string>
+    <string name="back">Geri</string>
+    <string name="get_started">Başla</string>
+    <string name="delete">Sil</string>
+    <string name="update">Güncelle</string>
+    <string name="add">Ekle</string>
+    <string name="welcome">Hoşgeldiniz</string>
+    <string name="search">Ara</string>
+
+    <!--    Mount  -->
+    <string name="jan">OCA</string>
+    <string name="feb">ŞUB</string>
+    <string name="mar">MART</string>
+    <string name="apr">NİS</string>
+    <string name="may">MAY</string>
+    <string name="jun">HAZ</string>
+    <string name="jul">TEM</string>
+    <string name="aug">AĞU</string>
+    <string name="sep">EYL</string>
+    <string name="oct">EKM</string>
+    <string name="nov">KAS</string>
+    <string name="dec">ARA</string>
+
+    <!--    ADS Information's -->
+    <string name="BANNER_ADS_TEST" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="ADS_BANNER_BAR_REAL" translatable="false">ca-app-pub-5779807348211992/4555290310</string>
+
+    <string-array name="phone_codes">
+        <item>+90</item>
+        <item>+964</item>
+    </string-array>
+
+    <!--    QUERY -->
+    <string name="are_you_sure_you_want_to_logout">Çıkış Yapmak İstediğinize Emin Misiniz ?</string>
+    <string name="are_you_serious">Emin Misiniz</string>
+    <string name="are_you_serious_delete">Verileri Silmek İstediğinize Emin Misiniz</string>
+    <string name="are_you_serious_update">Verileri Günecellemek İstediğinize Emin Misiniz</string>
+    <string name="are_you_sure_you_want_to_change_theme">Temayı değiştirmek istediğinize emin misiniz?</string>
+    <string name="are_you_sure_you_want_to_delete_account">Hesabınızı silmek istediğinize emin misiniz?</string>
+
+    <!--    OnBoarding -->
+    <string name="i_read_and_agree">Okudum &amp;Kabul Ediyorum</string>
+
+
+    <!-- TicketBuyFragment -->
+    <string name="phone_number_mask">Tel No:(+90555)</string>
+    <string name="phone_number_mask_optional">Tel No:(+90555) (Sadece Misafir Girenlere Zorunludur*)</string>
+    <string name="choose_seats">Seçtiğiniz Koltuklar</string>
+    <string name="full_name">Tam Ad</string>
+    <string name="first_name">Ad</string>
+    <string name="last_name">Soyad</string>
+    <string name="buy">Satın Al</string>
+    <string name="game_date">Oyun Tarihi</string>
+    <string name="show_time">Gösteri Saati</string>
+    <string name="stage_add">Sahne Ekle</string>
+    <string name="stage_update">Sahne Bilgilerini Güncelle</string>
+    <string name="stage_name">Sahne Adı</string>
+    <string name="stage_desc">Sahne Tanımı</string>
+    <string name="stage_location">Sahne Konumu</string>
+    <string name="communication">İletişim</string>
+    <string name="capacity">Kapasite</string>
+    <string name="address">Açık Adres</string>
+    <string name="latitude">Enlem</string>
+    <string name="longitude">Boylam</string>
+    <string name="seat_column_count">Sütun Koltuk Sayısı</string>
+    <string name="seat_row_count">Satır Koltuk Sayısı</string>
+    <string name="error_seat_empty">Başka birisi işlemine almış. Sayfayı tekrar yenileyiniz ve başka bir koltuk seçiniz.</string>
+    <string name="search_for_buy_ticket">Alımları Sorgula</string>
+    <string name="age">Yaş</string>
+    <string name="age_optional">Yaş (Opsiyonal)</string>
+    <string name="price">Ücret</string>
+    <string name="select_time">Saat Seç</string>
+    <string name="select_date">Tarih Seç</string>
+    <string name="list_of_events">Etkinlikleri Listele</string>
+
+    <!--    AddShowActivity -->
+    <string name="show_name">Gösteri Adı</string>
+    <string name="show_desc">Gösteri Tanımı</string>
+    <string name="age_limit">Yaş Sınırı</string>
+    <string name="choose_image">Fotoğraf Seç</string>
+    <string name="date">Tarih</string>
+    <string name="show_add">Gösteri Ekle</string>
+    <string name="show_update">Gösteriyi Güncelle</string>
+
+    <!--    Prattive Messages -->
+    <string name="done">Tamamlandı</string>
+    <string name="success">Başarılı</string>
+    <string name="success_ticket">Bilet (ler) Bulundu</string>
+    <string name="success_add_show">Gösteri Kaydedildi</string>
+    <string name="success_delete_show">Gösteri Başarıyla Silindi</string>
+    <string name="success_update_show">Gösteri Başarıyla Güncellendi</string>
+    <string name="success_add_stage">Sahne Kaydedildi</string>
+    <string name="success_update_stage">Sahne Başarıyla Güncellendi</string>
+    <string name="success_delete_stage">Sahne Başarıyla Silindi</string>
+    <string name="success_permission_granted">İzin verildi</string>
+    <string name="success_update_downloaded">İndirme Başarılı. Uygulama, 5 saniye içinde tekrar açılacak.</string>
+
+    <!--     Error Messages -->
+    <string name="error_phone_little">Telefon Numarası 13 karakterden farklı görünüyor. Lütfen kontrol edin</string>
+    <string name="error_first_name_little">İsim çok kısa görünüyor. Lütfen kontrol edin</string>
+    <string name="error_last_name_little">Soyisim çok kısa görünüyor. Lütfen kontrol edin</string>
+    <string name="error_little_things">Bir ya da birkaç veri çok kısa veya eksik görünüyor. Lütfen kontrol edin</string>
+    <string name="error_email">Mail adresinizi kontrol edin</string>
+    <string name="error_have_ticket">Önceden bilet alınmış. Lütfen kontrol ediniz</string>
+    <string name="error_no_any_ticket">Herhangi Bir Bilet Bulunamadı</string>
+    <string name="error_no_any_show">Herhangi Bir Gösteri Bulunamadı</string>
+    <string name="error_no_any_stage">Herhangi Bir Sahne Bulunamadı</string>
+    <string name="error_server">Server Hatası. Lütfen Tekrar Deneyin</string>
+    <string name="error_not_equal">Telefon Numaranız ile Verileriniz Uyuşmuyor. Lütfen Kontrol Ediniz</string>
+    <string name="error_not_mail_installed">Maalesef Yüklü Bir Mail programı Bulunamadı</string>
+    <string name="error_google_sign_in">Google ile giriş işleminizde bir hata oluştu.</string>
+    <string name="error_auth_failed">Kimlik hatası. Bağlantı başarısız</string>
+    <string name="permission_denied">İzin verilmedi</string>
+    <string name="error_update_failed">Güncelleme Başarısız Oldu</string>
+    <string name="error_add_user">Bilgileriniz Kaydedilirken Bir İnternet Hatası Oluştu</string>
+    <string name="error">Hata</string>
+    <string name="mistake">Hata</string>
+    <string name="empty">Boş</string>
+    <string name="choose_empty">Koltuk Seçmediniz</string>
+    <string name="guest_ticket_buy_warning">Siz bir Misafirsiniz. Misafir girişlerde, alınan bilet sayısını kontrol edebilmek için benzersiz bir şeye sahip olmalıyız.
+        Bu yüzden ayarlardan sadece telefon numaranızı girmenizi istiyoruz. Sms onayından sonra işleme devam edebilirsiniz :)</string>
+
+
+    <!-- Settings -->
+    <string name="log_out">Oturumu Kapat</string>
+    <string name="sold_seats">Satılan Koltuklar</string>
+    <string name="show_delete">Gösteriyi Kaldır</string>
+    <string name="show_operations">Gösteri İşlemleri</string>
+    <string name="edit_profile"> Profil Güncelleme</string>
+    <string name="stage_operations">Sahne İşlemleri</string>
+    <string name="sell_ticket">Bilet Sat</string>
+    <string name="change_language">Dil Değiştirme</string>
+    <string name="language">Dil</string>
+    <string name="contact_us">Bizimle İletişime Geçin</string>
+    <string name="rate_the_app">Uygulamamızı Oylayın</string>
+    <string name="privace_policy">Gizlilik Politikası</string>
+    <string name="share_app">Uygulamayı Paylaş</string>
+    <string name="invite_friends">Arkadaşlarınızı Davet Edin</string>
+    <string name="acc_delete">Hesabı Sil</string>
+    <string name="change_theme">Tema Değiştirme</string>
+    <string name="english_turkish">English, Türkçe</string>
+    <string name="contact_us_producter">TiyatroBilet Ekibi ile İletişim</string>
+    <string name="notification">Bildirim</string>
+    <string name="send_mail">Mail Gönder…</string>
+    <string name="terms_condition">Koşullar&amp;Şartlar</string>
+    <string name="guest">Misafir</string>
+    <string name="thank_you_for_review">Yorumunuz için Teşekkür ederiz</string>
+    <string name="eMail_optional">E-Mail (Opsiyonel)</string>
+    <string name="add_user_info">Birkaç Bilgilierinizi Doldurun</string>
+
+
+    <!--    Show Details -->
+    <string name="show_details">Gösteri Detayları</string>
+    <string name="permissions_need_galery">Galeriye erişmek için izninize ihtiyacımız var</string>
+    <string name="give_permissions">İzin verin</string>
+
+    <!--    CustomPhoneCode -->
+    <string name="zip_code">Zip Kodu</string>
+
+    <!--    CustomNumberEditText -->
+    <string name="numbersKey" translatable="false">1234567890</string>
+
+    <string name="http_maps" translatable="false">http://maps.google.com/maps?q=loc:</string>
+    <string name="package_google_map" translatable="false">com.google.android.apps.maps</string>
+    <string name="class_google_maps" translatable="false">com.google.android.maps.MapsActivity</string>
+
+    <!--    Login Activity -->
+    <string name="sign_up_google">Google ile Giriş Yap</string>
+    <string name="sign_up_phone_number">Telefon Numarası ile Giriş Yap</string>
+    <string name="signed_in_as">Giriş Yapıldı</string>
+    <string name="sign_in">Giriş Yap</string>
+    <string name="get_directions">Yol Tarifi Al</string>
+    <string name="code_enter">Kodu Gir</string>
+    <string name="code_send">Kod Gönder</string>
+    <string name="resend_code">Kodu Tekrar Gönder</string>
+    <string name="code_send_success">Kod Gönderme Başarılı</string>
+    <string name="sms_remain_time">Şu süre sonunda tekrar kod isteyebilirsiniz: <b>%1$s </b></string>
+    <string name="error_network">İnternet Bağlantısı Yok</string>
+    <string name="again">Tekrar Dene</string>
+    <string name="close_app">Uygulamayı Kapat</string>
+
+
+</resources>

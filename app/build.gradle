@@ -27,6 +27,7 @@ android {
 
         buildConfigField "String", "API_KEY_LOCATION", "\"${properties.getProperty("API_KEY_LOCATION")}\""
         buildConfigField "String", "API_KEY_ADMOB", "\"${properties.getProperty("API_KEY_ADMOB")}\""
+        buildConfigField "String", "test", "\"${properties.getProperty("test")}\""
     }
 
     buildTypes {

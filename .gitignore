@@ -74,3 +74,4 @@ local.properties
 /local.properties
 googlemapskeystore.jks
 app/google-services.json
+app/src/main/java/com/ferdidrgn/theatreticket/_notDefteri/NotDefteri.kt

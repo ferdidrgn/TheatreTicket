@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.ferdidrgn.theatreticket.ui.showDetails.ShowDetailsViewModel" />
+
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/ScreenBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.showDetails.ShowDetailsActivity">
+
+        <com.ferdidrgn.theatreticket.tools.components.CustomToolbar
+            android:id="@+id/customToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cst_toolbar_backIcon_visible="true"
+            app:cst_toolbar_text="@string/show_operations"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/BANNER_ADS_TEST"
+            ads:layout_constraintEnd_toEndOf="parent"
+            ads:layout_constraintStart_toStartOf="parent"
+            ads:layout_constraintTop_toBottomOf="@id/customToolbar" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingTop="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/adView">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="2"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_weight="0.15"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="4.5">
+
+                    <ImageView
+                        style="@style/TintBlueLight"
+                        android:layout_width="0dp"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_weight="0.3"
+                        android:src="@drawable/ic_gps_location_navigation_pin" />
+
+                    <TextView
+                        style="@style/TextColor2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="1.2"
+                        android:ellipsize="end"
+                        android:maxLines="4"
+                        android:onClick="@{() -> viewModel.onBtnStageClick()}"
+                        android:text="@{viewModel.stage.name}"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        tools:text="Ses Tiyatrosu" />
+
+                    <ImageView
+                        style="@style/TintBlueLight"
+                        android:layout_width="0dp"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="0.3"
+                        android:shadowColor="@color/white_light"
+                        android:src="@drawable/ic_calendar_date_schedule_time" />
+
+                    <TextView
+                        style="@style/TextColor2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="1.2"
+                        android:text="@{viewModel.show.date}"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        tools:text="Ses Tiyatrosu" />
+
+                    <ImageView
+                        style="@style/TintBlueLight"
+                        android:layout_width="0dp"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="0.3"
+                        android:shadowColor="@color/white_light"
+                        android:src="@drawable/ic_alarm_clock_time_watch" />
+
+                    <TextView
+                        style="@style/TextColor2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="1.2"
+                        android:text="@{viewModel.show.time}"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        tools:text="Ses Tiyatrosu" />
+
+                </LinearLayout>
+
+                <com.google.android.material.card.MaterialCardView
+                    style="@style/CardBackgroundTint_StrokeColor"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginVertical="20dp"
+                    android:layout_weight="1.85"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        style="@style/ShapeableImageViewStyle"
+                        imageUrl="@{viewModel.show.imageUrl}"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY"
+                        tools:src="@drawable/img_goz_kap_vaz_yap_april_23" />
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/adView">
+
+            <com.tayfuncesur.curvedbottomsheet.CurvedLayout
+                android:id="@+id/bottomSheet"
+                style="@style/FillColorPrimary2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom"
+                android:orientation="vertical"
+                app:behavior_hideable="false"
+                app:behavior_peekHeight="100dp"
+                app:layout_behavior="com.tayfuncesur.curvedbottomsheet.TopSheetBehavior">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:weightSum="2">
+
+                    <androidx.core.widget.NestedScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.9">
+
+                        <LinearLayout
+                            android:id="@+id/content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="24dp"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
+                            <TextView
+                                android:id="@+id/tvShowName"
+                                style="@style/TextColor2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:padding="10dp"
+                                android:text="@string/show_name"
+                                android:textAlignment="textStart"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:id="@+id/title"
+                                style="@style/rounded_primary2_10_border_primary3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:padding="10dp"
+                                android:text="@{viewModel.show.name}"
+                                android:textSize="17sp"
+                                android:textStyle="bold"
+                                tools:text="Gözlerimi Kaparım Vazifemi Yaparım" />
+
+                            <TextView
+                                android:id="@+id/desc"
+                                style="@style/TextColor2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="@string/show_desc"
+                                android:textAlignment="textStart"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:id="@+id/tvDesc"
+                                style="@style/rounded_primary2_10_border_primary3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:padding="10dp"
+                                android:text="@{viewModel.show.description}"
+                                tools:text="akdjkasldjkasldjasdjaskd asd askd" />
+
+                            <TextView
+                                android:id="@+id/price"
+                                style="@style/TextColor2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="@string/price"
+                                android:textAlignment="textStart"
+                                android:textSize="15sp"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tvPrice"
+                                style="@style/rounded_primary2_10_border_primary3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:padding="10dp"
+                                android:text="@{viewModel.show.price}"
+                                tools:text="akdjkasldjkasldjasdjaskd asd askd" />
+
+                            <TextView
+                                android:id="@+id/ageLimit"
+                                style="@style/TextColor2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="@string/age_limit"
+                                android:textAlignment="textStart"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:id="@+id/tvAgeLimit"
+                                style="@style/rounded_primary2_10_border_primary3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:padding="10dp"
+                                android:text="@{viewModel.show.description}"
+                                tools:text="akdjkasldjkasldjasdjaskd asd askd" />
+
+                            <com.ferdidrgn.theatreticket.tools.components.CustomButton
+                                android:id="@+id/btnSeat"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="100dp"
+                                android:layout_marginTop="10dp"
+                                android:onClick="@{() -> viewModel.onBtnSeatClick()}"
+                                app:cst_btn_name="@string/ticket_buy" />
+
+                            <TextView
+                                android:id="@+id/tvEventList"
+                                style="@style/TextColor2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingVertical="5dp"
+                                android:text="@string/list_of_events" />
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rvEventList"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+                        </LinearLayout>
+
+                    </androidx.core.widget.NestedScrollView>
+
+                    <ImageView
+                        android:id="@+id/imgBottomArrow"
+                        style="@style/TintBlueLight"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="0.1"
+                        android:src="@drawable/ic_arrow_down" />
+                </LinearLayout>
+            </com.tayfuncesur.curvedbottomsheet.CurvedLayout>
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

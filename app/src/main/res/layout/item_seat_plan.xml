@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="seat"
+            type="com.ferdidrgn.theatreticket.commonModels.dummyData.Seat" />
+
+        <variable
+            name="index"
+            type="Integer" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="55dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="true">
+        <!--margin start is used for starting margin in grid layout we don't need margin end-->
+
+        <LinearLayout
+            android:id="@+id/ll_design"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvSeatNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="A3" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

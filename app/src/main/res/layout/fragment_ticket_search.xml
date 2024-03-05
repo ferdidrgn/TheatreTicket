@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="findTicketAdapter"
+            type="com.ferdidrgn.theatreticket.ui.main.ticketSearch.FindTicketAdapter" />
+
+        <variable
+            name="viewModel"
+            type="com.ferdidrgn.theatreticket.ui.main.ticketSearch.TicketSearchViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <com.ferdidrgn.theatreticket.tools.components.CustomToolbar
+            android:id="@+id/customToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cst_toolbar_text="@string/app_name" />
+
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/BANNER_ADS_TEST" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="20dp"
+                android:orientation="vertical"
+                tools:context=".ui.main.shop.TicketSearchFragment">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginVertical="10dp"
+                    android:layout_marginStart="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <com.ferdidrgn.theatreticket.tools.components.CustomNumberEditText
+                            android:id="@+id/etPhoneNumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginTop="5dp"
+                            android:textAlignment="textStart"
+                            app:cst_number_add_plus="true"
+                            app:cst_number_changeable_edit_text="@={viewModel.phoneNumber}"
+                            app:cst_number_hint_text="@string/phone_number_mask" />
+
+                        <com.ferdidrgn.theatreticket.tools.components.CustomEditText
+                            android:id="@+id/etFirstName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/etPhoneNumber"
+                            android:layout_alignEnd="@+id/etPhoneNumber"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginTop="5dp"
+                            android:textAlignment="textStart"
+                            app:custom_edit_hint="@string/first_name"
+                            app:custom_edit_text="@={viewModel.firstName}" />
+
+                        <com.ferdidrgn.theatreticket.tools.components.CustomEditText
+                            android:id="@+id/etLastName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/etFirstName"
+                            android:layout_alignEnd="@+id/etFirstName"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginTop="5dp"
+                            android:textAlignment="textStart"
+                            app:custom_edit_hint="@string/last_name"
+                            app:custom_edit_text="@={viewModel.lastName}" />
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1">
+
+                        <com.ferdidrgn.theatreticket.tools.components.CustomButton
+                            android:id="@+id/btnSearch"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="15dp"
+                            android:onClick="@{()->viewModel.onBtnSearchTicketClick()}"
+                            app:cst_btn_name="@string/search_for_buy_ticket" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:overScrollMode="never"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    app:setAdapter="@{findTicketAdapter}"
+                    app:submitList="@{viewModel.sell}"
+                    tools:listitem="@layout/item_find_ticket" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+</layout>

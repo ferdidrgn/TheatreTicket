@@ -1,0 +1,675 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.ferdidrgn.theatreticket.ui.main.settings.SettingsViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        tools:context=".ui.main.settings.SettingsFragment">
+
+        <com.ferdidrgn.theatreticket.tools.components.CustomToolbar
+            android:id="@+id/customToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cst_toolbar_text="@string/app_name" />
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nsUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvUserName"
+                                style="@style/TextColor"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{viewModel.userFullName}"
+                                android:textSize="16sp"
+                                tools:text="Ferdi Durgun" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/imgEditProfile"
+                        style="@style/ImgTintColor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:onClick="@{() -> viewModel.onEditProfileClick()}"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_edit_pen" />
+                </RelativeLayout>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/BANNER_ADS_TEST" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="@{viewModel.roleAdminLayout ? View.VISIBLE : View.GONE}">
+
+                    <RelativeLayout
+                        android:id="@+id/btnSoldSeats"
+                        style="@style/rectangle_top_10_primary2_border_primary3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="13dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentStart="true"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                style="@style/ImgTintColor"
+                                android:layout_width="24dp"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_ticket_2" />
+
+                            <TextView
+                                style="@style/TextColor"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="15dp"
+                                android:text="@string/sold_seats"
+                                android:textSize="18sp" />
+
+                        </LinearLayout>
+
+                        <ImageView
+                            style="@style/ImgTintColor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/ic_arrow_right_couple" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/btnShowOperations"
+                        style="@style/rectangle_primary2_border_primary3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:onClick="@{() -> viewModel.onShowOperationsClick()}"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="13dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentStart="true"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                style="@style/ImgTintColor"
+                                android:layout_width="24dp"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_add_cart_new_plus"
+                                android:state_checked="false" />
+
+                            <TextView
+                                style="@style/TextColor"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="15dp"
+                                android:text="@string/show_operations"
+                                android:textSize="18sp" />
+
+                        </LinearLayout>
+
+                        <ImageView
+                            style="@style/ImgTintColor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/ic_arrow_right_couple" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/btnStageOperations"
+                        style="@style/rectangle_primary2_border_primary3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:onClick="@{() -> viewModel.onStageOperationsClick()}"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="13dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentStart="true"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                style="@style/ImgTintColor"
+                                android:layout_width="24dp"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_delete_minus_remove_trash"
+                                android:state_checked="false" />
+
+                            <TextView
+                                style="@style/TextColor"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="15dp"
+                                android:text="@string/stage_operations"
+                                android:textSize="18sp" />
+
+                        </LinearLayout>
+
+                        <ImageView
+                            style="@style/ImgTintColor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/ic_arrow_right_couple" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/btnSellTicket"
+                        style="@style/rectangle_bottom_10_primary2_border_primary3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:onClick="@{() -> viewModel.onSellTicketClick()}"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="13dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentStart="true"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                style="@style/ImgTintColor"
+                                android:layout_width="24dp"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ic_ticket_buy"
+                                android:state_checked="false" />
+
+                            <TextView
+                                style="@style/TextColor"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="15dp"
+                                android:text="@string/sell_ticket"
+                                android:textSize="18sp" />
+
+                        </LinearLayout>
+
+                        <ImageView
+                            style="@style/ImgTintColor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/ic_arrow_right_couple" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/btnChangeTheme"
+                    style="@style/rectangle_top_10_primary2_border_primary3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:onClick="@{() -> viewModel.onChangeThemeClick()}"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="13dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            style="@style/ImgTintColor"
+                            android:layout_width="24dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_brush_color_customization_layout_paint" />
+
+                        <TextView
+                            style="@style/TextColor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:text="@string/change_theme"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        style="@style/ImgTintColor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_arrow_right_couple" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/btnLanguage"
+                    style="@style/rectangle_primary2_border_primary3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:onClick="@{() -> viewModel.onLanguageClick()}"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="13dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <ImageView
+                            style="@style/ImgTintColor"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.7"
+                            android:src="@drawable/ic_language_web_word" />
+
+                        <TextView
+                            style="@style/TextColor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1.1"
+                            android:text="@string/change_language"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            style="@style/TextColor2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.2"
+                            android:text="@string/english_turkish"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        style="@style/ImgTintColor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_arrow_right_couple" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/btnRateApp"
+                    style="@style/rectangle_primary2_border_primary3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:onClick="@{() -> viewModel.onRateAppClick()}"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="13dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            style="@style/ImgTintColor"
+                            android:layout_width="24dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_rating_star" />
+
+                        <TextView
+                            style="@style/TextColor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:text="@string/rate_the_app"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        style="@style/ImgTintColor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_arrow_right_couple" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/btnShareApp"
+                    style="@style/rectangle_primary2_border_primary3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:onClick="@{() -> viewModel.onShareAppClick()}"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="13dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            style="@style/ImgTintColor"
+                            android:layout_width="24dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_music_play_player_song" />
+
+                        <TextView
+                            style="@style/TextColor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:text="@string/share_app"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        style="@style/ImgTintColor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_arrow_right_couple" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/btnPrivacePolicy"
+                    style="@style/rectangle_primary2_border_primary3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:onClick="@{() -> viewModel.onPrivacePolicyClick()}"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="13dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            style="@style/ImgTintColor"
+                            android:layout_width="24dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_document_page_paper_sheet" />
+
+                        <TextView
+                            style="@style/TextColor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:text="@string/privace_policy"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        style="@style/ImgTintColor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_arrow_right_couple" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/btnTermsAndConditions"
+                    style="@style/rectangle_primary2_border_primary3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:onClick="@{() -> viewModel.onTermsAndConditionsClick()}"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="13dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            style="@style/ImgTintColor"
+                            android:layout_width="24dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_menu_lines_hamburger_icon" />
+
+                        <TextView
+                            style="@style/TextColor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:text="@string/terms_condition"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        style="@style/ImgTintColor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_arrow_right_couple" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/btnContactUs"
+                    style="@style/rectangle_bottom_10_primary2_border_primary3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="25dp"
+                    android:onClick="@{() -> viewModel.onContactUsClick()}"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="13dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            style="@style/ImgTintColor"
+                            android:layout_width="24dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_email_mail_message_send" />
+
+                        <TextView
+                            style="@style/TextColor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:text="@string/contact_us"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        style="@style/ImgTintColor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_arrow_right_couple" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/btnLogout"
+                    style="@style/rectangle_primary2_border_primary3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="25dp"
+                    android:onClick="@{() -> viewModel.onLogoutClick()}"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="13dp"
+                    android:visibility="@{viewModel.roleGuestLayout ? View.GONE : View.VISIBLE}">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            style="@style/ImgTintColor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_account_door_exit_logout" />
+
+                        <TextView
+                            style="@style/TextColor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:text="@string/log_out"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/btnLogIn"
+                    style="@style/rectangle_primary2_border_primary3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="25dp"
+                    android:onClick="@{() -> viewModel.onLogInClick()}"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="13dp"
+                    android:visibility="@{viewModel.roleGuestLayout ? View.VISIBLE : View.GONE}">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            style="@style/ImgTintColor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_login" />
+
+                        <TextView
+                            style="@style/TextColor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:text="@string/sign_in"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+</layout>

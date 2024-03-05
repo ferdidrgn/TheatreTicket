@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="showAllAdapter"
+            type="com.ferdidrgn.theatreticket.ui.main.home.ShowsAllAdapter" />
+
+        <variable
+            name="showSliderAdapter"
+            type="com.ferdidrgn.theatreticket.ui.main.home.ShowsSliderHorizontalAdapter" />
+
+        <variable
+            name="viewModel"
+            type="com.ferdidrgn.theatreticket.ui.main.home.HomeViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.ferdidrgn.theatreticket.tools.components.CustomToolbar
+            android:id="@+id/customToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cst_toolbar_text="@string/app_name" />
+
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/BANNER_ADS_TEST" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                tools:context=".ui.main.home.HomeFragment">
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/vpSlider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:overScrollMode="never"
+                    app:setAdapter="@{showSliderAdapter}"
+                    app:submitList="@{viewModel.show}"
+                    tools:listitem="@layout/item_show_slider" />
+
+                <com.rd.PageIndicatorView
+                    android:id="@+id/indicator"
+                    style="@style/PageIndicatorView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="12dp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:overScrollMode="never"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    app:setAdapter="@{showAllAdapter}"
+                    app:submitList="@{viewModel.show}"
+                    tools:listitem="@layout/item_show_all" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+</layout>

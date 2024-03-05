@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="sell"
+            type="com.ferdidrgn.theatreticket.commonModels.dummyData.Sell" />
+
+        <variable
+            name="index"
+            type="Integer" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="30dp"
+        android:backgroundTint="@color/primary"
+        android:orientation="vertical"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3.5">
+
+                <TextView
+                    android:id="@+id/tvFirstName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:text="@{sell.customerFullName}"
+                    android:textColor="@color/white_light"
+                    tools:text="@string/first_name" />
+
+                <Space
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.25" />
+
+                <TextView
+                    android:id="@+id/tvShowName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@{sell.showName}"
+                    android:textColor="@color/white_light"
+                    tools:text="@string/show_add" />
+
+                <Space
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.25" />
+
+                <TextView
+                    android:id="@+id/tvPrice"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="@{sell.stageName}"
+                    android:textColor="@color/white_light"
+                    tools:text="@string/stage_name" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                android:weightSum="3.5">
+
+                <TextView
+                    android:id="@+id/tvGameDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:text="@{sell.showDate}"
+                    android:textColor="@color/white_light"
+                    tools:text="@string/game_date" />
+
+                <Space
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.25" />
+
+                <TextView
+                    android:id="@+id/tvSeat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@{sell.showSeat}"
+                    android:textColor="@color/white_light"
+                    tools:text="@string/choose_seats" />
+
+                <Space
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.25" />
+
+                <TextView
+                    android:id="@+id/tvStageLocation"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="@{sell.stageLocation}"
+                    android:textColor="@color/white_light"
+                    tools:text="@string/stage_location" />
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

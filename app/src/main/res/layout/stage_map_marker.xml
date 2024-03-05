@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/mainLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imgStageInMap"
+            style="@style/ImgTintColor"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_marginBottom="10dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_rating_star"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/ImageView.Corner8" />
+
+        <ImageView
+            style="@style/ImgTintColor"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="-6dp"
+            android:src="@drawable/ic_gps_location_navigation_pin"
+            app:layout_constraintEnd_toEndOf="@+id/imgStageInMap"
+            app:layout_constraintStart_toStartOf="@+id/imgStageInMap"
+            app:layout_constraintTop_toTopOf="@+id/imgStageInMap" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="shop"
+            type="com.ferdidrgn.theatreticket.commonModels.dummyData.Show" />
+
+        <variable
+            name="listener"
+            type="com.ferdidrgn.theatreticket.ui.main.shop.ShopDetailsAdapterListener" />
+
+        <variable
+            name="index"
+            type="Integer" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    </LinearLayout>
+</layout>

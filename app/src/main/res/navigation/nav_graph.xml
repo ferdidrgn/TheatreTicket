@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/homeFragmentNav">
+
+    <fragment
+        android:id="@+id/homeFragmentNav"
+        android:name="com.ferdidrgn.theatreticket.ui.main.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/shopFragmentNav"
+        android:name="com.ferdidrgn.theatreticket.ui.main.shop.ShopFragment"
+        android:label="@string/shop"
+        tools:layout="@layout/fragment_shop" />
+
+    <fragment
+        android:id="@+id/ticketSearchFragmentNav"
+        android:name="com.ferdidrgn.theatreticket.ui.main.ticketSearch.TicketSearchFragment"
+        android:label="@string/ticket_search"
+        tools:layout="@layout/fragment_ticket_search" />
+
+    <fragment
+        android:id="@+id/settingsFragmentNav"
+        android:name="com.ferdidrgn.theatreticket.ui.main.settings.SettingsFragment"
+        android:label="@string/settings"
+        tools:layout="@layout/fragment_settings">
+        <action
+            android:id="@+id/action_navigation_settings_fragment_to_navigation_ticket_buy"
+            app:destination="@id/shopFragmentNav" />
+    </fragment>
+</navigation>

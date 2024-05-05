@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.ferdidrgn.theatreticket.ui.language.LanguageViewModel" />
+            type="com.ferdidrgn.theatreticket.presentation.language.LanguageViewModel" />
 
     </data>
 
@@ -21,7 +21,7 @@
         android:orientation="vertical"
         tools:context=".ui.language.LanguageActivity">
 
-        <com.ferdidrgn.theatreticket.tools.components.CustomToolbar
+        <com.ferdidrgn.theatreticket.util.components.CustomToolbar
             android:id="@+id/customToolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
             android:layout_height="60dp"
             android:layout_marginHorizontal="15dp"
             android:layout_marginTop="45dp"
-            android:background="@{viewModel.whichButtonSelected ? @drawable/bg_rectangle_primary2_border_primary3 :@drawable/bg_primary2_10_border_error_red}"
+            android:background="@{viewModel.whichButtonSelected ? @drawable/bg_rectangle_primary2_border_primary3 :@drawable/rounded_primary3_2_radius_10}"
             android:clickable="@{viewModel.whichButtonSelected ? true: false}"
             android:gravity="center"
             android:onClick="@{()-> viewModel.turkishLanguageItemClicked()}">
@@ -63,7 +63,7 @@
             android:layout_height="60dp"
             android:layout_marginHorizontal="15dp"
             android:layout_marginTop="8dp"
-            android:background="@{viewModel.whichButtonSelected ? @drawable/bg_primary2_10_border_error_red : @drawable/bg_rectangle_primary2_border_primary3}"
+            android:background="@{viewModel.whichButtonSelected ? @drawable/rounded_primary3_2_radius_10 : @drawable/bg_rectangle_primary2_border_primary3}"
             android:clickable="@{viewModel.whichButtonSelected ? false: true}"
             android:gravity="center"
             android:onClick="@{()->viewModel.englishLanguageItemClicked()}">

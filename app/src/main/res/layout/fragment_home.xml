@@ -9,15 +9,15 @@
 
         <variable
             name="showAllAdapter"
-            type="com.ferdidrgn.theatreticket.ui.main.home.ShowsAllAdapter" />
+            type="com.ferdidrgn.theatreticket.presentation.main.home.ShowsAllAdapter" />
 
         <variable
             name="showSliderAdapter"
-            type="com.ferdidrgn.theatreticket.ui.main.home.ShowsSliderHorizontalAdapter" />
+            type="com.ferdidrgn.theatreticket.presentation.main.home.ShowsSliderHorizontalAdapter" />
 
         <variable
             name="viewModel"
-            type="com.ferdidrgn.theatreticket.ui.main.home.HomeViewModel" />
+            type="com.ferdidrgn.theatreticket.presentation.main.home.HomeViewModel" />
     </data>
 
     <LinearLayout
@@ -26,7 +26,7 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <com.ferdidrgn.theatreticket.tools.components.CustomToolbar
+        <com.ferdidrgn.theatreticket.util.components.CustomToolbar
             android:id="@+id/customToolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.ferdidrgn.theatreticket.presentation.ui.termsAndConditionsAndPrivacyPolicy.TermsConditionsAndPrivacyPolicyViewModel" />
+            type="com.ferdidrgn.theatreticket.presentation.termsAndConditionsAndPrivacyPolicy.TermsConditionsAndPrivacyPolicyViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,7 +17,7 @@
         android:orientation="vertical"
         tools:context=".ui.termsAndConditionsAndPrivacyPolicy.TermsAndConditionsAndPrivacyPolicyActivity">
 
-        <com.ferdidrgn.theatreticket.tools.components.CustomToolbar
+        <com.ferdidrgn.theatreticket.util.components.CustomToolbar
             android:id="@+id/customToolbar"
             custom_toolbar_changeable_text="@{viewModel.toolBarText}"
             android:layout_width="match_parent"
@@ -47,7 +47,7 @@
             app:layout_constraintTop_toBottomOf="@+id/adView">
 
             <TextView
-                style="@style/TextColor2"
+                style="@style/TextColor_primary4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="10dp"

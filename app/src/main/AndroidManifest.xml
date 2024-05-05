@@ -32,35 +32,36 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TheatreTicket"
         tools:targetApi="34">
+
         <activity
-            android:name=".ui.buyTicket.TicketBuyActivity"
+            android:name=".presentation.zTest.TestActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.zTest.TestActivity"
+            android:name=".presentation.buyTicket.TicketBuyActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.stageOperations.StageOperationsActivity"
+            android:name=".presentation.stageOperations.StageOperationsActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.otp.OTPActivity"
+            android:name=".presentation.otp.OTPActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.stage.StageActivity"
+            android:name=".presentation.stage.StageActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.showOperations.ShowOperationsActivity"
+            android:name=".presentation.showOperations.ShowOperationsActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.editProfile.EditProfileActivity"
+            android:name=".presentation.editProfile.EditProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.termsAndConditionsAndPrivacyPolicy.TermsAndConditionsAndPrivacyPolicyActivity"
+            android:name=".presentation.termsAndConditionsAndPrivacyPolicy.TermsAndConditionsAndPrivacyPolicyActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.showDetails.ShowDetailsActivity"
+            android:name=".presentation.showDetails.ShowDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.onboarding.OnboardingActivity"
+            android:name=".presentation.onboarding.OnboardingActivity"
             android:exported="false" />
 
         <meta-data
@@ -72,7 +73,7 @@
             android:value="${API_KEY_LOCATION}" />
 
         <activity
-            android:name=".ui.login.LoginActivity"
+            android:name=".presentation.login.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -81,10 +82,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.language.LanguageActivity"
+            android:name=".presentation.language.LanguageActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.main.MainActivity"
+            android:name=".presentation.main.MainActivity"
             android:exported="false"
             android:process=":location" />
 

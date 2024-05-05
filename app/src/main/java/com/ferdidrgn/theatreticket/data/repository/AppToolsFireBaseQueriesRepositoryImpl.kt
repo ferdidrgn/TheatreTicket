@@ -1,6 +1,7 @@
 package com.ferdidrgn.theatreticket.data.repository
 
-import com.ferdidrgn.theatreticket.tools.enums.Response
+import com.ferdidrgn.theatreticket.domain.repository.AppToolsFireBaseQueriesRepository
+import com.ferdidrgn.theatreticket.util.Response
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import javax.inject.Inject

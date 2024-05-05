@@ -1,7 +1,7 @@
 package com.ferdidrgn.theatreticket.di
 
 import android.app.Activity
-import com.ferdidrgn.theatreticket.base.BaseActivity
+import com.ferdidrgn.theatreticket.util.base.BaseActivity
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

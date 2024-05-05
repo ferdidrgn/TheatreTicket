@@ -7,10 +7,10 @@
 
         <variable
             name="viewModel"
-            type="com.ferdidrgn.theatreticket.ui.zTest.TestViewModel" />
+            type="com.ferdidrgn.theatreticket.presentation.zTest.TestViewModel" />
         <variable
             name="customSeatAdapter"
-            type="com.ferdidrgn.theatreticket.tools.components.customSeat.CustomSeatRecyclerAdapter" />
+            type="com.ferdidrgn.theatreticket.util.components.customSeat.CustomSeatRecyclerAdapter" />
     </data>
 
     <LinearLayout
@@ -18,7 +18,7 @@
         android:layout_height="match_parent"
         tools:context=".ui.zTest.TestActivity">
 
-        <com.ferdidrgn.theatreticket.tools.components.customSeat.CustomSeatPlan
+        <com.ferdidrgn.theatreticket.util.components.customSeat.CustomSeatPlan
             android:id="@+id/customSeatPlan"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

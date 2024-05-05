@@ -2,8 +2,8 @@ package com.ferdidrgn.theatreticket.data.repository
 
 import android.net.Uri
 import com.ferdidrgn.theatreticket.domain.model.commonModels.dummyData.User
-import com.ferdidrgn.theatreticket.tools.enums.Response
-import com.ferdidrgn.theatreticket.tools.showToast
+import com.ferdidrgn.theatreticket.util.Response
+import com.ferdidrgn.theatreticket.util.showToast
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference

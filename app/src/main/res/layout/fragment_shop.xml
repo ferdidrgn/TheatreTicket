@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.ferdidrgn.theatreticket.ui.main.shop.ShopViewModel" />
+            type="com.ferdidrgn.theatreticket.presentation.main.shop.ShopViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.ferdidrgn.theatreticket.tools.components.CustomToolbar
+        <com.ferdidrgn.theatreticket.util.components.CustomToolbar
             android:id="@+id/customToolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

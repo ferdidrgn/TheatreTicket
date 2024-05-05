@@ -11,7 +11,7 @@
 
         <variable
             name="listener"
-            type="com.ferdidrgn.theatreticket.ui.main.shop.ShopDetailsAdapterListener" />
+            type="com.ferdidrgn.theatreticket.presentation.main.shop.ShopDetailsAdapterListener" />
 
         <variable
             name="index"

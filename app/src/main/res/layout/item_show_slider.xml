@@ -13,7 +13,7 @@
 
         <variable
             name="listener"
-            type="com.ferdidrgn.theatreticket.ui.main.home.ShowSliderDetailsAdapterListener" />
+            type="com.ferdidrgn.theatreticket.presentation.main.home.ShowSliderDetailsAdapterListener" />
 
         <variable
             name="index"
@@ -28,7 +28,7 @@
         android:orientation="vertical">
 
         <TextView
-            style="@style/TextColor2"
+            style="@style/TextColor_primary4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"

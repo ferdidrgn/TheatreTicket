@@ -1,7 +1,7 @@
 package com.ferdidrgn.theatreticket.domain.model.commonModels.dummyData
 
 import android.net.Uri
-import com.ferdidrgn.theatreticket.base.ListAdapterItem
+import com.ferdidrgn.theatreticket.util.base.ListAdapterItem
 import java.io.Serializable
 
 data class Stage(

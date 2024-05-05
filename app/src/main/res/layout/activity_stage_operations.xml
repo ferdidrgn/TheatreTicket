@@ -9,11 +9,11 @@
 
         <variable
             name="viewModel"
-            type="com.ferdidrgn.theatreticket.ui.stageOperations.StageOperationsViewModel" />
+            type="com.ferdidrgn.theatreticket.presentation.stageOperations.StageOperationsViewModel" />
 
         <variable
             name="stageOperationsAdapter"
-            type="com.ferdidrgn.theatreticket.ui.stageOperations.StageOperationsAdapter" />
+            type="com.ferdidrgn.theatreticket.presentation.stageOperations.StageOperationsAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.ferdidrgn.theatreticket.tools.components.CustomToolbar
+        <com.ferdidrgn.theatreticket.util.components.CustomToolbar
             android:id="@+id/customToolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -56,7 +56,7 @@
             app:layout_constraintTop_toBottomOf="@id/adView">
 
             <TextView
-                style="@style/TextColor2"
+                style="@style/TextColor_primary4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
@@ -142,13 +142,13 @@
                                 android:layout_weight="1" />
 
                             <TextView
-                                style="@style/TextColor2"
+                                style="@style/TextColor_primary4"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
                                 android:layout_weight="2"
                                 android:gravity="center"
-                                android:text="@{viewModel.updateBottonVisibility ? @string/stage_update : @string/stage_add}"
+                                android:text="@{viewModel.updateButtonVisibility ? @string/stage_update : @string/stage_add}"
                                 android:textSize="25sp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toStartOf="@+id/imgClose"
@@ -166,7 +166,7 @@
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:tint="@color/pink_light" />
+                                app:tint="@color/pink" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -194,7 +194,7 @@
                                     android:src="@drawable/ic_add_cart_new_plus" />
                             </com.google.android.material.card.MaterialCardView>
 
-                            <com.ferdidrgn.theatreticket.tools.components.CustomEditText
+                            <com.ferdidrgn.theatreticket.util.components.CustomEditText
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
@@ -202,7 +202,7 @@
                                 app:custom_edit_hint="@string/stage_name"
                                 app:custom_edit_text="@={viewModel.name}" />
 
-                            <com.ferdidrgn.theatreticket.tools.components.CustomEditText
+                            <com.ferdidrgn.theatreticket.util.components.CustomEditText
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
@@ -210,7 +210,7 @@
                                 app:custom_edit_hint="@string/stage_desc"
                                 app:custom_edit_text="@={viewModel.description}" />
 
-                            <com.ferdidrgn.theatreticket.tools.components.CustomNumberEditText
+                            <com.ferdidrgn.theatreticket.util.components.CustomNumberEditText
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
@@ -218,7 +218,7 @@
                                 app:cst_number_changeable_edit_text="@={viewModel.capacity}"
                                 app:cst_number_hint_text="@string/capacity" />
 
-                            <com.ferdidrgn.theatreticket.tools.components.CustomEditText
+                            <com.ferdidrgn.theatreticket.util.components.CustomEditText
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
@@ -226,7 +226,7 @@
                                 app:custom_edit_hint="@string/address"
                                 app:custom_edit_text="@={viewModel.address}" />
 
-                            <com.ferdidrgn.theatreticket.tools.components.CustomEditText
+                            <com.ferdidrgn.theatreticket.util.components.CustomEditText
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
@@ -241,7 +241,7 @@
                                 android:orientation="horizontal"
                                 android:weightSum="2.5">
 
-                                <com.ferdidrgn.theatreticket.tools.components.CustomNumberEditText
+                                <com.ferdidrgn.theatreticket.util.components.CustomNumberEditText
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
@@ -255,7 +255,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.5" />
 
-                                <com.ferdidrgn.theatreticket.tools.components.CustomNumberEditText
+                                <com.ferdidrgn.theatreticket.util.components.CustomNumberEditText
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
@@ -273,7 +273,7 @@
                                 android:orientation="horizontal"
                                 android:weightSum="2.5">
 
-                                <com.ferdidrgn.theatreticket.tools.components.CustomNumberEditText
+                                <com.ferdidrgn.theatreticket.util.components.CustomNumberEditText
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
@@ -287,7 +287,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.5" />
 
-                                <com.ferdidrgn.theatreticket.tools.components.CustomNumberEditText
+                                <com.ferdidrgn.theatreticket.util.components.CustomNumberEditText
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
@@ -296,7 +296,7 @@
                                     app:cst_number_changeable_edit_text="@={viewModel.seatRowCount}"
                                     app:cst_number_hint_text="@string/seat_row_count" />
 
-                                <com.ferdidrgn.theatreticket.tools.components.CustomButton
+                                <com.ferdidrgn.theatreticket.util.components.CustomButton
                                     android:id="@+id/btnAddStage"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -304,11 +304,11 @@
                                     android:layout_marginTop="20dp"
                                     android:layout_weight="1"
                                     android:onClick="@{()->viewModel.onBtnAddStageClick()}"
-                                    android:visibility="@{viewModel.updateBottonVisibility ? View.GONE : View.VISIBLE}"
+                                    android:visibility="@{viewModel.updateButtonVisibility ? View.GONE : View.VISIBLE}"
                                     app:cst_btn_color="@color/primary2"
                                     app:cst_btn_name="@string/stage_add" />
 
-                                <com.ferdidrgn.theatreticket.tools.components.CustomButton
+                                <com.ferdidrgn.theatreticket.util.components.CustomButton
                                     android:id="@+id/btnUpdateStage"
                                     style="@style/CstBtnColorPrimary2"
                                     android:layout_width="match_parent"
@@ -317,7 +317,7 @@
                                     android:layout_marginTop="20dp"
                                     android:layout_weight="1"
                                     android:onClick="@{()->viewModel.onBtnUpdateStageClick()}"
-                                    android:visibility="@{viewModel.updateBottonVisibility ? View.VISIBLE : View.GONE}"
+                                    android:visibility="@{viewModel.updateButtonVisibility ? View.VISIBLE : View.GONE}"
                                     app:cst_btn_name="@string/stage_update" />
 
                                 <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"

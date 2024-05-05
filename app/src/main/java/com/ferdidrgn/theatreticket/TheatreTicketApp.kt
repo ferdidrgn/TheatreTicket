@@ -1,13 +1,13 @@
 package com.ferdidrgn.theatreticket
 
 import android.app.Application
-import com.ferdidrgn.theatreticket.tools.ClientPreferences
+import com.ferdidrgn.theatreticket.util.ClientPreferences
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class TheatreTicketApp : Application(){
+class TheatreTicketApp : Application() {
 
-    companion object{
+    companion object {
         var inst = TheatreTicketApp()
     }
 

@@ -9,7 +9,7 @@ import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.ferdidrgn.theatreticket.R
-import com.ferdidrgn.theatreticket.ui.main.MainActivity
+import com.ferdidrgn.theatreticket.presentation.main.MainActivity
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
@@ -53,7 +53,7 @@ class FCMFirebaseService : FirebaseMessagingService() {
             .setContentText(message.body)
             .setAutoCancel(true)
             .setSmallIcon(R.drawable.ic_alarm_alert_bell_notification)
-            .setColor(resources.getColor(R.color.pink_light))
+            .setColor(resources.getColor(R.color.pink))
             .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
             .setContentIntent(pendingIntent)
 

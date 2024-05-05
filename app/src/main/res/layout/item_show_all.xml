@@ -13,7 +13,7 @@
 
         <variable
             name="listener"
-            type="com.ferdidrgn.theatreticket.ui.main.home.ShowDetailsAdapterListener" />
+            type="com.ferdidrgn.theatreticket.presentation.main.home.ShowDetailsAdapterListener" />
 
         <variable
             name="index"
@@ -62,7 +62,7 @@
 
             <TextView
                 android:id="@+id/tvShowName"
-                style="@style/TextColor2"
+                style="@style/TextColor_primary4"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
@@ -78,7 +78,7 @@
 
             <TextView
                 android:id="@+id/tvDescription"
-                style="@style/TextColor2"
+                style="@style/TextColor_primary4"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_below="@+id/tvShowName"
@@ -96,7 +96,7 @@
 
             <TextView
                 android:id="@+id/tvPrice"
-                style="@style/TextColor2"
+                style="@style/TextColor_primary4"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
@@ -126,7 +126,7 @@
 
                 <TextView
                     android:id="@+id/tvPlaceOfLost"
-                    style="@style/TextColor2"
+                    style="@style/TextColor_primary4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

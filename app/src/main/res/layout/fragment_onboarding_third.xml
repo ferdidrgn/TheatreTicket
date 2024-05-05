@@ -7,14 +7,14 @@
 
         <variable
             name="viewModel"
-            type="com.ferdidrgn.theatreticket.ui.onboarding.OnboardingViewModel" />
+            type="com.ferdidrgn.theatreticket.presentation.onboarding.OnboardingViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/primary"
-        tools:context=".ui.onboarding.onboardingFragments.OnboardingThirdFragment">
+        tools:context=".presentation.onboarding.onboardingFragments.OnboardingThirdFragment">
 
         <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
             android:id="@+id/adView"
@@ -27,7 +27,7 @@
             ads:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.ferdidrgn.theatreticket.tools.components.CustomButton
+        <com.ferdidrgn.theatreticket.util.components.CustomButton
             android:id="@+id/customButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -1,6 +1,6 @@
 package com.ferdidrgn.theatreticket.domain.model.commonModels.dummyData
 
-import com.ferdidrgn.theatreticket.base.ListAdapterItem
+import com.ferdidrgn.theatreticket.util.base.ListAdapterItem
 
 data class Sell(
     var _createdAt: String? = null,

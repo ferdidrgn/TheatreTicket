@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.ferdidrgn.theatreticket.ui.buyTicket.TicketBuyViewModel" />
+            type="com.ferdidrgn.theatreticket.presentation.buyTicket.TicketBuyViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.ferdidrgn.theatreticket.tools.components.CustomToolbar
+        <com.ferdidrgn.theatreticket.util.components.CustomToolbar
             android:id="@+id/customToolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        style="@style/TextColor"
+                        style="@style/TextColor_primary4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -70,11 +70,11 @@
                         android:padding="13dp"
                         android:text="@{viewModel.chooseSeats}"
                         android:textAlignment="textStart"
-                        android:textColor="@color/white_light"
+                        android:textColor="@color/white"
                         android:textSize="18sp" />
 
                     <TextView
-                        style="@style/TextColor"
+                        style="@style/TextColor_primary4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -89,11 +89,11 @@
                         android:padding="13dp"
                         android:text="@{viewModel.fullName}"
                         android:textAlignment="textStart"
-                        android:textColor="@color/white_light"
+                        android:textColor="@color/white"
                         android:textSize="18sp" />
 
                     <TextView
-                        style="@style/TextColor"
+                        style="@style/TextColor_primary4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -108,11 +108,11 @@
                         android:padding="13dp"
                         android:text="@{viewModel.show.price}"
                         android:textAlignment="textStart"
-                        android:textColor="@color/white_light"
+                        android:textColor="@color/white"
                         android:textSize="18sp" />
 
                     <TextView
-                        style="@style/TextColor"
+                        style="@style/TextColor_primary4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -127,12 +127,12 @@
                         android:padding="13dp"
                         android:text="@{viewModel.showDetails}"
                         android:textAlignment="textStart"
-                        android:textColor="@color/white_light"
+                        android:textColor="@color/white"
                         android:textSize="18sp" />
 
                 </LinearLayout>
 
-                <com.ferdidrgn.theatreticket.tools.components.CustomButton
+                <com.ferdidrgn.theatreticket.util.components.CustomButton
                     android:id="@+id/btnBuy"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -165,7 +165,7 @@
 
                 <ImageView
                     android:id="@+id/imgBottomArrow"
-                    style="@style/TintBlueLight"
+                    style="@style/ImgTintColor"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_gravity="center_horizontal"
@@ -187,7 +187,7 @@
                         android:orientation="vertical"
                         android:padding="16dp">
 
-                        <com.ferdidrgn.theatreticket.tools.components.customSeat.CustomSeatPlan
+                        <com.ferdidrgn.theatreticket.util.components.customSeat.CustomSeatPlan
                             android:id="@+id/customSeatPlan"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

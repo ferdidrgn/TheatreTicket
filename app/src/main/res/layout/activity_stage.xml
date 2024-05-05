@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.ferdidrgn.theatreticket.ui.stage.StageViewModel" />
+            type="com.ferdidrgn.theatreticket.presentation.stage.StageViewModel" />
 
     </data>
 
@@ -25,7 +25,7 @@
             layout="@layout/stage_map_marker"
             android:visibility="gone" />
 
-        <com.ferdidrgn.theatreticket.tools.components.CustomToolbar
+        <com.ferdidrgn.theatreticket.util.components.CustomToolbar
             android:id="@+id/customToolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -81,7 +81,7 @@
                 </com.google.android.material.card.MaterialCardView>
 
                 <TextView
-                    style="@style/TextColor"
+                    style="@style/TextColor_primary4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -96,11 +96,11 @@
                     android:padding="13dp"
                     android:text="@{viewModel.stage.name}"
                     android:textAlignment="textStart"
-                    android:textColor="@color/white_light"
+                    android:textColor="@color/white"
                     android:textSize="15sp" />
 
                 <TextView
-                    style="@style/TextColor"
+                    style="@style/TextColor_primary4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -115,11 +115,11 @@
                     android:padding="13dp"
                     android:text="@{viewModel.stage.description}"
                     android:textAlignment="textStart"
-                    android:textColor="@color/white_light"
+                    android:textColor="@color/white"
                     android:textSize="15sp" />
 
                 <TextView
-                    style="@style/TextColor"
+                    style="@style/TextColor_primary4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -134,11 +134,11 @@
                     android:padding="13dp"
                     android:text="@{viewModel.stage.capacity}"
                     android:textAlignment="textStart"
-                    android:textColor="@color/white_light"
+                    android:textColor="@color/white"
                     android:textSize="15sp" />
 
                 <TextView
-                    style="@style/TextColor"
+                    style="@style/TextColor_primary4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -153,11 +153,11 @@
                     android:padding="13dp"
                     android:text="@{viewModel.stage.address}"
                     android:textAlignment="textStart"
-                    android:textColor="@color/white_light"
+                    android:textColor="@color/white"
                     android:textSize="15sp" />
 
                 <TextView
-                    style="@style/TextColor"
+                    style="@style/TextColor_primary4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -172,11 +172,11 @@
                     android:padding="13dp"
                     android:text="@{viewModel.stage.communication}"
                     android:textAlignment="textStart"
-                    android:textColor="@color/white_light"
+                    android:textColor="@color/white"
                     android:textSize="15sp" />
 
                 <TextView
-                    style="@style/TextColor2"
+                    style="@style/TextColor_primary4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="40dp"

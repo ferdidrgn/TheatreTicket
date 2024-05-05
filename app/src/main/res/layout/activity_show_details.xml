@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.ferdidrgn.theatreticket.ui.showDetails.ShowDetailsViewModel" />
+            type="com.ferdidrgn.theatreticket.presentation.showDetails.ShowDetailsViewModel" />
 
     </data>
 
@@ -20,7 +20,7 @@
         android:layout_height="match_parent"
         tools:context=".ui.showDetails.ShowDetailsActivity">
 
-        <com.ferdidrgn.theatreticket.tools.components.CustomToolbar
+        <com.ferdidrgn.theatreticket.util.components.CustomToolbar
             android:id="@+id/customToolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
                     android:weightSum="4.5">
 
                     <ImageView
-                        style="@style/TintBlueLight"
+                        style="@style/ImgTintColor"
                         android:layout_width="0dp"
                         android:layout_height="20dp"
                         android:layout_marginStart="20dp"
@@ -73,7 +73,7 @@
                         android:src="@drawable/ic_gps_location_navigation_pin" />
 
                     <TextView
-                        style="@style/TextColor2"
+                        style="@style/TextColor_primary4"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
@@ -87,16 +87,16 @@
                         tools:text="Ses Tiyatrosu" />
 
                     <ImageView
-                        style="@style/TintBlueLight"
+                        style="@style/ImgTintColor"
                         android:layout_width="0dp"
                         android:layout_height="20dp"
                         android:layout_marginStart="10dp"
                         android:layout_weight="0.3"
-                        android:shadowColor="@color/white_light"
+                        android:shadowColor="@color/white"
                         android:src="@drawable/ic_calendar_date_schedule_time" />
 
                     <TextView
-                        style="@style/TextColor2"
+                        style="@style/TextColor_primary4"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
@@ -107,16 +107,16 @@
                         tools:text="Ses Tiyatrosu" />
 
                     <ImageView
-                        style="@style/TintBlueLight"
+                        style="@style/ImgTintColor"
                         android:layout_width="0dp"
                         android:layout_height="20dp"
                         android:layout_marginStart="10dp"
                         android:layout_weight="0.3"
-                        android:shadowColor="@color/white_light"
+                        android:shadowColor="@color/white"
                         android:src="@drawable/ic_alarm_clock_time_watch" />
 
                     <TextView
-                        style="@style/TextColor2"
+                        style="@style/TextColor_primary4"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
@@ -191,7 +191,7 @@
 
                             <TextView
                                 android:id="@+id/tvShowName"
-                                style="@style/TextColor2"
+                                style="@style/TextColor_primary4"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
@@ -214,7 +214,7 @@
 
                             <TextView
                                 android:id="@+id/desc"
-                                style="@style/TextColor2"
+                                style="@style/TextColor_primary4"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
@@ -234,7 +234,7 @@
 
                             <TextView
                                 android:id="@+id/price"
-                                style="@style/TextColor2"
+                                style="@style/TextColor_primary4"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
@@ -255,7 +255,7 @@
 
                             <TextView
                                 android:id="@+id/ageLimit"
-                                style="@style/TextColor2"
+                                style="@style/TextColor_primary4"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
@@ -273,7 +273,7 @@
                                 android:text="@{viewModel.show.description}"
                                 tools:text="akdjkasldjkasldjasdjaskd asd askd" />
 
-                            <com.ferdidrgn.theatreticket.tools.components.CustomButton
+                            <com.ferdidrgn.theatreticket.util.components.CustomButton
                                 android:id="@+id/btnSeat"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -284,7 +284,7 @@
 
                             <TextView
                                 android:id="@+id/tvEventList"
-                                style="@style/TextColor2"
+                                style="@style/TextColor_primary4"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:paddingVertical="5dp"
@@ -301,7 +301,7 @@
 
                     <ImageView
                         android:id="@+id/imgBottomArrow"
-                        style="@style/TintBlueLight"
+                        style="@style/ImgTintColor"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:layout_gravity="center_horizontal"

@@ -18,10 +18,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp">
 
-
             <TextView
                 android:id="@+id/tvCallNumber"
-                style="@style/TextColor2"
+                style="@style/TextColor_primary4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/get_directions"
@@ -51,7 +50,7 @@
 
             <TextView
                 android:id="@+id/tvWhatsApp"
-                style="@style/TextColor2"
+                style="@style/TextColor_primary4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/cancel"

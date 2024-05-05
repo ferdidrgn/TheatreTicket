@@ -1,9 +1,9 @@
 package com.ferdidrgn.theatreticket.di
 
-import com.ferdidrgn.theatreticket.domain.useCase.GetContactUsEmailUseCase
-import com.ferdidrgn.theatreticket.domain.useCase.GetContactUsEmailUseCaseImpl
-import com.ferdidrgn.theatreticket.domain.useCase.GetTermsConditionOrPrivacyPolicyUseCase
-import com.ferdidrgn.theatreticket.domain.useCase.GetTermsConditionOrPrivacyPolicyUseCaseImpl
+import com.ferdidrgn.theatreticket.domain.useCase.contactUsEmail.GetContactUsEmailUseCase
+import com.ferdidrgn.theatreticket.domain.useCase.contactUsEmail.GetContactUsEmailUseCaseImpl
+import com.ferdidrgn.theatreticket.domain.useCase.termsConditionPrivacyPolicy.GetTermsConditionOrPrivacyPolicyUseCase
+import com.ferdidrgn.theatreticket.domain.useCase.termsConditionPrivacyPolicy.GetTermsConditionOrPrivacyPolicyUseCaseImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

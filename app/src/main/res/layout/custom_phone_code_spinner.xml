@@ -31,7 +31,7 @@
 
     <TextView
         android:id="@+id/tvHint"
-        style="@style/TextColor"
+        style="@style/TextColor_primary4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"

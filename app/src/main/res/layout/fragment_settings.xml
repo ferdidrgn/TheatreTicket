@@ -13,7 +13,7 @@
 
         <variable
             name="viewModel"
-            type="com.ferdidrgn.theatreticket.presentation.ui.main.settings.SettingsViewModel" />
+            type="com.ferdidrgn.theatreticket.presentation.main.settings.SettingsViewModel" />
 
     </data>
 
@@ -24,7 +24,7 @@
         android:orientation="vertical"
         tools:context=".ui.main.settings.SettingsFragment">
 
-        <com.ferdidrgn.theatreticket.tools.components.CustomToolbar
+        <com.ferdidrgn.theatreticket.util.components.CustomToolbar
             android:id="@+id/customToolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
 
                             <TextView
                                 android:id="@+id/tvUserName"
-                                style="@style/TextColor"
+                                style="@style/TextColor_primary4"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@{viewModel.userFullName}"
@@ -137,7 +137,7 @@
                                 android:src="@drawable/ic_ticket_2" />
 
                             <TextView
-                                style="@style/TextColor"
+                                style="@style/TextColor_primary4"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="15dp"
@@ -180,7 +180,7 @@
                                 android:state_checked="false" />
 
                             <TextView
-                                style="@style/TextColor"
+                                style="@style/TextColor_primary4"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="15dp"
@@ -223,7 +223,7 @@
                                 android:state_checked="false" />
 
                             <TextView
-                                style="@style/TextColor"
+                                style="@style/TextColor_primary4"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="15dp"
@@ -266,7 +266,7 @@
                                 android:state_checked="false" />
 
                             <TextView
-                                style="@style/TextColor"
+                                style="@style/TextColor_primary4"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="15dp"
@@ -311,7 +311,7 @@
                             android:src="@drawable/ic_brush_color_customization_layout_paint" />
 
                         <TextView
-                            style="@style/TextColor"
+                            style="@style/TextColor_primary4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="15dp"
@@ -355,7 +355,7 @@
                             android:src="@drawable/ic_language_web_word" />
 
                         <TextView
-                            style="@style/TextColor"
+                            style="@style/TextColor_primary4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
@@ -364,7 +364,7 @@
                             android:textSize="18sp" />
 
                         <TextView
-                            style="@style/TextColor2"
+                            style="@style/TextColor_primary4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1.2"
@@ -407,7 +407,7 @@
                             android:src="@drawable/ic_alarm_alert_bell_notification" />
 
                         <TextView
-                            style="@style/TextColor"
+                            style="@style/TextColor_primary4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="15dp"
@@ -450,7 +450,7 @@
                             android:src="@drawable/ic_rating_star" />
 
                         <TextView
-                            style="@style/TextColor"
+                            style="@style/TextColor_primary4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="15dp"
@@ -493,7 +493,7 @@
                             android:src="@drawable/ic_music_play_player_song" />
 
                         <TextView
-                            style="@style/TextColor"
+                            style="@style/TextColor_primary4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="15dp"
@@ -536,7 +536,7 @@
                             android:src="@drawable/ic_document_page_paper_sheet" />
 
                         <TextView
-                            style="@style/TextColor"
+                            style="@style/TextColor_primary4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="15dp"
@@ -579,7 +579,7 @@
                             android:src="@drawable/ic_menu_lines_hamburger_icon" />
 
                         <TextView
-                            style="@style/TextColor"
+                            style="@style/TextColor_primary4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="15dp"
@@ -623,7 +623,7 @@
                             android:src="@drawable/ic_email_mail_message_send" />
 
                         <TextView
-                            style="@style/TextColor"
+                            style="@style/TextColor_primary4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="15dp"
@@ -667,7 +667,7 @@
                             android:src="@drawable/ic_account_door_exit_logout" />
 
                         <TextView
-                            style="@style/TextColor"
+                            style="@style/TextColor_primary4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="15dp"
@@ -704,7 +704,7 @@
                             android:src="@drawable/ic_login" />
 
                         <TextView
-                            style="@style/TextColor"
+                            style="@style/TextColor_primary4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="15dp"

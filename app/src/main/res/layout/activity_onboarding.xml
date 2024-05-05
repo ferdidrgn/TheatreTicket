@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.ferdidrgn.theatreticket.ui.onboarding.OnboardingViewModel" />
+            type="com.ferdidrgn.theatreticket.presentation.onboarding.OnboardingViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -100,7 +100,7 @@
 
                 <TextView
                     android:id="@+id/tvStarted"
-                    style="@style/TextColor2"
+                    style="@style/TextColor_primary4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"

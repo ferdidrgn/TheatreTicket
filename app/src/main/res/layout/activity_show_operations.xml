@@ -9,11 +9,11 @@
 
         <variable
             name="viewModel"
-            type="com.ferdidrgn.theatreticket.ui.showOperations.ShowOperationsViewModel" />
+            type="com.ferdidrgn.theatreticket.presentation.showOperations.ShowOperationsViewModel" />
 
         <variable
             name="showOperationsAdapter"
-            type="com.ferdidrgn.theatreticket.ui.showOperations.ShowOperationsAdapter" />
+            type="com.ferdidrgn.theatreticket.presentation.showOperations.ShowOperationsAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.ferdidrgn.theatreticket.tools.components.CustomToolbar
+        <com.ferdidrgn.theatreticket.util.components.CustomToolbar
             android:id="@+id/customToolbar"
             style="@style/ScreenBackground"
             android:layout_width="match_parent"
@@ -57,7 +57,7 @@
             app:layout_constraintTop_toBottomOf="@id/adView">
 
             <TextView
-                style="@style/TextColor2"
+                style="@style/TextColor_primary4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
@@ -145,7 +145,7 @@
                                 android:layout_weight="1" />
 
                             <TextView
-                                style="@style/TextColor2"
+                                style="@style/TextColor_primary4"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
@@ -169,7 +169,7 @@
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:tint="@color/pink_light" />
+                                app:tint="@color/pink" />
                         </LinearLayout>
 
                         <com.google.android.material.card.MaterialCardView
@@ -191,7 +191,7 @@
                                 android:src="@drawable/ic_add_cart_new_plus" />
                         </com.google.android.material.card.MaterialCardView>
 
-                        <com.ferdidrgn.theatreticket.tools.components.CustomEditText
+                        <com.ferdidrgn.theatreticket.util.components.CustomEditText
                             android:id="@+id/etName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -200,7 +200,7 @@
                             app:custom_edit_hint="@string/show_name"
                             app:custom_edit_text="@={viewModel.name}" />
 
-                        <com.ferdidrgn.theatreticket.tools.components.CustomEditText
+                        <com.ferdidrgn.theatreticket.util.components.CustomEditText
                             android:id="@+id/etDesc"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -209,7 +209,7 @@
                             app:custom_edit_hint="@string/show_desc"
                             app:custom_edit_text="@={viewModel.desc}" />
 
-                        <com.ferdidrgn.theatreticket.tools.components.CustomNumberEditText
+                        <com.ferdidrgn.theatreticket.util.components.CustomNumberEditText
                             android:id="@+id/etPrice"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -218,7 +218,7 @@
                             app:cst_number_changeable_edit_text="@={viewModel.price}"
                             app:cst_number_hint_text="@string/price" />
 
-                        <com.ferdidrgn.theatreticket.tools.components.CustomDatePicker
+                        <com.ferdidrgn.theatreticket.util.components.CustomDatePicker
                             android:id="@+id/cdpDate"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -228,7 +228,7 @@
                             app:cst_date_picker_hint_text="@string/game_date"
                             app:cst_picker_changeable_text="@={viewModel.date}" />
 
-                        <com.ferdidrgn.theatreticket.tools.components.CustomDatePicker
+                        <com.ferdidrgn.theatreticket.util.components.CustomDatePicker
                             android:id="@+id/cdpTime"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -238,7 +238,7 @@
                             app:cst_date_picker_hint_text="@string/show_time"
                             app:cst_picker_changeable_text="@={viewModel.time}" />
 
-                        <com.ferdidrgn.theatreticket.tools.components.CustomNumberEditText
+                        <com.ferdidrgn.theatreticket.util.components.CustomNumberEditText
                             android:id="@+id/etAgeLimit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -247,7 +247,7 @@
                             app:cst_number_changeable_edit_text="@={viewModel.ageLimit}"
                             app:cst_number_hint_text="@string/age_limit" />
 
-                        <com.ferdidrgn.theatreticket.tools.components.CustomButton
+                        <com.ferdidrgn.theatreticket.util.components.CustomButton
                             android:id="@+id/btnAddShow"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -259,7 +259,7 @@
                             app:cst_btn_color="@color/primary2"
                             app:cst_btn_name="@string/show_add" />
 
-                        <com.ferdidrgn.theatreticket.tools.components.CustomButton
+                        <com.ferdidrgn.theatreticket.util.components.CustomButton
                             android:id="@+id/btnUpdateShow"
                             style="@style/CstBtnColorPrimary2"
                             android:layout_width="match_parent"

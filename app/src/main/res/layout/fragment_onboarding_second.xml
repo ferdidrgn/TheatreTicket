@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.ferdidrgn.theatreticket.ui.onboarding.OnboardingViewModel" />
+            type="com.ferdidrgn.theatreticket.presentation.onboarding.OnboardingViewModel" />
     </data>
 
     <LinearLayout
@@ -16,7 +16,7 @@
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        tools:context=".ui.onboarding.onboardingFragments.OnboardingSecondFragment">
+        tools:context=".presentation.onboarding.onboardingFragments.OnboardingSecondFragment">
 
 
         <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"

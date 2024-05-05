@@ -165,6 +165,13 @@
     <string name="eMail_optional">E-Mail (Opsiyonel)</string>
     <string name="add_user_info">Birkaç Bilgilierinizi Doldurun</string>
 
+    <string name="billing_error">Faturalandırma hizmeti bağlantısı kesildi, gerekirse tekrar bağlanmayı deneyiniz.</string>
+    <string name="billing_cancel">Kullanıcı satın alma işlemi iptal etti.</string>
+    <string name="billing_failed">Satın alma işlemi başarısız</string>
+    <string name="billing_details_failed">Ürün detayları yüklenemedi</string>
+    <string name="billing_consume_failed">Satın alınan ürün tüketilemedi</string>
+    <string name="billing_consume_success">Satın alınan ürün başarıyla tüketildi, gerekli işlemler yapılabilir.</string>
+
 
     <!--    Show Details -->
     <string name="show_details">Gösteri Detayları</string>
@@ -195,6 +202,7 @@
     <string name="error_network">İnternet Bağlantısı Yok</string>
     <string name="again">Tekrar Dene</string>
     <string name="close_app">Uygulamayı Kapat</string>
+    <string name="buy_me_coffee">Bana Bir Kahve Ismarla</string>
 
 
 </resources>

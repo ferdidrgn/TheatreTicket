@@ -40,6 +40,7 @@ class SettingsViewModel @Inject constructor(
     val btnPrivacyPolicyClicked = LiveEvent<Boolean>()
     val btnTermsAndConditionsClicked = LiveEvent<Boolean>()
     val btnEditProfileClicked = LiveEvent<Boolean>()
+    val btnBuyCoffeeGooglePlayClick = LiveEvent<Boolean>()
 
 
     fun selectedLayout() {
@@ -217,6 +218,10 @@ class SettingsViewModel @Inject constructor(
 
     fun onTermsAndConditionsClick() {
         btnTermsAndConditionsClicked.postValue(true)
+    }
+
+    fun onBuyCoffeeGooglePlayClick() {
+        btnBuyCoffeeGooglePlayClick.postValue(true)
     }
 
 }

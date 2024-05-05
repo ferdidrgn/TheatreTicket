@@ -62,14 +62,14 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         binding.viewModel = viewModel
 
         getNavHost()
-
         checkForAppUpdate()
         deepLink()
         askNotificationPermission()
         getFCMToken()
         getLoginGoogle()
         reviewPopUp()
-        observe()
+        whereToFromIntentActivity()
+
     }
 
     override fun onResume() {
@@ -98,6 +98,36 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         if (updateType == AppUpdateType.FLEXIBLE) {
             appUpdateManager.unregisterListener(installStateUpdatedListener)
         }
+    }
+
+    private fun whereToFromIntentActivity() {
+        val toMain = intent.getSerializableExtra(TO_MAIN) as ToMain?
+        whereToGetBottomNavItem(toMain ?: return)
+    }
+
+    fun whereToGetBottomNavItem(toMain: ToMain) {
+        binding.apply {
+            when (toMain) {
+                ToMain.Home -> bottomNav.selectedItemId = R.id.homeFragmentNav
+
+                ToMain.TicketBuy -> bottomNav.selectedItemId = R.id.shopFragmentNav
+
+                ToMain.TicketSearch -> bottomNav.selectedItemId = R.id.ticketSearchFragmentNav
+
+                ToMain.Settings -> bottomNav.selectedItemId = R.id.settingsFragmentNav
+            }
+        }
+    }
+
+    private fun getNavHost() {
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragmentContainer) as NavHostFragment
+        navController = navHostFragment.navController
+
+        val bottomNav =
+            findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(R.id.bottomNav)
+        bottomNav.setupWithNavController(navController)
+
     }
 
     private fun deepLink() {
@@ -142,26 +172,6 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         }
     }
 
-    private fun observe() {
-        intent.getSerializableExtra(TO_MAIN)?.let { data ->
-            moveToWhere(data as ToMain)
-        }
-    }
-
-    private fun moveToWhere(toWhere: ToMain) {
-        binding.apply {
-            when (toWhere) {
-                ToMain.Home -> bottomNav.selectedItemId = R.id.homeFragmentNav
-
-                ToMain.TicketBuy -> bottomNav.selectedItemId = R.id.shopFragmentNav
-
-                ToMain.TicketSearch -> bottomNav.selectedItemId = R.id.ticketSearchFragmentNav
-
-                ToMain.Settings -> bottomNav.selectedItemId = R.id.settingsFragmentNav
-            }
-        }
-    }
-
     private fun reviewPopUp() {
         if (ClientPreferences.inst.reviewStatus.not()) {
             if (ClientPreferences.inst.reviewCounter % 3 == 0) {
@@ -188,21 +198,10 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         }
     }
 
-    private fun getNavHost() {
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.fragmentContainer) as NavHostFragment
-        navController = navHostFragment.navController
-
-        val bottomNav =
-            findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(R.id.bottomNav)
-        bottomNav.setupWithNavController(navController)
-
-    }
-
     private fun getLoginGoogle() {
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestIdToken("1"/*getString(R.string.default_web_client_id)*/)
             .requestEmail()
             .build()
 
@@ -255,6 +254,16 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
                 requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
             }
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+
+        //It works in reverse. I don't know why.
+        if (binding.bottomNav.selectedItemId == R.id.homeFragmentNav)
+            binding.bottomNav.selectedItemId = R.id.homeFragmentNav
+        else
+            finish()
     }
 
     override fun changeTheme() = setTheme(R.style.Theme_TheatreTicket)

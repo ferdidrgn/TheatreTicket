@@ -8,12 +8,22 @@ import android.os.Bundle
 import android.provider.Settings
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.viewModels
+import com.android.billingclient.api.BillingClient
+import com.android.billingclient.api.BillingClientStateListener
+import com.android.billingclient.api.BillingFlowParams
+import com.android.billingclient.api.BillingResult
+import com.android.billingclient.api.ConsumeParams
+import com.android.billingclient.api.Purchase
+import com.android.billingclient.api.PurchasesUpdatedListener
+import com.android.billingclient.api.SkuDetailsParams
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.util.base.BaseFragment
 import com.ferdidrgn.theatreticket.util.base.BasePopUp
 import com.ferdidrgn.theatreticket.databinding.FragmentSettingsBinding
 import com.ferdidrgn.theatreticket.presentation.main.MainActivity
+import com.ferdidrgn.theatreticket.util.APP_LINK
 import com.ferdidrgn.theatreticket.util.ClientPreferences
+import com.ferdidrgn.theatreticket.util.DONATION_SMALL
 import com.ferdidrgn.theatreticket.util.NavHandler
 import com.ferdidrgn.theatreticket.util.ToMain
 import com.ferdidrgn.theatreticket.util.WhichEditProfile
@@ -29,9 +39,12 @@ import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding>() {
+class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding>(),
+    PurchasesUpdatedListener {
 
     private lateinit var mGoogleSignInClient: GoogleSignInClient
+    private lateinit var billingClient: BillingClient
+    private var isBillingLoadSuccess = false
 
     override fun getVM(): Lazy<SettingsViewModel> = viewModels()
 
@@ -44,6 +57,7 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
         binding.visibility = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
         viewModel.selectedLayout()
         setAds(binding.adView)
+        initBillingClint()
         clickEvents()
     }
 
@@ -68,6 +82,7 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
             openNotificationSettings()
         }
         viewModel.btnOnShareAppClick.observe(viewLifecycleOwner) {
+            requireContext().shareLink()
             viewModel.checkRole()
         }
         viewModel.btnRateAppClicked.observe(viewLifecycleOwner) {
@@ -91,12 +106,27 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
         viewModel.btnTermsAndConditionsClicked.observe(viewLifecycleOwner) {
             goToTermsAndConditionsAction(false)
         }
+        viewModel.btnBuyCoffeeGooglePlayClick.observe(viewLifecycleOwner) {
+            if (isBillingLoadSuccess)
+                loadAllSkus(DONATION_SMALL)
+            else
+                showToast(getString(R.string.billing_error))
+        }
     }
 
     override fun onResume() {
         super.onResume()
         viewModel.getMyUser()
         setAds(binding.adView)
+    }
+
+    private fun Context.shareLink() {
+        val sendIntent = Intent(Intent.ACTION_SEND).apply {
+            putExtra(Intent.EXTRA_TEXT, APP_LINK)
+            type = "text/plain"
+        }
+        val shareIntent = Intent.createChooser(sendIntent, null)
+        startActivity(shareIntent)
     }
 
     private fun goToTermsAndConditionsAction(isPrivacyPolicy: Boolean) {
@@ -230,5 +260,88 @@ class SettingsFragment : BaseFragment<SettingsViewModel, FragmentSettingsBinding
     private fun goToLoginAndFinishAffinity(context: MainActivity) {
         NavHandler.instance.toLoginActivity(requireContext(), true)
         context.finishAffinity()
+    }
+
+    private fun initBillingClint() {
+        billingClient = BillingClient.newBuilder(requireContext())
+            .setListener(this)
+            .enablePendingPurchases()
+            .build()
+
+        billingClient.startConnection(object : BillingClientStateListener {
+            override fun onBillingServiceDisconnected() {
+                // Faturalandırma hizmeti bağlantısı kesildi, gerekirse tekrar bağlanmayı deneyebiliriz.
+                showToast(getString(R.string.billing_error))
+            }
+
+            override fun onBillingSetupFinished(billingResult: BillingResult) {
+                if (billingResult.responseCode == BillingClient.BillingResponseCode.OK)
+                    isBillingLoadSuccess =
+                        true // Faturalandırma bağlantısı başarıyla kuruldu, satın alma işlemlerini gerçekleştirebiliriz.
+                else
+                    showToast(getString(R.string.billing_error) + " " + billingResult.debugMessage) //"Faturalandırma bağlantısı başarısız: ${billingResult.debugMessage}"
+            }
+        })
+    }
+
+    private fun loadAllSkus(productId: String) {
+        val skuDetailsParams = SkuDetailsParams.newBuilder()
+            .setSkusList(listOf(productId))
+            .setType(BillingClient.SkuType.INAPP)
+            .build()
+
+        billingClient.querySkuDetailsAsync(skuDetailsParams) { billingResult, skuDetailsList ->
+            if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
+                skuDetailsList?.let { skuDetails ->
+                    if (skuDetails.isNotEmpty()) {
+                        val skuDetails = skuDetails[0]
+                        val billingFlowParams = BillingFlowParams.newBuilder()
+                            .setSkuDetails(skuDetails)
+                            .build()
+
+                        billingClient.launchBillingFlow(requireActivity(), billingFlowParams)
+                    }
+                }
+            } else
+                showToast(getString(R.string.billing_details_failed) + " " + billingResult.debugMessage)
+        }
+    }
+
+    override fun onPurchasesUpdated(
+        billingResult: BillingResult,
+        purchases: MutableList<Purchase>?
+    ) {
+        if (billingResult.responseCode == BillingClient.BillingResponseCode.OK && purchases != null)
+            handlePurchases(purchases)
+        else if (billingResult.responseCode == BillingClient.BillingResponseCode.USER_CANCELED)
+            showToast(getString(R.string.billing_cancel))   //"Kullanıcı satın alma işlemi iptal etti"
+        else
+            showToast(getString(R.string.billing_failed) + " " + billingResult.debugMessage)
+    }
+
+    private fun handlePurchases(purchases: List<Purchase>) {
+        for (purchase in purchases) {
+            if (purchase.purchaseState == Purchase.PurchaseState.PURCHASED)
+                consumePurchase(purchase) // Satın alınan ürünleri işleme almak için burada gerekli işlemler yapılabilir.
+        }
+    }
+
+    private fun consumePurchase(purchase: Purchase) {
+        val consumeParams = ConsumeParams.newBuilder()
+            .setPurchaseToken(purchase.purchaseToken)
+            .build()
+
+        billingClient.consumeAsync(consumeParams) { billingResult, purchaseToken ->
+            if (billingResult.responseCode == BillingClient.BillingResponseCode.OK && purchaseToken != null)
+                showToast(getString(R.string.billing_consume_success)) // Satın alınan ürün başarıyla tüketildi, gerekli işlemler yapılabilir.
+            else
+                showToast(getString(R.string.billing_consume_failed) + " " + billingResult.debugMessage)
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        billingClient.endConnection()
     }
 }

@@ -26,8 +26,10 @@ const val IS_GOOGLE_SIGN_IN = "isGoogleSignIn"
 const val IS_PHONE_NUMBER_SIGN_IN = "isPhoneNumberSignIn"
 const val IS_BLANK_USER_INFO = "IS_BLANK_USER_INFO"
 
-const val SHOW_NOTIFICATION = "show-notification"
+const val APP_LINK = "https://play.google.com/store/apps/details?id=com.ferdidrgn.anlikdepremler"
 
+const val SHOW_NOTIFICATION = "show-notification"
+const val DONATION_SMALL = "donation_small"
 
 const val IS_DARK_MODE = "isDarkMode"
 const val REVIEW_STATUS = "reviewStatus"

@@ -153,6 +153,13 @@
     <string name="eMail_optional">E-Mail (Optional)</string>
     <string name="add_user_info">Fill Tn the Same Informations</string>
 
+    <string name="billing_error">Billing service connection is disconnected, You can try to reconnect if necessary.</string>
+    <string name="billing_cancel">User canceled the purchase process.</string>
+    <string name="billing_failed">Purchase process failed</string>
+    <string name="billing_details_failed">Product details could not be loaded</string>
+    <string name="billing_consume_failed">Purchased product could not be consumed</string>
+    <string name="billing_consume_success">Purchased product has been successfully consumed, necessary transactions can be made.</string>
+
     <!--    Show Details -->
     <string name="show_details">Show Details</string>
     <string name="permissions_need_galery">Permission needed for gallery</string>
@@ -175,6 +182,7 @@
     <string name="error_network">Network Error</string>
     <string name="again">Again</string>
     <string name="close_app">Close the app</string>
+    <string name="buy_me_coffee">Buy Me Coffee</string>
 
 
 </resources>

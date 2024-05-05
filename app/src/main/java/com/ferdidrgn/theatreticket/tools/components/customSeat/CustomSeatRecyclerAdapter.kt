@@ -9,7 +9,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ferdidrgn.theatreticket.R
-import com.ferdidrgn.theatreticket.commonModels.dummyData.Seats
+import com.ferdidrgn.theatreticket.domain.model.commonModels.dummyData.Seats
 import com.ferdidrgn.theatreticket.tools.onClickDelayed
 import com.ferdidrgn.theatreticket.ui.buyTicket.TicketBuyViewModel
 

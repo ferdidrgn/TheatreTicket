@@ -9,7 +9,7 @@
 
         <variable
             name="sell"
-            type="com.ferdidrgn.theatreticket.commonModels.dummyData.Sell" />
+            type="com.ferdidrgn.theatreticket.domain.model.commonModels.dummyData.Sell" />
 
         <variable
             name="index"

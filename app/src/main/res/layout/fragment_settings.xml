@@ -8,8 +8,12 @@
         <import type="android.view.View" />
 
         <variable
+            name="visibility"
+            type="Boolean" />
+
+        <variable
             name="viewModel"
-            type="com.ferdidrgn.theatreticket.ui.main.settings.SettingsViewModel" />
+            type="com.ferdidrgn.theatreticket.presentation.ui.main.settings.SettingsViewModel" />
 
     </data>
 
@@ -379,6 +383,50 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/btnNotificationPermission"
+                    style="@style/rectangle_primary2_border_primary3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:onClick="@{() -> viewModel.onNotificationPermissionClick()}"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="13dp"
+                    android:visibility="@{visibility ? View.VISIBLE : View.GONE}">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            style="@style/ImgTintColor"
+                            android:layout_width="24dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_alarm_alert_bell_notification" />
+
+                        <TextView
+                            style="@style/TextColor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:text="@string/notification_permission"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        style="@style/ImgTintColor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_arrow_right_couple" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
                     android:id="@+id/btnRateApp"
                     style="@style/rectangle_primary2_border_primary3"
                     android:layout_width="match_parent"
@@ -492,7 +540,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="15dp"
-                            android:text="@string/privace_policy"
+                            android:text="@string/privacy_policy"
                             android:textSize="18sp" />
 
                     </LinearLayout>

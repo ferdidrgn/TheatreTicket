@@ -9,7 +9,7 @@
 
         <variable
             name="show"
-            type="com.ferdidrgn.theatreticket.commonModels.dummyData.Show" />
+            type="com.ferdidrgn.theatreticket.domain.model.commonModels.dummyData.Show" />
 
         <variable
             name="listener"

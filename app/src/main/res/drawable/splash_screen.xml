@@ -3,5 +3,5 @@
     <item android:drawable="@color/primary3" />
     <item
         android:drawable="@drawable/img_logo4"
-        android:gravity="center" />
+        android:gravity="fill" />
 </layer-list>

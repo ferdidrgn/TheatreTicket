@@ -9,7 +9,7 @@
 
         <variable
             name="seat"
-            type="com.ferdidrgn.theatreticket.commonModels.dummyData.Seat" />
+            type="com.ferdidrgn.theatreticket.domain.model.commonModels.dummyData.Seat" />
 
         <variable
             name="index"

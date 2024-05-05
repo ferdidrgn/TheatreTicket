@@ -136,8 +136,9 @@
     <string name="change_language">Change Language</string>
     <string name="language">Language</string>
     <string name="contact_us">Contact Us</string>
+    <string name="notification_permission">Notification Permission</string>
     <string name="rate_the_app">Rate The Application</string>
-    <string name="privace_policy">Privace Policy</string>
+    <string name="privacy_policy">Privace Policy</string>
     <string name="share_app">Share App</string>
     <string name="invite_friends">Invite Friends</string>
     <string name="acc_delete">Account Delete</string>

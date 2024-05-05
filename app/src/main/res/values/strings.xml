@@ -148,8 +148,9 @@
     <string name="change_language">Dil Değiştirme</string>
     <string name="language">Dil</string>
     <string name="contact_us">Bizimle İletişime Geçin</string>
+    <string name="notification_permission">Bildirim İzni</string>
     <string name="rate_the_app">Uygulamamızı Oylayın</string>
-    <string name="privace_policy">Gizlilik Politikası</string>
+    <string name="privacy_policy">Gizlilik Politikası</string>
     <string name="share_app">Uygulamayı Paylaş</string>
     <string name="invite_friends">Arkadaşlarınızı Davet Edin</string>
     <string name="acc_delete">Hesabı Sil</string>

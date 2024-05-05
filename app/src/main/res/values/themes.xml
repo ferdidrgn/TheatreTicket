@@ -16,22 +16,22 @@
 
         <!-- Secondary Color -->
         <item name="colorSecondary">@color/primary6</item>
-        <item name="colorSecondaryVariant">@color/primary7</item>
-        <item name="colorOnSecondary">@color/white_light</item>
-        <item name="colorOnSecondaryFixed">@color/pink_light</item>
+        <item name="colorSecondaryVariant">@color/pink</item>
+        <item name="colorOnSecondary">@color/primary7</item>
+        <item name="colorOnSecondaryFixed">@color/primary</item>
 
         <!-- Background Color -->
-        <item name="colorSurface">@color/pink_success</item>
+        <item name="colorSurface">@color/pink</item>
         <item name="colorOnSurface">@color/red_err</item>
-        <item name="colorOnSurfaceVariant">@color/red</item>
+        <item name="colorOnSurfaceVariant">@color/red_err</item>
         <item name="colorOnSurfaceInverse">@color/green_light</item>
-        <item name="colorOnTertiary">@color/blue_light</item>
+        <item name="colorOnTertiary">@color/primary10</item>
 
     </style>
 
     <!-- Customize style -->
     <style name="ScreenBackground">
-        <item name="android:background">@color/primary</item>
+        <item name="android:background">@color/primary2</item>
     </style>
 
     <style name="CardBackgroundTint_StrokeColor">
@@ -61,7 +61,7 @@
         <item name="piv_padding">3dp</item>
         <item name="piv_radius">4.5dp</item>
         <item name="piv_selectedColor">@color/primary3</item>
-        <item name="piv_unselectedColor">@color/primary2</item>
+        <item name="piv_unselectedColor">@color/primary4</item>
         <item name="elevation">1dp</item>
     </style>
 
@@ -73,12 +73,12 @@
         <item name="strokeColor">@color/primary4</item>
     </style>
 
-    <style name="CardBackground">
+    <style name="CardBackground_primary">
         <item name="android:background">@color/primary</item>
     </style>
 
-    <style name="TintBlueLight">
-        <item name="android:tint">@color/blue_light</item>
+    <style name="CardBackgroundTint_primary3">
+        <item name="android:backgroundTint">@color/primary3</item>
     </style>
 
     <style name="FillColorPrimary3">
@@ -90,7 +90,7 @@
     </style>
 
     <style name="ViewBackground">
-        <item name="android:background">@color/pink_light</item>
+        <item name="android:background">@color/primary5</item>
     </style>
 
     <style name="CstBtnColorPrimary2">
@@ -99,15 +99,19 @@
 
     <style name="TextInputBackground_TextColor">
         <item name="android:background">@drawable/bg_primary2_10_border_primary3</item>
-        <item name="android:textColor">@color/primary7</item>
+        <item name="android:textColor">@color/primary8</item>
     </style>
 
-    <style name="TextColor">
-        <item name="android:textColor">@color/primary7</item>
+    <style name="TextColorHeader">
+        <item name="android:textColor">@color/primary10</item>
     </style>
 
-    <style name="TextColor2">
-        <item name="android:textColor">@color/white_light</item>
+    <style name="TextColor_primary4">
+        <item name="android:textColor">@color/primary4</item>
+    </style>
+
+    <style name="TextColor_primary8">
+        <item name="android:textColor">@color/primary8</item>
     </style>
 
     <style name="PopUpBtnNegative">
@@ -119,17 +123,18 @@
     </style>
 
     <style name="TextColorHint">
-        <item name="android:textColorHint">@color/primary7</item>
+        <item name="android:textColorHint">@color/pink</item>
+        <item name="android:textColor">@color/primary8</item>
     </style>
 
     <style name="TextColorHintAndTextColor">
         <item name="android:textAllCaps">false</item>
-        <item name="android:textColorHint">@color/primary7</item>
-        <item name="android:textColor">@color/primary7</item>
+        <item name="android:textColorHint">@color/pink</item>
+        <item name="android:textColor">@color/primary8</item>
     </style>
 
     <style name="ImgTintColor">
-        <item name="android:tint">@color/pink_light</item>
+        <item name="android:tint">@color/primary4</item>
     </style>
 
     <style name="CstToolbarBg">
@@ -138,7 +143,7 @@
 
     <style name="rounded_primary2_10_border_primary3">
         <item name="android:background">@drawable/bg_primary2_10_border_primary3</item>
-        <item name="android:textColor">@color/white_light</item>
+        <item name="android:textColor">@color/primary6</item>
     </style>
 
     <style name="rectangle_primary2_border_primary3">
@@ -146,7 +151,7 @@
     </style>
 
     <style name="rectangle_primary2_10_border_error_red">
-        <item name="android:background">@drawable/bg_primary2_10_border_error_red</item>
+        <item name="android:background">@drawable/bg_primary2_10_border_pink</item>
     </style>
 
     <style name="rectangle_top_10_primary2_border_primary3">
@@ -164,7 +169,7 @@
 
     <style name="DialogTheme_transparent" parent="Theme.AppCompat.Dialog">
         <item name="android:windowBackground">
-            @drawable/rounded_border_main_1_dp_radius_10_transparent
+            @drawable/rounded_primary3_2_radius_10
         </item>
         <!--You can set other style items also, such as animations and etc-->
     </style>
@@ -200,5 +205,13 @@
     <style name="ShapeAppearanceOverlay.Corner20DP" parent="">
         <item name="cornerSize">20dp</item>
         <item name="cornerFamily">rounded</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay_card_custom_corners_all" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">25dp</item>
+        <item name="cornerSizeTopLeft">25dp</item>
+        <item name="cornerSizeBottomRight">25dp</item>
+        <item name="cornerSizeBottomLeft">25dp</item>
     </style>
 </resources>

@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.ferdidrgn.theatreticket.R
-import com.ferdidrgn.theatreticket.enums.ToolBarTitles
+import com.ferdidrgn.theatreticket.tools.enums.ToolBarTitles
 import com.ferdidrgn.theatreticket.tools.ClientPreferences
 import com.ferdidrgn.theatreticket.tools.hide
 import com.ferdidrgn.theatreticket.tools.show

@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.ViewDataBinding
 import com.ferdidrgn.theatreticket.R
 import com.ferdidrgn.theatreticket.tools.*
+import com.google.android.gms.ads.AdView
 
 abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : AppCompatActivity() {
 
@@ -90,6 +91,10 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : AppCompa
         )
     }
 
+    fun setAds(adView: AdView) {
+        builderADS(this, adView)
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         networkMonitor.unregister()
@@ -97,10 +102,10 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : AppCompa
     }
 
 
-/*fun runRecorder(textView: TextView) {
-    hideKeyboard(this)
-    VoiceFragment { textResponse ->
-        textView.text = textResponse
-    }.show(supportFragmentManager, "")
-}*/
+    /*fun runRecorder(textView: TextView) {
+        hideKeyboard(this)
+        VoiceFragment { textResponse ->
+            textView.text = textResponse
+        }.show(supportFragmentManager, "")
+    }*/
 }

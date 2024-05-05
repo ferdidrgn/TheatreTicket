@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import com.ferdidrgn.theatreticket.tools.builderADS
 import com.ferdidrgn.theatreticket.tools.checkIfTokenDeleted
 import com.ferdidrgn.theatreticket.tools.showToast
+import com.google.android.gms.ads.AdView
 
 abstract class BaseFragment<VM : BaseViewModel, DB : ViewDataBinding> : Fragment() {
 
@@ -51,6 +53,10 @@ abstract class BaseFragment<VM : BaseViewModel, DB : ViewDataBinding> : Fragment
 
     fun hideProgress(){
         (requireActivity() as BaseActivity <*,*>).hideProgress()
+    }
+
+    fun setAds(adView: AdView) {
+        builderADS(requireContext(), adView)
     }
 
     override fun onDestroy() {

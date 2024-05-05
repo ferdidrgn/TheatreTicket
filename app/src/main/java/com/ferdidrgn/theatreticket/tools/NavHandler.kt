@@ -4,14 +4,14 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat.finishAffinity
-import com.ferdidrgn.theatreticket.commonModels.dummyData.Show
-import com.ferdidrgn.theatreticket.commonModels.dummyData.Stage
-import com.ferdidrgn.theatreticket.enums.ToMain
-import com.ferdidrgn.theatreticket.enums.WhichEditProfile
-import com.ferdidrgn.theatreticket.enums.WhichTermsAndPrivace
+import com.ferdidrgn.theatreticket.domain.model.commonModels.dummyData.Show
+import com.ferdidrgn.theatreticket.domain.model.commonModels.dummyData.Stage
+import com.ferdidrgn.theatreticket.tools.enums.ToMain
+import com.ferdidrgn.theatreticket.tools.enums.WhichEditProfile
+import com.ferdidrgn.theatreticket.tools.enums.WhichTermsAndPrivacy
 import com.ferdidrgn.theatreticket.ui.buyTicket.TicketBuyActivity
 import com.ferdidrgn.theatreticket.ui.editProfile.EditProfileActivity
-import com.ferdidrgn.theatreticket.ui.termsAndConditionsAndPrivacePolicy.TermsAndConditionsandPrivacePolicyActivity
+import com.ferdidrgn.theatreticket.ui.termsAndConditionsAndPrivacyPolicy.TermsAndConditionsAndPrivacyPolicyActivity
 import com.ferdidrgn.theatreticket.ui.language.LanguageActivity
 import com.ferdidrgn.theatreticket.ui.login.LoginActivity
 import com.ferdidrgn.theatreticket.ui.main.MainActivity
@@ -21,7 +21,6 @@ import com.ferdidrgn.theatreticket.ui.showDetails.ShowDetailsActivity
 import com.ferdidrgn.theatreticket.ui.showOperations.ShowOperationsActivity
 import com.ferdidrgn.theatreticket.ui.stage.StageActivity
 import com.ferdidrgn.theatreticket.ui.stageOperations.StageOperationsActivity
-import java.io.Serializable
 
 class NavHandler {
 
@@ -41,9 +40,9 @@ class NavHandler {
 
     fun toChangeTheme(context: Context) {
         val intent = Intent(context, MainActivity::class.java)
-        intent?.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        intent?.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-        intent?.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         intent.putExtra(TO_MAIN, ToMain.Settings)
         context.startActivity(intent)
     }
@@ -55,18 +54,18 @@ class NavHandler {
         finishAffinity(context as AppCompatActivity)
     }
 
+    fun toMainActivity(context: Context, toMain: ToMain) {
+        val intent = Intent(context, MainActivity::class.java)
+        intent.putExtra(TO_MAIN, toMain)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+        context.startActivity(intent)
+    }
+
     fun toBuyTicketActivity(context: Context, show: Show?, stage: Stage?) {
         val intent = Intent(context, TicketBuyActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
         intent.putExtra(SHOW, show)
         intent.putExtra(STAGE, stage)
-        context.startActivity(intent)
-    }
-
-    fun toMainActivity(context: Context, toMain: ToMain) {
-        val intent = Intent(context, MainActivity::class.java)
-        intent.putExtra(TO_MAIN, toMain)
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
         context.startActivity(intent)
     }
 
@@ -101,13 +100,13 @@ class NavHandler {
         context.startActivity(intent)
     }
 
-    fun toTermsConditionsAndPrivacePolicyActivity(
+    fun toTermsConditionsAndPrivacyPolicyActivity(
         context: Context,
-        whichTermsAndPrivace: WhichTermsAndPrivace
+        whichTermsAndPrivacy: WhichTermsAndPrivacy
     ) {
-        val intent = Intent(context, TermsAndConditionsandPrivacePolicyActivity::class.java)
+        val intent = Intent(context, TermsAndConditionsAndPrivacyPolicyActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
-        intent.putExtra(WHICH_TERMS_PRIVACE, whichTermsAndPrivace)
+        intent.putExtra(WHICH_TERMS_PRIVACY, whichTermsAndPrivacy)
         context.startActivity(intent)
     }
 

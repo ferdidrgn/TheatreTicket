@@ -1,7 +1,7 @@
 package com.ferdidrgn.theatreticket.tools.components
 
 import com.ferdidrgn.theatreticket.R
-import com.ferdidrgn.theatreticket.enums.PhoneNumberLengthsByCountry
+import com.ferdidrgn.theatreticket.tools.enums.PhoneNumberLengthsByCountry
 import com.ferdidrgn.theatreticket.tools.helpers.MaskWatcher
 import com.ferdidrgn.theatreticket.tools.show
 import android.content.Context

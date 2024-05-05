@@ -16,16 +16,15 @@
         <!-- Secondary Color -->
         <item name="colorSecondary">@color/dark6</item>
         <item name="colorSecondaryVariant">@color/dark7</item>
-        <item name="colorOnSecondary">@color/white_light</item>
-        <item name="colorOnSecondaryFixed">@color/pink_light</item>
+        <item name="colorOnSecondary">@color/primary7</item>
+        <item name="colorOnSecondaryFixed">@color/primary</item>
 
         <!-- Background Color -->
-        <item name="colorSurface">@color/pink_success</item>
+        <item name="colorSurface">@color/pink</item>
         <item name="colorOnSurface">@color/red_err</item>
-        <item name="colorOnSurfaceVariant">@color/red</item>
+        <item name="colorOnSurfaceVariant">@color/red_err</item>
         <item name="colorOnSurfaceInverse">@color/green_light</item>
-        <item name="colorOnTertiary">@color/blue_light</item>
-
+        <item name="colorOnTertiary">@color/primary10</item>
     </style>
 
     <!-- Customize style -->
@@ -72,12 +71,12 @@
         <item name="strokeColor">@color/dark4</item>
     </style>
 
-    <style name="CardBackground">
+    <style name="CardBackground_primary">
         <item name="android:background">@color/black</item>
     </style>
 
-    <style name="TintBlueLight">
-        <item name="android:tint">@color/dark8</item>
+    <style name="CardBackgroundTint_primary3">
+        <item name="android:backgroundTint">@color/dark3</item>
     </style>
 
     <style name="FillColorPrimary3">
@@ -98,15 +97,19 @@
 
     <style name="TextInputBackground_TextColor">
         <item name="android:background">@drawable/bg_dark2_10_border_dark3</item>
+        <item name="android:textColor">@color/dark10</item>
+    </style>
+
+    <style name="TextColorHeader">
+        <item name="android:textColor">@color/dark10</item>
+    </style>
+
+    <style name="TextColor_primary4">
         <item name="android:textColor">@color/dark7</item>
     </style>
 
-    <style name="TextColor">
-        <item name="android:textColor">@color/dark7</item>
-    </style>
-
-    <style name="TextColor2">
-        <item name="android:textColor">@color/white_light</item>
+    <style name="TextColor_primary8">
+        <item name="android:textColor">@color/dark9</item>
     </style>
 
     <style name="PopUpBtnNegative">
@@ -118,7 +121,8 @@
     </style>
 
     <style name="TextColorHint">
-        <item name="android:textColorHint">@color/dark7</item>
+        <item name="android:textColorHint">@color/dark9</item>
+        <item name="android:textColor">@color/dark10</item>
     </style>
 
     <style name="TextColorHintAndTextColor">
@@ -137,7 +141,7 @@
 
     <style name="rounded_primary2_10_border_primary3">
         <item name="android:background">@drawable/bg_dark2_10_border_dark3</item>
-        <item name="android:textColor">@color/white_light</item>
+        <item name="android:textColor">@color/primary7</item>
     </style>
 
     <style name="rectangle_primary2_border_primary3">

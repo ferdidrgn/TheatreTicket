@@ -1,8 +1,8 @@
 package com.ferdidrgn.theatreticket.tools
 
-import com.ferdidrgn.theatreticket.commonModels.dummyData.SellBox
-import com.ferdidrgn.theatreticket.enums.ContextLanguages
-import com.ferdidrgn.theatreticket.enums.Languages
+import com.ferdidrgn.theatreticket.domain.model.commonModels.dummyData.SellBox
+import com.ferdidrgn.theatreticket.tools.enums.ContextLanguages
+import com.ferdidrgn.theatreticket.tools.enums.Languages
 import com.ferdidrgn.theatreticket.tools.helpers.PreferencesManager
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken

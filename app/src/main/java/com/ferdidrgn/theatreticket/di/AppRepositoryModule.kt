@@ -1,42 +1,18 @@
 package com.ferdidrgn.theatreticket.di
 
-import com.ferdidrgn.theatreticket.repository.*
+import com.ferdidrgn.theatreticket.data.repository.AppToolsFireBaseQueriesRepository
+import com.ferdidrgn.theatreticket.data.repository.AppToolsFireBaseQueriesRepositoryImpl
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
+import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.android.scopes.ViewModelScoped
 
 @Module
-@InstallIn(SingletonComponent::class)
-object AppRepositoryModule {
-
-    @Singleton
-    @Provides
-    fun provideUserFirebaseQueries() = UserFirebaseQueries()
-
-    @Singleton
-    @Provides
-    fun provideShowFirebaseQueries() = ShowFirebaseQuieries()
-
-    @Singleton
-    @Provides
-    fun provideSellFirebaseQueries() = SellFirebaseQueries()
-
-    @Singleton
-    @Provides
-    fun provideStageFirebaseQueries() = StageFirebaseQueries()
-
-    @Singleton
-    @Provides
-    fun provideAppToolsFireBase() = AppToolsFireBaseQueries()
-
-    @Singleton
-    @Provides
-    fun provideSeatFirebaseQueries() = SeatFirebaseQuieries()
-
-    @Singleton
-    @Provides
-    fun provideSeatsFirebaseQueries() = SeatsFirebaseQuieries()
+@InstallIn(ViewModelComponent::class)
+abstract class AppRepositoryModule {
+    @Binds
+    @ViewModelScoped
+    abstract fun bindAppToolsFireBaseQueriesRepository(appToolsFireBaseQueriesRepositoryImpl: AppToolsFireBaseQueriesRepositoryImpl): AppToolsFireBaseQueriesRepository
 
 }

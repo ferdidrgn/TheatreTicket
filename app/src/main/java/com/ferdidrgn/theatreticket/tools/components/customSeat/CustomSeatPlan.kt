@@ -6,8 +6,8 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ferdidrgn.theatreticket.R
-import com.ferdidrgn.theatreticket.commonModels.dummyData.Seat
-import com.ferdidrgn.theatreticket.commonModels.dummyData.Seats
+import com.ferdidrgn.theatreticket.domain.model.commonModels.dummyData.Seat
+import com.ferdidrgn.theatreticket.domain.model.commonModels.dummyData.Seats
 import com.ferdidrgn.theatreticket.ui.buyTicket.TicketBuyViewModel
 
 class CustomSeatPlan : ConstraintLayout {

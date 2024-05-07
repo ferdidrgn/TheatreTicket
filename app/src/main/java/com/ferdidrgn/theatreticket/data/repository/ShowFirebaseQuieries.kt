@@ -20,7 +20,7 @@ import kotlin.collections.HashMap
 class ShowFirebaseQuieries {
 
     private val fireStoreShowRef = Firebase.firestore.collection("Show")
-    var storageRef = Firebase.storage.reference
+    private var storageRef = Firebase.storage.reference
 
     fun addShow(show: Show?, status: (Boolean) -> Unit) {
 

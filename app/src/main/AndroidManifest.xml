@@ -17,6 +17,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="com.android.vending.BILLING" />
 
 
     <application
@@ -26,12 +27,18 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:localeConfig="@xml/locales_config"
         android:process=":location"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TheatreTicket"
         tools:targetApi="34">
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="${API_KEY_ADMOB}" />
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="${API_KEY_LOCATION}" />
 
         <activity
             android:name=".presentation.zTest.TestActivity"
@@ -64,14 +71,6 @@
             android:name=".presentation.onboarding.OnboardingActivity"
             android:exported="false" />
 
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="${API_KEY_ADMOB}" />
-
-        <meta-data
-            android:name="com.google.android.maps.v2.API_KEY"
-            android:value="${API_KEY_LOCATION}" />
-
         <activity
             android:name=".presentation.login.LoginActivity"
             android:exported="true">
@@ -81,13 +80,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".presentation.language.LanguageActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.main.MainActivity"
-            android:exported="false"
-            android:process=":location" />
+            android:exported="false" />
 
         <service
             android:name=".data.server.FCMFirebaseService"
